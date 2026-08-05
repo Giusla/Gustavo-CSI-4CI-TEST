@@ -1,0 +1,50 @@
+body {
+
+
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    color: white;
+    padding: 15px 30px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+
+
+
+}
+
+.nav-links a {
+
+    color: white;
+    text-decoration: none;
+
+
+}
+
+.nav-links a:hover {
+
+    color: rgb(187, 94, 32);
+    text-decoration: underline;
+
+
+}
+
+.logo {
+
+    font-weight: 800;
+    font-size: 20px;
+    color: rgb(187, 94, 32);
+
+}
