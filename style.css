@@ -9,7 +9,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: black;
+    background-color: rgb(2, 17, 65);
     color: white;
     padding: 15px 30px;
 }
@@ -35,7 +35,7 @@ body {
 
 .nav-links a:hover {
 
-    color: rgb(187, 94, 32);
+     color: rgb(255, 102, 0);
     text-decoration: underline;
 
 
@@ -45,6 +45,6 @@ body {
 
     font-weight: 800;
     font-size: 20px;
-    color: rgb(187, 94, 32);
+     color: rgb(255, 102, 0);
 
 }
