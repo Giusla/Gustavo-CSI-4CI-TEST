@@ -44,7 +44,24 @@ body {
 .logo {
 
     font-weight: 800;
-    font-size: 20px;
+    font-size: 50px;
      color: rgb(255, 102, 0);
+
+}
+
+#titolo-home
+{
+    color:rgb(2, 17, 65); 
+    font-size: 60px;
+    text-align: center;
+
+
+}
+
+#para-home
+{
+font-size: 20px;
+padding: 20px;
+
 
 }
