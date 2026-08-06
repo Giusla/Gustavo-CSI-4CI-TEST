@@ -1,67 +1,102 @@
-body {
+    body {
 
 
-    margin: 0;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
+        margin: 0;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgb(2, 17, 65);
-    color: white;
-    padding: 15px 30px;
-}
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rgb(2, 17, 65);
+        color: white;
+        padding: 15px 30px;
+    }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-    margin: 0;
-    padding: 0;
-
-
-
-}
-
-.nav-links a {
-
-    color: white;
-    text-decoration: none;
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+        margin: 0;
+        padding: 0;
 
 
-}
 
-.nav-links a:hover {
+    }
 
-     color: rgb(255, 102, 0);
-    text-decoration: underline;
+    .nav-links a {
 
-
-}
-
-.logo {
-
-    font-weight: 800;
-    font-size: 50px;
-     color: rgb(255, 102, 0);
-
-}
-
-#titolo-home
-{
-    color:rgb(2, 17, 65); 
-    font-size: 60px;
-    text-align: center;
+        color: white;
+        text-decoration: none;
 
 
-}
+    }
 
-#para-home
-{
-font-size: 20px;
-padding: 20px;
+    .nav-links a:hover {
+
+        color: rgb(255, 102, 0);
+        text-decoration: underline;
 
 
-}
+    }
+
+    .logo {
+
+        font-weight: 800;
+        font-size: 50px;
+        color: rgb(255, 102, 0);
+
+    }   
+
+    #titolo-home {
+        color: rgb(2, 17, 65);
+        font-size: 80px;
+
+
+
+    }
+
+    #para-home {
+        font-size: 20px;
+        line-height: 3;
+
+
+
+    }
+
+    .container-home {
+
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+
+    }
+
+    .home-layout {
+        display: flex;
+        max-width: 1600px;   /* più largo */
+        margin: 40px auto;
+        gap: 40px;           /* spazio equilibrato */
+        align-items: flex-start;
+    }
+
+
+    .sinistra, .destra {
+        flex: 1.5; /* colonne laterali più larghe */
+    }
+
+    .centro {
+        flex: 2; /* testo centrale */
+        padding: 0 20px; /* distacco dal testo */
+    }
+
+    .sinistra img,
+    .destra img {
+        width: 100%;
+        height: 100%;        /* riempie tutta la colonna */
+        border-radius: 10px;
+        object-fit: cover;   /* non deforma */
+    }
+
+
