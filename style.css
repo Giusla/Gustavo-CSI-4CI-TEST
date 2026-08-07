@@ -14,6 +14,7 @@
         padding: 15px 30px;
         position: sticky;
         top: 0;
+        border-bottom: 2px solid #ff6600;
     }
 
     .nav-links {
@@ -89,10 +90,10 @@
     .container-img img {
         width: 100%;
         max-width: 650px;
-        /* aumenta se le vuoi più grandi */
+
         height: auto;
         border-radius: 10px;
-        /* opzionale, ma fa figo */
+
         object-fit: cover;
         margin-top: 100px;
         margin-bottom: 300px;
@@ -105,12 +106,12 @@
     }
 
     .footer {
-    background-color: #0f2c5c;
-    color: white;
-    text-align: center;
-    padding: 30px 20px;
-    margin-top: 60px;
-    font-size: 16px;
-    line-height: 1.2;
-    border-top: 3px solid #ff6600; /* accent color */
-}
+        background-color: #0f2c5c;
+        color: white;
+        text-align: center;
+        padding: 30px 20px;
+        margin-top: 60px;
+        font-size: 16px;
+        line-height: 1.2;
+        border-top: 2px solid #ff6600;
+    }
