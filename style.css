@@ -146,3 +146,33 @@ main {
     aspect-ratio: 16 / 9;
     border-radius: 20px;
 }
+
+
+.container-img-galleria {
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-bottom: 80px;
+    padding-top: 30px;
+
+    display: flex;
+}
+
+.container-img-galleria img {
+    width: 400px;
+    height: 300px;
+    border: 2px solid;
+    border-radius: 10px;
+    box-shadow: 4px 7px 7px 0px #0e0000e6;
+    cursor: pointer;
+    margin: 10px;
+    transition: 400ms;
+
+}
+
+.container-img-galleria img:hover {
+
+    transform: scale(1.03);
+
+
+}
