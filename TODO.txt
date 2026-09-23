@@ -1,0 +1,17 @@
+Migliorie sito Gustavo
+
+- Integrazione Home con spiegazionne piu ricca(prendere info dalle presentazioni di classroom su gustavo)
+
+-Spiegare il contesto della sezione Galleria ed aggiungere foto dell'incontro sull'AI con il poliziotto e spiegare il nesso con il progetto Gustavo 
+
+-Utilizzare la scheda di sintesi per la sezione Progetto insieme 
+
+-Esempio del json del Gustavo
+
+-Riprendere i colori del chatbot
+
+-Aggiungere responsive
+
+
+Collaboratori:
+Giuse, forse dragan, Li
