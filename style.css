@@ -49,15 +49,17 @@ main {
 }
  
 .nav-links a {
- 
     color: white;
     text-decoration: none;
     position: relative;
     padding-bottom: 4px;
-    transition: color 300ms ease;
- 
- 
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+    text-shadow: 0 0 6px rgba(0, 168, 107, 0.6), 0 0 12px rgba(0, 102, 255, 0.4);
+    transition: color 300ms ease, text-shadow 300ms ease;
 }
+
  
 .nav-links a::after {
     content: "";
@@ -71,11 +73,9 @@ main {
 }
  
 .nav-links a:hover {
- 
-    color: #ffff;
-    text-decoration:none
- 
- 
+    color: #ffffff;
+    text-decoration: none;
+    text-shadow: 0 0 10px rgba(0, 168, 107, 0.9), 0 0 20px rgba(0, 102, 255, 0.7);
 }
  
 .nav-links a:hover::after {
@@ -84,13 +84,11 @@ main {
 
 
 .logo {
-
     font-weight: 800;
-    font-size: 50px;
-    color: #e0e0e0;
-     -webkit-text-stroke: 0.5px black; /* bordo */
-  
-
+    font-size: 48px;
+    color: white;
+    text-shadow: 0 0 8px rgba(0, 168, 107, 0.6), 0 0 16px rgba(0, 102, 255, 0.4);
+    letter-spacing: -1px;
 }
 
 .home,
@@ -101,10 +99,16 @@ main {
 }
 
 .titolo-pagina {
-    color:  #0066ff;
+    font-weight: 800;
     font-size: 60px;
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    letter-spacing: -1px;
     justify-items: center;
-    text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.25)
+    background: linear-gradient(90deg, #00a86b, #0066ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: none;
 }
 
 .testo {
@@ -156,7 +160,10 @@ main {
     padding: 30px 20px;
     margin-top: auto;
     font-size: 16px;
-    line-height: 1.2;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+    line-height: 1.4;
+    text-shadow: 0 0 6px rgba(0, 168, 107, 0.5), 0 0 12px rgba(0, 102, 255, 0.4);
     border-bottom: 2px solid linear-gradient(90deg, #00a86b, #0066ff);
 }
 
