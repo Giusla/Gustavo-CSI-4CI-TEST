@@ -12,5 +12,6 @@ Migliorie sito Gustavo
 
 -Aggiungere responsive
 
+-Home da modificare: passa la voglia di leggere tutto quel testo
 
 Collaboratori:
