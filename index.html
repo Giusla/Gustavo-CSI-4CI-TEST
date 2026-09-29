@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
     <meta charset="UTF-8">
@@ -13,67 +13,78 @@
     <nav class="navbar">
         <div class="logo">GustAvo</div>
         <ul class="nav-links">
-
-            <li>
-                <a href="index.html">Home</a>
-            </li>
-            <li>
-                <a href="progetto.html">Progetto</a>
-            </li>
-            <li>
-                <a href="team.html">Team</a>
-            </li>
-            <li>
-                <a href="documentazione.html">Documentazione</a>
-            </li>
-            <li>
-                <a href="chatbot.html">Chatbot</a>
-            </li>
-
-            <li>
-                <a href="galleria.html">Galleria</a>
-            </li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="progetto.html">Progetto</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="documentazione.html">Documentazione</a></li>
+            <li><a href="chatbot.html">Chatbot</a></li>
+            <li><a href="galleria.html">Galleria</a></li>
         </ul>
-
-
     </nav>
 
-    <main>
-        <div class="center-container ">
+    <main class="home">
 
-
-
-            <div class="textbox">
-                <h1 class="titolo-pagina">Progetto GustAvo - Chatbot della 4CI</h1>
-
-                <p class="testo">
-                    Benvenuti nel sito ufficiale di GustAvo, il chatbot di orientamento scolastico progettato e
-                    realizzato dagli studenti della classe 4CI, oggi 5CI, dell'IIS Amedeo Avogadro di Torino.
-
-                    GustAvo nasce con un obiettivo semplice: aiutare studenti, famiglie e visitatori a conoscere meglio
-                    la nostra scuola, fornendo risposte alle domande più frequenti sull'Istituto, sui suoi spazi, sugli
-                    indirizzi di studio e sulle attività scolastiche.
-
-                     In questo sito troverai tutte le informazioni sul progetto GustAvo:
-                    la sua idea, il percorso di sviluppo, il team che lo ha realizzato
-                    e una galleria fotografica che racconta la nostra esperienza presso CSI Piemonte.
+        <!-- HERO -->
+        <section class="home-hero">
+            <div class="home-hero-testo">
+                <span class="badge">IIS Amedeo Avogadro - Torino</span>
+                <h1>Ciao, sono <span class="evidenzia">GustAvo</span>!</h1>
+                <p class="lead">
+                    Il chatbot di orientamento creato dagli studenti della 4CI (oggi 5CI)
+                    per far conoscere la nostra scuola a studenti e famiglie.
+                </p>
+                <div class="home-bottoni">
+                    <a class="btn btn-primario" href="chatbot.html">Parla con GustAvo</a>
+                    <a class="btn btn-secondario" href="progetto.html">Scopri il progetto</a>
+                </div>
             </div>
-            <div class="container-img">
-                <img src="/foto_csi/foto_home/foto_home_1.jpg">
-                <img src="/foto_csi/foto_home/foto_home_2.jpg">
+
+            <div class="home-hero-foto">
+                <img class="foto foto-1" src="foto_csi/foto_home/foto_home_1.jpg" alt="Il team al lavoro">
+                <img class="foto foto-2" src="foto_csi/foto_home/foto_home_2.jpg" alt="Esperienza presso CSI Piemonte">
             </div>
-        </div>
+        </section>
+
+        <!-- CARD -->
+        <section class="home-sezione">
+            <h2 class="home-titolo">Cosa puoi chiedere a GustAvo?</h2>
+            <p class="home-sottotitolo">Risponde alle domande più frequenti sulla scuola.</p>
+
+            <div class="card-griglia">
+                <article class="card">
+                    <div class="card-numero">01</div>
+                    <h3>Gli spazi</h3>
+                    <p>Aule, laboratori e ambienti della scuola.</p>
+                </article>
+                <article class="card">
+                    <div class="card-numero">02</div>
+                    <h3>Gli indirizzi</h3>
+                    <p>Tutti i percorsi di studio dell'Istituto.</p>
+                </article>
+                <article class="card">
+                    <div class="card-numero">03</div>
+                    <h3>Le attività</h3>
+                    <p>Progetti, eventi ed esperienze scolastiche.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- FASCIA FINALE -->
+        <section class="home-cta">
+            <h2>Un progetto nato in classe, cresciuto al CSI Piemonte</h2>
+            <p>Scopri l'idea, il percorso di sviluppo, il team e le foto della nostra esperienza.</p>
+            <div class="home-bottoni centro">
+                <a class="btn btn-chiaro" href="team.html">Il team</a>
+                <a class="btn btn-contorno" href="galleria.html">Galleria</a>
+            </div>
+        </section>
+
     </main>
 
-
-
     <footer class="footer">
-        <p>Progetto GustAvo </p>
+        <p>Progetto GustAvo</p>
         <p>Istituto Amedeo Avogadro - Torino</p>
-
     </footer>
-
-
 </body>
 
 </html>
