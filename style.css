@@ -1,20 +1,38 @@
+/* =========================================
+   RESET GENERALE
+   ========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
 html,
 body {
-    height: 100%;
+    width: 100%;
+    min-height: 100%;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0;
 }
 
 body {
     min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+    overflow-x: hidden;
 }
 
 main {
     flex: 1;
 }
 
+
+/* =========================================
+   CONTENITORI GENERALI
+   ========================================= */
 
 .center-container {
     display: flex;
@@ -23,54 +41,151 @@ main {
     flex-direction: column;
 }
 
+.container-titolo {
+    width: 100%;
+    text-align: center;
+}
+
+.textbox {
+    text-align: center;
+}
+
+
+/* =========================================
+   NAVBAR
+   ========================================= */
+
 .navbar {
+    width: 100%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(90deg, #00a86b, #0066ff);
+
+    background: linear-gradient(
+        90deg,
+        #00a86b,
+        #0066ff
+    );
+
     color: white;
+
     padding: 15px 30px;
+
     position: sticky;
     top: 0;
-    z-index: 10;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+
+    z-index: 100;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.4);
 }
+
+
+/* =========================================
+   LOGO
+   ========================================= */
+
+.logo {
+    font-weight: 800;
+
+    font-size: 48px;
+
+    color: white;
+
+    letter-spacing: -1px;
+
+    white-space: nowrap;
+
+    text-shadow:
+        0 0 8px rgba(0, 168, 107, 0.6),
+        0 0 16px rgba(0, 102, 255, 0.4);
+}
+
+
+/* =========================================
+   INDICI NAVBAR
+   ========================================= */
 
 .nav-links {
     list-style: none;
+
     display: flex;
+    align-items: center;
+
     gap: 25px;
+
     margin: 0;
     padding: 0;
 }
 
 .nav-links a {
     color: white;
+
     text-decoration: none;
+
     position: relative;
-    padding-bottom: 4px;
+
+    display: inline-block;
+
+    padding: 5px 0;
+
     font-size: 20px;
+
     font-weight: 400;
+
     letter-spacing: -0.3px;
-    text-shadow: 0 0 6px rgba(0, 168, 107, 0.6), 0 0 12px rgba(0, 102, 255, 0.4);
-    transition: color 300ms ease, text-shadow 300ms ease;
+
+    text-shadow:
+        0 0 6px rgba(0, 168, 107, 0.6),
+        0 0 12px rgba(0, 102, 255, 0.4);
+
+    transition:
+        color 300ms ease,
+        text-shadow 300ms ease,
+        transform 300ms ease;
 }
+
+
+/* =========================================
+   LINEA SOTTO GLI INDICI
+   ========================================= */
 
 .nav-links a::after {
     content: "";
+
     position: absolute;
+
     left: 0;
     bottom: 0;
-    width: 0%;
+
+    width: 0;
     height: 2px;
-    background-color: white;
-    transition: width 300ms ease;
+
+    background: #ffffff;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 0 5px rgba(255, 255, 255, 0.8);
+
+    transition:
+        width 300ms ease;
 }
+
+
+/* =========================================
+   HOVER DESKTOP
+   ========================================= */
 
 .nav-links a:hover {
     color: #ffffff;
-    text-decoration: none;
-    text-shadow: 0 0 10px rgba(0, 168, 107, 0.9), 0 0 20px rgba(0, 102, 255, 0.7);
+
+    transform: translateY(-2px);
+
+    text-shadow:
+        0 0 10px rgba(0, 168, 107, 0.9),
+        0 0 20px rgba(0, 102, 255, 0.7);
 }
 
 .nav-links a:hover::after {
@@ -78,113 +193,286 @@ main {
 }
 
 
-.logo {
-    font-weight: 800;
-    font-size: 48px;
-    color: white;
-    text-shadow: 0 0 8px rgba(0, 168, 107, 0.6), 0 0 16px rgba(0, 102, 255, 0.4);
-    letter-spacing: -1px;
+/* =========================================
+   FOCUS
+   ========================================= */
+
+.nav-links a:focus {
+    color: #ffffff;
+
+    transform: translateY(-2px);
+
+    text-shadow:
+        0 0 10px rgba(0, 168, 107, 0.9),
+        0 0 20px rgba(0, 102, 255, 0.7);
+
+    outline: none;
 }
 
-.container-titolo {
-    justify-items: center;
+.nav-links a:focus::after {
+    width: 100%;
 }
+
+
+/* =========================================
+   PAGINA ATTIVA
+   ========================================= */
+
+/*
+   Aggiungi class="active" al link della pagina
+   attualmente aperta.
+
+   Esempio:
+
+   <a href="index.html" class="active">Home</a>
+*/
+
+.nav-links a.active {
+    color: #ffffff;
+
+    text-shadow:
+        0 0 10px rgba(0, 168, 107, 0.9),
+        0 0 20px rgba(0, 102, 255, 0.7);
+}
+
+.nav-links a.active::after {
+    width: 100%;
+}
+
+
+/* =========================================
+   CLICK / TOUCH
+   ========================================= */
+
+.nav-links a:active {
+    color: #ffffff;
+
+    transform: translateY(-2px);
+
+    text-shadow:
+        0 0 10px rgba(0, 168, 107, 0.9),
+        0 0 20px rgba(0, 102, 255, 0.7);
+}
+
+.nav-links a:active::after {
+    width: 100%;
+}
+
+
+/* =========================================
+   TITOLO PAGINA
+   ========================================= */
 
 .titolo-pagina {
-    font-weight: 800;
+    margin: 40px 0 25px;
+
+    font-family:
+        "Poppins",
+        "Segoe UI",
+        sans-serif;
+
     font-size: 60px;
-    font-family: 'Poppins', 'Segoe UI', sans-serif;
+
+    font-weight: 800;
+
+    line-height: 1.1;
+
     letter-spacing: -1px;
-    justify-items: center;
-    background: linear-gradient(90deg, #00a86b, #0066ff);
+
+    text-align: center;
+
+    background: linear-gradient(
+        90deg,
+        #00a86b,
+        #0066ff
+    );
+
     -webkit-background-clip: text;
     background-clip: text;
+
     color: transparent;
+
     text-shadow: none;
 }
 
+
+/* =========================================
+   TESTO GENERALE
+   ========================================= */
+
 .testo {
-    font-size: 25px;
-    font-weight: 500;
-    line-height: 2;
+    width: 100%;
+
     max-width: 1200px;
-    text-align: center;
+
     margin: 0 auto;
+
+    padding: 0 20px;
+
+    font-size: 25px;
+
+    font-weight: 500;
+
+    line-height: 2;
+
+    text-align: center;
+
     color: #2e2e2e;
-    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+
+    text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
+
+/* =========================================
+   IMMAGINI
+   ========================================= */
+
 .container-img {
+    width: 100%;
+
     display: flex;
+
     justify-content: center;
+    align-items: center;
+
     gap: 30px;
+
     margin-top: 20px;
+
+    padding: 0 20px;
 }
 
 .container-img img {
     width: 100%;
+
     max-width: 650px;
+
     height: auto;
-    border-radius: 10px;
+
     object-fit: cover;
+
+    border-radius: 10px;
+
     margin-top: 100px;
-    margin-bottom: 300px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    margin-bottom: 100px;
+
     border: 1px solid #0066ff;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
-.textbox {
-    text-align: center;
-}
 
-.footer {
-    background: linear-gradient(90deg, #00a86b, #0066ff);
-    color: white;
-    text-align: center;
-    padding: 30px 20px;
-    margin-top: auto;
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: -0.2px;
-    line-height: 1.4;
-    text-shadow: 0 0 6px rgba(0, 168, 107, 0.5), 0 0 12px rgba(0, 102, 255, 0.4);
-}
-
+/* =========================================
+   VIDEO
+   ========================================= */
 
 .video-container {
+    width: 100%;
+
     max-width: 800px;
+
     margin: 0 auto;
+
+    padding: 0 20px;
 }
 
 .video-container iframe {
+    display: block;
+
     width: 100%;
+
     aspect-ratio: 16 / 9;
+
+    border: 0;
+
     border-radius: 20px;
 }
 
 
+/* =========================================
+   GALLERIA
+   ========================================= */
+
 .container-img-galleria {
+    width: 100%;
+
+    display: flex;
+
     justify-content: center;
     align-items: center;
+
     flex-wrap: wrap;
-    padding-bottom: 80px;
-    padding-top: 30px;
-    display: flex;
+
+    gap: 10px;
+
+    padding: 30px 20px 80px;
 }
 
 .container-img-galleria img {
     width: 400px;
+
     height: 300px;
-    border: 2px solid;
+
+    object-fit: cover;
+
+    border: 2px solid #0066ff;
+
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.15);
+
     cursor: pointer;
-    margin: 10px;
-    transition: 400ms;
+
+    margin: 0;
+
+    transition:
+        transform 400ms ease,
+        box-shadow 400ms ease;
 }
 
 .container-img-galleria img:hover {
     transform: scale(1.03);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+.footer {
+    width: 100%;
+
+    background: linear-gradient(
+        90deg,
+        #00a86b,
+        #0066ff
+    );
+
+    color: white;
+
+    text-align: center;
+
+    padding: 30px 20px;
+
+    margin-top: auto;
+
+    font-size: 16px;
+
+    font-weight: 400;
+
+    letter-spacing: -0.2px;
+
+    line-height: 1.4;
+
+    text-shadow:
+        0 0 6px rgba(0, 168, 107, 0.5),
+        0 0 12px rgba(0, 102, 255, 0.4);
 }
 
 
@@ -197,54 +485,119 @@ main {
     --blu: #0066ff;
     --testo: #1d2433;
     --grigio: #5b6478;
+
+    width: 100%;
+
     color: var(--testo);
+
+    overflow: hidden;
 }
 
-/* ---------- HERO ---------- */
+
+/* =========================================
+   HERO HOME
+   ========================================= */
+
 .home-hero {
-    display: grid;
-    grid-template-columns: 1.1fr 1fr;
-    align-items: center;
-    gap: 48px;
+    width: 100%;
+
     max-width: 1100px;
+
     margin: 0 auto;
+
     padding: 64px 24px 48px;
+
+    display: grid;
+
+    grid-template-columns:
+        1.1fr 1fr;
+
+    align-items: center;
+
+    gap: 48px;
 }
+
+
+/* =========================================
+   BADGE
+   ========================================= */
 
 .badge {
     display: inline-block;
+
     padding: 6px 14px;
+
     border-radius: 999px;
-    background: rgba(0, 168, 107, 0.12);
+
+    background:
+        rgba(0, 168, 107, 0.12);
+
     color: var(--verde);
+
     font-size: 0.85rem;
+
     font-weight: 600;
 }
 
+
+/* =========================================
+   HERO TITLE
+   ========================================= */
+
 .home-hero h1 {
-    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-size:
+        clamp(2.2rem, 5vw, 3.6rem);
+
     line-height: 1.1;
+
     margin: 16px 0;
 }
 
+
+/* =========================================
+   TESTO EVIDENZIATO
+   ========================================= */
+
 .evidenzia {
-    background: linear-gradient(90deg, var(--verde), var(--blu));
+    background: linear-gradient(
+        90deg,
+        var(--verde),
+        var(--blu)
+    );
+
     -webkit-background-clip: text;
     background-clip: text;
+
     color: transparent;
 }
 
+
+/* =========================================
+   LEAD
+   ========================================= */
+
 .lead {
-    font-size: 1.15rem;
-    line-height: 1.6;
-    color: var(--grigio);
     max-width: 520px;
+
+    font-size: 1.15rem;
+
+    line-height: 1.6;
+
+    color: var(--grigio);
 }
+
+
+/* =========================================
+   BOTTONI
+   ========================================= */
 
 .home-bottoni {
     display: flex;
+
     flex-wrap: wrap;
+
     gap: 12px;
+
     margin-top: 28px;
 }
 
@@ -252,14 +605,20 @@ main {
     justify-content: center;
 }
 
-/* ---------- BOTTONI ---------- */
 .btn {
     display: inline-block;
+
     padding: 12px 26px;
+
     border-radius: 999px;
+
     font-weight: 600;
+
     text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .btn:hover {
@@ -267,109 +626,187 @@ main {
 }
 
 .btn-primario {
-    background: linear-gradient(90deg, var(--verde), var(--blu));
+    background: linear-gradient(
+        90deg,
+        var(--verde),
+        var(--blu)
+    );
+
     color: #fff;
-    box-shadow: 0 4px 12px rgba(0, 102, 255, 0.25);
+
+    box-shadow:
+        0 4px 12px
+        rgba(0, 102, 255, 0.25);
 }
 
 .btn-secondario {
     background: transparent;
+
     color: var(--blu);
+
     border: 2px solid var(--blu);
 }
 
 .btn-chiaro {
     background: #fff;
+
     color: var(--blu);
 }
 
 .btn-contorno {
     border: 2px solid #fff;
+
     color: #fff;
 }
 
-/* ---------- FOTO SOVRAPPOSTE ---------- */
+
+/* =========================================
+   FOTO HOME
+   ========================================= */
+
 .home-hero-foto {
     position: relative;
+
+    width: 100%;
+
     height: 420px;
 }
 
 .foto {
     position: absolute;
+
     object-fit: cover;
+
     border-radius: 20px;
+
     border: 6px solid #fff;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-    transition: transform 0.3s ease;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.12);
+
+    transition:
+        transform 0.3s ease;
 }
 
 .foto-1 {
     width: 68%;
+
     height: 260px;
+
     top: 0;
     left: 0;
+
     transform: rotate(-4deg);
 }
 
 .foto-2 {
     width: 68%;
+
     height: 260px;
+
     bottom: 0;
     right: 0;
+
     transform: rotate(4deg);
 }
 
 .foto:hover {
-    transform: rotate(0deg) scale(1.04);
+    transform:
+        rotate(0deg)
+        scale(1.04);
+
     z-index: 2;
 }
 
-/* ---------- CARD ---------- */
+
+/* =========================================
+   SEZIONE HOME
+   ========================================= */
+
 .home-sezione {
+    width: 100%;
+
     max-width: 1100px;
+
     margin: 0 auto;
+
     padding: 48px 24px;
+
     text-align: center;
 }
 
 .home-titolo {
-    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-size:
+        clamp(1.6rem, 3vw, 2.2rem);
 }
 
 .home-sottotitolo {
     color: var(--grigio);
+
     margin-top: 8px;
 }
 
+
+/* =========================================
+   CARD
+   ========================================= */
+
 .card-griglia {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
     gap: 24px;
+
     margin-top: 36px;
 }
 
 .card {
     background: #fff;
+
     padding: 32px 24px;
+
     border-radius: 20px;
-    border-top: 4px solid var(--verde);
-    box-shadow: 0 4px 14px rgba(20, 30, 70, 0.08);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+    border-top:
+        4px solid var(--verde);
+
+    box-shadow:
+        0 4px 14px
+        rgba(20, 30, 70, 0.08);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(20, 30, 70, 0.12);
+
+    box-shadow:
+        0 8px 20px
+        rgba(20, 30, 70, 0.12);
 }
 
 .card-numero {
     font-size: 3rem;
+
     font-weight: 800;
+
     letter-spacing: -2px;
+
     margin-bottom: 8px;
-    background: linear-gradient(90deg, var(--verde), var(--blu));
+
+    background: linear-gradient(
+        90deg,
+        var(--verde),
+        var(--blu)
+    );
+
     -webkit-background-clip: text;
     background-clip: text;
+
     color: transparent;
 }
 
@@ -379,23 +816,41 @@ main {
 
 .card p {
     color: var(--grigio);
+
     line-height: 1.5;
 }
 
-/* ---------- FASCIA FINALE ---------- */
+
+/* =========================================
+   CTA FINALE
+   ========================================= */
+
 .home-cta {
+    width: calc(100% - 40px);
+
     max-width: 1100px;
+
     margin: 32px auto 64px;
+
     padding: 56px 24px;
+
     text-align: center;
+
     color: #fff;
+
     border-radius: 28px;
-    background: linear-gradient(135deg, var(--verde), var(--blu));
-    box-shadow: none;
+
+    background: linear-gradient(
+        135deg,
+        var(--verde),
+        var(--blu)
+    );
 }
 
 .home-cta h2 {
-    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-size:
+        clamp(1.5rem, 3vw, 2.1rem);
+
     margin-bottom: 10px;
 }
 
@@ -405,233 +860,782 @@ main {
 
 
 /* =========================================
-   ADATTAMENTO DISPOSITIVI MOBILI
+   TABLET
    ========================================= */
 
-body {
-    min-height: 100vh;
-}
+@media (max-width: 900px) {
 
-main {
-    flex: 1;
-}
+    /* ---------- NAVBAR ---------- */
+
+    .navbar {
+        padding: 14px 20px;
+    }
+
+    .logo {
+        font-size: 38px;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+
+    .nav-links a {
+        font-size: 17px;
+    }
 
 
+    /* ---------- TITOLO ---------- */
 
-/* ---------- HOME SU SCHERMI MEDI ---------- */
-@media (max-width: 800px) {
+    .titolo-pagina {
+        font-size: 48px;
+    }
+
+    .testo {
+        font-size: 20px;
+
+        line-height: 1.7;
+
+        padding: 0 25px;
+    }
+
+
+    /* ---------- IMMAGINI ---------- */
+
+    .container-img {
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 20px;
+    }
+
+    .container-img img {
+        width: 100%;
+
+        max-width: 650px;
+
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+
+    /* ---------- HOME HERO ---------- */
+
     .home-hero {
         grid-template-columns: 1fr;
-        padding-top: 40px;
+
+        text-align: center;
+
+        gap: 35px;
+
+        padding:
+            50px 25px;
     }
 
-    .home-hero-foto {
-        height: 380px;
+    .lead {
+        margin-left: auto;
+
+        margin-right: auto;
     }
+
+    .home-bottoni {
+        justify-content: center;
+    }
+
+
+    /* ---------- FOTO ---------- */
+
+    .home-hero-foto {
+        height: 360px;
+
+        max-width: 650px;
+
+        margin: 0 auto;
+    }
+
+
+    /* ---------- CARD ---------- */
+
+    .card-griglia {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+
+    /* ---------- CTA ---------- */
+
+    .home-cta {
+        width:
+            calc(100% - 40px);
+    }
+
+
+    /* ---------- GALLERIA ---------- */
+
+    .container-img-galleria {
+        padding:
+            25px 15px 60px;
+    }
+
+    .container-img-galleria img {
+        width: 320px;
+
+        height: 240px;
+    }
+
+
+    /* ---------- VIDEO ---------- */
+
+    .video-container {
+        width:
+            calc(100% - 40px);
+    }
+}
+
+
+/* =========================================
+   SMARTPHONE
+   ========================================= */
+
+@media (max-width: 600px) {
+
+    html,
+    body {
+        width: 100%;
+
+        overflow-x: hidden;
+    }
+
+
+    /* =====================================
+       NAVBAR MOBILE
+       ===================================== */
+
+    .navbar {
+        width: 100%;
+
+        padding: 12px 16px;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 12px;
+    }
+
+    .logo {
+        font-size: 34px;
+
+        line-height: 1;
+
+        text-align: center;
+    }
+
+
+    /* =====================================
+       INDICI MOBILE
+       ===================================== */
+
+    .nav-links {
+        width: 100%;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        flex-wrap: wrap;
+
+        gap: 10px 18px;
+
+        margin: 0;
+
+        padding: 0;
+    }
+
+    .nav-links a {
+        font-size: 15px;
+
+        padding: 5px 0;
+
+        white-space: nowrap;
+
+        text-shadow:
+            0 0 6px rgba(0, 168, 107, 0.7),
+            0 0 12px rgba(0, 102, 255, 0.5);
+    }
+
+
+    /* =====================================
+       LINEA ANIMATA MOBILE
+       ===================================== */
+
+    .nav-links a::after {
+        height: 2px;
+
+        width: 0;
+
+        transition:
+            width 300ms ease;
+    }
+
+
+    /*
+       IMPORTANTE:
+       La linea rimane animata anche
+       nel responsive.
+    */
+
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+
+    .nav-links a:focus::after {
+        width: 100%;
+    }
+
+    .nav-links a:active::after {
+        width: 100%;
+    }
+
+    .nav-links a.active::after {
+        width: 100%;
+    }
+
+
+    /* =====================================
+       EFFETTO GLOW MOBILE
+       ===================================== */
+
+    .nav-links a:hover,
+    .nav-links a:focus,
+    .nav-links a:active,
+    .nav-links a.active {
+        color: #ffffff;
+
+        text-shadow:
+            0 0 10px rgba(0, 168, 107, 0.9),
+            0 0 20px rgba(0, 102, 255, 0.7);
+
+        transform:
+            translateY(-2px);
+    }
+
+
+    /* =====================================
+       TITOLO
+       ===================================== */
+
+    .container-titolo {
+        width: 100%;
+
+        padding:
+            0 16px;
+
+        text-align: center;
+    }
+
+    .titolo-pagina {
+        font-size:
+            clamp(32px, 10vw, 48px);
+
+        line-height: 1.1;
+
+        margin:
+            30px 0 20px;
+    }
+
+
+    /* =====================================
+       TESTO
+       ===================================== */
+
+    .testo {
+        width: 100%;
+
+        max-width: 100%;
+
+        padding:
+            0 18px;
+
+        font-size: 18px;
+
+        line-height: 1.7;
+
+        text-align: center;
+    }
+
+
+    /* =====================================
+       HOME
+       ===================================== */
+
+    .home {
+        width: 100%;
+
+        overflow: hidden;
+    }
+
+    .home-hero {
+        width: 100%;
+
+        display: flex;
+
+        flex-direction: column;
+
+        padding:
+            35px 18px 30px;
+
+        gap: 30px;
+
+        text-align: center;
+    }
+
+    .home-hero h1 {
+        font-size:
+            clamp(2rem, 10vw, 3rem);
+
+        line-height: 1.1;
+
+        margin: 15px 0;
+    }
+
+    .badge {
+        font-size: 0.75rem;
+
+        padding:
+            6px 12px;
+    }
+
+    .lead {
+        width: 100%;
+
+        max-width: 100%;
+
+        font-size: 1rem;
+
+        line-height: 1.6;
+
+        margin: 0 auto;
+    }
+
+
+    /* =====================================
+       BOTTONI MOBILE
+       ===================================== */
+
+    .home-bottoni {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        width: 100%;
+
+        gap: 12px;
+
+        margin-top: 24px;
+    }
+
+    .home-bottoni .btn {
+        width: 100%;
+
+        text-align: center;
+    }
+
+
+    /* =====================================
+       FOTO HOME MOBILE
+       ===================================== */
+
+    .home-hero-foto {
+        width: 100%;
+
+        height: 320px;
+
+        position: relative;
+
+        margin: 0 auto;
+    }
+
+    .foto {
+        border-width: 4px;
+
+        border-radius: 16px;
+    }
+
+    .foto-1 {
+        width: 72%;
+
+        height: 190px;
+
+        top: 0;
+        left: 2%;
+
+        transform:
+            rotate(-4deg);
+    }
+
+    .foto-2 {
+        width: 72%;
+
+        height: 190px;
+
+        bottom: 0;
+        right: 2%;
+
+        transform:
+            rotate(4deg);
+    }
+
+
+    /* =====================================
+       SEZIONI HOME
+       ===================================== */
+
+    .home-sezione {
+        width: 100%;
+
+        padding:
+            35px 18px;
+    }
+
+    .home-titolo {
+        font-size: 1.7rem;
+
+        line-height: 1.2;
+    }
+
+    .home-sottotitolo {
+        font-size: 1rem;
+
+        line-height: 1.5;
+    }
+
+
+    /* =====================================
+       CARD MOBILE
+       ===================================== */
 
     .card-griglia {
         grid-template-columns: 1fr;
+
+        gap: 18px;
+
+        margin-top: 28px;
     }
+
+    .card {
+        padding:
+            26px 20px;
+
+        border-radius: 18px;
+    }
+
+    .card-numero {
+        font-size: 2.5rem;
+    }
+
+    .card h3 {
+        font-size: 1.2rem;
+    }
+
+    .card p {
+        font-size: 0.95rem;
+
+        line-height: 1.5;
+    }
+
+
+    /* =====================================
+       CTA MOBILE
+       ===================================== */
 
     .home-cta {
-        margin-left: 16px;
-        margin-right: 16px;
+        width:
+            calc(100% - 32px);
+
+        margin:
+            20px 16px 40px;
+
+        padding:
+            40px 20px;
+
+        border-radius: 22px;
+    }
+
+    .home-cta h2 {
+        font-size: 1.5rem;
+
+        line-height: 1.2;
+    }
+
+    .home-cta p {
+        font-size: 0.95rem;
+
+        line-height: 1.5;
+    }
+
+
+    /* =====================================
+       IMMAGINI MOBILE
+       ===================================== */
+
+    .container-img {
+        width: 100%;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 20px;
+
+        padding:
+            0 16px;
+
+        margin-top: 20px;
+    }
+
+    .container-img img {
+        width: 100%;
+
+        max-width: 100%;
+
+        height: auto;
+
+        margin:
+            20px 0;
+
+        border-radius: 10px;
+    }
+
+
+    /* =====================================
+       GALLERIA MOBILE
+       ===================================== */
+
+    .container-img-galleria {
+        width: 100%;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        padding:
+            20px 12px 50px;
+
+        gap: 12px;
+    }
+
+    .container-img-galleria img {
+        width: 100%;
+
+        max-width: 420px;
+
+        height: auto;
+
+        aspect-ratio: 4 / 3;
+
+        object-fit: cover;
+
+        margin: 0;
+
+        border:
+            2px solid #0066ff;
+
+        border-radius: 10px;
+
+        box-shadow:
+            0 4px 12px
+            rgba(0, 0, 0, 0.15);
+
+        transition:
+            transform 0.3s ease;
+    }
+
+
+    /* =====================================
+       VIDEO MOBILE
+       ===================================== */
+
+    .video-container {
+        width:
+            calc(100% - 32px);
+
+        max-width: 800px;
+
+        margin:
+            20px auto;
+
+        padding: 0;
+    }
+
+    .video-container iframe {
+        width: 100%;
+
+        height: auto;
+
+        aspect-ratio: 16 / 9;
+
+        border: 0;
+
+        border-radius: 14px;
+    }
+
+
+    /* =====================================
+       FOOTER MOBILE
+       ===================================== */
+
+    .footer {
+        width: 100%;
+
+        padding:
+            25px 16px;
+
+        font-size: 14px;
+
+        line-height: 1.5;
+
+        text-align: center;
     }
 }
 
 
-/* ---------- SMARTPHONE ---------- */
-@media (max-width: 600px){
+/* =========================================
+   SMARTPHONE MOLTO PICCOLO
+   ========================================= */
 
-.center-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+@media (max-width: 400px) {
+
+    /* ---------- NAVBAR ---------- */
+
+    .navbar {
+        padding:
+            10px 12px;
+    }
+
+    .logo {
+        font-size: 29px;
+    }
+
+    .nav-links {
+        gap:
+            8px 14px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+
+        padding:
+            4px 0;
+    }
+
+
+    /* ---------- LINEA ---------- */
+
+    .nav-links a::after {
+        height: 2px;
+    }
+
+
+    /* ---------- TITOLO ---------- */
+
+    .titolo-pagina {
+        font-size: 32px;
+    }
+
+
+    /* ---------- TESTO ---------- */
+
+    .testo {
+        font-size: 16px;
+
+        padding:
+            0 14px;
+    }
+
+
+    /* ---------- HOME ---------- */
+
+    .home-hero {
+        padding-left: 14px;
+
+        padding-right: 14px;
+    }
+
+
+    /* ---------- FOTO ---------- */
+
+    .home-hero-foto {
+        height: 280px;
+    }
+
+    .foto-1,
+    .foto-2 {
+        height: 165px;
+    }
+
+
+    /* ---------- CTA ---------- */
+
+    .home-cta {
+        width:
+            calc(100% - 24px);
+
+        margin-left: 12px;
+
+        margin-right: 12px;
+
+        padding:
+            32px 16px;
+    }
 }
 
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: linear-gradient(90deg, #00a86b, #0066ff);
-    color: white;
-    padding: 15px 30px;
-    position: sticky;
-    top: 0;
-    border-bottom: 2px solid linear-gradient(90deg, #00a86b, #0066ff);
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.4);
+/* =========================================
+   DISPOSITIVI TOUCH
+   ========================================= */
+
+/*
+   NON disattiviamo la linea della navbar.
+   L'animazione rimane disponibile anche
+   sui dispositivi touch.
+*/
+
+@media (hover: none) {
+
+    .nav-links a:hover {
+        transform: none;
+    }
+
+    .nav-links a:hover::after {
+        width: 100%;
+    }
+
+    .btn:hover {
+        transform: none;
+    }
+
+    .card:hover {
+        transform: none;
+    }
+
+    .foto:hover {
+        transform: none;
+    }
+
+    .container-img-galleria img:hover {
+        transform: none;
+    }
 }
- 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-    margin: 0;
-    padding: 0;
- 
- 
- 
-}
- 
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    position: relative;
-    padding-bottom: 4px;
-    font-size: 20px;
-    font-weight: 400;
-    letter-spacing: -0.3px;
-    text-shadow: 0 0 6px rgba(0, 168, 107, 0.6), 0 0 12px rgba(0, 102, 255, 0.4);
-    transition: color 300ms ease, text-shadow 300ms ease;
-}
-
- 
-.nav-links a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0%;
-    height: 2px;
-    background-color: white;
-    transition: width 300ms ease;
-}
- 
-.nav-links a:hover {
-    color: #ffffff;
-    text-decoration: none;
-    text-shadow: 0 0 10px rgba(0, 168, 107, 0.9), 0 0 20px rgba(0, 102, 255, 0.7);
-}
- 
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-
-.logo {
-    font-weight: 800;
-    font-size: 48px;
-    color: white;
-    text-shadow: 0 0 8px rgba(0, 168, 107, 0.6), 0 0 16px rgba(0, 102, 255, 0.4);
-    letter-spacing: -1px;
-}
-
-.home,
-.container-titolo {
-
-
-    justify-items: center;
-}
-
-.titolo-pagina {
-    font-weight: 800;
-    font-size: 60px;
-    font-family: 'Poppins', 'Segoe UI', sans-serif;
-    letter-spacing: -1px;
-    justify-items: center;
-    background: linear-gradient(90deg, #00a86b, #0066ff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: none;
-}
-
-.testo {
-    font-size: 25px;
-    font-weight: 500;
-    line-height: 2;
-    max-width: 1200px;
-    text-align: center;
-    margin: 0 auto;
-    color: #2e2e2e;
-    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
-
-
-
-}
-
-.container-img {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 20px;
-    
-    
-
-}
-
-.container-img img {
-    width: 100%;
-    max-width: 650px;
-
-    height: auto;
-    border-radius: 10px;
-
-    object-fit: cover;
-    margin-top: 100px;
-    margin-bottom: 300px;
-    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.20);
-    border: 1px solid #0066ff;
-}
-
-.textbox {
-    text-align: center;
-}
-
-.footer {
-    background: linear-gradient(90deg, #00a86b, #0066ff);
-    color: white;
-    text-align: center;
-    padding: 30px 20px;
-    margin-top: auto;
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: -0.2px;
-    line-height: 1.4;
-    text-shadow: 0 0 6px rgba(0, 168, 107, 0.5), 0 0 12px rgba(0, 102, 255, 0.4);
-    border-bottom: 2px solid linear-gradient(90deg, #00a86b, #0066ff);
-}
-
-
-.video-container {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.video-container iframe {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border-radius: 20px;
-}
-
-
-.container-img-galleria {
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    padding-bottom: 80px;
-    padding-top: 30px;
-
-    display: flex;
-}
-
-.container-img-galleria img {
-    width: 400px;
-    height: 300px;
-    border: 2px solid;
-    border-radius: 10px;
-    box-shadow: 4px 7px 7px 0px #0e0000e6;
-    cursor: pointer;
-    margin: 10px;
-    transition: 400ms;
-
-}
-
-.container-img-galleria img:hover {
-
-    transform: scale(1.03);
-
-
-}}
