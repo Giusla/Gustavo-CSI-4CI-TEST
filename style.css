@@ -129,7 +129,7 @@ main {
     object-fit: cover;
     margin-top: 100px;
     margin-bottom: 300px;
-    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.20);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     border: 1px solid #0066ff;
 }
 
@@ -177,7 +177,7 @@ main {
     height: 300px;
     border: 2px solid;
     border-radius: 10px;
-    box-shadow: 4px 7px 7px 0px #0e0000e6;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     cursor: pointer;
     margin: 10px;
     transition: 400ms;
@@ -189,7 +189,7 @@ main {
 
 
 /* =========================================
-   HOME (nuova versione)
+   HOME
    ========================================= */
 
 .home {
@@ -269,7 +269,7 @@ main {
 .btn-primario {
     background: linear-gradient(90deg, var(--verde), var(--blu));
     color: #fff;
-    box-shadow: 0 8px 20px rgba(0, 102, 255, 0.35);
+    box-shadow: 0 4px 12px rgba(0, 102, 255, 0.25);
 }
 
 .btn-secondario {
@@ -299,7 +299,7 @@ main {
     object-fit: cover;
     border-radius: 20px;
     border: 6px solid #fff;
-    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     transition: transform 0.3s ease;
 }
 
@@ -353,12 +353,13 @@ main {
     padding: 32px 24px;
     border-radius: 20px;
     border-top: 4px solid var(--verde);
+    box-shadow: 0 4px 14px rgba(20, 30, 70, 0.08);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .card:hover {
     transform: translateY(-8px);
-    
+    box-shadow: 0 8px 20px rgba(20, 30, 70, 0.12);
 }
 
 .card-numero {
@@ -390,7 +391,7 @@ main {
     color: #fff;
     border-radius: 28px;
     background: linear-gradient(135deg, var(--verde), var(--blu));
-    box-shadow: 0 20px 50px rgba(0, 102, 255, 0.35);
+    box-shadow: none;
 }
 
 .home-cta h2 {
@@ -402,7 +403,63 @@ main {
     opacity: 0.9;
 }
 
-/* ---------- MOBILE ---------- */
+
+/* =========================================
+   ADATTAMENTO DISPOSITIVI MOBILI
+   ========================================= */
+
+/* ---------- TABLET ---------- */
+@media (max-width: 900px) {
+
+    .navbar {
+        padding: 12px 20px;
+    }
+
+    .nav-links {
+        gap: 15px;
+    }
+
+    .nav-links a {
+        font-size: 17px;
+    }
+
+    .logo {
+        font-size: 38px;
+    }
+
+    .titolo-pagina {
+        font-size: 45px;
+        text-align: center;
+    }
+
+    .testo {
+        font-size: 20px;
+        max-width: 90%;
+    }
+
+    .container-img {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .container-img img {
+        max-width: 90%;
+        margin-top: 50px;
+        margin-bottom: 100px;
+    }
+
+    .video-container {
+        max-width: 90%;
+    }
+
+    .container-img-galleria img {
+        width: 300px;
+        height: 225px;
+    }
+}
+
+
+/* ---------- HOME SU SCHERMI MEDI ---------- */
 @media (max-width: 800px) {
     .home-hero {
         grid-template-columns: 1fr;
@@ -421,16 +478,178 @@ main {
         margin-left: 16px;
         margin-right: 16px;
     }
+}
 
-    .nav-links {
-        gap: 12px;
+
+/* ---------- SMARTPHONE ---------- */
+@media (max-width: 600px) {
+
+    html,
+    body {
+        width: 100%;
+        overflow-x: hidden;
     }
 
-    .nav-links a {
-        font-size: 15px;
+    /* NAVBAR */
+    .navbar {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 10px;
     }
 
     .logo {
-        font-size: 32px;
+        font-size: 30px;
+    }
+
+    .nav-links {
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+
+    /* TITOLO */
+    .titolo-pagina {
+        font-size: 36px;
+        text-align: center;
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+
+    .testo {
+        font-size: 17px;
+        line-height: 1.7;
+        max-width: 90%;
+    }
+
+
+    /* IMMAGINI */
+    .container-img {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .container-img img {
+        width: 90%;
+        max-width: 90%;
+        margin-top: 30px;
+        margin-bottom: 50px;
+    }
+
+
+    /* VIDEO */
+    .video-container {
+        width: 90%;
+        max-width: none;
+    }
+
+    .video-container iframe {
+        width: 100%;
+        border-radius: 12px;
+    }
+
+
+    /* GALLERIA */
+    .container-img-galleria {
+        padding-top: 20px;
+        padding-bottom: 40px;
+    }
+
+    .container-img-galleria img {
+        width: 90%;
+        height: auto;
+        margin: 8px;
+    }
+
+
+    /* HOME */
+    .home-hero {
+        padding: 35px 15px;
+        gap: 30px;
+    }
+
+    .home-hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .lead {
+        font-size: 1rem;
+    }
+
+
+    /* FOTO HOME */
+    .home-hero-foto {
+        height: 300px;
+    }
+
+    .foto {
+        border-width: 4px;
+    }
+
+    .foto-1,
+    .foto-2 {
+        width: 75%;
+        height: 190px;
+    }
+
+
+    /* BOTTONI */
+    .home-bottoni {
+        justify-content: center;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+
+    /* SEZIONI HOME */
+    .home-sezione {
+        padding: 35px 15px;
+    }
+
+    .home-titolo {
+        font-size: 1.7rem;
+    }
+
+
+    /* CARD */
+    .card-griglia {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-top: 25px;
+    }
+
+    .card {
+        padding: 25px 18px;
+    }
+
+    .card-numero {
+        font-size: 2.5rem;
+    }
+
+
+    /* CTA FINALE */
+    .home-cta {
+        margin: 20px 15px 40px;
+        padding: 40px 20px;
+        border-radius: 20px;
+    }
+
+    .home-cta h2 {
+        font-size: 1.6rem;
+    }
+
+
+    /* FOOTER */
+    .footer {
+        padding: 25px 15px;
+        font-size: 14px;
     }
 }
