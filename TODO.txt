@@ -15,7 +15,7 @@ Migliorie sito Gustavo
 -Home da modificare: passa la voglia di leggere tutto quel testo
 
 
-Collaboratori:
+Collaboratori:Cassara
 
 includo la navbar e footer con php, clsi da tenere la navbar in un solo file
 footer con logo avo, avoprogetti e gustavo
