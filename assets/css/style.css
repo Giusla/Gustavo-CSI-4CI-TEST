@@ -7,7 +7,9 @@
 /* --------------------------------------------------------------------------
    1. Reset & Setup Globale
    -------------------------------------------------------------------------- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -52,7 +54,8 @@ main {
     width: 100%;
 }
 
-a, [role="link"] {
+a,
+[role="link"] {
     color: inherit;
     text-decoration: none;
     cursor: pointer;
@@ -77,16 +80,16 @@ img {
     --brand-blue: #0066ff;
     --brand-dark: #0f172a;
     --brand-gradient: linear-gradient(90deg, #00a86b 0%, #0066ff 100%);
-    
+
     --bg-page: #f8fafc;
     --bg-surface: #ffffff;
     --border-subtle: #e2e8f0;
     --border-card: #cbd5e1;
-    
+
     --text-heading: #0f172a;
     --text-body: #334155;
     --text-muted: #64748b;
-    
+
     --max-w: 1060px;
     --radius-sm: 6px;
     --radius-md: 10px;
@@ -134,7 +137,7 @@ img {
    4. Navbar
    -------------------------------------------------------------------------- */
 /* Sticky wrapper — applicato solo all'header principale del sito */
-body > header {
+body>header {
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -242,6 +245,7 @@ body > header {
         transform: scaleX(0);
         opacity: 0;
     }
+
     100% {
         transform: scaleX(1);
         opacity: 1;
@@ -271,9 +275,17 @@ body > header {
     transition: transform 220ms ease, opacity 220ms ease;
 }
 
-.hamburger.aperto span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.aperto span:nth-child(2) { opacity: 0; }
-.hamburger.aperto span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.hamburger.aperto span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.aperto span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.aperto span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
 
 .nav-mobile {
     display: none;
@@ -289,7 +301,9 @@ body > header {
     box-shadow: 0 14px 28px rgba(0, 30, 80, 0.25);
 }
 
-.nav-mobile.visibile { display: flex; }
+.nav-mobile.visibile {
+    display: flex;
+}
 
 .nav-mobile a {
     padding: 12px 18px;
@@ -324,10 +338,10 @@ body > header {
     font-size: 0.92rem;
     font-weight: 600;
     cursor: pointer;
-    transition: box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), 
-                filter 0.25s ease, 
-                border-color 0.25s ease, 
-                background 0.25s ease;
+    transition: box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+        filter 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
     border: none;
     text-decoration: none;
     position: relative;
@@ -416,6 +430,37 @@ body > header {
     max-width: 520px;
 }
 
+/* Link al sito della scuola dentro il testo dell'hero */
+/* Link al sito della scuola dentro il testo dell'hero */
+.link-scuola {
+    color: var(--text-heading);
+    font-weight: 700;
+    text-decoration: none;
+    padding: 0 4px;
+    margin: 0 -4px;
+    border-radius: 5px;
+
+    /* sottolineatura con il gradiente del brand */
+    background-image: var(--brand-gradient);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 3px;
+
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    transition: background-size 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+        color 0.25s ease;
+}
+
+
+
+.link-scuola:hover,
+.link-scuola:focus-visible {
+    background-size: 100% 100%;
+    color: #ffffff;
+    outline: none;
+}
+
 /* Composizione Visiva Fotografica Sovrapposta & Leggermente Inclinata (Senza Saltelli) */
 .hero-composition {
     position: relative;
@@ -433,8 +478,8 @@ body > header {
     padding: 3.5px;
     box-shadow: 0 10px 28px rgba(0, 30, 80, 0.14);
     cursor: pointer;
-    transition: box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), 
-                z-index 0.2s ease;
+    transition: box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+        z-index 0.2s ease;
 }
 
 /* Sfumatura del bordino identica all'header */
@@ -592,8 +637,8 @@ body > header {
     display: flex;
     flex-direction: column;
     transition: box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
-                border-color 0.25s ease,
-                background 0.25s ease;
+        border-color 0.25s ease,
+        background 0.25s ease;
 }
 
 .unified-card:hover {
@@ -663,6 +708,7 @@ body > header {
 }
 
 @media (max-width: 768px) {
+
     .unified-cards-grid.grid-3,
     .unified-cards-grid.grid-4 {
         grid-template-columns: 1fr;
@@ -901,7 +947,8 @@ body > header {
     background: var(--brand-gradient);
     border-radius: 4px;
     position: relative;
-    transition: none; /* Nessun ritardo per seguire il cursore in tempo reale */
+    transition: none;
+    /* Nessun ritardo per seguire il cursore in tempo reale */
 }
 
 .video-timeline-progress::after {
@@ -1100,9 +1147,17 @@ body > header {
     display: none;
 }
 
-.code-preview .k { color: #38bdf8; }
-.code-preview .s { color: #86efac; }
-.code-preview .p { color: #94a3b8; }
+.code-preview .k {
+    color: #38bdf8;
+}
+
+.code-preview .s {
+    color: #86efac;
+}
+
+.code-preview .p {
+    color: #94a3b8;
+}
 
 /* --------------------------------------------------------------------------
    9. Chatbot (Integrazione Iframe Pulita, Reattiva & Bloccata al Viewport)
@@ -1127,7 +1182,7 @@ body.chatbot-page {
     background-color: #f6f9fc;
 }
 
-body.chatbot-page > header {
+body.chatbot-page>header {
     flex: 0 0 auto;
     width: 100%;
 }
@@ -1214,7 +1269,7 @@ body.chatbot-page > header {
         background: #f8fafc;
         border-top: 1px solid var(--border-subtle);
     }
-    
+
     .chatbot-direct-bar .chatbot-bar-note {
         display: inline-block;
         color: var(--text-body);
@@ -1274,8 +1329,8 @@ body.chatbot-page > header {
     box-shadow: 0 4px 14px rgba(0, 20, 60, 0.04);
     cursor: pointer;
     transition: box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
-                border-color 0.25s ease,
-                background 0.25s ease;
+        border-color 0.25s ease,
+        background 0.25s ease;
 }
 
 .gallery-card:hover {
@@ -1435,42 +1490,133 @@ body.chatbot-page > header {
    12. Responsive Breakpoints (Sistema Fluid & Reactive Completo)
    -------------------------------------------------------------------------- */
 @media (max-width: 992px) {
-    .container { padding: 0 24px; }
-    .hero-grid { grid-template-columns: 1fr; gap: 36px; }
-    .hero-composition { max-width: 560px; margin: 16px auto 0; }
-    .flow-pipeline-grid { grid-template-columns: 1fr; }
-    .how-cards-grid { grid-template-columns: repeat(2, 1fr); }
-    .home-split-cta { grid-template-columns: 1fr; }
-    .solutions-grid { grid-template-columns: 1fr; }
-    .project-meta-grid { grid-template-columns: 1fr; }
-    .gallery-editorial-grid { grid-template-columns: repeat(2, 1fr); }
+    .container {
+        padding: 0 24px;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+    }
+
+    .hero-composition {
+        max-width: 560px;
+        margin: 16px auto 0;
+    }
+
+    .flow-pipeline-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .how-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .home-split-cta {
+        grid-template-columns: 1fr;
+    }
+
+    .solutions-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-meta-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-editorial-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .hamburger { display: flex; }
-    .navbar { padding: 0 18px; }
-    
-    .page-wrapper { padding: 24px 0 44px; }
-    .page-header { margin-bottom: 20px; padding-bottom: 14px; }
-    .titolo-pagina { font-size: clamp(1.5rem, 5vw, 1.85rem); margin-bottom: 6px; }
-    .sottotitolo { font-size: 0.90rem; line-height: 1.5; }
-    
-    .hero-editorial { padding: 28px 0 32px; }
-    .hero-grid { gap: 24px; }
-    .hero-title { font-size: clamp(1.9rem, 6vw, 2.3rem); margin-bottom: 4px; }
-    .hero-subtitle { font-size: 1.05rem; margin-bottom: 10px; }
-    .hero-lead { font-size: 0.94rem; line-height: 1.55; margin-bottom: 20px; }
-    .hero-composition { min-height: 240px; max-width: 440px; margin: 8px auto 0; }
-    
-    .content-section { margin-top: 32px; }
-    .section-header { margin-bottom: 16px; }
-    .section-title { font-size: clamp(1.25rem, 4vw, 1.5rem); margin-bottom: 4px; }
-    .section-subtitle { font-size: 0.88rem; line-height: 1.5; }
-    
-    .home-highlights-section { padding: 0 0 36px; }
-    .unified-cards-grid { gap: 12px; }
-    
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .navbar {
+        padding: 0 18px;
+    }
+
+    .page-wrapper {
+        padding: 24px 0 44px;
+    }
+
+    .page-header {
+        margin-bottom: 20px;
+        padding-bottom: 14px;
+    }
+
+    .titolo-pagina {
+        font-size: clamp(1.5rem, 5vw, 1.85rem);
+        margin-bottom: 6px;
+    }
+
+    .sottotitolo {
+        font-size: 0.90rem;
+        line-height: 1.5;
+    }
+
+    .hero-editorial {
+        padding: 28px 0 32px;
+    }
+
+    .hero-grid {
+        gap: 24px;
+    }
+
+    .hero-title {
+        font-size: clamp(1.9rem, 6vw, 2.3rem);
+        margin-bottom: 4px;
+    }
+
+    .hero-subtitle {
+        font-size: 1.05rem;
+        margin-bottom: 10px;
+    }
+
+    .hero-lead {
+        font-size: 0.94rem;
+        line-height: 1.55;
+        margin-bottom: 20px;
+    }
+
+    .hero-composition {
+        min-height: 240px;
+        max-width: 440px;
+        margin: 8px auto 0;
+    }
+
+    .content-section {
+        margin-top: 32px;
+    }
+
+    .section-header {
+        margin-bottom: 16px;
+    }
+
+    .section-title {
+        font-size: clamp(1.25rem, 4vw, 1.5rem);
+        margin-bottom: 4px;
+    }
+
+    .section-subtitle {
+        font-size: 0.88rem;
+        line-height: 1.5;
+    }
+
+    .home-highlights-section {
+        padding: 0 0 36px;
+    }
+
+    .unified-cards-grid {
+        gap: 12px;
+    }
+
     /* Card orizzontali compatte: icona a sinistra, testo a destra per dimezzare l'ingombro */
     .unified-card {
         flex-direction: row;
@@ -1478,7 +1624,7 @@ body.chatbot-page > header {
         gap: 14px;
         padding: 16px 16px;
     }
-    
+
     .card-icon-box {
         margin-bottom: 0;
         width: 38px;
@@ -1486,48 +1632,95 @@ body.chatbot-page > header {
         border-radius: 8px;
         flex-shrink: 0;
     }
-    
+
     .card-icon-box svg {
         width: 19px;
         height: 19px;
     }
-    
+
     .card-content {
         display: flex;
         flex-direction: column;
     }
-    
+
     .card-title {
         font-size: 0.98rem;
         margin-bottom: 4px;
     }
-    
+
     .card-desc {
         font-size: 0.84rem;
         line-height: 1.48;
     }
-    
-    .story-chapter, .doc-section, .highlight-box { padding: 20px 16px; }
-    .gallery-intro-box { padding: 20px 16px; margin-bottom: 20px; }
+
+    .story-chapter,
+    .doc-section,
+    .highlight-box {
+        padding: 20px 16px;
+    }
+
+    .gallery-intro-box {
+        padding: 20px 16px;
+        margin-bottom: 20px;
+    }
 }
 
 @media (max-width: 580px) {
-    .container { padding: 0 16px; }
-    .navbar { padding: 0 16px; }
-    
-    .page-wrapper { padding: 20px 0 36px; }
-    .page-header { margin-bottom: 16px; padding-bottom: 12px; }
-    .titolo-pagina { font-size: 1.55rem; }
-    .sottotitolo { font-size: 0.86rem; line-height: 1.45; }
-    
-    .hero-editorial { padding: 20px 0 24px; }
-    .hero-title { font-size: 1.95rem; }
-    .hero-subtitle { font-size: 0.98rem; margin-bottom: 8px; }
-    .hero-lead { font-size: 0.88rem; line-height: 1.5; margin-bottom: 16px; }
-    
-    .hero-composition { min-height: 195px; max-width: 320px; margin: 6px auto 0; }
-    .hero-photo { width: 85%; }
-    
+    .container {
+        padding: 0 16px;
+    }
+
+    .navbar {
+        padding: 0 16px;
+    }
+
+    .page-wrapper {
+        padding: 20px 0 36px;
+    }
+
+    .page-header {
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+    }
+
+    .titolo-pagina {
+        font-size: 1.55rem;
+    }
+
+    .sottotitolo {
+        font-size: 0.86rem;
+        line-height: 1.45;
+    }
+
+    .hero-editorial {
+        padding: 20px 0 24px;
+    }
+
+    .hero-title {
+        font-size: 1.95rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.98rem;
+        margin-bottom: 8px;
+    }
+
+    .hero-lead {
+        font-size: 0.88rem;
+        line-height: 1.5;
+        margin-bottom: 16px;
+    }
+
+    .hero-composition {
+        min-height: 195px;
+        max-width: 320px;
+        margin: 6px auto 0;
+    }
+
+    .hero-photo {
+        width: 85%;
+    }
+
     .btn-group {
         display: flex;
         flex-direction: row;
@@ -1535,7 +1728,7 @@ body.chatbot-page > header {
         gap: 10px;
         width: 100%;
     }
-    
+
     .btn-group .btn {
         flex: 1 1 calc(50% - 5px);
         padding: 10px 12px;
@@ -1543,107 +1736,190 @@ body.chatbot-page > header {
         justify-content: center;
         min-width: 130px;
     }
-    
-    .content-section { margin-top: 26px; }
-    .section-header { margin-bottom: 12px; }
-    .section-title { font-size: 1.25rem; }
-    .section-subtitle { font-size: 0.84rem; }
-    
-    .unified-cards-grid { gap: 10px; }
+
+    .content-section {
+        margin-top: 26px;
+    }
+
+    .section-header {
+        margin-bottom: 12px;
+    }
+
+    .section-title {
+        font-size: 1.25rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.84rem;
+    }
+
+    .unified-cards-grid {
+        gap: 10px;
+    }
+
     .unified-card {
         padding: 14px 13px;
         gap: 12px;
         border-width: 1.5px;
     }
-    
+
     .card-icon-box {
         width: 34px;
         height: 34px;
         border-radius: 8px;
     }
-    
+
     .card-icon-box svg {
         width: 17px;
         height: 17px;
     }
-    
+
     .card-title {
         font-size: 0.92rem;
         margin-bottom: 3px;
     }
-    
+
     .card-desc {
         font-size: 0.80rem;
         line-height: 1.42;
     }
-    
+
     /* Galleria: 2 colonne per evitare muri verticali di immagini */
     .gallery-editorial-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
     }
-    
+
     .gallery-caption {
         font-size: 0.72rem;
         padding: 6px 8px;
         line-height: 1.35;
     }
-    
-    .doc-section, .story-chapter, .gallery-intro-box {
+
+    .doc-section,
+    .story-chapter,
+    .gallery-intro-box {
         padding: 16px 14px;
         margin-bottom: 14px;
     }
-    
-    .doc-section h2, .story-chapter h2, .gallery-intro-box h2 {
+
+    .doc-section h2,
+    .story-chapter h2,
+    .gallery-intro-box h2 {
         font-size: 1.12rem;
         margin-bottom: 6px;
     }
-    
-    .doc-section p, .doc-section ul, .doc-section ol,
-    .story-chapter p, .gallery-intro-box p {
+
+    .doc-section p,
+    .doc-section ul,
+    .doc-section ol,
+    .story-chapter p,
+    .gallery-intro-box p {
         font-size: 0.86rem;
         line-height: 1.52;
         margin-bottom: 8px;
     }
-    
-    .solutions-grid { gap: 8px; margin-top: 8px; }
-    .solution-card { padding: 12px 10px; }
-    .solution-card h3 { font-size: 0.90rem; margin-bottom: 3px; }
-    .solution-card p { font-size: 0.78rem; line-height: 1.42; }
-    
+
+    .solutions-grid {
+        gap: 8px;
+        margin-top: 8px;
+    }
+
+    .solution-card {
+        padding: 12px 10px;
+    }
+
+    .solution-card h3 {
+        font-size: 0.90rem;
+        margin-bottom: 3px;
+    }
+
+    .solution-card p {
+        font-size: 0.78rem;
+        line-height: 1.42;
+    }
+
     .project-meta-grid {
         grid-template-columns: 1fr;
         gap: 8px;
         margin-top: 12px;
         padding-top: 12px;
     }
-    
-    .meta-label { font-size: 0.70rem; }
-    .meta-val { font-size: 0.86rem; }
-    
-    .code-preview { padding: 12px 14px; margin: 10px 0; }
-    .code-preview pre { font-size: 0.75rem; }
-    
-    .video-controls-overlay { padding: 14px 10px 8px; gap: 6px; }
-    .video-controls-left, .video-controls-right { gap: 6px; }
-    .volume-range { width: 42px; }
-    .video-time-display { font-size: 0.72rem; }
-    .video-big-play { width: 54px; height: 54px; }
-    .video-big-play svg.play-triangle-svg { width: 54px; height: 54px; }
-    
+
+    .meta-label {
+        font-size: 0.70rem;
+    }
+
+    .meta-val {
+        font-size: 0.86rem;
+    }
+
+    .code-preview {
+        padding: 12px 14px;
+        margin: 10px 0;
+    }
+
+    .code-preview pre {
+        font-size: 0.75rem;
+    }
+
+    .video-controls-overlay {
+        padding: 14px 10px 8px;
+        gap: 6px;
+    }
+
+    .video-controls-left,
+    .video-controls-right {
+        gap: 6px;
+    }
+
+    .volume-range {
+        width: 42px;
+    }
+
+    .video-time-display {
+        font-size: 0.72rem;
+    }
+
+    .video-big-play {
+        width: 54px;
+        height: 54px;
+    }
+
+    .video-big-play svg.play-triangle-svg {
+        width: 54px;
+        height: 54px;
+    }
+
     .footer {
         padding: 10px 14px 8px;
     }
+
     .footer-container {
         gap: 6px;
     }
+
     .footer-logos {
         gap: 16px;
     }
-    .footer-logo-avo { height: 26px; }
-    .footer-logo-avoprogetti { height: 16px; }
-    .footer-logo-gustavo { width: 22px; height: 22px; }
-    .footer-info { gap: 0; }
+
+    .footer-logo-avo {
+        height: 26px;
+    }
+
+    .footer-logo-avoprogetti {
+        height: 16px;
+    }
+
+    .footer-logo-gustavo {
+        width: 22px;
+        height: 22px;
+    }
+
+    .footer-info {
+        gap: 0;
+    }
+
     .footer-credits {
         font-size: 0.70rem;
         line-height: 1.35;
@@ -1696,35 +1972,82 @@ body.chatbot-page > header {
 }
 
 @media (max-width: 380px) {
-    .hero-composition { min-height: 165px; max-width: 270px; }
-    .hero-photo { width: 88%; }
-    .hero-title { font-size: 1.75rem; }
-    .titolo-pagina { font-size: 1.40rem; }
-    .btn-group .btn { font-size: 0.78rem; padding: 9px 10px; }
-    
-    .unified-card { padding: 12px 10px; gap: 10px; }
-    .card-icon-box { width: 30px; height: 30px; }
-    .card-icon-box svg { width: 15px; height: 15px; }
-    .card-title { font-size: 0.88rem; }
-    .card-desc { font-size: 0.76rem; }
+    .hero-composition {
+        min-height: 165px;
+        max-width: 270px;
+    }
+
+    .hero-photo {
+        width: 88%;
+    }
+
+    .hero-title {
+        font-size: 1.75rem;
+    }
+
+    .titolo-pagina {
+        font-size: 1.40rem;
+    }
+
+    .btn-group .btn {
+        font-size: 0.78rem;
+        padding: 9px 10px;
+    }
+
+    .unified-card {
+        padding: 12px 10px;
+        gap: 10px;
+    }
+
+    .card-icon-box {
+        width: 30px;
+        height: 30px;
+    }
+
+    .card-icon-box svg {
+        width: 15px;
+        height: 15px;
+    }
+
+    .card-title {
+        font-size: 0.88rem;
+    }
+
+    .card-desc {
+        font-size: 0.76rem;
+    }
 
     .footer {
         padding: 8px 12px 6px;
     }
+
     .footer-container {
         gap: 4px;
     }
+
     .footer-logos {
         gap: 12px;
     }
-    .footer-logo-avo { height: 22px; }
-    .footer-logo-avoprogetti { height: 15px; }
-    .footer-logo-gustavo { width: 20px; height: 20px; }
+
+    .footer-logo-avo {
+        height: 22px;
+    }
+
+    .footer-logo-avoprogetti {
+        height: 15px;
+    }
+
+    .footer-logo-gustavo {
+        width: 20px;
+        height: 20px;
+    }
+
     .footer-credits {
         font-size: 0.67rem;
         line-height: 1.3;
     }
-    
-    .volume-slider-wrap { display: none; }
-}
 
+    .volume-slider-wrap {
+        display: none;
+    }
+}
