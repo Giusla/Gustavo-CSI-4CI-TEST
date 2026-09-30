@@ -1,58 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Progetto GustAvo</title>
-      <link rel="stylesheet" href="style.css">
+    <title>Il Team — GustAvo · IIS Avogadro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/gustavo_icon.png">
+    <link rel="apple-touch-icon" href="assets/img/gustavo_icon.png">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/main.js" defer></script>
 </head>
-
 <body>
-    <nav class="navbar">
-        <div class="logo">GustAvo</div>
-        <ul class="nav-links">
 
-            <li>
-                <a href="index.html">Home</a>
-            </li>
-            <li>
-                <a href="progetto.html">Progetto</a>
-            </li>
-            <li>
-                <a href="team.html">Team</a>
-            </li>
-            <li>
-                <a href="documentazione.html">Documentazione</a>
-            </li>
-            <li>
-                <a href="chatbot.html">Chatbot</a>
-            </li>
+    <!-- NAVBAR UFFICIALE GUSTAVO -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo-link">
+                <img src="assets/img/gustavo_icon.png" alt="Logo GustAvo" class="nav-logo-icon">
+                <span>GustAvo</span>
+            </a>
 
-            <li>
-                <a href="galleria.html">Galleria</a>
-            </li>
-        </ul>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="progetto.html">Progetto</a></li>
+                <li><a href="team.html" class="active">Team</a></li>
+                <li><a href="documentazione.html">Documentazione</a></li>
+                <li><a href="chatbot.html">Chatbot</a></li>
+                <li><a href="galleria.html">Galleria</a></li>
+            </ul>
 
+            <button class="hamburger" id="hamburger" aria-label="Menu di navigazione" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
 
-    </nav>
+        <!-- MENU MOBILE TOUCH-FRIENDLY -->
+        <nav class="nav-mobile" id="navMobile" aria-hidden="true">
+            <a href="index.html">Home</a>
+            <a href="progetto.html">Progetto</a>
+            <a href="team.html" class="active">Team</a>
+            <a href="documentazione.html">Documentazione</a>
+            <a href="chatbot.html">Chatbot</a>
+            <a href="galleria.html">Galleria</a>
+        </nav>
+    </header>
 
-    <div class="center-container ">
-        
-        <div class="textbox">
-            <h1 class="titolo-pagina">Team di sviluppo del chatbot</h1>
+    <!-- MAIN CONTENT -->
+    <main class="page-wrapper">
+        <div class="container">
+            
+            <header class="page-header">
+                <h1 class="titolo-pagina">Il Team</h1>
+                <p class="sottotitolo">
+                    La classe 5CI (ex 4CI) dell'Istituto Tecnico Amedeo Avogadro di Torino.
+                </p>
+            </header>
 
-            <p class="testo">
-                
-            </p>
+            <div class="project-story">
+                <article class="story-chapter card-panel">
+                    <h2>Chi siamo e cosa abbiamo fatto</h2>
+                    <p>
+                        Siamo gli studenti dell'indirizzo Informatica e Telecomunicazioni della classe <strong>5CI</strong> dell'IIS Amedeo Avogadro di Torino. Abbiamo sviluppato GustAvo lavorando in team come in una vera software house: abbiamo strutturato il dataset bilanciato <code>intents.json</code> raccogliendo e convalidando i quesiti di orientamento, testato gli algoritmi di Machine Learning e classificazione con Scikit-learn e programmato sia il backend in Flask che l'interfaccia web.
+                    </p>
+                    <p>
+                        L'intero percorso è stato svolto con il coordinamento dei nostri docenti di Informatica e con il supporto specialistico dei tutor aziendali di <strong>CSI Piemonte</strong> durante le sessioni del programma <em>CSI Next</em>.
+                    </p>
+
+                    <div class="project-meta-grid">
+                        <div class="meta-item">
+                            <span class="meta-label">Istituto</span>
+                            <span class="meta-val">IIS Amedeo Avogadro · Torino</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Indirizzo</span>
+                            <span class="meta-val">Informatica e Telecomunicazioni</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Partner Aziendale</span>
+                            <span class="meta-val">CSI Piemonte (CSI Next)</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Anno Scolastico</span>
+                            <span class="meta-val">2024 / 2025</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
         </div>
-    </div>
+    </main>
 
+    <!-- FOOTER ISTITUZIONALE CON LOGHI UFFICIALI -->
     <footer class="footer">
-        <p>Progetto GustAvo - Chatbot della 4CI</p>
-        <p>Istituto Amedeo Avogadro - Torino</p>
-       
-    </footer>
-</body>
+        <div class="container footer-container">
+            <div class="footer-logos">
+                <a href="https://www.itisavogadro.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
+                    <img src="assets/img/logo_avogadro.png" alt="Logo IIS Avogadro" class="footer-logo-avo">
+                </a>
+                <a href="https://avoprogetti.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Piattaforma AvoProgetti">
+                    <img src="assets/img/logo_avoprogetti.svg" alt="Logo AvoProgetti" class="footer-logo-avoprogetti">
+                </a>
+                <a href="index.html" class="footer-logo-link" title="GustAvo Chatbot">
+                    <img src="assets/img/gustavo_icon.png" alt="Logo GustAvo" class="footer-logo-gustavo">
+                </a>
+            </div>
 
+            <div class="footer-info">
+                <p class="footer-credits">
+                    Progetto didattico <strong>5CI</strong> · <strong>IIS Amedeo Avogadro</strong>, Torino · Con <strong>CSI Piemonte</strong> (<em>CSI Next</em>)
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
 </html>

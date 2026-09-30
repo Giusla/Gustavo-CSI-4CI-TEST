@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 40" width="160" height="40">
+  <rect width="160" height="40" rx="8" fill="#0f172a" />
+  <circle cx="22" cy="20" r="10" fill="url(#avoGrad)" />
+  <path d="M18 20L21 23L26 17" stroke="#ffffff" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="38" y="24" fill="#ffffff" font-family="'Inter', -apple-system, sans-serif" font-size="13" font-weight="700" letter-spacing="-0.2">Avo<tspan fill="#38bdf8">Progetti</tspan></text>
+  <defs>
+    <linearGradient id="avoGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00a86b"/>
+      <stop offset="100%" stop-color="#0066ff"/>
+    </linearGradient>
+  </defs>
+</svg>

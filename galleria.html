@@ -1,63 +1,138 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-      <link rel="stylesheet" href="style.css">
+    <title>Galleria — GustAvo · IIS Avogadro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/gustavo_icon.png">
+    <link rel="apple-touch-icon" href="assets/img/gustavo_icon.png">
+    <link rel="stylesheet" href="assets/css/style.css?v=2.2">
+    <script src="assets/js/main.js" defer></script>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="logo">GustAvo</div>
-        <ul class="nav-links">
+    <!-- NAVBAR UFFICIALE GUSTAVO -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo-link">
+                <img src="assets/img/gustavo_icon.png" alt="Logo GustAvo" class="nav-logo-icon">
+                <span>GustAvo</span>
+            </a>
 
-            <li>
-                <a href="index.html">Home</a>
-            </li>
-            <li>
-                <a href="progetto.html">Progetto</a>
-            </li>
-            <li>
-                <a href="team.html">Team</a>
-            </li>
-            <li>
-                <a href="documentazione.html">Documentazione</a>
-            </li>
-            <li>
-                <a href="chatbot.html">Chatbot</a>
-            </li>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="progetto.html">Progetto</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="documentazione.html">Documentazione</a></li>
+                <li><a href="chatbot.html">Chatbot</a></li>
+                <li><a href="galleria.html" class="active">Galleria</a></li>
+            </ul>
 
-            <li>
-                <a href="galleria.html">Galleria</a>
-            </li>
-        </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menu di navigazione" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
 
+        <!-- MENU MOBILE TOUCH-FRIENDLY -->
+        <nav class="nav-mobile" id="navMobile" aria-hidden="true">
+            <a href="index.html">Home</a>
+            <a href="progetto.html">Progetto</a>
+            <a href="team.html">Team</a>
+            <a href="documentazione.html">Documentazione</a>
+            <a href="chatbot.html">Chatbot</a>
+            <a href="galleria.html" class="active">Galleria</a>
+        </nav>
+    </header>
 
-    </nav>
+    <!-- MAIN CONTENT -->
+    <main class="page-wrapper">
+        <div class="container">
+            
+            <header class="page-header">
+                <h1 class="titolo-pagina">Galleria del Progetto</h1>
+                <p class="sottotitolo">
+                    I momenti salienti dei laboratori formativi al CSI Piemonte e il seminario su AI e sicurezza.
+                </p>
+            </header>
 
+            <!-- CONTESTO: CSI E POLIZIA POSTALE -->
+            <section class="gallery-intro-box card-panel">
+                <h2>Il percorso in foto</h2>
+                <p>
+                    Le immagini documentano il percorso svolto dalla classe 5CI presso la sede di <strong>CSI Piemonte</strong> all'interno del programma <em>CSI Next</em>: dal brainstorming iniziale per identificare i bisogni di orientamento fino alla fase di testing sui prototipi del chatbot.
+                </p>
+                <p>
+                    <strong>Seminario con la Polizia Postale su AI e sicurezza digitale:</strong> Tra le attività formative documentate del percorso, la classe ha preso parte a un incontro con la Polizia Postale dedicato a intelligenza artificiale, sicurezza e rischi digitali. Questo momento di formazione ha trattato i temi della tutela dei dati e dell'uso responsabile della tecnologia, temi che trovano coerenza nell'impostazione di GustAvo, sviluppato per un accesso libero e senza raccolta di dati personali.
+                </p>
+            </section>
 
-      <div class="center-container">
-            <h1 class="titolo-pagina">Galleria</h1>
+            <!-- GRIGLIA FOTO CON LIGHTBOX -->
+            <section class="gallery-editorial-grid">
+                <article class="gallery-card">
+                    <img src="assets/img/galleria/foto_galleria_1.jpg" alt="Presentazione introduttiva del programma CSI Next" loading="lazy">
+                    <div class="gallery-caption">Presentazione del percorso formativo presso CSI Next</div>
+                </article>
+
+                <article class="gallery-card">
+                    <img src="assets/img/galleria/foto_galleria_2.jpg" alt="Sessione di brainstorming sui casi d'uso" loading="lazy">
+                    <div class="gallery-caption">Brainstorming e definizione dei requisiti del chatbot</div>
+                </article>
+
+                <article class="gallery-card">
+                    <img src="assets/img/galleria/foto_galleria_3.jpg" alt="Incontro su AI, sicurezza e privacy con la Polizia Postale" loading="lazy">
+                    <div class="gallery-caption">Incontro Polizia Postale: sicurezza e privacy</div>
+                </article>
+
+                <article class="gallery-card">
+                    <img src="assets/img/galleria/foto_galleria_4.jpg" alt="Gruppo studenti con i tutor specialisti di CSI Piemonte" loading="lazy">
+                    <div class="gallery-caption">La classe 5CI con i tutor aziendali di CSI Piemonte</div>
+                </article>
+
+                <article class="gallery-card">
+                    <img src="assets/img/galleria/foto_galleria_5.jpg" alt="Esposizione del concept e confronto sulle soluzioni ML" loading="lazy">
+                    <div class="gallery-caption">Esposizione dei modelli di Machine Learning</div>
+                </article>
+
+                <article class="gallery-card">
+                    <img src="assets/img/galleria/foto_galleria_6.jpg" alt="Chiusura del modulo formativo e avvio dello sviluppo" loading="lazy">
+                    <div class="gallery-caption">Conclusione del modulo e avvio della fase di sviluppo</div>
+                </article>
+            </section>
+
         </div>
+    </main>
 
-
-    <div class="container-img-galleria">
-
-        <img src="foto_csi/foto_galleria/foto_galleria_1.jpg" alt="">
-        <img src="foto_csi/foto_galleria/foto_galleria_2.jpg" alt="">
-        <img src="foto_csi/foto_galleria/foto_galleria_3.jpg" alt="">
-        <img src="foto_csi/foto_galleria/foto_galleria_4.jpg" alt="">
-        <img src="foto_csi/foto_galleria/foto_galleria_5.jpg" alt="">
-        <img src="foto_csi/foto_galleria/foto_galleria_6.jpg" alt="">
+    <!-- LIGHTBOX MODAL -->
+    <div class="lightbox-modal" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizzatore immagini">
+        <button class="lightbox-close-btn" id="lightboxClose" aria-label="Chiudi visualizzatore">&times;</button>
+        <img id="lightboxImg" src="" alt="Foto ingrandita">
     </div>
 
-
+    <!-- FOOTER ISTITUZIONALE CON LOGHI UFFICIALI -->
     <footer class="footer">
-        <p>Progetto GustAvo - Chatbot della 4CI</p>
-        <p>Istituto Amedeo Avogadro - Torino</p>
-      
+        <div class="container footer-container">
+            <div class="footer-logos">
+                <a href="https://www.itisavogadro.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
+                    <img src="assets/img/logo_avogadro.png" alt="Logo IIS Avogadro" class="footer-logo-avo">
+                </a>
+                <a href="https://avoprogetti.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Piattaforma AvoProgetti">
+                    <img src="assets/img/logo_avoprogetti.svg" alt="Logo AvoProgetti" class="footer-logo-avoprogetti">
+                </a>
+                <a href="index.html" class="footer-logo-link" title="GustAvo Chatbot">
+                    <img src="assets/img/gustavo_icon.png" alt="Logo GustAvo" class="footer-logo-gustavo">
+                </a>
+            </div>
+
+            <div class="footer-info">
+                <p class="footer-credits">
+                    Progetto didattico <strong>5CI</strong> · <strong>IIS Amedeo Avogadro</strong>, Torino · Con <strong>CSI Piemonte</strong> (<em>CSI Next</em>)
+                </p>
+            </div>
+        </div>
     </footer>
-    
+
 </body>
 </html>

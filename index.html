@@ -1,90 +1,157 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Progetto GustAvo</title>
-    <link rel="stylesheet" href="style.css">
+    <title>GustAvo — Il chatbot che ti orienta a scuola · IIS Avogadro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/img/gustavo_icon.png">
+    <link rel="apple-touch-icon" href="assets/img/gustavo_icon.png">
+    <link rel="stylesheet" href="assets/css/style.css?v=2.2">
+    <script src="assets/js/main.js" defer></script>
 </head>
+<body>
 
-<body>  
-    <!--barra di navigazione-->
-    <nav class="navbar">
-        <div class="logo">GustAvo</div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="progetto.html">Progetto</a></li>
-            <li><a href="team.html">Team</a></li>
-            <li><a href="documentazione.html">Documentazione</a></li>
-            <li><a href="chatbot.html">Chatbot</a></li>
-            <li><a href="galleria.html">Galleria</a></li>
-        </ul>
-    </nav>
+    <!-- NAVBAR UFFICIALE GUSTAVO -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo-link">
+                <img src="assets/img/gustavo_icon.png" alt="Logo GustAvo" class="nav-logo-icon">
+                <span>GustAvo</span>
+            </a>
 
-    <main class="home">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="progetto.html">Progetto</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="documentazione.html">Documentazione</a></li>
+                <li><a href="chatbot.html">Chatbot</a></li>
+                <li><a href="galleria.html">Galleria</a></li>
+            </ul>
 
-        <!-- HERO -->
-        <section class="home-hero">
-            <div class="home-hero-testo">
-                <span class="badge">IIS Amedeo Avogadro - Torino</span>
-                <h1>Ciao, sono <span class="evidenzia">GustAvo</span>!</h1>
-                <p class="lead">
-                    Il chatbot di orientamento creato dagli studenti della 4CI A.S 25/26 dell'Istituto Avogadro di Torino (oggi 5CI)
-                    per far conoscere la nostra scuola a studenti e famiglie.
-                </p>
-                <div class="home-bottoni">
-                    <a class="btn btn-primario" href="https://gustavo1.avoprogetti.it">Parla con GustAvo</a>
-                    <a class="btn btn-secondario" href="progetto.html">Scopri il progetto</a>
+            <button class="hamburger" id="hamburger" aria-label="Menu di navigazione" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+
+        <!-- MENU MOBILE TOUCH-FRIENDLY -->
+        <nav class="nav-mobile" id="navMobile" aria-hidden="true">
+            <a href="index.html" class="active">Home</a>
+            <a href="progetto.html">Progetto</a>
+            <a href="team.html">Team</a>
+            <a href="documentazione.html">Documentazione</a>
+            <a href="chatbot.html">Chatbot</a>
+            <a href="galleria.html">Galleria</a>
+        </nav>
+    </header>
+
+    <!-- CONTENUTO PRINCIPALE -->
+    <main>
+        <!-- 1. HERO SECTION -->
+        <section class="hero-editorial">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <h1 class="hero-title">GustAvo</h1>
+                    <p class="hero-subtitle">Il chatbot che ti orienta a scuola</p>
+                    <p class="hero-lead">
+                        L'assistente virtuale intelligente sviluppato dagli studenti della 5CI per aiutare ragazzi e famiglie a scoprire l'offerta formativa, i corsi e i laboratori dell'Istituto Tecnico Amedeo Avogadro.
+                    </p>
+                    <div class="btn-group">
+                        <a href="chatbot.html" class="btn btn-primario">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+                            Prova GustAvo
+                        </a>
+                        <a href="progetto.html" class="btn btn-bordo">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="plane-icon" aria-hidden="true">
+                                <path d="M22 2L11 13"></path>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>
+                            Scopri il progetto
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-composition">
+                        <div class="hero-photo" title="Laboratorio CSI Next">
+                            <img src="assets/img/home/foto_home_1.jpg" alt="Gruppo di lavoro GustAvo al CSI Piemonte" loading="eager">
+                        </div>
+                        <div class="hero-photo" title="Presentazione del progetto">
+                            <img src="assets/img/home/foto_home_2.jpg" alt="Presentazione e prototipo del chatbot GustAvo" loading="eager">
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <div class="home-hero-foto">
-                <img class="foto foto-1" src="foto_csi/foto_home/foto_home_1.jpg" alt="Il team al lavoro">
-                <img class="foto foto-2" src="foto_csi/foto_home/foto_home_2.jpg" alt="Esperienza presso CSI Piemonte">
-            </div>
         </section>
 
-        <!-- CARD -->
-        <section class="home-sezione">
-            <h2 class="home-titolo">Cosa puoi chiedere a GustAvo?</h2>
-            <p class="home-sottotitolo">Risponde alle domande più frequenti sulla scuola.</p>
+        <!-- 2. QUICK HIGHLIGHTS (Punti chiave con design system unificato) -->
+        <section class="home-highlights-section">
+            <div class="container">
+                <div class="unified-cards-grid grid-3">
+                    <article class="unified-card">
+                        <div class="card-icon-box">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+                            </svg>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">4 Indirizzi di studio</h3>
+                            <p class="card-desc">Informatica, Elettronica, Meccanica e Liceo Scientifico Scienze Applicate.</p>
+                        </div>
+                    </article>
 
-            <div class="card-griglia">
-                <article class="card">
-                    <div class="card-numero">01</div>
-                    <h3>Gli spazi</h3>
-                    <p>Aule, laboratori e ambienti della scuola.</p>
-                </article>
-                <article class="card">
-                    <div class="card-numero">02</div>
-                    <h3>Gli indirizzi</h3>
-                    <p>Tutti i percorsi di studio dell'Istituto.</p>
-                </article>
-                <article class="card">
-                    <div class="card-numero">03</div>
-                    <h3>Le attività</h3>
-                    <p>Progetti, eventi ed esperienze scolastiche.</p>
-                </article>
+                    <article class="unified-card">
+                        <div class="card-icon-box">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+                            </svg>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Risposte verificate</h3>
+                            <p class="card-desc">Informazioni ufficiali certificate dai docenti su corsi, orari e laboratori.</p>
+                        </div>
+                    </article>
+
+                    <article class="unified-card">
+                        <div class="card-icon-box">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
+                            </svg>
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">Subito disponibile</h3>
+                            <p class="card-desc">Accesso immediato da ogni dispositivo, senza registrazione né cookie.</p>
+                        </div>
+                    </article>
+                </div>
             </div>
         </section>
-
-        <!-- FASCIA FINALE -->
-        <section class="home-cta">
-            <h2>Un progetto nato in CSI Piemonte, cresciuto in classe</h2>
-            <p>Scopri l'idea, il percorso di sviluppo, il team e le foto della nostra esperienza.</p>
-            <div class="home-bottoni centro">
-                <a class="btn btn-chiaro" href="team.html">Il team</a>
-                <a class="btn btn-contorno" href="galleria.html">Galleria</a>
-            </div>
-        </section>
-
     </main>
 
+    <!-- FOOTER ISTITUZIONALE CON LOGHI UFFICIALI -->
     <footer class="footer">
-        <p>Progetto GustAvo</p>
-        <p>Istituto Amedeo Avogadro - Torino</p>
-    </footer>
-</body>
+        <div class="container footer-container">
+            <div class="footer-logos">
+                <a href="https://www.itisavogadro.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
+                    <img src="assets/img/logo_avogadro.png" alt="Logo IIS Avogadro" class="footer-logo-avo">
+                </a>
+                <a href="https://avoprogetti.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Piattaforma AvoProgetti">
+                    <img src="assets/img/logo_avoprogetti.svg" alt="Logo AvoProgetti" class="footer-logo-avoprogetti">
+                </a>
+                <a href="index.html" class="footer-logo-link" title="GustAvo Chatbot">
+                    <img src="assets/img/gustavo_icon.png" alt="Logo GustAvo" class="footer-logo-gustavo">
+                </a>
+            </div>
 
+            <div class="footer-info">
+                <p class="footer-credits">
+                    Progetto didattico <strong>5CI</strong> · <strong>IIS Amedeo Avogadro</strong>, Torino · Con <strong>CSI Piemonte</strong> (<em>CSI Next</em>)
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
 </html>
