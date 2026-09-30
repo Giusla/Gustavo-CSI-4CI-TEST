@@ -163,7 +163,7 @@ body>header {
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 8px;   
 }
 
 .nav-logo-icon {
@@ -176,6 +176,31 @@ body>header {
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
+.logo-testo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1;
+}
+
+.logo-nome {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+    line-height: 1.05;
+}
+
+.logo-motto {
+    margin-left: 10px;
+    margin-top: 3px;
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 1;
+    text-transform: uppercase;
+    color: rgba(243, 250, 245, 0.52);
+    white-space: nowrap;
+}
 .nav-links {
     list-style: none;
     display: flex;
@@ -418,6 +443,7 @@ body>header {
 .hero-brand-name {
     background: var(--brand-gradient);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     display: inline-block;
 }
@@ -431,7 +457,7 @@ body>header {
 }
 
 /* Link al sito della scuola dentro il testo dell'hero */
-/* Link al sito della scuola dentro il testo dell'hero */
+
 .link-scuola {
     color: var(--text-heading);
     font-weight: 700;
@@ -1453,12 +1479,13 @@ body.chatbot-page>header {
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.22));
-}
+}   
 
 .footer-logo-avoprogetti {
     height: 24px;
     width: auto;
     object-fit: contain;
+    border-radius: 6px;
     filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.2));
 }
 

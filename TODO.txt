@@ -24,3 +24,6 @@ aggiungere slogan e altri loghi di avo
 
 
 GustAvo -- il chatbot che ti orienta a scuola(stile piu piccolo)
+
+ <h2>Un progetto nato in classe, cresciuto al CSI Piemonte</h2>
+            <h2>Un progetto nato in CSI Piemonte, cresciuto in classe</h2>

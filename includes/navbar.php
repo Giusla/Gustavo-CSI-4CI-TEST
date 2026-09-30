@@ -12,11 +12,13 @@ $link_ext = '.html';
 <!-- NAVBAR UFFICIALE GUSTAVO -->
 <header>
     <nav class="navbar">
-        <a href="index<?php echo $link_ext; ?>" class="logo-link">
-            <img src="assets/img/gustavo_icon.png" alt="Logo GustAvo" class="nav-logo-icon">
-            <span>GustAvo</span>
-        </a>
-
+      <a href="index<?php echo $link_ext; ?>" class="logo-link">
+    <img src="assets/img/gustavo_icon.png" alt="Logo GustAvo" class="nav-logo-icon">
+    <span class="logo-testo">
+        <span class="logo-nome">GustAvo</span>
+        <span class="logo-motto">Il chatbot che ti orienta a scuola</span>
+    </span>
+</a>
         <ul class="nav-links">
             <li><a href="index<?php echo $link_ext; ?>" class="<?php echo ($active_page === 'home' ? 'active' : ''); ?>">Home</a></li>
             <li><a href="progetto<?php echo $link_ext; ?>" class="<?php echo ($active_page === 'progetto' ? 'active' : ''); ?>">Progetto</a></li>
