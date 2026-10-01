@@ -27,29 +27,65 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 2. Lightbox Galleria
+    // ----------------------------------------------------
+    // 2. Lightbox Galleria & Schermo Intero con Skeleton UI
     // ----------------------------------------------------
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxBox = document.getElementById('lightboxBox');
 
     if (lightbox && lightboxImg) {
-        const galleryImgs = document.querySelectorAll('.gallery-card img, .galleria-item img, .team-photo-img');
+        let currentLoadHandler = null;
 
         const openLightbox = (src, alt) => {
-            lightboxImg.src = src;
-            lightboxImg.alt = alt || 'Foto ingrandita';
+            if (currentLoadHandler) {
+                lightboxImg.removeEventListener('load', currentLoadHandler);
+                lightboxImg.removeEventListener('error', currentLoadHandler);
+                currentLoadHandler = null;
+            }
+
+            if (lightboxBox) {
+                lightboxBox.classList.remove('is-loaded');
+            }
+
             lightbox.classList.add('attivo');
             document.body.style.overflow = 'hidden';
+
+            const onLoaded = () => {
+                if (lightboxBox) {
+                    lightboxBox.classList.add('is-loaded');
+                }
+            };
+
+            currentLoadHandler = onLoaded;
+
+            lightboxImg.alt = alt || 'Foto ingrandita';
+            lightboxImg.src = src;
+
+            if (lightboxImg.complete && lightboxImg.naturalWidth > 0) {
+                onLoaded();
+            } else {
+                lightboxImg.addEventListener('load', onLoaded, { once: true });
+                lightboxImg.addEventListener('error', onLoaded, { once: true });
+            }
         };
 
         const closeLightbox = () => {
             lightbox.classList.remove('attivo');
+            if (lightboxBox) {
+                lightboxBox.classList.remove('is-loaded');
+            }
+            if (currentLoadHandler) {
+                lightboxImg.removeEventListener('load', currentLoadHandler);
+                lightboxImg.removeEventListener('error', currentLoadHandler);
+                currentLoadHandler = null;
+            }
             lightboxImg.src = '';
             document.body.style.overflow = '';
         };
 
-        const galleryItems = document.querySelectorAll('.gallery-card, .team-photo-wrapper, .galleria-item');
+        const galleryItems = document.querySelectorAll('.gallery-card, .team-photo-wrapper, .galleria-item, .hero-photo');
         galleryItems.forEach(item => {
             item.addEventListener('click', () => {
                 const img = item.tagName === 'IMG' ? item : item.querySelector('img');
@@ -62,7 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
+            if (e.target === lightbox || (lightboxBox && e.target === lightboxBox && !lightboxBox.classList.contains('is-loaded'))) {
+                closeLightbox();
+            }
         });
 
         document.addEventListener('keydown', (e) => {
@@ -383,5 +421,170 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    // ----------------------------------------------------
+    // 5. Skeleton UI SOLO per le foto (gestione Wi-Fi lento)
+    // ----------------------------------------------------
+    const initPhotoSkeletons = () => {
+        const photoBoxes = document.querySelectorAll('.photo-skeleton-box');
+        photoBoxes.forEach(box => {
+            if (box.id === 'lightboxBox') return;
+            const img = box.querySelector('img');
+            if (!img) return;
+
+            const markAsLoaded = () => {
+                box.classList.add('is-loaded');
+            };
+
+            if (img.complete && img.naturalWidth > 0) {
+                markAsLoaded();
+            } else {
+                img.addEventListener('load', markAsLoaded, { once: true });
+                img.addEventListener('error', markAsLoaded, { once: true });
+            }
+        });
+    };
+
+    // ----------------------------------------------------
+    // 6. Slider Galleria Orizzontale (Bottoni PC, Gesture Trackpad Laptop, Drag)
+    // ----------------------------------------------------
+    const initGallerySlider = () => {
+        const track = document.getElementById('galleryTrack');
+        if (!track) return;
+
+        const prevBtns = [
+            document.getElementById('galleryPrev'),
+            document.getElementById('gallerySidePrev')
+        ].filter(Boolean);
+
+        const nextBtns = [
+            document.getElementById('galleryNext'),
+            document.getElementById('gallerySideNext')
+        ].filter(Boolean);
+
+        const counter = document.getElementById('galleryCounter');
+        const cards = track.querySelectorAll('.gallery-card');
+        const totalCards = cards.length;
+        if (totalCards === 0) return;
+
+        const getActiveIndex = () => {
+            let activeIndex = 0;
+            const scrollLeft = track.scrollLeft;
+            cards.forEach((card, idx) => {
+                const cardLeft = card.offsetLeft - track.offsetLeft;
+                if (scrollLeft >= cardLeft - 40) {
+                    activeIndex = idx;
+                }
+            });
+            return activeIndex;
+        };
+
+        const updateControls = () => {
+            const scrollLeft = track.scrollLeft;
+            const maxScroll = track.scrollWidth - track.clientWidth;
+            const activeIndex = getActiveIndex();
+
+            if (counter) {
+                counter.textContent = `${activeIndex + 1} / ${totalCards}`;
+            }
+
+            const atStart = scrollLeft <= 8;
+            const atEnd = scrollLeft >= maxScroll - 8;
+
+            prevBtns.forEach(btn => {
+                btn.disabled = atStart;
+            });
+
+            nextBtns.forEach(btn => {
+                btn.disabled = atEnd;
+            });
+        };
+
+        const scrollToIndex = (index) => {
+            const targetIndex = Math.max(0, Math.min(index, totalCards - 1));
+            const targetCard = cards[targetIndex];
+            if (targetCard) {
+                const targetLeft = targetCard.offsetLeft - track.offsetLeft;
+                track.scrollTo({ left: targetLeft, behavior: 'smooth' });
+            }
+        };
+
+        prevBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const current = getActiveIndex();
+                scrollToIndex(current - 1);
+            });
+        });
+
+        nextBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const current = getActiveIndex();
+                scrollToIndex(current + 1);
+            });
+        });
+
+        track.addEventListener('scroll', updateControls, { passive: true });
+        window.addEventListener('resize', updateControls, { passive: true });
+
+        // Tasti freccia da tastiera quando si è sulla galleria
+        track.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                scrollToIndex(getActiveIndex() - 1);
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                scrollToIndex(getActiveIndex() + 1);
+            }
+        });
+
+        // Mouse Drag per PC
+        let isDown = false;
+        let startX = 0;
+        let scrollStart = 0;
+        let hasMoved = false;
+
+        track.addEventListener('mousedown', (e) => {
+            if (e.button !== 0) return;
+            isDown = true;
+            hasMoved = false;
+            startX = e.pageX - track.offsetLeft;
+            scrollStart = track.scrollLeft;
+            track.style.scrollBehavior = 'auto';
+            track.style.cursor = 'grabbing';
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            const x = e.pageX - track.offsetLeft;
+            const walk = (x - startX) * 1.3;
+            if (Math.abs(walk) > 5) {
+                hasMoved = true;
+            }
+            track.scrollLeft = scrollStart - walk;
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (!isDown) return;
+            isDown = false;
+            track.style.scrollBehavior = 'smooth';
+            track.style.cursor = '';
+            setTimeout(() => {
+                hasMoved = false;
+            }, 60);
+        });
+
+        track.addEventListener('click', (e) => {
+            if (hasMoved) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }, true);
+
+        updateControls();
+    };
+
+    initPhotoSkeletons();
+    initGallerySlider();
     disableBrowserLinkPreview();
 });

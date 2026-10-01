@@ -444,6 +444,147 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    // ----------------------------------------------------
+    // 6. Slider Galleria Orizzontale (Bottoni PC, Gesture Trackpad Laptop, Drag)
+    // ----------------------------------------------------
+    const initGallerySlider = () => {
+        const track = document.getElementById('galleryTrack');
+        if (!track) return;
+
+        const prevBtns = [
+            document.getElementById('galleryPrev'),
+            document.getElementById('gallerySidePrev')
+        ].filter(Boolean);
+
+        const nextBtns = [
+            document.getElementById('galleryNext'),
+            document.getElementById('gallerySideNext')
+        ].filter(Boolean);
+
+        const counter = document.getElementById('galleryCounter');
+        const cards = track.querySelectorAll('.gallery-card');
+        const totalCards = cards.length;
+        if (totalCards === 0) return;
+
+        const getActiveIndex = () => {
+            let activeIndex = 0;
+            const scrollLeft = track.scrollLeft;
+            cards.forEach((card, idx) => {
+                const cardLeft = card.offsetLeft - track.offsetLeft;
+                if (scrollLeft >= cardLeft - 40) {
+                    activeIndex = idx;
+                }
+            });
+            return activeIndex;
+        };
+
+        const updateControls = () => {
+            const scrollLeft = track.scrollLeft;
+            const maxScroll = track.scrollWidth - track.clientWidth;
+            const activeIndex = getActiveIndex();
+
+            if (counter) {
+                counter.textContent = `${activeIndex + 1} / ${totalCards}`;
+            }
+
+            const atStart = scrollLeft <= 8;
+            const atEnd = scrollLeft >= maxScroll - 8;
+
+            prevBtns.forEach(btn => {
+                btn.disabled = atStart;
+            });
+
+            nextBtns.forEach(btn => {
+                btn.disabled = atEnd;
+            });
+        };
+
+        const scrollToIndex = (index) => {
+            const targetIndex = Math.max(0, Math.min(index, totalCards - 1));
+            const targetCard = cards[targetIndex];
+            if (targetCard) {
+                const targetLeft = targetCard.offsetLeft - track.offsetLeft;
+                track.scrollTo({ left: targetLeft, behavior: 'smooth' });
+            }
+        };
+
+        prevBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const current = getActiveIndex();
+                scrollToIndex(current - 1);
+            });
+        });
+
+        nextBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const current = getActiveIndex();
+                scrollToIndex(current + 1);
+            });
+        });
+
+        track.addEventListener('scroll', updateControls, { passive: true });
+        window.addEventListener('resize', updateControls, { passive: true });
+
+        // Tasti freccia da tastiera quando si è sulla galleria
+        track.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                scrollToIndex(getActiveIndex() - 1);
+            } else if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                scrollToIndex(getActiveIndex() + 1);
+            }
+        });
+
+        // Mouse Drag per PC
+        let isDown = false;
+        let startX = 0;
+        let scrollStart = 0;
+        let hasMoved = false;
+
+        track.addEventListener('mousedown', (e) => {
+            if (e.button !== 0) return;
+            isDown = true;
+            hasMoved = false;
+            startX = e.pageX - track.offsetLeft;
+            scrollStart = track.scrollLeft;
+            track.style.scrollBehavior = 'auto';
+            track.style.cursor = 'grabbing';
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            const x = e.pageX - track.offsetLeft;
+            const walk = (x - startX) * 1.3;
+            if (Math.abs(walk) > 5) {
+                hasMoved = true;
+            }
+            track.scrollLeft = scrollStart - walk;
+        });
+
+        window.addEventListener('mouseup', () => {
+            if (!isDown) return;
+            isDown = false;
+            track.style.scrollBehavior = 'smooth';
+            track.style.cursor = '';
+            setTimeout(() => {
+                hasMoved = false;
+            }, 60);
+        });
+
+        track.addEventListener('click', (e) => {
+            if (hasMoved) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }, true);
+
+        updateControls();
+    };
+
     initPhotoSkeletons();
+    initGallerySlider();
     disableBrowserLinkPreview();
 });

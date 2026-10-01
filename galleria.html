@@ -83,49 +83,90 @@
                 </p>
             </section>
 
-            <!-- GRIGLIA FOTO CON LIGHTBOX -->
-            <section class="gallery-editorial-grid">
-                <article class="gallery-card">
-                    <div class="photo-skeleton-box">
-                        <img src="assets/img/galleria/foto_galleria_1.jpg" alt="Presentazione introduttiva del percorso presso CSI Piemonte" loading="lazy">
+            <!-- SLIDER GALLERIA ORIZZONTALE CON CONTROLLI PC E GESTURE LAPTOP -->
+            <section class="gallery-slider-section">
+                <div class="gallery-slider-header">
+                    <div class="gallery-slider-hint">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                        <span>Scorri in laterale con gesture trackpad o usa i tasti freccia</span>
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
                     </div>
-                    <div class="gallery-caption">Presentazione del percorso formativo presso CSI Piemonte</div>
-                </article>
+                    <div class="gallery-slider-controls">
+                        <button class="gallery-nav-btn prev" id="galleryPrev" aria-label="Foto precedente" title="Foto precedente">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="15 18 9 12 15 6"></polyline>
+                            </svg>
+                        </button>
+                        <span class="gallery-slider-counter" id="galleryCounter">1 / 6</span>
+                        <button class="gallery-nav-btn next" id="galleryNext" aria-label="Foto successiva" title="Foto successiva">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
 
-                <article class="gallery-card">
-                    <div class="photo-skeleton-box">
-                        <img src="assets/img/galleria/foto_galleria_2.jpg" alt="Sessione di brainstorming sui casi d'uso" loading="lazy">
-                    </div>
-                    <div class="gallery-caption">Brainstorming e definizione dei requisiti del chatbot</div>
-                </article>
+                <div class="gallery-slider-wrapper">
+                    <button class="gallery-side-btn prev" id="gallerySidePrev" aria-label="Foto precedente" title="Foto precedente">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
 
-                <article class="gallery-card">
-                    <div class="photo-skeleton-box">
-                        <img src="assets/img/galleria/foto_galleria_3.jpg" alt="Incontro su AI, sicurezza e privacy con la Polizia Postale" loading="lazy">
-                    </div>
-                    <div class="gallery-caption">Incontro Polizia Postale: sicurezza e privacy</div>
-                </article>
+                    <div class="gallery-slider-track" id="galleryTrack" tabindex="0" role="region" aria-label="Galleria fotografica a scorrimento orizzontale">
+                        <article class="gallery-card">
+                            <div class="photo-skeleton-box">
+                                <img src="assets/img/galleria/foto_galleria_1.jpg" alt="Presentazione introduttiva del percorso presso CSI Piemonte" loading="lazy">
+                            </div>
+                            <div class="gallery-caption">Presentazione del percorso formativo presso CSI Piemonte</div>
+                        </article>
 
-                <article class="gallery-card">
-                    <div class="photo-skeleton-box">
-                        <img src="assets/img/galleria/foto_galleria_4.jpg" alt="Gruppo studenti con i tutor specialisti di CSI Piemonte" loading="lazy">
-                    </div>
-                    <div class="gallery-caption">La classe 5CI con i tutor aziendali di CSI Piemonte</div>
-                </article>
+                        <article class="gallery-card">
+                            <div class="photo-skeleton-box">
+                                <img src="assets/img/galleria/foto_galleria_2.jpg" alt="Sessione di brainstorming sui casi d'uso" loading="lazy">
+                            </div>
+                            <div class="gallery-caption">Brainstorming e definizione dei requisiti del chatbot</div>
+                        </article>
 
-                <article class="gallery-card">
-                    <div class="photo-skeleton-box">
-                        <img src="assets/img/galleria/foto_galleria_5.jpg" alt="Esposizione del concept e confronto sulle soluzioni ML" loading="lazy">
-                    </div>
-                    <div class="gallery-caption">Esposizione dei modelli di Machine Learning</div>
-                </article>
+                        <article class="gallery-card">
+                            <div class="photo-skeleton-box">
+                                <img src="assets/img/galleria/foto_galleria_3.jpg" alt="Incontro su AI, sicurezza e privacy con la Polizia Postale" loading="lazy">
+                            </div>
+                            <div class="gallery-caption">Incontro Polizia Postale: sicurezza e privacy</div>
+                        </article>
 
-                <article class="gallery-card">
-                    <div class="photo-skeleton-box">
-                        <img src="assets/img/galleria/foto_galleria_6.jpg" alt="Chiusura del modulo formativo e avvio dello sviluppo" loading="lazy">
+                        <article class="gallery-card">
+                            <div class="photo-skeleton-box">
+                                <img src="assets/img/galleria/foto_galleria_4.jpg" alt="Gruppo studenti con i tutor specialisti di CSI Piemonte" loading="lazy">
+                            </div>
+                            <div class="gallery-caption">La classe 5CI con i tutor aziendali di CSI Piemonte</div>
+                        </article>
+
+                        <article class="gallery-card">
+                            <div class="photo-skeleton-box">
+                                <img src="assets/img/galleria/foto_galleria_5.jpg" alt="Esposizione del concept e confronto sulle soluzioni ML" loading="lazy">
+                            </div>
+                            <div class="gallery-caption">Esposizione dei modelli di Machine Learning</div>
+                        </article>
+
+                        <article class="gallery-card">
+                            <div class="photo-skeleton-box">
+                                <img src="assets/img/galleria/foto_galleria_6.jpg" alt="Chiusura del modulo formativo e avvio dello sviluppo" loading="lazy">
+                            </div>
+                            <div class="gallery-caption">Conclusione del modulo e avvio della fase di sviluppo</div>
+                        </article>
                     </div>
-                    <div class="gallery-caption">Conclusione del modulo e avvio della fase di sviluppo</div>
-                </article>
+
+                    <button class="gallery-side-btn next" id="gallerySideNext" aria-label="Foto successiva" title="Foto successiva">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
             </section>
 
         </div>
