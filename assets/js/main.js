@@ -614,12 +614,37 @@ document.addEventListener('DOMContentLoaded', () => {
         // Gestione Modale Semi-Fullscreen Incontro
         // ------------------------------------------------
         const encounterModal = document.getElementById('encounterModal');
+        const encounterModalBody = document.getElementById('encounterModalBody');
         const encounterModalBackdrop = document.getElementById('encounterModalBackdrop');
         const encounterModalClose = document.getElementById('encounterModalClose');
         const encounterModalBadge = document.getElementById('encounterModalBadge');
         const encounterModalTitle = document.getElementById('encounterModalTitle');
         const encounterModalDesc = document.getElementById('encounterModalDesc');
         const encounterModalGrid = document.getElementById('encounterModalGrid');
+        const modalScrollTrack = document.getElementById('modalScrollTrack');
+        const modalScrollThumb = document.getElementById('modalScrollThumb');
+
+        const updateModalScrollbar = () => {
+            if (!encounterModalBody || !modalScrollThumb || !modalScrollTrack) return;
+            const scrollHeight = encounterModalBody.scrollHeight;
+            const clientHeight = encounterModalBody.clientHeight;
+            const maxScroll = scrollHeight - clientHeight;
+            if (maxScroll <= 0) {
+                modalScrollTrack.style.display = 'none';
+                return;
+            }
+            modalScrollTrack.style.display = 'block';
+            const trackHeight = modalScrollTrack.clientHeight;
+            const thumbHeight = Math.max(44, (clientHeight / scrollHeight) * trackHeight);
+            modalScrollThumb.style.height = `${thumbHeight}px`;
+            const maxTravel = trackHeight - thumbHeight;
+            const ratio = encounterModalBody.scrollTop / maxScroll;
+            modalScrollThumb.style.transform = `translateY(${ratio * maxTravel}px)`;
+        };
+
+        if (encounterModalBody) {
+            encounterModalBody.addEventListener('scroll', updateModalScrollbar, { passive: true });
+        }
 
         const openEncounterModal = (encIndex) => {
             const data = encountersData[encIndex];
@@ -640,13 +665,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 `).join('');
 
                 encounterModalGrid.querySelectorAll('.modal-photo-card').forEach(card => {
-                    card.addEventListener('click', () => {
+                    card.addEventListener('click', (ev) => {
+                        ev.stopPropagation();
                         const idx = parseInt(card.dataset.index, 10);
                         openLightboxGallery(data.photos, idx);
                     });
-                    card.addEventListener('keydown', (e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                            e.preventDefault();
+                    card.addEventListener('keydown', (ev) => {
+                        if (ev.key === 'Enter' || ev.key === ' ') {
+                            ev.preventDefault();
                             const idx = parseInt(card.dataset.index, 10);
                             openLightboxGallery(data.photos, idx);
                         }
@@ -656,17 +682,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 initPhotoSkeletons(encounterModalGrid);
             }
 
+            // Blocco rigoroso dello scroll della pagina sottostante
+            document.documentElement.classList.add('modal-is-open');
+            document.body.classList.add('modal-is-open');
+
             encounterModal.classList.add('attivo');
             encounterModal.setAttribute('aria-hidden', 'false');
-            document.body.style.overflow = 'hidden';
+
+            if (encounterModalBody) {
+                encounterModalBody.scrollTop = 0;
+                setTimeout(updateModalScrollbar, 50);
+            }
         };
 
         const closeEncounterModal = () => {
             if (!encounterModal) return;
             encounterModal.classList.remove('attivo');
             encounterModal.setAttribute('aria-hidden', 'true');
+
+            // Ripristina lo scroll solo se il lightbox non è aperto
             if (!lightbox || !lightbox.classList.contains('attivo')) {
-                document.body.style.overflow = '';
+                document.documentElement.classList.remove('modal-is-open');
+                document.body.classList.remove('modal-is-open');
             }
         };
 
@@ -682,6 +719,19 @@ document.addEventListener('DOMContentLoaded', () => {
             encounterModal.addEventListener('click', (e) => {
                 if (e.target === encounterModal) closeEncounterModal();
             });
+
+            // Evita che la rotellina del mouse o il touch scrollino la pagina di sfondo
+            encounterModal.addEventListener('wheel', (e) => {
+                if (!encounterModalBody || !encounterModalBody.contains(e.target)) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
+
+            encounterModal.addEventListener('touchmove', (e) => {
+                if (!encounterModalBody || !encounterModalBody.contains(e.target)) {
+                    e.preventDefault();
+                }
+            }, { passive: false });
         }
 
         document.addEventListener('keydown', (e) => {
@@ -693,13 +743,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // ------------------------------------------------
-        // Inizializzazione Tracce dei 3 Caroselli
+        // Inizializzazione Tracce dei 3 Caroselli con Scrollbar Sfumata
         // ------------------------------------------------
         const tracks = document.querySelectorAll('.gallery-slider-track');
         tracks.forEach(track => {
+            const section = track.closest('.encounter-section');
             const wrapper = track.closest('.gallery-slider-wrapper');
             const prevBtn = wrapper ? wrapper.querySelector('.gallery-side-btn.prev') : null;
             const nextBtn = wrapper ? wrapper.querySelector('.gallery-side-btn.next') : null;
+
+            const customScrollbar = section ? section.querySelector('.gallery-custom-scrollbar') : null;
+            const customTrack = customScrollbar ? customScrollbar.querySelector('.gallery-custom-scrollbar-track') : null;
+            const customThumb = customScrollbar ? customScrollbar.querySelector('.gallery-custom-scrollbar-thumb') : null;
 
             const updateButtonStates = () => {
                 const scrollLeft = track.scrollLeft;
@@ -707,6 +762,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (prevBtn) prevBtn.disabled = scrollLeft <= 10;
                 if (nextBtn) nextBtn.disabled = scrollLeft >= maxScroll - 10;
             };
+
+            const updateCustomScrollbar = () => {
+                if (!customScrollbar || !customTrack || !customThumb) return;
+                const scrollLeft = track.scrollLeft;
+                const maxScroll = track.scrollWidth - track.clientWidth;
+                if (maxScroll <= 0) {
+                    customScrollbar.style.display = 'none';
+                    return;
+                }
+                customScrollbar.style.display = 'flex';
+                const trackWidth = customTrack.clientWidth;
+                const thumbWidth = customThumb.clientWidth;
+                const maxTravel = trackWidth - thumbWidth;
+                const ratio = Math.max(0, Math.min(1, scrollLeft / maxScroll));
+                customThumb.style.transform = `translateX(${ratio * maxTravel}px)`;
+            };
+
+            if (customTrack) {
+                customTrack.addEventListener('click', (e) => {
+                    const rect = customTrack.getBoundingClientRect();
+                    const clickX = e.clientX - rect.left;
+                    const ratio = Math.max(0, Math.min(1, clickX / rect.width));
+                    const maxScroll = track.scrollWidth - track.clientWidth;
+                    track.scrollTo({ left: ratio * maxScroll, behavior: 'smooth' });
+                });
+            }
 
             if (prevBtn) {
                 prevBtn.addEventListener('click', (e) => {
@@ -722,9 +803,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
-            track.addEventListener('scroll', updateButtonStates, { passive: true });
-            window.addEventListener('resize', updateButtonStates, { passive: true });
+            track.addEventListener('scroll', () => {
+                updateButtonStates();
+                updateCustomScrollbar();
+            }, { passive: true });
+
+            window.addEventListener('resize', () => {
+                updateButtonStates();
+                updateCustomScrollbar();
+            }, { passive: true });
+
             updateButtonStates();
+            updateCustomScrollbar();
 
             // ------------------------------------------------
             // Trascinamento Mouse fluido (ZERO LAG, ZERO SCATTO, CLICK SICURO)
