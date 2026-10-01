@@ -826,6 +826,63 @@ body>header {
     margin-bottom: 0;
 }
 
+/* Foto del Team / Classe — Stesso feedback e stile della Galleria */
+.team-photo-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: #ffffff;
+    border: 2px solid var(--border-subtle);
+    box-shadow: 0 4px 14px rgba(0, 20, 60, 0.04);
+    cursor: pointer;
+    margin: 0 auto 24px;
+    width: fit-content;
+    max-width: 100%;
+    transition: box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.team-photo-wrapper:hover {
+    border-color: transparent;
+    background: linear-gradient(#ffffff, #ffffff) padding-box, var(--brand-gradient) border-box;
+    box-shadow: 0 14px 30px rgba(0, 40, 100, 0.14);
+}
+
+.team-photo-img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    flex-shrink: 0;
+    border-radius: calc(var(--radius-md) - 2px) calc(var(--radius-md) - 2px) 0 0;
+    transition: filter 0.35s ease;
+}
+
+.team-photo-wrapper:hover .team-photo-img {
+    filter: brightness(1.04) contrast(1.02);
+}
+
+.team-photo-caption {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    font-size: 0.82rem;
+    color: var(--text-body);
+    line-height: 1.45;
+    background: #ffffff;
+    font-weight: 500;
+}
+
+.team-photo-caption svg {
+    color: var(--brand-blue);
+    flex-shrink: 0;
+}
+
 /* Scheda di sintesi pulita ed essenziale */
 .project-meta-grid {
     display: grid;
@@ -1821,6 +1878,15 @@ body.chatbot-page>header {
         font-size: 0.72rem;
         padding: 6px 8px;
         line-height: 1.35;
+    }
+
+    .team-photo-wrapper {
+        margin-bottom: 16px;
+    }
+
+    .team-photo-caption {
+        font-size: 0.78rem;
+        padding: 8px 12px;
     }
 
     .doc-section,

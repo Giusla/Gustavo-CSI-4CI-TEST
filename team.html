@@ -63,12 +63,22 @@
 
             <div class="project-story">
                 <article class="story-chapter card-panel">
+                    <figure class="team-photo-wrapper">
+                        <img src="assets/img/team/foto_team.jpg" alt="Foto di gruppo del Team GustAvo - Classe 5CI IIS Avogadro con i docenti" class="team-photo-img" loading="eager" title="Clicca per ingrandire la foto">
+                        <figcaption class="team-photo-caption">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                                <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                            </svg>
+                            <span>La classe 5CI (ex 4CI) dell'IIS Amedeo Avogadro di Torino insieme ai docenti</span>
+                        </figcaption>
+                    </figure>
+
                     <h2>Chi siamo e cosa abbiamo fatto</h2>
                     <p>
                         Siamo gli studenti dell'indirizzo Informatica e Telecomunicazioni della classe <strong>5CI</strong> dell'IIS Amedeo Avogadro di Torino. Abbiamo sviluppato GustAvo lavorando in team come in una vera software house: abbiamo strutturato il dataset bilanciato <code>intents.json</code> raccogliendo e convalidando i quesiti di orientamento, testato gli algoritmi di Machine Learning e classificazione con Scikit-learn e programmato sia il backend in Flask che l'interfaccia web.
                     </p>
                     <p>
-                        L'intero percorso è stato svolto con il coordinamento dei nostri docenti di Informatica e con il supporto specialistico dei tutor aziendali di <strong>CSI Piemonte</strong> durante le sessioni del programma <em>CSI Next</em>.
+                        L'intero percorso è stato svolto con il coordinamento dei nostri docenti di Informatica e con il supporto specialistico dei tutor aziendali di <strong>CSI Piemonte</strong>.
                     </p>
 
                     <div class="project-meta-grid">
@@ -82,7 +92,7 @@
                         </div>
                         <div class="meta-item">
                             <span class="meta-label">Partner Aziendale</span>
-                            <span class="meta-val">CSI Piemonte (CSI Next)</span>
+                            <span class="meta-val">CSI Piemonte</span>
                         </div>
                         <div class="meta-item">
                             <span class="meta-label">Anno Scolastico</span>
@@ -94,6 +104,12 @@
 
         </div>
     </main>
+
+    <!-- LIGHTBOX MODAL -->
+    <div class="lightbox-modal" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizzatore immagini">
+        <button class="lightbox-close-btn" id="lightboxClose" aria-label="Chiudi visualizzatore">&times;</button>
+        <img id="lightboxImg" src="" alt="Foto ingrandita">
+    </div>
 
     <!-- FOOTER ISTITUZIONALE CON LOGHI UFFICIALI -->
     <footer class="footer">

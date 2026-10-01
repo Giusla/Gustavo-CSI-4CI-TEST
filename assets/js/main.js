@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxClose = document.getElementById('lightboxClose');
 
     if (lightbox && lightboxImg) {
-        const galleryImgs = document.querySelectorAll('.gallery-card img, .galleria-item img');
+        const galleryImgs = document.querySelectorAll('.gallery-card img, .galleria-item img, .team-photo-img');
 
         const openLightbox = (src, alt) => {
             lightboxImg.src = src;
@@ -49,8 +49,12 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = '';
         };
 
-        galleryImgs.forEach(img => {
-            img.addEventListener('click', () => openLightbox(img.src, img.alt));
+        const galleryItems = document.querySelectorAll('.gallery-card, .team-photo-wrapper, .galleria-item');
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const img = item.tagName === 'IMG' ? item : item.querySelector('img');
+                if (img) openLightbox(img.src, img.alt);
+            });
         });
 
         if (lightboxClose) {
