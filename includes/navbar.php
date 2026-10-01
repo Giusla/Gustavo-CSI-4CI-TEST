@@ -12,13 +12,24 @@ $link_ext = '.html';
 <!-- NAVBAR UFFICIALE GUSTAVO -->
 <header>
     <nav class="navbar">
-      <a href="index<?php echo $link_ext; ?>" class="logo-link">
-    <img src="assets/img/gustavo_icon.png" alt="Logo GustAvo" class="nav-logo-icon">
-    <span class="logo-testo">
-        <span class="logo-nome">GustAvo</span>
-        <span class="logo-motto">Il chatbot che ti orienta a scuola</span>
-    </span>
-</a>
+      <div class="nav-brand-group">
+        <div class="nav-brand-logos" aria-label="Loghi IIS Avogadro e CSI Piemonte">
+            <a href="https://www.itisavogadro.it/" target="_blank" rel="noopener noreferrer" class="nav-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
+                <img src="assets/img/logo_avogadro.png" alt="Logo IIS Avogadro" class="nav-logo-avo">
+            </a>
+            <span class="nav-logo-divider" aria-hidden="true"></span>
+            <a href="https://www.csipiemonte.it/it" target="_blank" rel="noopener noreferrer" class="nav-logo-link" title="CSI Piemonte">
+                <img src="assets/img/logo_csi_piemonte.png" alt="Logo CSI Piemonte" class="nav-logo-csi">
+            </a>
+        </div>
+        <span class="nav-brand-divider" aria-hidden="true"></span>
+        <a href="index<?php echo $link_ext; ?>" class="logo-link" title="GustAvo — Home">
+            <span class="logo-testo">
+                <span class="logo-nome">GustAvo</span>
+                <span class="logo-motto">Il chatbot che ti orienta a scuola</span>
+            </span>
+        </a>
+      </div>
         <ul class="nav-links">
             <li><a href="index<?php echo $link_ext; ?>" class="<?php echo ($active_page === 'home' ? 'active' : ''); ?>">Home</a></li>
             <li><a href="progetto<?php echo $link_ext; ?>" class="<?php echo ($active_page === 'progetto' ? 'active' : ''); ?>">Progetto</a></li>

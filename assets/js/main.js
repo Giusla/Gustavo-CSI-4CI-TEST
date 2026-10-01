@@ -383,5 +383,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    // ----------------------------------------------------
+    // 5. Skeleton UI SOLO per le foto (gestione Wi-Fi lento)
+    // ----------------------------------------------------
+    const initPhotoSkeletons = () => {
+        const photoBoxes = document.querySelectorAll('.photo-skeleton-box');
+        photoBoxes.forEach(box => {
+            const img = box.querySelector('img');
+            if (!img) return;
+
+            const markAsLoaded = () => {
+                box.classList.add('is-loaded');
+            };
+
+            if (img.complete && img.naturalWidth > 0) {
+                markAsLoaded();
+            } else {
+                img.addEventListener('load', markAsLoaded, { once: true });
+                img.addEventListener('error', markAsLoaded, { once: true });
+            }
+        });
+    };
+
+    initPhotoSkeletons();
     disableBrowserLinkPreview();
 });
