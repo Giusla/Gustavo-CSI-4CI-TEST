@@ -2327,13 +2327,11 @@ body.modal-is-open {
 }
 
 .footer-logo-gustavo {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    object-fit: cover;
-    background: #ffffff;
-    padding: 1.5px;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+    height: 42px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.22));
+    transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .footer-info {
@@ -2871,8 +2869,8 @@ body.modal-is-open {
     }
 
     .footer-logo-gustavo {
-        width: 22px;
-        height: 22px;
+        height: 30px;
+        width: auto;
     }
 
     .footer-info {
@@ -2997,8 +2995,8 @@ body.modal-is-open {
     }
 
     .footer-logo-gustavo {
-        width: 20px;
-        height: 20px;
+        height: 26px;
+        width: auto;
     }
 
     .footer-credits {
