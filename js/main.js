@@ -727,30 +727,31 @@ document.addEventListener('DOMContentLoaded', () => {
             updateButtonStates();
 
             // ------------------------------------------------
-            // Trascinamento Mouse per PC fluido al 100% (ZERO LAG, ZERO SCATTO)
+            // Trascinamento Mouse fluido (ZERO LAG, ZERO SCATTO, CLICK SICURO)
             // ------------------------------------------------
             let isDown = false;
             let startX = 0;
             let scrollStart = 0;
-            let dragDelta = 0;
+            let hasDragged = false;
 
             track.addEventListener('mousedown', (e) => {
                 if (e.button !== 0) return;
                 isDown = true;
-                dragDelta = 0;
-                startX = e.pageX - track.offsetLeft;
+                hasDragged = false;
+                startX = e.pageX;
                 scrollStart = track.scrollLeft;
-                track.classList.add('is-dragging');
-                track.style.scrollBehavior = 'auto';
-                track.style.scrollSnapType = 'none';
             });
 
             window.addEventListener('mousemove', (e) => {
                 if (!isDown) return;
-                const currentX = e.pageX - track.offsetLeft;
-                const walk = currentX - startX;
-                dragDelta = Math.abs(walk);
-                track.scrollLeft = scrollStart - walk;
+                const walk = e.pageX - startX;
+                if (Math.abs(walk) > 6) {
+                    hasDragged = true;
+                    track.classList.add('is-dragging');
+                    track.style.scrollBehavior = 'auto';
+                    track.style.scrollSnapType = 'none';
+                    track.scrollLeft = scrollStart - walk;
+                }
             });
 
             const endDrag = () => {
@@ -758,34 +759,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 isDown = false;
                 track.classList.remove('is-dragging');
                 track.style.scrollBehavior = 'smooth';
+                track.style.scrollSnapType = 'x mandatory';
                 setTimeout(() => {
-                    track.style.scrollSnapType = 'x mandatory';
-                    dragDelta = 0;
-                }, 60);
+                    hasDragged = false;
+                }, 100);
             };
 
             window.addEventListener('mouseup', endDrag);
 
-            // Click sulle Card del carosello
+            // Click delegato sulle Card del carosello (Apre modale o fullscreen lightbox)
+            track.addEventListener('click', (e) => {
+                if (hasDragged) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
+
+                const card = e.target.closest('.gallery-card');
+                if (!card) return;
+
+                const encIdx = parseInt(card.dataset.encounter, 10);
+                if (card.classList.contains('gallery-card-more')) {
+                    openEncounterModal(encIdx);
+                } else {
+                    const pIdx = parseInt(card.dataset.index, 10);
+                    if (encountersData[encIdx] && encountersData[encIdx].photos[pIdx]) {
+                        openLightboxGallery(encountersData[encIdx].photos, pIdx);
+                    }
+                }
+            });
+
+            // Accessibilità tastiera per ogni card
             track.querySelectorAll('.gallery-card').forEach(card => {
-                card.addEventListener('click', (e) => {
-                    if (dragDelta > 8) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        return;
-                    }
-
-                    const encIdx = parseInt(card.dataset.encounter, 10);
-                    if (card.classList.contains('gallery-card-more')) {
-                        openEncounterModal(encIdx);
-                    } else {
-                        const pIdx = parseInt(card.dataset.index, 10);
-                        if (encountersData[encIdx]) {
-                            openLightboxGallery(encountersData[encIdx].photos, pIdx);
-                        }
-                    }
-                });
-
                 card.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
@@ -794,7 +799,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             openEncounterModal(encIdx);
                         } else {
                             const pIdx = parseInt(card.dataset.index, 10);
-                            if (encountersData[encIdx]) {
+                            if (encountersData[encIdx] && encountersData[encIdx].photos[pIdx]) {
                                 openLightboxGallery(encountersData[encIdx].photos, pIdx);
                             }
                         }

@@ -1615,8 +1615,6 @@ body.chatbot-page>header {
     -webkit-overflow-scrolling: touch;
     padding: 10px 4px 20px;
     margin: -10px -4px 0;
-    scrollbar-width: thin;
-    scrollbar-color: #0080df rgba(0, 20, 60, 0.06);
     outline: none;
     cursor: grab;
 }
@@ -1629,22 +1627,20 @@ body.chatbot-page>header {
     user-select: none;
 }
 
-.gallery-slider-track.is-dragging * {
-    pointer-events: none;
-}
-
-/* Barra di scorrimento con la SFUMATURA esatta del resto del sito (var(--brand-gradient)) */
+/* Barra di scorrimento con la SFUMATURA esatta dell'header (var(--brand-gradient)) */
 .gallery-slider-track::-webkit-scrollbar {
-    height: 7px;
+    height: 8px;
+    background: transparent;
 }
 
 .gallery-slider-track::-webkit-scrollbar-track {
     background: rgba(0, 20, 60, 0.05);
     border-radius: 999px;
+    margin: 0 4px;
 }
 
 .gallery-slider-track::-webkit-scrollbar-thumb {
-    background: var(--brand-gradient);
+    background: linear-gradient(90deg, #00a86b 0%, #0066ff 100%) !important;
     border-radius: 999px;
     box-shadow: 0 1px 4px rgba(0, 102, 255, 0.25);
     transition: filter 0.2s ease;
