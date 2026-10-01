@@ -27,29 +27,65 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
-    // 2. Lightbox Galleria
+    // ----------------------------------------------------
+    // 2. Lightbox Galleria & Schermo Intero con Skeleton UI
     // ----------------------------------------------------
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
     const lightboxClose = document.getElementById('lightboxClose');
+    const lightboxBox = document.getElementById('lightboxBox');
 
     if (lightbox && lightboxImg) {
-        const galleryImgs = document.querySelectorAll('.gallery-card img, .galleria-item img, .team-photo-img');
+        let currentLoadHandler = null;
 
         const openLightbox = (src, alt) => {
-            lightboxImg.src = src;
-            lightboxImg.alt = alt || 'Foto ingrandita';
+            if (currentLoadHandler) {
+                lightboxImg.removeEventListener('load', currentLoadHandler);
+                lightboxImg.removeEventListener('error', currentLoadHandler);
+                currentLoadHandler = null;
+            }
+
+            if (lightboxBox) {
+                lightboxBox.classList.remove('is-loaded');
+            }
+
             lightbox.classList.add('attivo');
             document.body.style.overflow = 'hidden';
+
+            const onLoaded = () => {
+                if (lightboxBox) {
+                    lightboxBox.classList.add('is-loaded');
+                }
+            };
+
+            currentLoadHandler = onLoaded;
+
+            lightboxImg.alt = alt || 'Foto ingrandita';
+            lightboxImg.src = src;
+
+            if (lightboxImg.complete && lightboxImg.naturalWidth > 0) {
+                onLoaded();
+            } else {
+                lightboxImg.addEventListener('load', onLoaded, { once: true });
+                lightboxImg.addEventListener('error', onLoaded, { once: true });
+            }
         };
 
         const closeLightbox = () => {
             lightbox.classList.remove('attivo');
+            if (lightboxBox) {
+                lightboxBox.classList.remove('is-loaded');
+            }
+            if (currentLoadHandler) {
+                lightboxImg.removeEventListener('load', currentLoadHandler);
+                lightboxImg.removeEventListener('error', currentLoadHandler);
+                currentLoadHandler = null;
+            }
             lightboxImg.src = '';
             document.body.style.overflow = '';
         };
 
-        const galleryItems = document.querySelectorAll('.gallery-card, .team-photo-wrapper, .galleria-item');
+        const galleryItems = document.querySelectorAll('.gallery-card, .team-photo-wrapper, .galleria-item, .hero-photo');
         galleryItems.forEach(item => {
             item.addEventListener('click', () => {
                 const img = item.tagName === 'IMG' ? item : item.querySelector('img');
@@ -62,7 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
+            if (e.target === lightbox || (lightboxBox && e.target === lightboxBox && !lightboxBox.classList.contains('is-loaded'))) {
+                closeLightbox();
+            }
         });
 
         document.addEventListener('keydown', (e) => {
@@ -389,6 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const initPhotoSkeletons = () => {
         const photoBoxes = document.querySelectorAll('.photo-skeleton-box');
         photoBoxes.forEach(box => {
+            if (box.id === 'lightboxBox') return;
             const img = box.querySelector('img');
             if (!img) return;
 

@@ -1551,11 +1551,64 @@ body.chatbot-page > header {
     display: flex;
 }
 
+.lightbox-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 90vw;
+    max-height: 85vh;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.lightbox-content.photo-skeleton-box:not(.is-loaded) {
+    width: min(84vw, 880px);
+    aspect-ratio: 16 / 10;
+    background-color: rgba(30, 41, 59, 0.92);
+}
+
+.lightbox-content.photo-skeleton-box:not(.is-loaded)::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.18) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: photo-skeleton-shimmer 1.5s infinite linear;
+    z-index: 4;
+    pointer-events: none;
+}
+
+.lightbox-content img,
 .lightbox-modal img {
     max-width: 90vw;
     max-height: 85vh;
+    width: auto;
+    height: auto;
     border-radius: var(--radius-sm);
     object-fit: contain;
+    display: block;
+    transition: opacity 0.35s ease;
+}
+
+.lightbox-content.photo-skeleton-box:not(.is-loaded) img {
+    opacity: 0;
+}
+
+.lightbox-content.photo-skeleton-box.is-loaded img {
+    opacity: 1;
+}
+
+.lightbox-content.is-loaded {
+    background-color: transparent;
+    width: auto;
+    aspect-ratio: auto;
 }
 
 .lightbox-close-btn {
