@@ -7,7 +7,7 @@ if (!isset($active_page)) {
         $active_page = 'home';
     }
 }
-$link_ext = '.html';
+$link_ext = '.php';
 ?>
 <!-- NAVBAR UFFICIALE GUSTAVO -->
 <header>

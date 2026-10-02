@@ -1103,7 +1103,8 @@ document.addEventListener('DOMContentLoaded', () => {
             gReadingGuide:   { cls: 'g-reading-guide' }
         };
 
-        // ── Riposiziona pulsante e pannello per evitare sovrapposizione col footer ──
+        // ── Riposiziona pulsante e pannello per evitare sovrapposizione col footer (Throttled con rAF) ──
+        let footerRaf = null;
         const adjustPositionForFooter = () => {
             const footer = document.querySelector('footer, .footer, .chatbot-direct-bar');
             if (!footer) return;
@@ -1123,15 +1124,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        window.addEventListener('scroll', adjustPositionForFooter, { passive: true });
-        window.addEventListener('resize', adjustPositionForFooter, { passive: true });
+        const throttledAdjustFooter = () => {
+            if (footerRaf) return;
+            footerRaf = requestAnimationFrame(() => {
+                adjustPositionForFooter();
+                footerRaf = null;
+            });
+        };
 
-        // ── Guida lettura: segue il mouse per ausilio visivo ──
+        window.addEventListener('scroll', throttledAdjustFooter, { passive: true });
+        window.addEventListener('resize', throttledAdjustFooter, { passive: true });
+
+        // ── Guida lettura: segue il mouse con GPU transform accelerata a 60/144fps ──
+        let guideRaf = null;
         document.addEventListener('mousemove', (e) => {
-            if (document.documentElement.classList.contains('g-reading-guide')) {
-                guideLine.style.top = `${e.clientY}px`;
-            }
-        });
+            if (!document.documentElement.classList.contains('g-reading-guide')) return;
+            if (guideRaf) return;
+            const y = e.clientY;
+            guideRaf = requestAnimationFrame(() => {
+                guideLine.style.transform = `translateY(${y}px)`;
+                guideRaf = null;
+            });
+        }, { passive: true });
 
         // ── Salvataggio preferenze ──
         const savePrefs = () => {
@@ -1143,7 +1157,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 localStorage.setItem('gustavo_a11y_v2', JSON.stringify(prefs));
             } catch (e) {}
-            adjustPositionForFooter();
+            throttledAdjustFooter();
         };
 
         // ── Aggiornamento UI font ──
@@ -1156,7 +1170,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (valEl) valEl.textContent = `${pct}%`;
             if (decBtn) decBtn.disabled = fontIndex === 0;
             if (incBtn) incBtn.disabled = fontIndex === fontSteps.length - 1;
-            adjustPositionForFooter();
+            throttledAdjustFooter();
         };
 
         // ── Caricamento preferenze ──
@@ -1202,7 +1216,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 isOpen ? 'Chiudi impostazioni di accessibilità' : 'Apri impostazioni di accessibilità'
             );
             if (isOpen) {
-                adjustPositionForFooter();
+                throttledAdjustFooter();
                 const firstFocusable = panel.querySelector('button:not(:disabled), input:not(:disabled)');
                 if (firstFocusable) setTimeout(() => firstFocusable.focus(), 50);
             }
@@ -1315,14 +1329,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Reset localStorage
                 try { localStorage.removeItem('gustavo_a11y_v2'); } catch (e) {}
-                adjustPositionForFooter();
+                throttledAdjustFooter();
             });
         }
 
         // ── Init ──
         updateFontUI();
         loadPrefs();
-        adjustPositionForFooter();
+        throttledAdjustFooter();
     };
 
     initPhotoSkeletons();

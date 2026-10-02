@@ -30,51 +30,10 @@
     <a href="#main" class="skip-link">Salta al contenuto principale</a>
 
     <!-- NAVBAR UFFICIALE GUSTAVO -->
-    <header>
-        <nav class="navbar">
-            <div class="nav-brand-group">
-                <div class="nav-brand-logos" aria-label="Loghi IIS Avogadro e CSI Piemonte">
-                    <a href="https://www.itisavogadro.it/" target="_blank" rel="noopener noreferrer" class="nav-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
-                        <img src="assets/img/logo_avogadro.png" alt="Logo IIS Avogadro" class="nav-logo-avo">
-                    </a>
-                    <span class="nav-logo-divider" aria-hidden="true"></span>
-                    <a href="https://www.csipiemonte.it/it" target="_blank" rel="noopener noreferrer" class="nav-logo-link" title="CSI Piemonte">
-                        <img src="assets/img/logo_csi_piemonte.png" alt="Logo CSI Piemonte" class="nav-logo-csi">
-                    </a>
-                </div>
-                <span class="nav-brand-divider" aria-hidden="true"></span>
-                <a href="index.html" class="logo-link" title="GustAvo — Home">
-                    <span class="logo-testo">
-                        <span class="logo-nome">GustAvo</span>
-                        <span class="logo-motto">Il chatbot che ti orienta a scuola</span>
-                    </span>
-                </a>
-            </div>
-
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="progetto.html">Progetto</a></li>
-                <li><a href="team.html">Team</a></li>
-                <li><a href="documentazione.html" class="active">Documentazione</a></li>
-                <li><a href="chatbot.html">Chatbot</a></li>
-                <li><a href="galleria.html">Galleria</a></li>
-            </ul>
-
-            <button class="hamburger" id="hamburger" aria-label="Menu di navigazione" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-        </nav>
-
-        <!-- MENU MOBILE TOUCH-FRIENDLY -->
-        <nav class="nav-mobile" id="navMobile" aria-hidden="true">
-            <a href="index.html">Home</a>
-            <a href="progetto.html">Progetto</a>
-            <a href="team.html">Team</a>
-            <a href="documentazione.html" class="active">Documentazione</a>
-            <a href="chatbot.html">Chatbot</a>
-            <a href="galleria.html">Galleria</a>
-        </nav>
-    </header>
+    <?php
+    $active_page = 'documentazione';
+    include 'includes/navbar.php';
+    ?>
 
     <!-- MAIN CONTENT -->
     <main class="page-wrapper" id="main">
@@ -208,28 +167,7 @@
     </main>
 
     <!-- FOOTER ISTITUZIONALE CON LOGHI UFFICIALI -->
-    <footer class="footer">
-        <div class="container footer-container">
-            <div class="footer-logos">
-                <a href="https://www.itisavogadro.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
-                    <img src="assets/img/logo_avogadro.png" alt="Logo IIS Avogadro" class="footer-logo-avo">
-                </a>
-                <a href="https://avoprogetti.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Piattaforma AvoProgetti">
-                    <img src="assets/img/logo_avoprogetti.jpeg" alt="Logo AvoProgetti" class="footer-logo-avoprogetti">
-                </a>
-                <a href="index.html" class="footer-logo-link" title="GustAvo Chatbot">
-                    <img src="assets/img/gustavo_icon.png" alt="Logo GustAvo" class="footer-logo-gustavo">
-                </a>
-            </div>
-
-            <div class="footer-info">
-                <p class="footer-credits">
-                    <strong>
-                        Progetto GustAvo - IIS Amedeo Avogadro, Torino - in collaborazione con CSI Piemonte
-                    </strong>
-                </p>
-            </div>
-    </footer>
+    <?php include 'includes/footer.php'; ?>
 
 </body>
 </html>
