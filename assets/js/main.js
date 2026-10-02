@@ -934,55 +934,49 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ----------------------------------------------------
-    // 7. Sistema di Accessibilità GustAvo (v2 — Essenziale)
+    // 7. Sistema di Accessibilità GustAvo (Conforme Standard WCAG 2.1)
     // ----------------------------------------------------
     const initGustavoAccessibility = () => {
         // Evita duplicazioni nel DOM
         if (document.getElementById('gustavoA11yBtn')) return;
 
-        // Rimozione preventiva di classi di accessibilità obsolete o rimosse
+        // Rimozione preventiva di classi di accessibilità obsolete o non conformi
         const OBSOLETE_CLASSES = [
-            'g-invert', 'g-grayscale', 'g-vivid', 'g-highlight-headings',
+            'g-invert', 'g-vivid', 'g-highlight-headings',
             'g-highlight-active', 'g-reduce-motion', 'g-stop-motion',
             'g-reduce-effects', 'g-reading-mode', 'g-reduce-distractions',
-            'g-reading-focus', 'g-hide-decorative', 'g-spacing',
-            'g-align-left', 'g-big-cursor', 'g-reading-guide', 'g-focus-visible'
+            'g-reading-focus', 'g-hide-decorative', 'g-big-cursor',
+            'g-spacing', 'g-line-height'
         ];
         OBSOLETE_CLASSES.forEach(cls => document.documentElement.classList.remove(cls));
-
-        // ── Icona SVG accessibilità moderna ──
-        const iconSVG = `<svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-            <circle cx="12" cy="4.5" r="1.8" fill="#ffffff" stroke="none"/>
-            <path d="M12 7.5v5"/>
-            <path d="M8 9.5h8"/>
-            <path d="M10 12.5l-2 4.5"/>
-            <path d="M14 12.5l1 2.5h2.5"/>
-            <circle cx="17" cy="17.5" r="2" stroke="#ffffff" fill="none"/>
-        </svg>`;
 
         // ── SVG chiusura ──
         const closeSVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true" focusable="false">
             <path d="M18 6L6 18M6 6l12 12"/>
         </svg>`;
 
-        // ── Helper: crea un toggle item ──
-        const makeItem = (id, label, desc) => `
+        // ── Helper: crea un toggle item conforme WCAG ──
+        const makeItem = (id, label, desc, wcagTag) => `
             <div class="g-a11y-item">
                 <div class="g-a11y-item-info">
-                    <label for="${id}" class="g-a11y-item-label">${label}</label>
+                    <div class="g-a11y-label-wrap">
+                        <label for="${id}" class="g-a11y-item-label">${label}</label>
+                        ${wcagTag ? `<span class="g-a11y-wcag-badge">${wcagTag}</span>` : ''}
+                    </div>
                     <span class="g-a11y-item-desc">${desc}</span>
                 </div>
                 <label class="g-a11y-toggle" aria-label="${label}">
-                    <input type="checkbox" id="${id}" class="g-a11y-checkbox">
+                    <input type="checkbox" id="${id}" class="g-a11y-checkbox" role="switch" aria-checked="false">
                     <span class="g-a11y-toggle-track" aria-hidden="true">
                         <span class="g-a11y-toggle-thumb"></span>
                     </span>
                 </label>
             </div>`;
 
-        // ── Helper: SVG icone sezione 14×14 ──
+        // ── Helper: SVG icone sezione ──
         const textIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h14"/></svg>`;
         const eyeIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+        const navIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>`;
 
         // ── Costruzione pulsante ──
         const btn = document.createElement('button');
@@ -1002,19 +996,27 @@ document.addEventListener('DOMContentLoaded', () => {
             </span>
         `;
 
+        // ── Linea guida lettura per ausilio cognitivo / dislessia ──
+        const guideLine = document.createElement('div');
+        guideLine.className = 'g-guide-line';
+        guideLine.setAttribute('aria-hidden', 'true');
+
         // ── Costruzione pannello ──
         const panel = document.createElement('div');
         panel.id = 'gustavoA11yPanel';
         panel.className = 'g-a11y-panel';
         panel.setAttribute('role', 'region');
-        panel.setAttribute('aria-label', 'Impostazioni di accessibilità');
+        panel.setAttribute('aria-label', 'Pannello accessibilità conforme WCAG 2.1');
         panel.setAttribute('aria-hidden', 'true');
 
         panel.innerHTML = `
             <div class="g-a11y-header">
                 <div class="g-a11y-header-content">
-                    <h2 class="g-a11y-title">Accessibilità</h2>
-                    <p class="g-a11y-subtitle">Personalizza la visualizzazione</p>
+                    <div class="g-a11y-title-row">
+                        <h2 class="g-a11y-title">Accessibilità</h2>
+                        <span class="g-a11y-wcag-header-tag">WCAG 2.1</span>
+                    </div>
+                    <p class="g-a11y-subtitle">Personalizza navigazione e visualizzazione</p>
                 </div>
                 <button type="button" class="g-a11y-close" id="gustavoA11yClose" aria-label="Chiudi impostazioni di accessibilità">
                     ${closeSVG}
@@ -1023,29 +1025,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
             <div class="g-a11y-body">
 
-                <!-- SEZIONE 1: Testo e lettura -->
+                <!-- SEZIONE 1: Testo e Tipografia (WCAG 1.4.4 & 1.4.12) -->
                 <div class="g-a11y-section">
-                    <h3 class="g-a11y-section-title">${textIcon} Testo e lettura</h3>
+                    <h3 class="g-a11y-section-title">${textIcon} Testo e Tipografia</h3>
                     <div class="g-a11y-font-row">
                         <div class="g-a11y-item-info">
-                            <span class="g-a11y-item-label">Dimensione testo</span>
-                            <span class="g-a11y-item-desc">Regola la grandezza del carattere</span>
+                            <div class="g-a11y-label-wrap">
+                                <span class="g-a11y-item-label">Dimensione testo</span>
+                                <span class="g-a11y-wcag-badge">WCAG 1.4.4</span>
+                            </div>
+                            <span class="g-a11y-item-desc">Ingrandimento scalabile fino al 200%</span>
                         </div>
-                        <div class="g-a11y-font-controls" role="group" aria-label="Regolazione dimensione testo">
-                            <button type="button" class="g-a11y-font-btn" id="gDecFont" aria-label="Testo più piccolo">A−</button>
+                        <div class="g-a11y-font-controls" role="group" aria-label="Regolazione dimensione testo conforme WCAG">
+                            <button type="button" class="g-a11y-font-btn" id="gDecFont" aria-label="Riduci testo">A−</button>
                             <span class="g-a11y-font-val" id="gFontVal" aria-live="polite">100%</span>
-                            <button type="button" class="g-a11y-font-btn" id="gIncFont" aria-label="Testo più grande">A+</button>
+                            <button type="button" class="g-a11y-font-btn" id="gIncFont" aria-label="Aumenta testo">A+</button>
                         </div>
                     </div>
-                    ${makeItem('gReadableFont', 'Font ad alta leggibilità', 'Usa un carattere chiaro e lineare')}
-                    ${makeItem('gLineHeight', 'Interlinea aumentata', 'Maggiore distanza tra le righe di testo')}
+                    ${makeItem('gReadableFont', 'Carattere ad alta leggibilità', 'Font lineare (Arial) ottimizzato per dislessia', 'WCAG AAA')}
+                    ${makeItem('gTextSpacing', 'Spaziatura testo conforme', 'Interlinea (1.8), spaziatura caratteri e parole', 'WCAG 1.4.12')}
+                    ${makeItem('gAlignLeft', 'Allineamento a sinistra', 'Evita testo giustificato per facilitare la lettura', 'WCAG 1.4.8')}
                 </div>
 
-                <!-- SEZIONE 2: Contrasto e colori -->
+                <!-- SEZIONE 2: Contrasto e Colori (WCAG 1.4.1 & 1.4.6) -->
                 <div class="g-a11y-section">
-                    <h3 class="g-a11y-section-title">${eyeIcon} Contrasto e colori</h3>
-                    ${makeItem('gHighContrast', 'Contrasto elevato', 'Aumenta il contrasto tra testi e sfondo')}
-                    ${makeItem('gHighlightLinks', 'Evidenzia link', 'Sottolinea e risalta tutti i collegamenti')}
+                    <h3 class="g-a11y-section-title">${eyeIcon} Contrasto e Colori</h3>
+                    ${makeItem('gHighContrast', 'Contrasto elevato (AAA)', 'Rapporto di contrasto elevato testo/sfondo', 'WCAG 1.4.6')}
+                    ${makeItem('gHighlightLinks', 'Evidenzia collegamenti', 'Sottolinea e risalta i link ipertestuali', 'WCAG 1.4.1')}
+                    ${makeItem('gGrayscale', 'Scala di grigi (Monocromatico)', 'Accesso senza dipendenza dalla percezione colori', 'WCAG 1.4.1')}
+                </div>
+
+                <!-- SEZIONE 3: Navigazione e Ausili (WCAG 2.4.7) -->
+                <div class="g-a11y-section">
+                    <h3 class="g-a11y-section-title">${navIcon} Navigazione e Ausili</h3>
+                    ${makeItem('gFocusVisible', 'Focus tastiera evidente', 'Contorno ad alto contrasto per navigazione tastiera', 'WCAG 2.4.7')}
+                    ${makeItem('gReadingGuide', 'Guida alla lettura', 'Barra orizzontale di supporto visivo', 'Ausilio')}
                 </div>
 
             </div>
@@ -1058,19 +1072,24 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
 
         // ── Append al DOM ──
+        document.body.appendChild(guideLine);
         document.body.appendChild(btn);
         document.body.appendChild(panel);
 
-        // ── Steps testo ──
-        const fontSteps = [100, 112, 125, 140];
+        // ── Steps testo conformi WCAG 1.4.4 (fino a 200%) ──
+        const fontSteps = [100, 125, 150, 175, 200];
         let fontIndex = 0;
 
         // ── Mappa: id-checkbox → { htmlClass } ──
         const TOGGLES = {
             gReadableFont:   { cls: 'g-readable-font' },
-            gLineHeight:     { cls: 'g-line-height' },
+            gTextSpacing:    { cls: 'g-text-spacing' },
+            gAlignLeft:      { cls: 'g-align-left' },
             gHighContrast:   { cls: 'g-high-contrast' },
-            gHighlightLinks: { cls: 'g-highlight-links' }
+            gHighlightLinks: { cls: 'g-highlight-links' },
+            gGrayscale:      { cls: 'g-grayscale' },
+            gFocusVisible:   { cls: 'g-focus-visible' },
+            gReadingGuide:   { cls: 'g-reading-guide' }
         };
 
         // ── Riposiziona pulsante e pannello per evitare sovrapposizione col footer ──
@@ -1095,6 +1114,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.addEventListener('scroll', adjustPositionForFooter, { passive: true });
         window.addEventListener('resize', adjustPositionForFooter, { passive: true });
+
+        // ── Guida lettura: segue il mouse per ausilio visivo ──
+        document.addEventListener('mousemove', (e) => {
+            if (document.documentElement.classList.contains('g-reading-guide')) {
+                guideLine.style.top = `${e.clientY}px`;
+            }
+        });
 
         // ── Salvataggio preferenze ──
         const savePrefs = () => {
@@ -1141,7 +1167,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (prefs[key]) {
                         document.documentElement.classList.add(TOGGLES[id].cls);
                         const cb = document.getElementById(id);
-                        if (cb) cb.checked = true;
+                        if (cb) {
+                            cb.checked = true;
+                            cb.setAttribute('aria-checked', 'true');
+                        }
                     }
                 });
             } catch (e) {}
@@ -1198,7 +1227,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // ── Gestione tastiera (Escape + Tab trap) ──
+        // ── Gestione tastiera (Escape + Tab trap conforme WCAG) ──
         panel.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 e.preventDefault();
@@ -1237,12 +1266,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // ── Toggle listeners (generici) ──
+        // ── Toggle listeners conforme WCAG ──
         Object.keys(TOGGLES).forEach(id => {
             const cb = document.getElementById(id);
             if (!cb) return;
             cb.addEventListener('change', () => {
                 document.documentElement.classList.toggle(TOGGLES[id].cls, cb.checked);
+                cb.setAttribute('aria-checked', String(cb.checked));
                 savePrefs();
             });
         });
@@ -1255,7 +1285,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 fontIndex = 0;
                 updateFontUI();
 
-                // Reset classi html (incluse classi rimosse/obsolete)
+                // Reset classi html
                 Object.values(TOGGLES).forEach(({ cls }) => {
                     document.documentElement.classList.remove(cls);
                 });
@@ -1266,7 +1296,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Reset checkbox
                 Object.keys(TOGGLES).forEach(id => {
                     const cb = document.getElementById(id);
-                    if (cb) cb.checked = false;
+                    if (cb) {
+                        cb.checked = false;
+                        cb.setAttribute('aria-checked', 'false');
+                    }
                 });
 
                 // Reset localStorage

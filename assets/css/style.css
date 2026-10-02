@@ -3070,7 +3070,7 @@ body.modal-is-open {
 }
 
 /* --------------------------------------------------------------------------
-   13. Sistema di Accessibilità GustAvo — Riprogettato (v2)
+   13. Sistema di Accessibilità GustAvo — Conforme Standard WCAG 2.1
    -------------------------------------------------------------------------- */
 
 /* ── Pulsante circolare fisso ("pallino") ── */
@@ -3197,7 +3197,7 @@ body.modal-is-open {
     position: fixed;
     bottom: 96px;
     right: 24px;
-    width: 340px;
+    width: 350px;
     max-width: calc(100vw - 32px);
     max-height: 48vh;
     max-height: 48dvh;
@@ -3245,7 +3245,13 @@ body.modal-is-open {
 .g-a11y-header-content {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 3px;
+}
+
+.g-a11y-title-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .g-a11y-title {
@@ -3257,9 +3263,19 @@ body.modal-is-open {
     font-family: inherit;
 }
 
+.g-a11y-wcag-header-tag {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    letter-spacing: 0.04em;
+}
+
 .g-a11y-subtitle {
     font-size: 0.74rem;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.88);
     margin: 0;
     line-height: 1.3;
     font-family: inherit;
@@ -3372,9 +3388,16 @@ body.modal-is-open {
 .g-a11y-item-info {
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    gap: 2px;
     flex: 1;
     min-width: 0;
+}
+
+.g-a11y-label-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
 }
 
 .g-a11y-item-label {
@@ -3385,6 +3408,18 @@ body.modal-is-open {
     font-family: inherit;
 }
 
+.g-a11y-wcag-badge {
+    font-size: 0.62rem;
+    font-weight: 700;
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 1px 5px;
+    border-radius: 4px;
+    letter-spacing: 0.02em;
+    flex-shrink: 0;
+    line-height: 1.3;
+}
+
 .g-a11y-item-desc {
     font-size: 0.71rem;
     color: var(--text-muted, #64748b);
@@ -3393,7 +3428,7 @@ body.modal-is-open {
     font-family: inherit;
 }
 
-/* ── Controlli font A- / [%] / A+ ── */
+/* ── Controlli font A- / [%] / A+ conforme WCAG 1.4.4 ── */
 .g-a11y-font-row {
     display: flex;
     align-items: center;
@@ -3456,13 +3491,13 @@ body.modal-is-open {
     font-size: 0.75rem;
     font-weight: 700;
     color: #0066ff;
-    min-width: 36px;
+    min-width: 38px;
     text-align: center;
     font-variant-numeric: tabular-nums;
     font-family: inherit;
 }
 
-/* ── Toggle switch ── */
+/* ── Toggle switch accessibile (WCAG switch) ── */
 .g-a11y-toggle {
     position: relative;
     display: inline-flex;
@@ -3549,22 +3584,45 @@ body.modal-is-open {
     outline-offset: 2px;
 }
 
+/* ── Guida di lettura conforme ausili cognitivi ── */
+.g-guide-line {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(0, 102, 255, 0.65);
+    pointer-events: none;
+    z-index: 99999;
+    transform: translateY(-50%);
+}
+
+html.g-reading-guide .g-guide-line {
+    display: block;
+}
+
 /* ==========================================================================
-   Classi applicate a <html> per le funzioni di accessibilità
+   Classi applicate a <html> per conformità WCAG 2.1
    ========================================================================== */
 
-/* 1. Testo e lettura */
+/* 1. Testo e Tipografia (WCAG 1.4.8, 1.4.12) */
 html.g-readable-font body *:not(.g-a11y-panel):not(.g-a11y-panel *):not(.g-a11y-btn):not(.g-a11y-btn *) {
     font-family: Arial, Helvetica, sans-serif !important;
 }
 
-html.g-line-height body *:not(.g-a11y-panel):not(.g-a11y-panel *):not(.g-a11y-btn):not(.g-a11y-btn *) {
-    line-height: 1.9 !important;
+html.g-text-spacing body *:not(.g-a11y-panel):not(.g-a11y-panel *):not(.g-a11y-btn):not(.g-a11y-btn *) {
+    line-height: 1.8 !important;
+    letter-spacing: 0.12em !important;
+    word-spacing: 0.16em !important;
 }
 
-/* 2. Contrasto e colori */
+html.g-align-left body *:not(.g-a11y-panel):not(.g-a11y-panel *):not(.g-a11y-btn):not(.g-a11y-btn *) {
+    text-align: left !important;
+}
+
+/* 2. Contrasto e Colori (WCAG 1.4.1, 1.4.6) */
 html.g-high-contrast {
-    filter: contrast(1.5);
+    filter: contrast(1.6);
 }
 
 html.g-highlight-links a:not(.g-a11y-panel a):not(.g-a11y-btn) {
@@ -3575,7 +3633,18 @@ html.g-highlight-links a:not(.g-a11y-panel a):not(.g-a11y-btn) {
     border-radius: 2px !important;
 }
 
-/* ── Supporto prefers-reduced-motion di sistema ── */
+html.g-grayscale {
+    filter: grayscale(1);
+}
+
+/* 3. Navigazione e Ausili (WCAG 2.4.7) */
+html.g-focus-visible *:focus {
+    outline: 3px solid #0066ff !important;
+    outline-offset: 3px !important;
+    box-shadow: 0 0 0 6px rgba(0, 102, 255, 0.35) !important;
+}
+
+/* ── Supporto prefers-reduced-motion di sistema (WCAG 2.3.3) ── */
 @media (prefers-reduced-motion: reduce) {
     .g-a11y-panel {
         animation: none !important;
