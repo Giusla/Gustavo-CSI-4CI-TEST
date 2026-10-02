@@ -1922,11 +1922,10 @@ body.chatbot-page>header {
     transform: translateX(4px);
 }
 
-/* Blocco dello scorrimento della schermata dietro quando la modale è aperta */
+/* Blocco dello scorrimento della schermata dietro quando la modale o il lightbox è aperto */
 html.modal-is-open,
 body.modal-is-open {
     overflow: hidden !important;
-    height: 100% !important;
     touch-action: none;
 }
 
@@ -1944,6 +1943,7 @@ body.modal-is-open {
     visibility: hidden;
     opacity: 0;
     overscroll-behavior: contain;
+    touch-action: none;
     transition: opacity 0.28s ease, visibility 0.28s ease;
 }
 
@@ -2145,7 +2145,8 @@ body.modal-is-open {
     padding: 20px;
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
-    touch-action: pan-y pinch-zoom;
+    touch-action: none;
+    overscroll-behavior: contain;
 }
 
 .lightbox-modal.attivo {

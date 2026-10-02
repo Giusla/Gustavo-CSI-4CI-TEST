@@ -68,6 +68,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ----------------------------------------------------
+    // Gestione Sicura Blocco Scroll per Modali e Lightbox
+    // Evita il salto a inizio pagina e impedisce lo scorrimento di sfondo
+    // ----------------------------------------------------
+    let savedScrollY = 0;
+    let isScrollLocked = false;
+
+    const lockPageScroll = () => {
+        if (!isScrollLocked) {
+            savedScrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+            document.documentElement.classList.add('modal-is-open');
+            document.body.classList.add('modal-is-open');
+            isScrollLocked = true;
+        }
+    };
+
+    const unlockPageScroll = () => {
+        const encounterModalEl = document.getElementById('encounterModal');
+        const modalOpen = encounterModalEl && encounterModalEl.classList.contains('attivo');
+        const lightboxOpen = lightbox && lightbox.classList.contains('attivo');
+
+        if (!modalOpen && !lightboxOpen && isScrollLocked) {
+            document.documentElement.classList.remove('modal-is-open');
+            document.body.classList.remove('modal-is-open');
+            isScrollLocked = false;
+            // Ripristina l'esatta posizione di scorrimento senza scatti in cima
+            window.scrollTo({
+                top: savedScrollY,
+                left: 0,
+                behavior: 'instant'
+            });
+        }
+    };
+
     // ----------------------------------------------------
     // 2. Lightbox Schermo Intero con Scorrimento Foto & Skeleton UI
     // ----------------------------------------------------
@@ -144,13 +177,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!lightbox || !list || list.length === 0) return;
         currentLightboxList = list;
         lightbox.classList.add('attivo');
-        document.body.style.overflow = 'hidden';
+        lightbox.setAttribute('aria-hidden', 'false');
+        lockPageScroll();
         showLightboxIndex(startIndex);
     };
 
     const closeLightbox = () => {
         if (!lightbox) return;
         lightbox.classList.remove('attivo');
+        lightbox.setAttribute('aria-hidden', 'true');
         if (lightboxBox) {
             lightboxBox.classList.remove('is-loaded');
         }
@@ -163,10 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
             lightboxImg.src = '';
         }
 
-        const encounterModal = document.getElementById('encounterModal');
-        if (!encounterModal || !encounterModal.classList.contains('attivo')) {
-            document.body.style.overflow = '';
-        }
+        unlockPageScroll();
     };
 
     if (lightbox) {
@@ -202,6 +234,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 showLightboxIndex(currentLightboxIndex - 1);
             } else if (e.key === 'ArrowRight') {
                 showLightboxIndex(currentLightboxIndex + 1);
+            } else if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', ' ', 'Home', 'End'].includes(e.key)) {
+                e.preventDefault();
             }
         });
 
@@ -222,8 +256,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, { passive: true });
 
+        lightbox.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+        }, { passive: false });
+
         let wheelDebounce = false;
         lightbox.addEventListener('wheel', (e) => {
+            e.preventDefault();
             if (wheelDebounce) return;
             if (Math.abs(e.deltaX) > 30) {
                 wheelDebounce = true;
@@ -234,7 +273,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 setTimeout(() => { wheelDebounce = false; }, 320);
             }
-        }, { passive: true });
+        }, { passive: false });
 
         const otherGalleryItems = document.querySelectorAll('.team-photo-wrapper, .galleria-item');
         otherGalleryItems.forEach(item => {
@@ -707,9 +746,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 initPhotoSkeletons(encounterModalGrid);
             }
 
-            // Blocco rigoroso dello scroll della pagina sottostante
-            document.documentElement.classList.add('modal-is-open');
-            document.body.classList.add('modal-is-open');
+            // Blocco rigoroso dello scroll della pagina sottostante senza perdere la posizione
+            lockPageScroll();
 
             encounterModal.classList.add('attivo');
             encounterModal.setAttribute('aria-hidden', 'false');
@@ -725,11 +763,7 @@ document.addEventListener('DOMContentLoaded', () => {
             encounterModal.classList.remove('attivo');
             encounterModal.setAttribute('aria-hidden', 'true');
 
-            // Ripristina lo scroll solo se il lightbox non è aperto
-            if (!lightbox || !lightbox.classList.contains('attivo')) {
-                document.documentElement.classList.remove('modal-is-open');
-                document.body.classList.remove('modal-is-open');
-            }
+            unlockPageScroll();
         };
 
         if (encounterModalClose) {
