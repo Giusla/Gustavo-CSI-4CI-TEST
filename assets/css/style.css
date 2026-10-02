@@ -283,27 +283,21 @@ body>header {
     }
 }
 
-@keyframes photo-reveal-fallback {
-    to {
-        opacity: 1;
-    }
-}
-
 .photo-skeleton-box img {
     display: block;
     width: 100%;
-    transition: opacity 0.4s ease, filter 0.35s ease;
-    animation: photo-reveal-fallback 0.3s ease 1.2s forwards;
-}
-
-/* Foto trasparente finché è in download over Wi-Fi */
-.photo-skeleton-box:not(.is-loaded) img {
     opacity: 0;
+    transition: opacity 0.4s ease, filter 0.35s ease;
 }
 
-/* Foto visibile con transizione fluida una volta caricata */
+/* Foto trasparente finché è in download over Wi-Fi / rete */
+.photo-skeleton-box:not(.is-loaded) img {
+    opacity: 0 !important;
+}
+
+/* Foto visibile con transizione fluida SOLO una volta completato il caricamento */
 .photo-skeleton-box.is-loaded img {
-    opacity: 1;
+    opacity: 1 !important;
 }
 
 .photo-skeleton-box.is-loaded {
