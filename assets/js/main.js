@@ -1086,7 +1086,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const overlap = windowHeight - footerRect.top;
                 const newBottom = overlap + baseBottom;
                 btn.style.bottom = `${newBottom}px`;
-                panel.style.bottom = `${newBottom + 64}px`;
+                panel.style.bottom = `${newBottom + (isMobile ? 70 : 72)}px`;
             } else {
                 btn.style.bottom = '';
                 panel.style.bottom = '';

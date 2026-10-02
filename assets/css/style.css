@@ -3110,9 +3110,8 @@ body.modal-is-open {
 /* ── Feedback visivo quando la scheda è aperta ── */
 .g-a11y-btn.is-active,
 .g-a11y-btn[aria-expanded="true"] {
-    background: linear-gradient(135deg, #008855 0%, #0050d0 100%);
-    box-shadow: 0 0 0 3px #ffffff, 0 0 0 6px #0066ff, 0 8px 25px rgba(0, 102, 255, 0.48);
-    transform: scale(1.06);
+    box-shadow: 0 0 0 3px #ffffff, 0 0 0 6px #0066ff, 0 6px 20px rgba(0, 102, 255, 0.35);
+    transform: scale(1.04);
 }
 
 .g-a11y-icon-wrap {
@@ -3127,36 +3126,33 @@ body.modal-is-open {
 .g-a11y-btn .g-a11y-icon,
 .g-a11y-btn .g-a11y-close-icon {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 28px;
     height: 28px;
     pointer-events: none;
     display: block;
     object-fit: contain;
-    transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: opacity 0.18s ease;
 }
 
 .g-a11y-btn .g-a11y-icon {
     opacity: 1;
-    transform: scale(1) rotate(0deg);
 }
 
 .g-a11y-btn .g-a11y-close-icon {
     opacity: 0;
-    transform: scale(0.4) rotate(-90deg);
 }
 
 .g-a11y-btn.is-active .g-a11y-icon,
 .g-a11y-btn[aria-expanded="true"] .g-a11y-icon {
     opacity: 0;
-    transform: scale(0.4) rotate(90deg);
 }
 
 .g-a11y-btn.is-active .g-a11y-close-icon,
 .g-a11y-btn[aria-expanded="true"] .g-a11y-close-icon {
     opacity: 1;
-    transform: scale(1) rotate(0deg);
 }
 
 /* ── Tooltip ── */
@@ -3196,7 +3192,7 @@ body.modal-is-open {
 /* ── Scheda / Finestra Accessibilità (Altezza proporzionata: 40-50% dello schermo utente) ── */
 .g-a11y-panel {
     position: fixed;
-    bottom: 88px;
+    bottom: 96px;
     right: 24px;
     width: 340px;
     max-width: calc(100vw - 32px);
@@ -3606,7 +3602,7 @@ html.g-highlight-links a:not(.g-a11y-panel a):not(.g-a11y-btn) {
 
     .g-a11y-panel {
         right: 16px;
-        bottom: 80px;
+        bottom: 86px;
         width: calc(100vw - 32px);
         max-height: 55vh;
         max-height: 55dvh;
