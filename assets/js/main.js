@@ -663,13 +663,13 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             {
                 id: "incontro-3",
-                badge: "3° Incontro · Ce.Se.Di.",
-                title: "3° Incontro: Presentazione del Progetto al Ce.Se.Di.",
-                desc: "Presentazione ufficiale dei risultati di GustAvo presso il Centro Servizi Didattici (Ce.Se.Di.) della Città Metropolitana di Torino all'interno dei percorsi di orientamento e alternanza.",
+                badge: "3° Incontro · Polizia di Stato",
+                title: "3° Incontro: Incontro sull'AI con la Polizia di Stato",
+                desc: "Incontro formativo sui temi dell'Intelligenza Artificiale con la Polizia di Stato, con dibattito e sessione di interviste condotte dagli studenti.",
                 photos: [
-                    { src: "assets/img/galleria/incontro_cesedi/foto_cesedi_1.png", alt: "Presentazione del progetto GustAvo presso il Ce.Se.Di. di Torino", caption: "Presentazione ufficiale di GustAvo al Ce.Se.Di. di Torino" },
-                    { src: "assets/img/galleria/incontro_cesedi/foto_cesedi_2.png", alt: "Esposizione dei risultati e della metodologia di sviluppo agli ospiti", caption: "Esposizione della metodologia di lavoro e del prototipo funzionale" },
-                    { src: "assets/img/galleria/incontro_cesedi/foto_cesedi_3.png", alt: "Confronto e feedback con i referenti didattici e istituzionali", caption: "Feedback e conclusioni della giornata al Ce.Se.Di." }
+                    { src: "assets/img/galleria/incontro_cesedi/foto_cesedi_1.png", alt: "Incontro sull'Intelligenza Artificiale con la Polizia di Stato", caption: "Incontro formativo sull'AI con la Polizia di Stato" },
+                    { src: "assets/img/galleria/incontro_cesedi/foto_cesedi_2.png", alt: "Sessione di interviste condotte dagli studenti durante l'incontro sull'AI", caption: "Interviste e approfondimento condotti dagli studenti" },
+                    { src: "assets/img/galleria/incontro_cesedi/foto_cesedi_3.png", alt: "Confronto e conclusioni dell'incontro sull'Intelligenza Artificiale", caption: "Confronto, interviste e conclusioni della giornata sull'AI" }
                 ]
             }
         ];
