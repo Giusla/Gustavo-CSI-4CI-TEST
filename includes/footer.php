@@ -14,14 +14,14 @@
                 <img src="assets/img/logo_avoprogetti.jpeg" alt="Logo AvoProgetti" class="footer-logo-avoprogetti">
             </a>
 
-            <a href="index<?php echo (isset($link_ext) ? $link_ext : '.php'); ?>" class="footer-logo-link" title="GustAvo Chatbot">
+            <a href="index<?php echo (isset($link_ext) ? $link_ext : '.html'); ?>" class="footer-logo-link" title="GustAvo Chatbot">
                 <img src="assets/img/gustavo_icon.png" alt="Logo GustAvo" class="footer-logo-gustavo">
             </a>
         </div>
 
         <div class="footer-info">
             <p class="footer-credits">
-                <strong>Progetto GustAvo - IIS Amedeo Avogadro, Torino - in collaborazione con CSI Piemonte</strong>
+                 Progetto GustAvo <strong>5CI</strong> - <strong>IIS Amedeo Avogadro</strong>, Torino - <strong>in collaborazione con CSI Piemonte</strong>
             </p>
         </div>
 
