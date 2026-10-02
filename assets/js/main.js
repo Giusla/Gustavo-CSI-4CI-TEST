@@ -934,281 +934,256 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ----------------------------------------------------
-    // 7. Widget di Accessibilità Universale (a11y)
+    // 7. Componente Accessibilità Gustavo (Progettato da zero)
     // ----------------------------------------------------
-    const initAccessibilityWidget = () => {
-        // Inietta il trigger button, il pannello e la reading guide
-        const triggerBtn = document.createElement('button');
-        triggerBtn.className = 'a11y-trigger-btn';
-        triggerBtn.id = 'a11yTriggerBtn';
-        triggerBtn.setAttribute('aria-label', 'Menu opzioni di accessibilità');
-        triggerBtn.setAttribute('aria-expanded', 'false');
-        triggerBtn.setAttribute('title', 'Accessibilità del sito');
-        // Icona ufficiale accessibilità universale (sagoma a braccia e gambe aperte all'interno di un cerchio armonico)
-        triggerBtn.innerHTML = `
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <circle cx="12" cy="4" r="2"></circle>
+    const initGustavoAccessibility = () => {
+        // Evita duplicazioni nel DOM
+        if (document.getElementById('gustavoA11yBtn')) return;
+
+        // Creazione pulsante circolare
+        const btn = document.createElement('button');
+        btn.id = 'gustavoA11yBtn';
+        btn.className = 'gustavo-a11y-btn';
+        btn.type = 'button';
+        btn.setAttribute('aria-label', 'Apri strumenti di accessibilità');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-controls', 'gustavoA11yPanel');
+        btn.setAttribute('title', 'Accessibilità');
+        btn.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                <circle cx="12" cy="4" r="2.1"></circle>
                 <path d="M19 8.5c-.5-.3-1.1-.1-1.4.4l-2.4 3.6-1.7-1.3c-.3-.2-.7-.3-1-.2-.4.1-.7.4-.8.7l-1.5 4.5-2.2-2.9c-.3-.4-.9-.5-1.4-.2s-.5.9-.2 1.4l3.1 4c.3.4.8.6 1.3.5.5-.1.9-.5 1.1-1l1.3-3.9 1.4 1.1c.3.2.7.3 1.1.2.4-.1.7-.4.9-.7l2.8-4.2c.3-.5.1-1.1-.4-1.4zM5 8c-.6 0-1 .4-1 1s.4 1 1 1h5.8l-1.3-2H5z"></path>
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18.2c-4.52 0-8.2-3.68-8.2-8.2s3.68-8.2 8.2-8.2 8.2 3.68 8.2 8.2-3.68 8.2-8.2 8.2z"></path>
             </svg>
         `;
 
+        // Creazione pannello
         const panel = document.createElement('div');
-        panel.className = 'a11y-panel';
-        panel.id = 'a11yPanel';
-        panel.setAttribute('role', 'dialog');
-        panel.setAttribute('aria-label', 'Strumenti di accessibilità');
+        panel.id = 'gustavoA11yPanel';
+        panel.className = 'gustavo-a11y-panel';
+        panel.setAttribute('role', 'region');
+        panel.setAttribute('aria-label', 'Pannello di accessibilità');
         panel.innerHTML = `
-            <div class="a11y-panel-header">
-                <div class="a11y-panel-title">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <div class="gustavo-a11y-header">
+                <h2 class="gustavo-a11y-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                         <circle cx="12" cy="12" r="10"></circle>
                         <circle cx="12" cy="7.5" r="1.5" fill="currentColor"></circle>
                         <path d="M7 11h10"></path>
                         <path d="M12 11v7"></path>
                         <path d="M9 18l3-3 3 3"></path>
                     </svg>
-                    <span>Accessibilità</span>
-                    <span class="a11y-panel-badge">GustAvo</span>
-                </div>
-                <button class="a11y-panel-close" id="a11yCloseBtn" aria-label="Chiudi pannello accessibilità">&times;</button>
+                    Accessibilità
+                </h2>
+                <button type="button" class="gustavo-a11y-close" id="gustavoA11yClose" aria-label="Chiudi pannello accessibilità">&times;</button>
             </div>
-            <div class="a11y-panel-body">
-                <!-- 1. Dimensione Testo -->
-                <div class="a11y-item">
-                    <div class="a11y-item-label">
-                        <span class="a11y-item-name">Dimensione Testo</span>
-                        <span class="a11y-item-desc">Ingrandisce o riduce i caratteri</span>
+            <div class="gustavo-a11y-body">
+                <!-- 1 & 2. Dimensione Testo -->
+                <div class="gustavo-a11y-row">
+                    <div class="gustavo-a11y-label">
+                        <span class="gustavo-a11y-name">Dimensione Testo</span>
+                        <span class="gustavo-a11y-desc">Aumenta o diminuisci la grandezza</span>
                     </div>
-                    <div class="a11y-btn-group">
-                        <button class="a11y-btn-control" id="a11yDecFont" aria-label="Riduci testo">A-</button>
-                        <span class="a11y-size-indicator" id="a11yFontIndicator">100%</span>
-                        <button class="a11y-btn-control" id="a11yIncFont" aria-label="Ingrandisci testo">A+</button>
+                    <div class="gustavo-a11y-font-group" role="group" aria-label="Regolazione dimensione testo">
+                        <button type="button" class="gustavo-a11y-font-btn" id="gustavoDecFont" aria-label="Diminuisci dimensione testo">A-</button>
+                        <span class="gustavo-a11y-font-val" id="gustavoFontVal" aria-live="polite">100%</span>
+                        <button type="button" class="gustavo-a11y-font-btn" id="gustavoIncFont" aria-label="Aumenta dimensione testo">A+</button>
                     </div>
                 </div>
 
-                <!-- 2. Alto Contrasto -->
-                <div class="a11y-item">
-                    <div class="a11y-item-label">
-                        <span class="a11y-item-name">Alto Contrasto</span>
-                        <span class="a11y-item-desc">Migliora contrasto per ipovedenti</span>
+                <!-- 3. Contrasto Elevato -->
+                <div class="gustavo-a11y-row">
+                    <div class="gustavo-a11y-label">
+                        <label for="gustavoHighContrast" class="gustavo-a11y-name">Contrasto Elevato</label>
+                        <span class="gustavo-a11y-desc">Aumenta leggibilità e bordi</span>
                     </div>
-                    <label class="a11y-toggle">
-                        <input type="checkbox" id="a11yHighContrast">
-                        <span class="a11y-toggle-slider" aria-hidden="true"></span>
+                    <label class="gustavo-a11y-switch">
+                        <input type="checkbox" id="gustavoHighContrast">
+                        <span class="gustavo-a11y-slider" aria-hidden="true"></span>
                     </label>
                 </div>
 
-                <!-- 3. Font ad Alta Leggibilità -->
-                <div class="a11y-item">
-                    <div class="a11y-item-label">
-                        <span class="a11y-item-name">Font Alta Leggibilità</span>
-                        <span class="a11y-item-desc">Caratteri ideati per dislessia (DSA)</span>
+                <!-- 4. Scala di Grigi -->
+                <div class="gustavo-a11y-row">
+                    <div class="gustavo-a11y-label">
+                        <label for="gustavoGrayscale" class="gustavo-a11y-name">Scala di Grigi</label>
+                        <span class="gustavo-a11y-desc">Visualizza il sito in monocromatico</span>
                     </div>
-                    <label class="a11y-toggle">
-                        <input type="checkbox" id="a11yDyslexic">
-                        <span class="a11y-toggle-slider" aria-hidden="true"></span>
+                    <label class="gustavo-a11y-switch">
+                        <input type="checkbox" id="gustavoGrayscale">
+                        <span class="gustavo-a11y-slider" aria-hidden="true"></span>
                     </label>
                 </div>
 
-                <!-- 4. Evidenzia Link -->
-                <div class="a11y-item">
-                    <div class="a11y-item-label">
-                        <span class="a11y-item-name">Evidenzia Tutti i Link</span>
-                        <span class="a11y-item-desc">Rende visibili tutti i collegamenti e bottoni</span>
+                <!-- 5. Riduci Animazioni -->
+                <div class="gustavo-a11y-row">
+                    <div class="gustavo-a11y-label">
+                        <label for="gustavoReducedMotion" class="gustavo-a11y-name">Riduci Animazioni</label>
+                        <span class="gustavo-a11y-desc">Disattiva movimenti e transizioni</span>
                     </div>
-                    <label class="a11y-toggle">
-                        <input type="checkbox" id="a11yHighlightLinks">
-                        <span class="a11y-toggle-slider" aria-hidden="true"></span>
+                    <label class="gustavo-a11y-switch">
+                        <input type="checkbox" id="gustavoReducedMotion">
+                        <span class="gustavo-a11y-slider" aria-hidden="true"></span>
                     </label>
                 </div>
 
-                <!-- 5. Cursore Ingrandito -->
-                <div class="a11y-item">
-                    <div class="a11y-item-label">
-                        <span class="a11y-item-name">Cursore Grande & Colorato</span>
-                        <span class="a11y-item-desc">Puntatore mouse ingrandito e ad alta visibilità</span>
+                <!-- 6. Focus più evidente -->
+                <div class="gustavo-a11y-row">
+                    <div class="gustavo-a11y-label">
+                        <label for="gustavoFocusVisible" class="gustavo-a11y-name">Focus più Evidente</label>
+                        <span class="gustavo-a11y-desc">Evidenzia elementi attivi da tastiera</span>
                     </div>
-                    <label class="a11y-toggle">
-                        <input type="checkbox" id="a11yBigCursor">
-                        <span class="a11y-toggle-slider" aria-hidden="true"></span>
-                    </label>
-                </div>
-
-                <!-- 6. Spaziatura del Testo -->
-                <div class="a11y-item">
-                    <div class="a11y-item-label">
-                        <span class="a11y-item-name">Spaziatura Testo</span>
-                        <span class="a11y-item-desc">Aumenta interlinea e distanza tra lettere</span>
-                    </div>
-                    <label class="a11y-toggle">
-                        <input type="checkbox" id="a11yTextSpacing">
-                        <span class="a11y-toggle-slider" aria-hidden="true"></span>
-                    </label>
-                </div>
-
-                <!-- 7. Riduci Animazioni -->
-                <div class="a11y-item">
-                    <div class="a11y-item-label">
-                        <span class="a11y-item-name">Ferma Animazioni</span>
-                        <span class="a11y-item-desc">Disattiva movimenti e transizioni rapide</span>
-                    </div>
-                    <label class="a11y-toggle">
-                        <input type="checkbox" id="a11yReducedMotion">
-                        <span class="a11y-toggle-slider" aria-hidden="true"></span>
-                    </label>
-                </div>
-
-                <!-- 8. Guida di Lettura -->
-                <div class="a11y-item">
-                    <div class="a11y-item-label">
-                        <span class="a11y-item-name">Guida di Lettura</span>
-                        <span class="a11y-item-desc">Barra azzurra che segue il cursore</span>
-                    </div>
-                    <label class="a11y-toggle">
-                        <input type="checkbox" id="a11yReadingGuide">
-                        <span class="a11y-toggle-slider" aria-hidden="true"></span>
+                    <label class="gustavo-a11y-switch">
+                        <input type="checkbox" id="gustavoFocusVisible">
+                        <span class="gustavo-a11y-slider" aria-hidden="true"></span>
                     </label>
                 </div>
             </div>
-            <div class="a11y-panel-footer">
-                <span class="a11y-status-note">Preferenze salvate</span>
-                <button class="a11y-reset-btn" id="a11yResetBtn">Ripristina</button>
+            <div class="gustavo-a11y-footer">
+                <span class="gustavo-a11y-footer-note">Salvataggio automatico</span>
+                <button type="button" class="gustavo-a11y-reset-btn" id="gustavoA11yReset">Ripristina</button>
             </div>
         `;
 
-        const guideLine = document.createElement('div');
-        guideLine.className = 'a11y-reading-guide';
-        guideLine.id = 'a11yGuideLine';
-
-        document.body.appendChild(triggerBtn);
+        document.body.appendChild(btn);
         document.body.appendChild(panel);
-        document.body.appendChild(guideLine);
 
-        // Stato impostazioni
+        // Livelli testo (max 130% per non rompere il layout)
         const fontSteps = [100, 110, 120, 130];
-        let currentFontIndex = 0;
+        let fontIndex = 0;
 
-        const loadPrefs = () => {
-            try {
-                const prefs = JSON.parse(localStorage.getItem('gustavo_a11y_prefs') || '{}');
-                if (typeof prefs.fontStep === 'number' && prefs.fontStep >= 0 && prefs.fontStep < fontSteps.length) {
-                    currentFontIndex = prefs.fontStep;
-                }
-                applyFontSize(fontSteps[currentFontIndex]);
-
-                if (prefs.highContrast) {
-                    document.documentElement.classList.add('a11y-high-contrast');
-                    const cb = document.getElementById('a11yHighContrast');
-                    if (cb) cb.checked = true;
-                }
-                if (prefs.dyslexic) {
-                    document.documentElement.classList.add('a11y-dyslexic-font');
-                    const cb = document.getElementById('a11yDyslexic');
-                    if (cb) cb.checked = true;
-                }
-                if (prefs.highlightLinks) {
-                    document.documentElement.classList.add('a11y-highlight-links');
-                    const cb = document.getElementById('a11yHighlightLinks');
-                    if (cb) cb.checked = true;
-                }
-                if (prefs.bigCursor) {
-                    document.documentElement.classList.add('a11y-big-cursor');
-                    const cb = document.getElementById('a11yBigCursor');
-                    if (cb) cb.checked = true;
-                }
-                if (prefs.textSpacing) {
-                    document.documentElement.classList.add('a11y-text-spacing');
-                    const cb = document.getElementById('a11yTextSpacing');
-                    if (cb) cb.checked = true;
-                }
-                if (prefs.reducedMotion) {
-                    document.documentElement.classList.add('a11y-reduced-motion');
-                    const cb = document.getElementById('a11yReducedMotion');
-                    if (cb) cb.checked = true;
-                }
-                if (prefs.readingGuide) {
-                    document.documentElement.classList.add('a11y-guide-active');
-                    const cb = document.getElementById('a11yReadingGuide');
-                    if (cb) cb.checked = true;
-                }
-            } catch (e) {
-                console.warn('Errore lettura a11y prefs:', e);
-            }
+        const updateFontUI = () => {
+            const percent = fontSteps[fontIndex];
+            document.documentElement.style.fontSize = percent === 100 ? '' : `${(16 * percent) / 100}px`;
+            const valEl = document.getElementById('gustavoFontVal');
+            const decBtn = document.getElementById('gustavoDecFont');
+            const incBtn = document.getElementById('gustavoIncFont');
+            if (valEl) valEl.textContent = `${percent}%`;
+            if (decBtn) decBtn.disabled = fontIndex === 0;
+            if (incBtn) incBtn.disabled = fontIndex === fontSteps.length - 1;
         };
 
         const savePrefs = () => {
             try {
                 const prefs = {
-                    fontStep: currentFontIndex,
-                    highContrast: document.documentElement.classList.contains('a11y-high-contrast'),
-                    dyslexic: document.documentElement.classList.contains('a11y-dyslexic-font'),
-                    highlightLinks: document.documentElement.classList.contains('a11y-highlight-links'),
-                    bigCursor: document.documentElement.classList.contains('a11y-big-cursor'),
-                    textSpacing: document.documentElement.classList.contains('a11y-text-spacing'),
-                    reducedMotion: document.documentElement.classList.contains('a11y-reduced-motion'),
-                    readingGuide: document.documentElement.classList.contains('a11y-guide-active')
+                    fontIndex,
+                    highContrast: document.documentElement.classList.contains('gustavo-high-contrast'),
+                    grayscale: document.documentElement.classList.contains('gustavo-grayscale'),
+                    reducedMotion: document.documentElement.classList.contains('gustavo-reduced-motion'),
+                    focusVisible: document.documentElement.classList.contains('gustavo-focus-visible')
                 };
-                localStorage.setItem('gustavo_a11y_prefs', JSON.stringify(prefs));
-            } catch (e) {
-                // Ignore localStorage errors
+                localStorage.setItem('gustavo_a11y_settings', JSON.stringify(prefs));
+            } catch (e) {}
+        };
+
+        const loadPrefs = () => {
+            try {
+                const data = localStorage.getItem('gustavo_a11y_settings');
+                if (!data) return;
+                const prefs = JSON.parse(data);
+                if (typeof prefs.fontIndex === 'number' && prefs.fontIndex >= 0 && prefs.fontIndex < fontSteps.length) {
+                    fontIndex = prefs.fontIndex;
+                    updateFontUI();
+                }
+                if (prefs.highContrast) {
+                    document.documentElement.classList.add('gustavo-high-contrast');
+                    const cb = document.getElementById('gustavoHighContrast');
+                    if (cb) cb.checked = true;
+                }
+                if (prefs.grayscale) {
+                    document.documentElement.classList.add('gustavo-grayscale');
+                    const cb = document.getElementById('gustavoGrayscale');
+                    if (cb) cb.checked = true;
+                }
+                if (prefs.reducedMotion) {
+                    document.documentElement.classList.add('gustavo-reduced-motion');
+                    const cb = document.getElementById('gustavoReducedMotion');
+                    if (cb) cb.checked = true;
+                }
+                if (prefs.focusVisible) {
+                    document.documentElement.classList.add('gustavo-focus-visible');
+                    const cb = document.getElementById('gustavoFocusVisible');
+                    if (cb) cb.checked = true;
+                }
+            } catch (e) {}
+        };
+
+        // Apertura / Chiusura
+        const setPanelOpen = (open) => {
+            const isOpen = typeof open === 'boolean' ? open : !panel.classList.contains('is-open');
+            panel.classList.toggle('is-open', isOpen);
+            btn.setAttribute('aria-expanded', String(isOpen));
+            btn.setAttribute('aria-label', isOpen ? 'Chiudi strumenti di accessibilità' : 'Apri strumenti di accessibilità');
+            if (isOpen) {
+                // Focus al primo elemento interattivo del pannello
+                const firstInteractive = panel.querySelector('button, input');
+                if (firstInteractive) firstInteractive.focus();
             }
         };
 
-        const applyFontSize = (percent) => {
-            document.documentElement.style.fontSize = percent === 100 ? '' : `${(16 * percent) / 100}px`;
-            const indicator = document.getElementById('a11yFontIndicator');
-            const decBtn = document.getElementById('a11yDecFont');
-            const incBtn = document.getElementById('a11yIncFont');
-            if (indicator) indicator.textContent = `${percent}%`;
-            if (decBtn) decBtn.disabled = currentFontIndex === 0;
-            if (incBtn) incBtn.disabled = currentFontIndex === fontSteps.length - 1;
-        };
-
-        // Gestione pannello (apertura/chiusura)
-        const togglePanel = (open) => {
-            const isCurrentlyOpen = panel.classList.contains('attivo');
-            const targetState = typeof open === 'boolean' ? open : !isCurrentlyOpen;
-            panel.classList.toggle('attivo', targetState);
-            triggerBtn.classList.toggle('attivo', targetState);
-            triggerBtn.setAttribute('aria-expanded', String(targetState));
-        };
-
-        triggerBtn.addEventListener('click', (e) => {
+        btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            togglePanel();
+            setPanelOpen();
         });
 
-        const closeBtn = document.getElementById('a11yCloseBtn');
+        const closeBtn = document.getElementById('gustavoA11yClose');
         if (closeBtn) {
-            closeBtn.addEventListener('click', () => togglePanel(false));
+            closeBtn.addEventListener('click', () => {
+                setPanelOpen(false);
+                btn.focus();
+            });
         }
 
         // Chiusura al click esterno
         document.addEventListener('click', (e) => {
-            if (!panel.classList.contains('attivo')) return;
-            if (!panel.contains(e.target) && !triggerBtn.contains(e.target)) {
-                togglePanel(false);
+            if (!panel.classList.contains('is-open')) return;
+            if (!panel.contains(e.target) && !btn.contains(e.target)) {
+                setPanelOpen(false);
             }
         });
 
-        // Chiusura con tasto Esc
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && panel.classList.contains('attivo')) {
-                togglePanel(false);
-                triggerBtn.focus();
+        // Gestione tastiera: Escape e Tab trap all'interno del pannello
+        panel.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                setPanelOpen(false);
+                btn.focus();
+                return;
+            }
+
+            if (e.key === 'Tab') {
+                const focusables = panel.querySelectorAll('button:not(:disabled), input:not(:disabled)');
+                if (focusables.length === 0) return;
+                const first = focusables[0];
+                const last = focusables[focusables.length - 1];
+
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
             }
         });
 
-        // Controlli dimensione testo
-        const decBtn = document.getElementById('a11yDecFont');
-        const incBtn = document.getElementById('a11yIncFont');
+        // Gestione tastiera anche sul bottone principale (Enter / Space / Escape)
+        btn.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && panel.classList.contains('is-open')) {
+                e.preventDefault();
+                setPanelOpen(false);
+            }
+        });
+
+        // Controlli font A- / A+
+        const decBtn = document.getElementById('gustavoDecFont');
+        const incBtn = document.getElementById('gustavoIncFont');
 
         if (decBtn) {
             decBtn.addEventListener('click', () => {
-                if (currentFontIndex > 0) {
-                    currentFontIndex--;
-                    applyFontSize(fontSteps[currentFontIndex]);
+                if (fontIndex > 0) {
+                    fontIndex--;
+                    updateFontUI();
                     savePrefs();
                 }
             });
@@ -1216,109 +1191,76 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (incBtn) {
             incBtn.addEventListener('click', () => {
-                if (currentFontIndex < fontSteps.length - 1) {
-                    currentFontIndex++;
-                    applyFontSize(fontSteps[currentFontIndex]);
+                if (fontIndex < fontSteps.length - 1) {
+                    fontIndex++;
+                    updateFontUI();
                     savePrefs();
                 }
             });
         }
 
-        // Checkbox switches
-        const highContrastCb = document.getElementById('a11yHighContrast');
+        // Toggles
+        const highContrastCb = document.getElementById('gustavoHighContrast');
         if (highContrastCb) {
             highContrastCb.addEventListener('change', () => {
-                document.documentElement.classList.toggle('a11y-high-contrast', highContrastCb.checked);
+                document.documentElement.classList.toggle('gustavo-high-contrast', highContrastCb.checked);
                 savePrefs();
             });
         }
 
-        const dyslexicCb = document.getElementById('a11yDyslexic');
-        if (dyslexicCb) {
-            dyslexicCb.addEventListener('change', () => {
-                document.documentElement.classList.toggle('a11y-dyslexic-font', dyslexicCb.checked);
+        const grayscaleCb = document.getElementById('gustavoGrayscale');
+        if (grayscaleCb) {
+            grayscaleCb.addEventListener('change', () => {
+                document.documentElement.classList.toggle('gustavo-grayscale', grayscaleCb.checked);
                 savePrefs();
             });
         }
 
-        const highlightLinksCb = document.getElementById('a11yHighlightLinks');
-        if (highlightLinksCb) {
-            highlightLinksCb.addEventListener('change', () => {
-                document.documentElement.classList.toggle('a11y-highlight-links', highlightLinksCb.checked);
-                savePrefs();
-            });
-        }
-
-        const bigCursorCb = document.getElementById('a11yBigCursor');
-        if (bigCursorCb) {
-            bigCursorCb.addEventListener('change', () => {
-                document.documentElement.classList.toggle('a11y-big-cursor', bigCursorCb.checked);
-                savePrefs();
-            });
-        }
-
-        const textSpacingCb = document.getElementById('a11yTextSpacing');
-        if (textSpacingCb) {
-            textSpacingCb.addEventListener('change', () => {
-                document.documentElement.classList.toggle('a11y-text-spacing', textSpacingCb.checked);
-                savePrefs();
-            });
-        }
-
-        const reducedMotionCb = document.getElementById('a11yReducedMotion');
+        const reducedMotionCb = document.getElementById('gustavoReducedMotion');
         if (reducedMotionCb) {
             reducedMotionCb.addEventListener('change', () => {
-                document.documentElement.classList.toggle('a11y-reduced-motion', reducedMotionCb.checked);
+                document.documentElement.classList.toggle('gustavo-reduced-motion', reducedMotionCb.checked);
                 savePrefs();
             });
         }
 
-        const readingGuideCb = document.getElementById('a11yReadingGuide');
-        if (readingGuideCb) {
-            readingGuideCb.addEventListener('change', () => {
-                document.documentElement.classList.toggle('a11y-guide-active', readingGuideCb.checked);
+        const focusVisibleCb = document.getElementById('gustavoFocusVisible');
+        if (focusVisibleCb) {
+            focusVisibleCb.addEventListener('change', () => {
+                document.documentElement.classList.toggle('gustavo-focus-visible', focusVisibleCb.checked);
                 savePrefs();
             });
         }
 
-        // Guida di lettura che segue il puntatore
-        window.addEventListener('mousemove', (e) => {
-            if (!document.documentElement.classList.contains('a11y-guide-active')) return;
-            guideLine.style.top = `${e.clientY}px`;
-        }, { passive: true });
-
-        // Reset
-        const resetBtn = document.getElementById('a11yResetBtn');
+        // Ripristina impostazioni
+        const resetBtn = document.getElementById('gustavoA11yReset');
         if (resetBtn) {
             resetBtn.addEventListener('click', () => {
-                currentFontIndex = 0;
-                applyFontSize(fontSteps[0]);
+                fontIndex = 0;
+                updateFontUI();
                 document.documentElement.classList.remove(
-                    'a11y-high-contrast',
-                    'a11y-dyslexic-font',
-                    'a11y-highlight-links',
-                    'a11y-big-cursor',
-                    'a11y-text-spacing',
-                    'a11y-reduced-motion',
-                    'a11y-guide-active'
+                    'gustavo-high-contrast',
+                    'gustavo-grayscale',
+                    'gustavo-reduced-motion',
+                    'gustavo-focus-visible'
                 );
                 if (highContrastCb) highContrastCb.checked = false;
-                if (dyslexicCb) dyslexicCb.checked = false;
-                if (highlightLinksCb) highlightLinksCb.checked = false;
-                if (bigCursorCb) bigCursorCb.checked = false;
-                if (textSpacingCb) textSpacingCb.checked = false;
+                if (grayscaleCb) grayscaleCb.checked = false;
                 if (reducedMotionCb) reducedMotionCb.checked = false;
-                if (readingGuideCb) readingGuideCb.checked = false;
-                savePrefs();
+                if (focusVisibleCb) focusVisibleCb.checked = false;
+                try {
+                    localStorage.removeItem('gustavo_a11y_settings');
+                } catch (e) {}
             });
         }
 
+        updateFontUI();
         loadPrefs();
     };
 
     initPhotoSkeletons();
     initEncountersGallery();
-    initAccessibilityWidget();
+    initGustavoAccessibility();
     disableBrowserLinkPreview();
 });
 
