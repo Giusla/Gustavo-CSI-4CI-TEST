@@ -3155,21 +3155,23 @@ body.modal-is-open {
     opacity: 1;
 }
 
-/* ── Tooltip ── */
+/* ── Tooltip / Bubble (a sinistra e bianca) ── */
 .g-a11y-tooltip {
     position: absolute;
-    bottom: calc(100% + 10px);
-    right: 0;
-    background: #0f172a;
-    color: #ffffff;
+    right: calc(100% + 12px);
+    top: 50%;
+    background: #ffffff;
+    color: var(--text-heading, #0f172a);
     font-size: 0.78rem;
     font-weight: 600;
     white-space: nowrap;
-    padding: 5px 10px;
-    border-radius: 6px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle, #e2e8f0);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.04);
     pointer-events: none;
     opacity: 0;
-    transform: translateY(4px);
+    transform: translateY(-50%) translateX(6px);
     transition: opacity 0.18s ease, transform 0.18s ease;
     font-family: "Inter", -apple-system, sans-serif;
 }
@@ -3177,16 +3179,17 @@ body.modal-is-open {
 .g-a11y-tooltip::after {
     content: '';
     position: absolute;
-    top: 100%;
-    right: 18px;
-    border: 5px solid transparent;
-    border-top-color: #0f172a;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-left-color: #ffffff;
 }
 
 .g-a11y-btn:hover .g-a11y-tooltip,
 .g-a11y-btn:focus-visible .g-a11y-tooltip {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(-50%) translateX(0);
 }
 
 /* ── Scheda / Finestra Accessibilità (Altezza proporzionata: 40-50% dello schermo utente) ── */
