@@ -246,6 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }], 0);
                 }
             });
+        });
     }
 
     // ----------------------------------------------------
@@ -889,6 +890,40 @@ document.addEventListener('DOMContentLoaded', () => {
                     const ratio = Math.max(0, Math.min(1, clickX / rect.width));
                     const maxScroll = track.scrollWidth - track.clientWidth;
                     track.scrollTo({ left: ratio * maxScroll, behavior: 'smooth' });
+                });
+            }
+
+            if (customThumb && customTrack) {
+                let thumbDragging = false;
+                let thumbStartX = 0;
+                let thumbStartScroll = 0;
+
+                customThumb.addEventListener('mousedown', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    thumbDragging = true;
+                    thumbStartX = e.clientX;
+                    thumbStartScroll = track.scrollLeft;
+                    document.body.style.userSelect = 'none';
+                });
+
+                window.addEventListener('mousemove', (e) => {
+                    if (!thumbDragging) return;
+                    const deltaX = e.clientX - thumbStartX;
+                    const trackWidth = customTrack.clientWidth;
+                    const thumbWidth = customThumb.clientWidth;
+                    const maxTravel = trackWidth - thumbWidth;
+                    const maxScroll = track.scrollWidth - track.clientWidth;
+                    if (maxTravel > 0) {
+                        track.scrollLeft = thumbStartScroll + (deltaX / maxTravel) * maxScroll;
+                    }
+                });
+
+                window.addEventListener('mouseup', () => {
+                    if (thumbDragging) {
+                        thumbDragging = false;
+                        document.body.style.userSelect = '';
+                    }
                 });
             }
 
