@@ -9,8 +9,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/img/favicon.png?v=2">
     <link rel="apple-touch-icon" href="assets/img/favicon.png?v=2">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/main.js" defer></script>
+
+    <!-- Meta Tag Condivisione Social (WhatsApp, Telegram, Social Preview) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Il Team — GustAvo · IIS Avogadro">
+    <meta property="og:description" content="Gli studenti e i docenti della classe 5CI dell'IIS Avogadro di Torino che hanno realizzato il progetto GustAvo.">
+    <meta property="og:image" content="assets/img/gustavo_icon.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:alt" content="Logo Ufficiale GustAvo">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Il Team — GustAvo · IIS Avogadro">
+    <meta name="twitter:description" content="Gli studenti della 5CI dell'IIS Avogadro di Torino che hanno realizzato GustAvo.">
+    <meta name="twitter:image" content="assets/img/gustavo_icon.png">
+
+    <link rel="stylesheet" href="assets/css/style.css?v=4.1">
+    <script src="assets/js/main.js?v=4.1" defer></script>
 </head>
 <body>
 
@@ -118,12 +131,31 @@
         </div>
     </main>
 
-    <!-- LIGHTBOX MODAL -->
-    <div class="lightbox-modal" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizzatore immagini">
-        <button class="lightbox-close-btn" id="lightboxClose" aria-label="Chiudi visualizzatore">&times;</button>
-        <div class="lightbox-content photo-skeleton-box" id="lightboxBox">
-            <img id="lightboxImg" src="" alt="Foto ingrandita">
+    <!-- LIGHTBOX A SCHERMO INTERO CON SCORRIMENTO TRA IMMAGINI -->
+    <div class="lightbox-modal" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizzatore immagini a schermo intero">
+        <button class="lightbox-close-btn" id="lightboxClose" aria-label="Chiudi visualizzatore" title="Chiudi (Esc)">&times;</button>
+        
+        <button class="lightbox-nav-btn prev" id="lightboxPrev" aria-label="Foto precedente" title="Foto precedente">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </button>
+
+        <div class="lightbox-stage">
+            <div class="lightbox-content photo-skeleton-box" id="lightboxBox">
+                <img id="lightboxImg" src="" alt="Foto ingrandita">
+            </div>
+            <div class="lightbox-meta" id="lightboxMeta">
+                <span class="lightbox-counter" id="lightboxCounter">1 / 1</span>
+                <p class="lightbox-caption" id="lightboxCaption"></p>
+            </div>
         </div>
+
+        <button class="lightbox-nav-btn next" id="lightboxNext" aria-label="Foto successiva" title="Foto successiva">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+        </button>
     </div>
 
     <!-- FOOTER ISTITUZIONALE CON LOGHI UFFICIALI -->

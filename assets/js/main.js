@@ -5,24 +5,63 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
-    // 1. Menu Mobile (Hamburger)
+    // 1. Menu Mobile (Hamburger) con chiusura al tocco esterno
     // ----------------------------------------------------
     const hamburgerBtn = document.getElementById('hamburger');
     const navMobile = document.getElementById('navMobile');
 
     if (hamburgerBtn && navMobile) {
-        hamburgerBtn.addEventListener('click', () => {
+        let navBackdrop = document.querySelector('.nav-mobile-backdrop');
+        if (!navBackdrop) {
+            navBackdrop = document.createElement('div');
+            navBackdrop.className = 'nav-mobile-backdrop';
+            navBackdrop.setAttribute('aria-hidden', 'true');
+            document.body.appendChild(navBackdrop);
+        }
+
+        const closeNavMobile = () => {
+            navMobile.classList.remove('visibile');
+            hamburgerBtn.classList.remove('aperto');
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+            if (navBackdrop) navBackdrop.classList.remove('visibile');
+        };
+
+        hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             const isOpen = navMobile.classList.toggle('visibile');
             hamburgerBtn.classList.toggle('aperto', isOpen);
             hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
+            if (navBackdrop) navBackdrop.classList.toggle('visibile', isOpen);
         });
 
+        if (navBackdrop) {
+            navBackdrop.addEventListener('click', closeNavMobile);
+            navBackdrop.addEventListener('touchstart', closeNavMobile, { passive: true });
+        }
+
         navMobile.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMobile.classList.remove('visibile');
-                hamburgerBtn.classList.remove('aperto');
-                hamburgerBtn.setAttribute('aria-expanded', 'false');
-            });
+            link.addEventListener('click', closeNavMobile);
+        });
+
+        // Chiusura immediata al tocco o click all'esterno del menù da mobile
+        document.addEventListener('click', (e) => {
+            if (!navMobile.classList.contains('visibile')) return;
+            if (!navMobile.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                closeNavMobile();
+            }
+        });
+
+        document.addEventListener('touchstart', (e) => {
+            if (!navMobile.classList.contains('visibile')) return;
+            if (!navMobile.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                closeNavMobile();
+            }
+        }, { passive: true });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMobile.classList.contains('visibile')) {
+                closeNavMobile();
+            }
         });
     }
 
@@ -206,6 +245,70 @@ document.addEventListener('DOMContentLoaded', () => {
                         caption: img.alt || ''
                     }], 0);
                 }
+            });
+    }
+
+    // ----------------------------------------------------
+    // 2b. Slider Fotografico della Home Page
+    // ----------------------------------------------------
+    const heroTrack = document.getElementById('heroSliderTrack');
+    const heroPrev = document.getElementById('heroPrevBtn');
+    const heroNext = document.getElementById('heroNextBtn');
+    const heroDots = document.querySelectorAll('.hero-dot');
+
+    if (heroTrack) {
+        const updateHeroDots = () => {
+            const scrollLeft = heroTrack.scrollLeft;
+            const slideWidth = heroTrack.clientWidth;
+            if (slideWidth <= 0) return;
+            const activeIndex = Math.round(scrollLeft / slideWidth);
+            heroDots.forEach((dot, idx) => {
+                dot.classList.toggle('attivo', idx === activeIndex);
+            });
+            if (heroPrev) heroPrev.disabled = scrollLeft <= 10;
+            if (heroNext) {
+                const maxScroll = heroTrack.scrollWidth - heroTrack.clientWidth;
+                heroNext.disabled = scrollLeft >= maxScroll - 10;
+            }
+        };
+
+        if (heroPrev) {
+            heroPrev.addEventListener('click', () => {
+                heroTrack.scrollBy({ left: -heroTrack.clientWidth, behavior: 'smooth' });
+            });
+        }
+        if (heroNext) {
+            heroNext.addEventListener('click', () => {
+                heroTrack.scrollBy({ left: heroTrack.clientWidth, behavior: 'smooth' });
+            });
+        }
+
+        heroDots.forEach((dot) => {
+            dot.addEventListener('click', () => {
+                const idx = parseInt(dot.dataset.index, 10);
+                heroTrack.scrollTo({ left: idx * heroTrack.clientWidth, behavior: 'smooth' });
+            });
+        });
+
+        heroTrack.addEventListener('scroll', updateHeroDots, { passive: true });
+        window.addEventListener('resize', updateHeroDots, { passive: true });
+        updateHeroDots();
+
+        // Apertura Lightbox con navigazione completa per le foto della Home
+        const homeSlides = heroTrack.querySelectorAll('.hero-slide');
+        const homeImagesList = Array.from(homeSlides).map(slide => {
+            const img = slide.querySelector('img');
+            const badge = slide.querySelector('.hero-slide-badge');
+            return {
+                src: img ? img.src : '',
+                alt: img ? img.alt : 'Foto Home',
+                caption: badge ? badge.textContent : (img ? img.alt : 'Foto Home')
+            };
+        });
+
+        homeSlides.forEach((slide, idx) => {
+            slide.addEventListener('click', () => {
+                openLightboxGallery(homeImagesList, idx);
             });
         });
     }
@@ -816,54 +919,15 @@ document.addEventListener('DOMContentLoaded', () => {
             updateButtonStates();
             updateCustomScrollbar();
 
-            // ------------------------------------------------
-            // Trascinamento Mouse fluido (ZERO LAG, ZERO SCATTO, CLICK SICURO)
-            // ------------------------------------------------
-            let isDown = false;
-            let startX = 0;
-            let scrollStart = 0;
-            let hasDragged = false;
-
-            track.addEventListener('mousedown', (e) => {
-                if (e.button !== 0) return;
-                isDown = true;
-                hasDragged = false;
-                startX = e.pageX;
-                scrollStart = track.scrollLeft;
-            });
-
-            window.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                const walk = e.pageX - startX;
-                if (Math.abs(walk) > 6) {
-                    hasDragged = true;
-                    track.classList.add('is-dragging');
-                    track.style.scrollBehavior = 'auto';
-                    track.style.scrollSnapType = 'none';
-                    track.scrollLeft = scrollStart - walk;
+            // Disabilitazione scorrimento con frecce tastiera sul carosello
+            track.addEventListener('keydown', (e) => {
+                if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
+                    e.preventDefault();
                 }
             });
-
-            const endDrag = () => {
-                if (!isDown) return;
-                isDown = false;
-                track.classList.remove('is-dragging');
-                track.style.scrollBehavior = 'smooth';
-                track.style.scrollSnapType = 'x mandatory';
-                setTimeout(() => {
-                    hasDragged = false;
-                }, 100);
-            };
-
-            window.addEventListener('mouseup', endDrag);
 
             // Click delegato sulle Card del carosello (Apre modale o fullscreen lightbox)
             track.addEventListener('click', (e) => {
-                if (hasDragged) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    return;
-                }
 
                 const card = e.target.closest('.gallery-card');
                 if (!card) return;
