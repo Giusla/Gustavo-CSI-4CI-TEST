@@ -691,15 +691,15 @@ body>header {
     color: var(--text-heading);
     font-weight: 700;
     text-decoration: none;
-    padding: 0 4px;
-    margin: 0 -4px;
+    padding: 0 1px;
+    margin: 0 -1px;
     border-radius: 3px 3px 0 0;
 
     /* sottolineatura con il gradiente del brand */
     background-image: var(--brand-gradient);
     background-repeat: no-repeat;
     background-position: 0 100%;
-    background-size: 100% 3px;
+    background-size: 100% 2px;
 
     -webkit-box-decoration-break: clone;
     box-decoration-break: clone;
