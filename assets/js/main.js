@@ -950,11 +950,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.setAttribute('aria-controls', 'gustavoA11yPanel');
         btn.setAttribute('title', 'Accessibilità');
         btn.innerHTML = `
-            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
-                <circle cx="12" cy="4" r="2.1"></circle>
-                <path d="M19 8.5c-.5-.3-1.1-.1-1.4.4l-2.4 3.6-1.7-1.3c-.3-.2-.7-.3-1-.2-.4.1-.7.4-.8.7l-1.5 4.5-2.2-2.9c-.3-.4-.9-.5-1.4-.2s-.5.9-.2 1.4l3.1 4c.3.4.8.6 1.3.5.5-.1.9-.5 1.1-1l1.3-3.9 1.4 1.1c.3.2.7.3 1.1.2.4-.1.7-.4.9-.7l2.8-4.2c.3-.5.1-1.1-.4-1.4zM5 8c-.6 0-1 .4-1 1s.4 1 1 1h5.8l-1.3-2H5z"></path>
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18.2c-4.52 0-8.2-3.68-8.2-8.2s3.68-8.2 8.2-8.2 8.2 3.68 8.2 8.2-3.68 8.2-8.2 8.2z"></path>
-            </svg>
+            <img src="assets/img/accessibility-icon.png?v=4.6" alt="" class="gustavo-a11y-icon" aria-hidden="true" draggable="false" />
         `;
 
         // Creazione pannello

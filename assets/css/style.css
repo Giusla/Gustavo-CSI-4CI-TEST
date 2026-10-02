@@ -3107,19 +3107,19 @@ body.modal-is-open {
     box-shadow: 0 0 0 6px rgba(0, 102, 255, 0.25);
 }
 
-.gustavo-a11y-btn svg {
-    width: 28px;
-    height: 28px;
+.gustavo-a11y-btn svg,
+.gustavo-a11y-btn .gustavo-a11y-icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
     transition: transform 0.25s ease;
     pointer-events: none;
+    display: block;
 }
 
-.gustavo-a11y-btn[aria-expanded="true"] {
-    box-shadow: 0 4px 16px rgba(0, 30, 80, 0.3);
-}
-
+.gustavo-a11y-btn[aria-expanded="true"] .gustavo-a11y-icon,
 .gustavo-a11y-btn[aria-expanded="true"] svg {
-    transform: rotate(90deg);
+    transform: rotate(15deg) scale(1.08);
 }
 
 /* Pannello opzioni accessibilità */
