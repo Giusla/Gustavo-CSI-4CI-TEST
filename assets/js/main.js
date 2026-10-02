@@ -1082,10 +1082,48 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
 
+        // ── Funzione di posizionamento sopra il footer (mai sovrapposto ai contenuti, zero salti) ──
+        const adjustPositionForFooter = () => {
+            const footer = document.querySelector('footer, .footer, .chatbot-direct-bar');
+            if (!footer) return;
+            const footerRect = footer.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const isMobile = window.innerWidth <= 580;
+            const baseBottom = isMobile ? 16 : 24;
+
+            if (footerRect.top < windowHeight) {
+                const overlap = windowHeight - footerRect.top;
+                const newBottom = overlap + baseBottom;
+                btn.style.bottom = `${newBottom}px`;
+                panel.style.bottom = `${newBottom + (isMobile ? 70 : 72)}px`;
+            } else {
+                btn.style.bottom = '';
+                panel.style.bottom = '';
+            }
+        };
+
+        // Calcolo immediato prima di aggiungere gli elementi al DOM:
+        // garantisce che il bottone nasca già alla giusta coordinata dal primissimo frame
+        adjustPositionForFooter();
+
         // ── Append al DOM ──
         document.body.appendChild(guideLine);
         document.body.appendChild(btn);
         document.body.appendChild(panel);
+
+        // ── Aggiornamento fluido allo scroll e ridimensionamento (senza transizioni lente sul bottom) ──
+        let footerRaf = null;
+        const onScrollOrResize = () => {
+            if (footerRaf) return;
+            footerRaf = requestAnimationFrame(() => {
+                adjustPositionForFooter();
+                footerRaf = null;
+            });
+        };
+
+        window.addEventListener('scroll', onScrollOrResize, { passive: true });
+        window.addEventListener('resize', onScrollOrResize, { passive: true });
+        window.addEventListener('load', adjustPositionForFooter, { passive: true });
 
         // ── Steps testo conformi WCAG 1.4.4 (fino a 200%) ──
         const fontSteps = [100, 125, 150, 175, 200];
@@ -1125,6 +1163,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (valEl) valEl.textContent = `${pct}%`;
             if (decBtn) decBtn.disabled = fontIndex === 0;
             if (incBtn) incBtn.disabled = fontIndex === fontSteps.length - 1;
+            adjustPositionForFooter();
         };
 
         // ── Apertura / chiusura pannello ──
@@ -1142,6 +1181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 isOpen ? 'Chiudi impostazioni di accessibilità' : 'Apri impostazioni di accessibilità'
             );
             if (isOpen) {
+                adjustPositionForFooter();
                 const firstFocusable = panel.querySelector('button:not(:disabled), input:not(:disabled)');
                 if (firstFocusable) setTimeout(() => firstFocusable.focus(), 50);
             }
@@ -1253,6 +1293,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Rimozione di eventuali chiavi residue di storage / cookie
                 try { localStorage.removeItem('gustavo_a11y_v2'); } catch (e) {}
+                adjustPositionForFooter();
             });
         }
 
@@ -1261,6 +1302,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // ── Init ──
         updateFontUI();
+        adjustPositionForFooter();
     };
 
     initPhotoSkeletons();
