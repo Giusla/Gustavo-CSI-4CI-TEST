@@ -970,11 +970,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ];
         OBSOLETE_CLASSES.forEach(cls => document.documentElement.classList.remove(cls));
 
-        // ── SVG chiusura ──
-        const closeSVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true" focusable="false">
-            <path d="M18 6L6 18M6 6l12 12"/>
-        </svg>`;
-
         // ── Helper: crea un toggle item conforme WCAG ──
         const makeItem = (id, label, desc) => `
             <div class="g-a11y-item">
@@ -1032,9 +1027,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h2 class="g-a11y-title">Accessibilità</h2>
                     <p class="g-a11y-subtitle">Personalizza navigazione e visualizzazione</p>
                 </div>
-                <button type="button" class="g-a11y-close" id="gustavoA11yClose" aria-label="Chiudi impostazioni di accessibilità">
-                    ${closeSVG}
-                </button>
             </div>
 
             <div class="g-a11y-body">
@@ -1188,6 +1180,16 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // ── Event listeners: pulsante principale ──
+        btn.addEventListener('mousedown', (e) => {
+            // Evita che il doppio o triplo click rapido selezioni il testo della pagina
+            e.preventDefault();
+        });
+
+        btn.addEventListener('dblclick', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             setPanelOpen();
@@ -1199,15 +1201,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 setPanelOpen(false);
             }
         });
-
-        // ── Chiusura ──
-        const closeBtn = document.getElementById('gustavoA11yClose');
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                setPanelOpen(false);
-                btn.focus();
-            });
-        }
 
         // ── Chiusura click esterno ──
         document.addEventListener('click', (e) => {

@@ -3139,6 +3139,8 @@ body.modal-is-open {
     z-index: 10000;
     transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
     -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .g-a11y-btn:hover {
@@ -3259,6 +3261,8 @@ body.modal-is-open {
     font-size: 14px;
     text-align: left;
     letter-spacing: normal;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 .g-a11y-panel.is-open {
