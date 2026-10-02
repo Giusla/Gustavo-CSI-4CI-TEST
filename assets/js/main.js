@@ -234,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, { passive: true });
 
-        const otherGalleryItems = document.querySelectorAll('.team-photo-wrapper, .galleria-item, .hero-photo');
+        const otherGalleryItems = document.querySelectorAll('.team-photo-wrapper, .galleria-item');
         otherGalleryItems.forEach(item => {
             item.addEventListener('click', () => {
                 const img = item.tagName === 'IMG' ? item : item.querySelector('img');
@@ -245,71 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         caption: img.alt || ''
                     }], 0);
                 }
-            });
-        });
-    }
-
-    // ----------------------------------------------------
-    // 2b. Slider Fotografico della Home Page
-    // ----------------------------------------------------
-    const heroTrack = document.getElementById('heroSliderTrack');
-    const heroPrev = document.getElementById('heroPrevBtn');
-    const heroNext = document.getElementById('heroNextBtn');
-    const heroDots = document.querySelectorAll('.hero-dot');
-
-    if (heroTrack) {
-        const updateHeroDots = () => {
-            const scrollLeft = heroTrack.scrollLeft;
-            const slideWidth = heroTrack.clientWidth;
-            if (slideWidth <= 0) return;
-            const activeIndex = Math.round(scrollLeft / slideWidth);
-            heroDots.forEach((dot, idx) => {
-                dot.classList.toggle('attivo', idx === activeIndex);
-            });
-            if (heroPrev) heroPrev.disabled = scrollLeft <= 10;
-            if (heroNext) {
-                const maxScroll = heroTrack.scrollWidth - heroTrack.clientWidth;
-                heroNext.disabled = scrollLeft >= maxScroll - 10;
-            }
-        };
-
-        if (heroPrev) {
-            heroPrev.addEventListener('click', () => {
-                heroTrack.scrollBy({ left: -heroTrack.clientWidth, behavior: 'smooth' });
-            });
-        }
-        if (heroNext) {
-            heroNext.addEventListener('click', () => {
-                heroTrack.scrollBy({ left: heroTrack.clientWidth, behavior: 'smooth' });
-            });
-        }
-
-        heroDots.forEach((dot) => {
-            dot.addEventListener('click', () => {
-                const idx = parseInt(dot.dataset.index, 10);
-                heroTrack.scrollTo({ left: idx * heroTrack.clientWidth, behavior: 'smooth' });
-            });
-        });
-
-        heroTrack.addEventListener('scroll', updateHeroDots, { passive: true });
-        window.addEventListener('resize', updateHeroDots, { passive: true });
-        updateHeroDots();
-
-        // Apertura Lightbox con navigazione completa per le foto della Home
-        const homeSlides = heroTrack.querySelectorAll('.hero-slide');
-        const homeImagesList = Array.from(homeSlides).map(slide => {
-            const img = slide.querySelector('img');
-            const badge = slide.querySelector('.hero-slide-badge');
-            return {
-                src: img ? img.src : '',
-                alt: img ? img.alt : 'Foto Home',
-                caption: badge ? badge.textContent : (img ? img.alt : 'Foto Home')
-            };
-        });
-
-        homeSlides.forEach((slide, idx) => {
-            slide.addEventListener('click', () => {
-                openLightboxGallery(homeImagesList, idx);
             });
         });
     }
