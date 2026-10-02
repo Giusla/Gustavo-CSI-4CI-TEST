@@ -3068,3 +3068,356 @@ body.modal-is-open {
         display: none;
     }
 }
+
+/* --------------------------------------------------------------------------
+   13. Widget e Funzionalità di Accessibilità (a11y)
+   -------------------------------------------------------------------------- */
+
+/* Tasto galleggiante tondo in basso a destra */
+.a11y-trigger-btn {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--brand-gradient);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 16px rgba(0, 102, 255, 0.35), 0 2px 6px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+    padding: 0;
+    outline: none;
+}
+
+.a11y-trigger-btn:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 22px rgba(0, 102, 255, 0.48), 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.a11y-trigger-btn:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 3px;
+}
+
+.a11y-trigger-btn svg {
+    width: 26px;
+    height: 26px;
+    transition: transform 0.3s ease;
+}
+
+.a11y-trigger-btn.attivo svg {
+    transform: rotate(45deg);
+}
+
+/* Pannello modale accessibilità */
+.a11y-panel {
+    position: fixed;
+    bottom: 86px;
+    right: 24px;
+    width: 320px;
+    max-width: calc(100vw - 32px);
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.22), 0 4px 12px rgba(0, 0, 0, 0.08);
+    z-index: 9999;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    animation: a11yPanelIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.a11y-panel.attivo {
+    display: flex;
+}
+
+@keyframes a11yPanelIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.a11y-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 18px;
+    background: var(--brand-dark);
+    color: #ffffff;
+}
+
+.a11y-panel-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.a11y-panel-title svg {
+    width: 20px;
+    height: 20px;
+    color: #38bdf8;
+}
+
+.a11y-panel-close {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 2px 6px;
+    border-radius: 4px;
+    transition: color 0.2s, background 0.2s;
+}
+
+.a11y-panel-close:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.a11y-panel-body {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 380px;
+    overflow-y: auto;
+}
+
+.a11y-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    background: #f8fafc;
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    gap: 12px;
+}
+
+.a11y-item-label {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.a11y-item-name {
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--text-heading);
+}
+
+.a11y-item-desc {
+    font-size: 0.74rem;
+    color: var(--text-muted);
+}
+
+/* Bottoni incremento/decremento testo */
+.a11y-btn-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #ffffff;
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 2px;
+}
+
+.a11y-btn-control {
+    background: transparent;
+    border: none;
+    color: var(--text-heading);
+    font-weight: 700;
+    font-size: 0.88rem;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.a11y-btn-control:hover {
+    background: var(--brand-blue);
+    color: #ffffff;
+}
+
+.a11y-btn-control:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    background: transparent;
+    color: var(--text-muted);
+}
+
+.a11y-size-indicator {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--brand-blue);
+    min-width: 32px;
+    text-align: center;
+}
+
+/* Switch toggle elegante */
+.a11y-toggle {
+    position: relative;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.a11y-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.a11y-toggle-slider {
+    position: absolute;
+    inset: 0;
+    background-color: #cbd5e1;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+.a11y-toggle-slider::before {
+    content: '';
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transition: transform 0.25s ease;
+}
+
+.a11y-toggle input:checked + .a11y-toggle-slider {
+    background: var(--brand-blue);
+}
+
+.a11y-toggle input:checked + .a11y-toggle-slider::before {
+    transform: translateX(20px);
+}
+
+.a11y-toggle input:focus-visible + .a11y-toggle-slider {
+    outline: 2px solid var(--brand-blue);
+    outline-offset: 2px;
+}
+
+/* Footer pannello con reset */
+.a11y-panel-footer {
+    padding: 10px 16px;
+    background: #f8fafc;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.a11y-reset-btn {
+    background: transparent;
+    border: none;
+    color: var(--brand-blue);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.a11y-reset-btn:hover {
+    background: rgba(0, 102, 255, 0.08);
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Classi di Accessibilità applicate a <html> o <body>
+   ========================================================================== */
+
+/* 1. Alto Contrasto */
+html.a11y-high-contrast {
+    filter: contrast(1.35);
+}
+
+html.a11y-high-contrast body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+html.a11y-high-contrast .unified-card,
+html.a11y-high-contrast .gallery-card,
+html.a11y-high-contrast .doc-section,
+html.a11y-high-contrast .story-chapter,
+html.a11y-high-contrast .team-card {
+    border-color: #000000 !important;
+    box-shadow: 0 0 0 1px #000000 !important;
+}
+
+/* 2. Font ad Alta Leggibilità / Dislessia */
+html.a11y-dyslexic-font body,
+html.a11y-dyslexic-font * {
+    font-family: "Atkinson Hyperlegible", "Verdana", "Arial", sans-serif !important;
+    letter-spacing: 0.03em !important;
+    word-spacing: 0.08em !important;
+    line-height: 1.8 !important;
+}
+
+/* 3. Riduzione Animazioni / Moto */
+html.a11y-reduced-motion *,
+html.a11y-reduced-motion *::before,
+html.a11y-reduced-motion *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+}
+
+/* 4. Guida di Lettura (ruler orizzontale) */
+.a11y-reading-guide {
+    display: none;
+    position: fixed;
+    left: 0;
+    width: 100vw;
+    height: 36px;
+    background: rgba(0, 102, 255, 0.12);
+    border-top: 2px solid var(--brand-blue);
+    border-bottom: 2px solid var(--brand-blue);
+    pointer-events: none;
+    z-index: 99998;
+    transform: translateY(-50%);
+}
+
+html.a11y-guide-active .a11y-reading-guide {
+    display: block;
+}
+
+/* Posizionamento mobile */
+@media (max-width: 580px) {
+    .a11y-trigger-btn {
+        bottom: 16px;
+        right: 16px;
+        width: 48px;
+        height: 48px;
+    }
+
+    .a11y-panel {
+        bottom: 74px;
+        right: 14px;
+        left: 14px;
+        width: auto;
+        max-width: none;
+    }
+}

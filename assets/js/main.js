@@ -933,7 +933,302 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    // ----------------------------------------------------
+    // 7. Widget di Accessibilità Universale (a11y)
+    // ----------------------------------------------------
+    const initAccessibilityWidget = () => {
+        // Inietta il trigger button, il pannello e la reading guide
+        const triggerBtn = document.createElement('button');
+        triggerBtn.className = 'a11y-trigger-btn';
+        triggerBtn.id = 'a11yTriggerBtn';
+        triggerBtn.setAttribute('aria-label', 'Opzioni di accessibilità');
+        triggerBtn.setAttribute('aria-expanded', 'false');
+        triggerBtn.setAttribute('title', 'Accessibilità del sito');
+        triggerBtn.innerHTML = `
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="4.5" r="2.5"></circle>
+                <path d="M4 9a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-3v10a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-6h-2v6a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V11H3a1 1 0 0 1-1-1V9z"></path>
+            </svg>
+        `;
+
+        const panel = document.createElement('div');
+        panel.className = 'a11y-panel';
+        panel.id = 'a11yPanel';
+        panel.setAttribute('role', 'dialog');
+        panel.setAttribute('aria-label', 'Strumenti di accessibilità');
+        panel.innerHTML = `
+            <div class="a11y-panel-header">
+                <div class="a11y-panel-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M12 8v8"></path>
+                        <path d="M8 12h8"></path>
+                    </svg>
+                    Accessibilità
+                </div>
+                <button class="a11y-panel-close" id="a11yCloseBtn" aria-label="Chiudi pannello accessibilità">&times;</button>
+            </div>
+            <div class="a11y-panel-body">
+                <!-- 1. Dimensione Testo -->
+                <div class="a11y-item">
+                    <div class="a11y-item-label">
+                        <span class="a11y-item-name">Dimensione Testo</span>
+                        <span class="a11y-item-desc">Regola la grandezza dei caratteri</span>
+                    </div>
+                    <div class="a11y-btn-group">
+                        <button class="a11y-btn-control" id="a11yDecFont" aria-label="Riduci testo">A-</button>
+                        <span class="a11y-size-indicator" id="a11yFontIndicator">100%</span>
+                        <button class="a11y-btn-control" id="a11yIncFont" aria-label="Ingrandisci testo">A+</button>
+                    </div>
+                </div>
+
+                <!-- 2. Alto Contrasto -->
+                <div class="a11y-item">
+                    <div class="a11y-item-label">
+                        <span class="a11y-item-name">Alto Contrasto</span>
+                        <span class="a11y-item-desc">Migliora visibilità dei testi e bordi</span>
+                    </div>
+                    <label class="a11y-toggle">
+                        <input type="checkbox" id="a11yHighContrast">
+                        <span class="a11y-toggle-slider" aria-hidden="true"></span>
+                    </label>
+                </div>
+
+                <!-- 3. Font ad Alta Leggibilità -->
+                <div class="a11y-item">
+                    <div class="a11y-item-label">
+                        <span class="a11y-item-name">Font Alta Leggibilità</span>
+                        <span class="a11y-item-desc">Caratteri chiari e spaziatura adatta per dislessia</span>
+                    </div>
+                    <label class="a11y-toggle">
+                        <input type="checkbox" id="a11yDyslexic">
+                        <span class="a11y-toggle-slider" aria-hidden="true"></span>
+                    </label>
+                </div>
+
+                <!-- 4. Riduci Animazioni -->
+                <div class="a11y-item">
+                    <div class="a11y-item-label">
+                        <span class="a11y-item-name">Ferma Animazioni</span>
+                        <span class="a11y-item-desc">Disattiva transizioni e movimenti rapidi</span>
+                    </div>
+                    <label class="a11y-toggle">
+                        <input type="checkbox" id="a11yReducedMotion">
+                        <span class="a11y-toggle-slider" aria-hidden="true"></span>
+                    </label>
+                </div>
+
+                <!-- 5. Guida di Lettura -->
+                <div class="a11y-item">
+                    <div class="a11y-item-label">
+                        <span class="a11y-item-name">Guida di Lettura</span>
+                        <span class="a11y-item-desc">Barra orizzontale che segue il cursore</span>
+                    </div>
+                    <label class="a11y-toggle">
+                        <input type="checkbox" id="a11yReadingGuide">
+                        <span class="a11y-toggle-slider" aria-hidden="true"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="a11y-panel-footer">
+                <button class="a11y-reset-btn" id="a11yResetBtn">Ripristina Predefiniti</button>
+            </div>
+        `;
+
+        const guideLine = document.createElement('div');
+        guideLine.className = 'a11y-reading-guide';
+        guideLine.id = 'a11yGuideLine';
+
+        document.body.appendChild(triggerBtn);
+        document.body.appendChild(panel);
+        document.body.appendChild(guideLine);
+
+        // Stato impostazioni
+        const fontSteps = [100, 110, 120, 130];
+        let currentFontIndex = 0;
+
+        const loadPrefs = () => {
+            try {
+                const prefs = JSON.parse(localStorage.getItem('gustavo_a11y_prefs') || '{}');
+                if (typeof prefs.fontStep === 'number' && prefs.fontStep >= 0 && prefs.fontStep < fontSteps.length) {
+                    currentFontIndex = prefs.fontStep;
+                }
+                applyFontSize(fontSteps[currentFontIndex]);
+
+                if (prefs.highContrast) {
+                    document.documentElement.classList.add('a11y-high-contrast');
+                    const cb = document.getElementById('a11yHighContrast');
+                    if (cb) cb.checked = true;
+                }
+                if (prefs.dyslexic) {
+                    document.documentElement.classList.add('a11y-dyslexic-font');
+                    const cb = document.getElementById('a11yDyslexic');
+                    if (cb) cb.checked = true;
+                }
+                if (prefs.reducedMotion) {
+                    document.documentElement.classList.add('a11y-reduced-motion');
+                    const cb = document.getElementById('a11yReducedMotion');
+                    if (cb) cb.checked = true;
+                }
+                if (prefs.readingGuide) {
+                    document.documentElement.classList.add('a11y-guide-active');
+                    const cb = document.getElementById('a11yReadingGuide');
+                    if (cb) cb.checked = true;
+                }
+            } catch (e) {
+                console.warn('Errore lettura a11y prefs:', e);
+            }
+        };
+
+        const savePrefs = () => {
+            try {
+                const prefs = {
+                    fontStep: currentFontIndex,
+                    highContrast: document.documentElement.classList.contains('a11y-high-contrast'),
+                    dyslexic: document.documentElement.classList.contains('a11y-dyslexic-font'),
+                    reducedMotion: document.documentElement.classList.contains('a11y-reduced-motion'),
+                    readingGuide: document.documentElement.classList.contains('a11y-guide-active')
+                };
+                localStorage.setItem('gustavo_a11y_prefs', JSON.stringify(prefs));
+            } catch (e) {
+                // Ignore localStorage errors
+            }
+        };
+
+        const applyFontSize = (percent) => {
+            document.documentElement.style.fontSize = percent === 100 ? '' : `${(16 * percent) / 100}px`;
+            const indicator = document.getElementById('a11yFontIndicator');
+            const decBtn = document.getElementById('a11yDecFont');
+            const incBtn = document.getElementById('a11yIncFont');
+            if (indicator) indicator.textContent = `${percent}%`;
+            if (decBtn) decBtn.disabled = currentFontIndex === 0;
+            if (incBtn) incBtn.disabled = currentFontIndex === fontSteps.length - 1;
+        };
+
+        // Gestione pannello (apertura/chiusura)
+        const togglePanel = (open) => {
+            const isCurrentlyOpen = panel.classList.contains('attivo');
+            const targetState = typeof open === 'boolean' ? open : !isCurrentlyOpen;
+            panel.classList.toggle('attivo', targetState);
+            triggerBtn.classList.toggle('attivo', targetState);
+            triggerBtn.setAttribute('aria-expanded', String(targetState));
+        };
+
+        triggerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            togglePanel();
+        });
+
+        const closeBtn = document.getElementById('a11yCloseBtn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => togglePanel(false));
+        }
+
+        // Chiusura al click esterno
+        document.addEventListener('click', (e) => {
+            if (!panel.classList.contains('attivo')) return;
+            if (!panel.contains(e.target) && !triggerBtn.contains(e.target)) {
+                togglePanel(false);
+            }
+        });
+
+        // Chiusura con tasto Esc
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && panel.classList.contains('attivo')) {
+                togglePanel(false);
+                triggerBtn.focus();
+            }
+        });
+
+        // Controlli dimensione testo
+        const decBtn = document.getElementById('a11yDecFont');
+        const incBtn = document.getElementById('a11yIncFont');
+
+        if (decBtn) {
+            decBtn.addEventListener('click', () => {
+                if (currentFontIndex > 0) {
+                    currentFontIndex--;
+                    applyFontSize(fontSteps[currentFontIndex]);
+                    savePrefs();
+                }
+            });
+        }
+
+        if (incBtn) {
+            incBtn.addEventListener('click', () => {
+                if (currentFontIndex < fontSteps.length - 1) {
+                    currentFontIndex++;
+                    applyFontSize(fontSteps[currentFontIndex]);
+                    savePrefs();
+                }
+            });
+        }
+
+        // Checkbox switches
+        const highContrastCb = document.getElementById('a11yHighContrast');
+        if (highContrastCb) {
+            highContrastCb.addEventListener('change', () => {
+                document.documentElement.classList.toggle('a11y-high-contrast', highContrastCb.checked);
+                savePrefs();
+            });
+        }
+
+        const dyslexicCb = document.getElementById('a11yDyslexic');
+        if (dyslexicCb) {
+            dyslexicCb.addEventListener('change', () => {
+                document.documentElement.classList.toggle('a11y-dyslexic-font', dyslexicCb.checked);
+                savePrefs();
+            });
+        }
+
+        const reducedMotionCb = document.getElementById('a11yReducedMotion');
+        if (reducedMotionCb) {
+            reducedMotionCb.addEventListener('change', () => {
+                document.documentElement.classList.toggle('a11y-reduced-motion', reducedMotionCb.checked);
+                savePrefs();
+            });
+        }
+
+        const readingGuideCb = document.getElementById('a11yReadingGuide');
+        if (readingGuideCb) {
+            readingGuideCb.addEventListener('change', () => {
+                document.documentElement.classList.toggle('a11y-guide-active', readingGuideCb.checked);
+                savePrefs();
+            });
+        }
+
+        // Guida di lettura che segue il puntatore
+        window.addEventListener('mousemove', (e) => {
+            if (!document.documentElement.classList.contains('a11y-guide-active')) return;
+            guideLine.style.top = `${e.clientY}px`;
+        }, { passive: true });
+
+        // Reset
+        const resetBtn = document.getElementById('a11yResetBtn');
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+                currentFontIndex = 0;
+                applyFontSize(fontSteps[0]);
+                document.documentElement.classList.remove(
+                    'a11y-high-contrast',
+                    'a11y-dyslexic-font',
+                    'a11y-reduced-motion',
+                    'a11y-guide-active'
+                );
+                if (highContrastCb) highContrastCb.checked = false;
+                if (dyslexicCb) dyslexicCb.checked = false;
+                if (reducedMotionCb) reducedMotionCb.checked = false;
+                if (readingGuideCb) readingGuideCb.checked = false;
+                savePrefs();
+            });
+        }
+
+        loadPrefs();
+    };
+
     initPhotoSkeletons();
     initEncountersGallery();
+    initAccessibilityWidget();
     disableBrowserLinkPreview();
 });
+
