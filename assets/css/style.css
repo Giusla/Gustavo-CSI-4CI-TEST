@@ -3137,9 +3137,7 @@ body.modal-is-open {
     align-items: center;
     justify-content: center;
     z-index: 10000;
-    padding: 0;
-    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, bottom 0.15s ease-out;
-    outline: none;
+    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
     -webkit-tap-highlight-color: transparent;
 }
 
@@ -3257,7 +3255,6 @@ body.modal-is-open {
     flex-direction: column;
     overflow: hidden;
     animation: gA11yPanelIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    transition: bottom 0.15s ease-out;
     font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
     font-size: 14px;
     text-align: left;
@@ -3718,8 +3715,21 @@ html.g-highlight-links a:not(.g-a11y-panel a):not(.g-a11y-btn):not(.nav-links a)
     border-radius: 2px !important;
 }
 
-html.g-grayscale body > :not(#gustavoA11yBtn):not(#gustavoA11yPanel):not(#lightbox):not(#encounterModal):not(.g-guide-line) {
-    filter: grayscale(1);
+html.g-grayscale {
+    filter: grayscale(100%);
+}
+
+html.g-grayscale .g-a11y-btn {
+    background: #334155 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+}
+
+html.g-grayscale .g-a11y-header {
+    background: #334155 !important;
+}
+
+html.g-grayscale .g-a11y-checkbox:checked ~ .g-a11y-toggle-track {
+    background: #475569 !important;
 }
 
 /* 3. Navigazione e Ausili (WCAG 2.4.7) */

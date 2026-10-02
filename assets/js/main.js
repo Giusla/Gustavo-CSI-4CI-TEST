@@ -1103,38 +1103,6 @@ document.addEventListener('DOMContentLoaded', () => {
             gReadingGuide:   { cls: 'g-reading-guide' }
         };
 
-        // ── Riposiziona pulsante e pannello per evitare sovrapposizione col footer (Throttled con rAF) ──
-        let footerRaf = null;
-        const adjustPositionForFooter = () => {
-            const footer = document.querySelector('footer, .footer, .chatbot-direct-bar');
-            if (!footer) return;
-            const footerRect = footer.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            const isMobile = window.innerWidth <= 580;
-            const baseBottom = isMobile ? 16 : 24;
-
-            if (footerRect.top < windowHeight) {
-                const overlap = windowHeight - footerRect.top;
-                const newBottom = overlap + baseBottom;
-                btn.style.bottom = `${newBottom}px`;
-                panel.style.bottom = `${newBottom + (isMobile ? 70 : 72)}px`;
-            } else {
-                btn.style.bottom = '';
-                panel.style.bottom = '';
-            }
-        };
-
-        const throttledAdjustFooter = () => {
-            if (footerRaf) return;
-            footerRaf = requestAnimationFrame(() => {
-                adjustPositionForFooter();
-                footerRaf = null;
-            });
-        };
-
-        window.addEventListener('scroll', throttledAdjustFooter, { passive: true });
-        window.addEventListener('resize', throttledAdjustFooter, { passive: true });
-
         // ── Guida lettura: segue il mouse con GPU transform accelerata a 60/144fps ──
         let guideRaf = null;
         document.addEventListener('mousemove', (e) => {
@@ -1147,20 +1115,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, { passive: true });
 
-        // ── Salvataggio preferenze ──
-        const savePrefs = () => {
-            try {
-                const prefs = { fontIndex };
-                Object.keys(TOGGLES).forEach(id => {
-                    const key = id.charAt(1).toLowerCase() + id.slice(2);
-                    prefs[key] = document.documentElement.classList.contains(TOGGLES[id].cls);
-                });
-                localStorage.setItem('gustavo_a11y_v2', JSON.stringify(prefs));
-            } catch (e) {}
-            throttledAdjustFooter();
-        };
-
-        // ── Aggiornamento UI font ──
+        // ── Aggiornamento UI font conforme WCAG 1.4.4 ──
         const updateFontUI = () => {
             const pct = fontSteps[fontIndex];
             document.documentElement.style.fontSize = pct === 100 ? '' : `${(16 * pct) / 100}px`;
@@ -1170,35 +1125,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (valEl) valEl.textContent = `${pct}%`;
             if (decBtn) decBtn.disabled = fontIndex === 0;
             if (incBtn) incBtn.disabled = fontIndex === fontSteps.length - 1;
-            throttledAdjustFooter();
-        };
-
-        // ── Caricamento preferenze ──
-        const loadPrefs = () => {
-            try {
-                const raw = localStorage.getItem('gustavo_a11y_v2');
-                if (!raw) return;
-                const prefs = JSON.parse(raw);
-
-                // Font
-                if (typeof prefs.fontIndex === 'number' && prefs.fontIndex >= 0 && prefs.fontIndex < fontSteps.length) {
-                    fontIndex = prefs.fontIndex;
-                    updateFontUI();
-                }
-
-                // Toggle
-                Object.keys(TOGGLES).forEach(id => {
-                    const key = id.charAt(1).toLowerCase() + id.slice(2);
-                    if (prefs[key]) {
-                        document.documentElement.classList.add(TOGGLES[id].cls);
-                        const cb = document.getElementById(id);
-                        if (cb) {
-                            cb.checked = true;
-                            cb.setAttribute('aria-checked', 'true');
-                        }
-                    }
-                });
-            } catch (e) {}
         };
 
         // ── Apertura / chiusura pannello ──
@@ -1216,7 +1142,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 isOpen ? 'Chiudi impostazioni di accessibilità' : 'Apri impostazioni di accessibilità'
             );
             if (isOpen) {
-                throttledAdjustFooter();
                 const firstFocusable = panel.querySelector('button:not(:disabled), input:not(:disabled)');
                 if (firstFocusable) setTimeout(() => firstFocusable.focus(), 50);
             }
@@ -1282,23 +1207,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const incBtn = document.getElementById('gIncFont');
         if (decBtn) {
             decBtn.addEventListener('click', () => {
-                if (fontIndex > 0) { fontIndex--; updateFontUI(); savePrefs(); }
+                if (fontIndex > 0) { fontIndex--; updateFontUI(); }
             });
         }
         if (incBtn) {
             incBtn.addEventListener('click', () => {
-                if (fontIndex < fontSteps.length - 1) { fontIndex++; updateFontUI(); savePrefs(); }
+                if (fontIndex < fontSteps.length - 1) { fontIndex++; updateFontUI(); }
             });
         }
 
-        // ── Toggle listeners conforme WCAG ──
+        // ── Toggle listeners conforme WCAG (nessun cookie / memorizzazione permanente) ──
         Object.keys(TOGGLES).forEach(id => {
             const cb = document.getElementById(id);
             if (!cb) return;
             cb.addEventListener('change', () => {
                 document.documentElement.classList.toggle(TOGGLES[id].cls, cb.checked);
                 cb.setAttribute('aria-checked', String(cb.checked));
-                savePrefs();
             });
         });
 
@@ -1327,16 +1251,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
-                // Reset localStorage
+                // Rimozione di eventuali chiavi residue di storage / cookie
                 try { localStorage.removeItem('gustavo_a11y_v2'); } catch (e) {}
-                throttledAdjustFooter();
             });
         }
 
+        // ── Pulizia iniziale di eventuali vecchi dati in localStorage per garantire zero tracciamento ──
+        try { localStorage.removeItem('gustavo_a11y_v2'); } catch (e) {}
+
         // ── Init ──
         updateFontUI();
-        loadPrefs();
-        throttledAdjustFooter();
     };
 
     initPhotoSkeletons();
