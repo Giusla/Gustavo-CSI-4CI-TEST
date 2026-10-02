@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const closeNavMobile = () => {
             navMobile.classList.remove('visibile');
-            navMobile.setAttribute('aria-hidden', 'true');
             hamburgerBtn.classList.remove('aperto');
             hamburgerBtn.setAttribute('aria-expanded', 'false');
             if (navBackdrop) navBackdrop.classList.remove('visibile');
@@ -30,7 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburgerBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             const isOpen = navMobile.classList.toggle('visibile');
-            navMobile.setAttribute('aria-hidden', String(!isOpen));
             hamburgerBtn.classList.toggle('aperto', isOpen);
             hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
             if (navBackdrop) navBackdrop.classList.toggle('visibile', isOpen);
@@ -958,10 +956,13 @@ document.addEventListener('DOMContentLoaded', () => {
         </svg>`;
 
         // ── Helper: crea un toggle item conforme WCAG ──
-        const makeItem = (id, label, desc) => `
+        const makeItem = (id, label, desc, wcagTag) => `
             <div class="g-a11y-item">
                 <div class="g-a11y-item-info">
-                    <label for="${id}" class="g-a11y-item-label">${label}</label>
+                    <div class="g-a11y-label-wrap">
+                        <label for="${id}" class="g-a11y-item-label">${label}</label>
+                        ${wcagTag ? `<span class="g-a11y-wcag-badge">${wcagTag}</span>` : ''}
+                    </div>
                     <span class="g-a11y-item-desc">${desc}</span>
                 </div>
                 <label class="g-a11y-toggle" aria-label="${label}">
@@ -1011,7 +1012,10 @@ document.addEventListener('DOMContentLoaded', () => {
         panel.innerHTML = `
             <div class="g-a11y-header">
                 <div class="g-a11y-header-content">
-                    <h2 class="g-a11y-title">Accessibilità</h2>
+                    <div class="g-a11y-title-row">
+                        <h2 class="g-a11y-title">Accessibilità</h2>
+                        <span class="g-a11y-wcag-header-tag">WCAG 2.1</span>
+                    </div>
                     <p class="g-a11y-subtitle">Personalizza navigazione e visualizzazione</p>
                 </div>
                 <button type="button" class="g-a11y-close" id="gustavoA11yClose" aria-label="Chiudi impostazioni di accessibilità">
@@ -1026,7 +1030,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3 class="g-a11y-section-title">${textIcon} Testo e Tipografia</h3>
                     <div class="g-a11y-font-row">
                         <div class="g-a11y-item-info">
-                            <span class="g-a11y-item-label">Dimensione testo</span>
+                            <div class="g-a11y-label-wrap">
+                                <span class="g-a11y-item-label">Dimensione testo</span>
+                                <span class="g-a11y-wcag-badge">WCAG 1.4.4</span>
+                            </div>
                             <span class="g-a11y-item-desc">Ingrandimento scalabile fino al 200%</span>
                         </div>
                         <div class="g-a11y-font-controls" role="group" aria-label="Regolazione dimensione testo conforme WCAG">
@@ -1035,24 +1042,24 @@ document.addEventListener('DOMContentLoaded', () => {
                             <button type="button" class="g-a11y-font-btn" id="gIncFont" aria-label="Aumenta testo">A+</button>
                         </div>
                     </div>
-                    ${makeItem('gReadableFont', 'Carattere ad alta leggibilità', 'Font lineare (Arial) ottimizzato per dislessia')}
-                    ${makeItem('gTextSpacing', 'Spaziatura testo conforme', 'Interlinea (1.8), spaziatura caratteri e parole')}
-                    ${makeItem('gAlignLeft', 'Allineamento a sinistra', 'Evita testo giustificato per facilitare la lettura')}
+                    ${makeItem('gReadableFont', 'Carattere ad alta leggibilità', 'Font lineare (Arial) ottimizzato per dislessia', 'WCAG AAA')}
+                    ${makeItem('gTextSpacing', 'Spaziatura testo conforme', 'Interlinea (1.8), spaziatura caratteri e parole', 'WCAG 1.4.12')}
+                    ${makeItem('gAlignLeft', 'Allineamento a sinistra', 'Evita testo giustificato per facilitare la lettura', 'WCAG 1.4.8')}
                 </div>
 
                 <!-- SEZIONE 2: Contrasto e Colori (WCAG 1.4.1 & 1.4.6) -->
                 <div class="g-a11y-section">
                     <h3 class="g-a11y-section-title">${eyeIcon} Contrasto e Colori</h3>
-                    ${makeItem('gHighContrast', 'Contrasto elevato (AAA)', 'Rapporto di contrasto elevato testo/sfondo')}
-                    ${makeItem('gHighlightLinks', 'Evidenzia collegamenti', 'Sottolinea e risalta i link ipertestuali')}
-                    ${makeItem('gGrayscale', 'Scala di grigi (Monocromatico)', 'Accesso senza dipendenza dalla percezione colori')}
+                    ${makeItem('gHighContrast', 'Contrasto elevato (AAA)', 'Rapporto di contrasto elevato testo/sfondo', 'WCAG 1.4.6')}
+                    ${makeItem('gHighlightLinks', 'Evidenzia collegamenti', 'Sottolinea e risalta i link ipertestuali', 'WCAG 1.4.1')}
+                    ${makeItem('gGrayscale', 'Scala di grigi (Monocromatico)', 'Accesso senza dipendenza dalla percezione colori', 'WCAG 1.4.1')}
                 </div>
 
                 <!-- SEZIONE 3: Navigazione e Ausili (WCAG 2.4.7) -->
                 <div class="g-a11y-section">
                     <h3 class="g-a11y-section-title">${navIcon} Navigazione e Ausili</h3>
-                    ${makeItem('gFocusVisible', 'Focus tastiera evidente', 'Contorno ad alto contrasto per navigazione tastiera')}
-                    ${makeItem('gReadingGuide', 'Guida alla lettura', 'Barra orizzontale di supporto visivo')}
+                    ${makeItem('gFocusVisible', 'Focus tastiera evidente', 'Contorno ad alto contrasto per navigazione tastiera', 'WCAG 2.4.7')}
+                    ${makeItem('gReadingGuide', 'Guida alla lettura', 'Barra orizzontale di supporto visivo', 'Ausilio')}
                 </div>
 
             </div>
