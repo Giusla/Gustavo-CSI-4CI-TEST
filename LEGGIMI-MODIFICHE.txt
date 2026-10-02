@@ -1,0 +1,47 @@
+SITO GUSTAVO - VERSIONE MODIFICATA
+
+Per visualizzare il sito, estrai tutto lo ZIP e apri index.html.
+Per aggiornare il sito online, carica il contenuto di questa cartella
+mantenendo la struttura della cartella assets.
+
+HOME
+- Rimossi i titoli che mostravano scritte al passaggio del mouse sulle foto.
+- Conservate le due fotografie originali da 4000 x 3000 pixel.
+- Eliminati rotazioni e filtri sulle foto per evitare ulteriore perdita
+  di nitidezza nel rendering. Conservata la composizione sovrapposta.
+- Caricamento immediato delle foto, con dimensioni dichiarate e senza
+  dipendenza dallo script di caricamento della galleria.
+
+HOME: LE TRE COLONNE
+- Sostituiti i tre box con una composizione unica, divisa da linee sottili.
+- Rimossi badge, numeri decorativi, statistiche e riquadri annidati.
+- Riscritti i testi senza collegamenti aggiuntivi nei box.
+- Eliminato completamente il banner "La nostra identita" dalla Home.
+
+PROGETTO: IL PERCORSO
+- Sostituiti i tre box con fotografie reali delle attivita e testi aperti.
+- Mantenute le tre colonne su desktop, con disposizione adattata su mobile.
+- Rimosso il collegamento aggiuntivo alla galleria fotografica.
+
+PROGETTO: COME FUNZIONA
+- Ridisegnati tutti e quattro i passaggi lungo una linea continua.
+- Eliminati card, badge tecnici e slogan ripetuti.
+- Spiegazioni brevi, senza il richiamo finale alla documentazione.
+
+TEAM
+- Rimossa la linea sotto il titolo e il sottotitolo della pagina.
+
+DOCUMENTAZIONE
+- Trasformati i cinque passaggi del Workflow in un elenco puntato.
+- Rimossa la linea sotto il titolo e il sottotitolo della pagina.
+
+Conservati il font Inter, la palette blu-verde e la struttura delle pagine.
+
+VERIFICHE
+- Controllati home e Progetto nel browser su desktop e mobile.
+- Verificati caricamento delle foto, assenza di tooltip sulle foto,
+  allineamento dei box e assenza di scorrimento orizzontale.
+- Controllati menu mobile, riferimenti ai file locali e sintassi JavaScript.
+- Aggiornata la versione del CSS in tutte le pagine per rinnovare la cache.
+
+L'archivio originale non e stato modificato.

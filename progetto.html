@@ -21,7 +21,7 @@
     <meta name="twitter:title" content="GustAvo">
     <meta name="twitter:description" content="GustAvo, Il chatbot che ti orienta a scuola · IIS Avogadro">
 
-    <link rel="stylesheet" href="assets/css/style.css?v=4.6">
+    <link rel="stylesheet" href="assets/css/style.css?v=4.10">
     <script src="assets/js/main.js?v=4.6" defer></script>
 </head>
 
@@ -162,138 +162,74 @@
             </div>
 
 
-            <!-- SEZIONE "PERCHÉ NASCE?" (Design autentico e narrativo) -->
-            <section class="content-section project-origin-section">
+            <!-- Il percorso, attraverso le foto delle attività -->
+            <section class="content-section project-origin-section" aria-labelledby="project-origin-title">
                 <header class="section-header">
-                    <span class="project-section-kicker">Genesi del Progetto</span>
-                    <h2 class="section-title">Dalla difficoltà reale alla soluzione in classe</h2>
-                    <p class="section-subtitle">
-                        Come una reale esigenza riscontrata durante gli Open Day si è trasformata in un progetto di intelligenza artificiale applicata.
-                    </p>
+                    <span class="project-section-kicker">Il nostro percorso</span>
+                    <h2 class="section-title" id="project-origin-title">Un'idea, una classe, tante prove.</h2>
+                    <p class="section-subtitle">GustAvo è cresciuto tra gli incontri con CSI Piemonte e il lavoro all'Avogadro.</p>
                 </header>
 
                 <div class="project-journey-grid">
-                    <!-- FASE 1: IL PROBLEMA -->
-                    <article class="journey-card journey-card-problem">
-                        <div class="journey-card-top">
-                            <span class="journey-step-tag">01 · La Difficoltà</span>
-                            <span class="journey-context-badge">Open Day & Iscrizioni</span>
-                        </div>
-                        <h3 class="journey-title">Informazioni frammentate e disordinate</h3>
-                        <p class="journey-desc">
-                            Durante gli incontri con le famiglie delle scuole medie, orientarsi tra circolari, PDF ministeriali, quadri orari e laboratori risultava dispersivo. Spesso studenti e genitori non sapevano dove cercare risposte rapide alle domande più comuni.
-                        </p>
-                        <div class="journey-highlight-box">
-                            <strong>Il punto critico:</strong> Decine di documenti separati per trovare una semplice informazione su un laboratorio o un orario.
+                    <article class="journey-card">
+                        <img class="journey-photo" src="assets/img/home/foto_home_1.jpg" width="4000" height="3000" loading="lazy" decoding="async" alt="Studenti e docenti riuniti durante un incontro al CSI Piemonte">
+                        <div class="journey-copy">
+                            <p class="journey-location">Gli incontri al CSI</p>
+                            <h3 class="journey-title">Siamo partiti da una domanda</h3>
+                            <p class="journey-desc">Come aiutare chi deve scegliere la scuola? Con i tutor di CSI Piemonte abbiamo pensato a un chatbot capace di raccogliere le risposte ai dubbi più comuni.</p>
                         </div>
                     </article>
 
-                    <!-- FASE 2: L'INTUIZIONE -->
-                    <article class="journey-card journey-card-idea">
-                        <div class="journey-card-top">
-                            <span class="journey-step-tag">02 · L'Intuizione</span>
-                            <span class="journey-context-badge">Laboratori CSI Piemonte</span>
-                        </div>
-                        <h3 class="journey-title">La voce di chi la scuola la vive davvero</h3>
-                        <p class="journey-desc">
-                            Insieme ai tutor esperti di CSI Piemonte, gli studenti della classe 4CI hanno compreso che un chatbot addestrato con il linguaggio dei ragazzi avrebbe colmato questo divario, spiegando corsi e indirizzi in modo diretto e comprensibile.
-                        </p>
-                        <div class="journey-highlight-box">
-                            <strong>La nostra idea:</strong> Unire la competenza tecnica sull'AI al punto di vista autentico degli studenti dell'Avogadro.
+                    <article class="journey-card">
+                        <img class="journey-photo" src="assets/img/galleria/in_classe/foto_classe_1.jpg" width="4000" height="3000" loading="lazy" decoding="async" alt="Gli studenti presentano il lavoro sul chatbot ai compagni in classe">
+                        <div class="journey-copy">
+                            <p class="journey-location">Il lavoro in classe</p>
+                            <h3 class="journey-title">Poi ci siamo messi al lavoro</h3>
+                            <p class="journey-desc">Abbiamo raccolto le informazioni, scritto le risposte e provato il programma. Una domanda alla volta, abbiamo corretto quello che non funzionava e imparato a lavorare insieme.</p>
                         </div>
                     </article>
 
-                    <!-- FASE 3: IL RISULTATO -->
-                    <article class="journey-card journey-card-solution">
-                        <div class="journey-card-top">
-                            <span class="journey-step-tag">03 · Il Risultato</span>
-                            <span class="journey-context-badge">Ufficiale & Verificato</span>
-                        </div>
-                        <h3 class="journey-title">Un assistente affidabile e sempre pronto</h3>
-                        <p class="journey-desc">
-                            GustAvo non si limita a rispondere: offre risposte certificate convalidate con i docenti, funziona ovunque da smartphone o PC senza barriere di registrazione, nel rispetto rigoroso della privacy degli utenti.
-                        </p>
-                        <div class="journey-highlight-box">
-                            <strong>Il risultato:</strong> Uno strumento open-source al servizio dell'istituto, oggi patrimonio della scuola.
+                    <article class="journey-card">
+                        <img class="journey-photo" src="assets/img/home/foto_home_2.jpg" width="4000" height="3000" loading="lazy" decoding="async" alt="Presentazione del chatbot e dei suoi possibili utilizzi al CSI Piemonte">
+                        <div class="journey-copy">
+                            <p class="journey-location">Il progetto prende forma</p>
+                            <h3 class="journey-title">Adesso puoi provarlo tu</h3>
+                            <p class="journey-desc">Il risultato è GustAvo: un aiuto per conoscere indirizzi, materie e laboratori. Un progetto fatto da noi studenti, per chi sarà al nostro posto nei prossimi anni.</p>
                         </div>
                     </article>
                 </div>
             </section>
 
-            <!-- SEZIONE "COME FUNZIONA?" (Pipeline tecnologica autentica) -->
-            <section class="content-section project-architecture-section">
+            <!-- I passaggi di una risposta -->
+            <section class="content-section project-architecture-section" aria-labelledby="project-how-title">
                 <header class="section-header">
-                    <span class="project-section-kicker">Architettura Tecnica</span>
-                    <h2 class="section-title">Come funziona GustAvo?</h2>
-                    <p class="section-subtitle">
-                        Nessun modello generativo opaco: una pipeline in Python basata su NLP deterministico, similarità semantica e risposte certificate.
-                    </p>
+                    <span class="project-section-kicker">Dentro GustAvo</span>
+                    <h2 class="section-title" id="project-how-title">Dalla tua domanda alla risposta.</h2>
+                    <p class="section-subtitle">Dietro la chat c'è un programma che cerca la risposta più adatta tra quelle che abbiamo preparato.</p>
                 </header>
 
-                <div class="tech-pipeline-flow">
-                    <!-- STEP 1 -->
-                    <div class="pipeline-step">
-                        <div class="pipeline-step-indicator">
-                            <span class="pipeline-num">1</span>
-                            <span class="pipeline-connector" aria-hidden="true"></span>
-                        </div>
-                        <div class="pipeline-step-body">
-                            <div class="pipeline-badge">Fase 1 · Input Utente</div>
-                            <h3 class="pipeline-title">Domanda in linguaggio naturale</h3>
-                            <p class="pipeline-desc">
-                                L'utente scrive liberamente la sua domanda da PC o smartphone (es. <em>"Cosa si studia a Informatica?"</em> o <em>"A che ora iniziano le lezioni?"</em>).
-                            </p>
-                            <span class="pipeline-pill">Interfaccia Web Responsiva</span>
-                        </div>
-                    </div>
-
-                    <!-- STEP 2 -->
-                    <div class="pipeline-step">
-                        <div class="pipeline-step-indicator">
-                            <span class="pipeline-num">2</span>
-                            <span class="pipeline-connector" aria-hidden="true"></span>
-                        </div>
-                        <div class="pipeline-step-body">
-                            <div class="pipeline-badge">Fase 2 · NLP & Vettorizzazione</div>
-                            <h3 class="pipeline-title">Elaborazione semantica (TF-IDF)</h3>
-                            <p class="pipeline-desc">
-                                Il testo viene ripulito da stopword, normalizzato e convertito in vettori numerici tramite l'algoritmo TF-IDF implementato con Python e Scikit-learn.
-                            </p>
-                            <span class="pipeline-pill">Python · Scikit-learn · TF-IDF</span>
-                        </div>
-                    </div>
-
-                    <!-- STEP 3 -->
-                    <div class="pipeline-step">
-                        <div class="pipeline-step-indicator">
-                            <span class="pipeline-num">3</span>
-                            <span class="pipeline-connector" aria-hidden="true"></span>
-                        </div>
-                        <div class="pipeline-step-body">
-                            <div class="pipeline-badge">Fase 3 · Matching & Convalida</div>
-                            <h3 class="pipeline-title">Controllo d'intento in <code>intents.json</code></h3>
-                            <p class="pipeline-desc">
-                                Il motore calcola la similarità coseno con i pattern approvati. Se la soglia di confidenza è soddisfatta, viene estratta la risposta ufficiale verificata dalla scuola.
-                            </p>
-                            <span class="pipeline-pill">Cosine Similarity · Zero Allucinazioni</span>
-                        </div>
-                    </div>
-
-                    <!-- STEP 4 -->
-                    <div class="pipeline-step">
-                        <div class="pipeline-step-indicator">
-                            <span class="pipeline-num">4</span>
-                        </div>
-                        <div class="pipeline-step-body">
-                            <div class="pipeline-badge">Fase 4 · Consegna & Privacy</div>
-                            <h3 class="pipeline-title">Risposta istantanea senza tracciamento</h3>
-                            <p class="pipeline-desc">
-                                L'utente riceve immediatamente la risposta formattata. Nessuna cronologia, cookie o dato identificativo viene memorizzato né trasmesso a server esterni.
-                            </p>
-                            <span class="pipeline-pill">Privacy by Design · 0 Cookie</span>
-                        </div>
-                    </div>
-                </div>
+                <ol class="tech-pipeline-flow">
+                    <li class="pipeline-step">
+                        <span class="pipeline-num" aria-hidden="true">01</span>
+                        <h3 class="pipeline-title">Tu chiedi</h3>
+                        <p class="pipeline-desc">Scrivi come parleresti a una persona. Per esempio: «Quante ore di laboratorio ci sono?»</p>
+                    </li>
+                    <li class="pipeline-step">
+                        <span class="pipeline-num" aria-hidden="true">02</span>
+                        <h3 class="pipeline-title">GustAvo legge</h3>
+                        <p class="pipeline-desc">Il programma elabora le parole della domanda per poterle confrontare con gli esempi raccolti.</p>
+                    </li>
+                    <li class="pipeline-step">
+                        <span class="pipeline-num" aria-hidden="true">03</span>
+                        <h3 class="pipeline-title">Cerca una corrispondenza</h3>
+                        <p class="pipeline-desc">Confronta la richiesta con le domande che conosce e seleziona la risposta associata.</p>
+                    </li>
+                    <li class="pipeline-step">
+                        <span class="pipeline-num" aria-hidden="true">04</span>
+                        <h3 class="pipeline-title">Ti risponde</h3>
+                        <p class="pipeline-desc">La risposta compare nella chat. Se non trova una corrispondenza sufficiente, ti chiede di riformulare.</p>
+                    </li>
+                </ol>
             </section>
 
         </div>

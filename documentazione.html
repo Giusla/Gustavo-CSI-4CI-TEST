@@ -20,7 +20,7 @@
     <meta name="twitter:title" content="GustAvo">
     <meta name="twitter:description" content="GustAvo, Il chatbot che ti orienta a scuola · IIS Avogadro">
 
-    <link rel="stylesheet" href="assets/css/style.css?v=4.6">
+    <link rel="stylesheet" href="assets/css/style.css?v=4.10">
     <script src="assets/js/main.js?v=4.6" defer></script>
 </head>
 <body>
@@ -78,7 +78,7 @@
     <main class="page-wrapper" id="main">
         <div class="container">
             
-            <header class="page-header">
+            <header class="page-header documentation-page-header">
                 <h1 class="titolo-pagina">Documentazione Tecnica</h1>
                 <p class="sottotitolo">
                     Architettura del backend, struttura dei dati e le tre soluzioni di Machine Learning a confronto.
@@ -105,13 +105,13 @@
                 <p>
                     Il flusso operativo che trasforma una domanda dell'utente in una risposta certa segue cinque passaggi sequenziali:
                 </p>
-                <ol style="margin-left: 20px; line-height: 1.8; color: var(--text-body);">
+                <ul style="margin-left: 20px; line-height: 1.8; color: var(--text-body);">
                     <li><strong>Input dell'utente:</strong> lo studente digita la propria domanda nel campo di testo dell'interfaccia.</li>
                     <li><strong>Inoltro HTTP:</strong> il client web effettua una chiamata asincrona (fetch POST) inviando il payload <code>{ "message": "..." }</code> all'endpoint <code>/chat</code>.</li>
                     <li><strong>Vettorizzazione e Classificazione:</strong> il server pre-elabora il messaggio, lo converte in vettore numerico tramite <code>TfidfVectorizer</code> e calcola la similarità coseno con ciascun pattern di addestramento.</li>
                     <li><strong>Identificazione dell'intento:</strong> l'algoritmo seleziona il tag con il punteggio di confidenza più alto. Se il punteggio supera la soglia prefissata (threshold), l'intento viene validato; in caso contrario, scatta il fallback di sicurezza (<em>"Non ho capito bene la domanda"</em>).</li>
                     <li><strong>Erogazione della risposta:</strong> il server estrae la risposta convalidata associata al tag individuato e la restituisce al client in formato JSON per la visualizzazione a schermo.</li>
-                </ol>
+                </ul>
             </section>
 
             <!-- 3. STRUTTURA DEL PROGETTO E TECNOLOGIE -->
