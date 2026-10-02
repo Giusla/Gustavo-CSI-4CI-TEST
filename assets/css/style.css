@@ -687,34 +687,29 @@ body>header {
 }
 
 /* Link al sito della scuola dentro il testo dell'hero */
-
 .link-scuola {
-    color: var(--text-heading);
-    font-weight: 700;
-    text-decoration: none;
-    padding: 0 4px;
-    margin: 0 -4px;
-    border-radius: 5px;
-
-    /* sottolineatura con il gradiente del brand */
-    background-image: var(--brand-gradient);
-    background-repeat: no-repeat;
-    background-position: 0 100%;
-    background-size: 100% 3px;
-
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
-    transition: background-size 0.35s cubic-bezier(0.25, 1, 0.5, 1),
-        color 0.25s ease;
+    color: var(--brand-blue, #0066ff);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: rgba(0, 102, 255, 0.45);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+    border-radius: 3px;
+    padding: 1px 3px;
+    margin: -1px -3px;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease, background-color 0.2s ease;
 }
 
+.link-scuola:hover {
+    color: #004ecc;
+    text-decoration-color: var(--brand-blue, #0066ff);
+    background-color: rgba(0, 102, 255, 0.06);
+}
 
-
-.link-scuola:hover,
 .link-scuola:focus-visible {
-    background-size: 100% 100%;
-    color: #ffffff;
-    outline: none;
+    outline: 2px solid var(--brand-blue, #0066ff);
+    outline-offset: 3px;
+    border-radius: 4px;
 }
 
 /* Composizione Visiva Fotografica Sovrapposta & Leggermente Inclinata (Senza Saltelli) */
@@ -2232,32 +2227,52 @@ body.modal-is-open {
     margin-top: 10px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    color: #ffffff;
-    max-width: min(90vw, 760px);
-    background: rgba(15, 23, 42, 0.82);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    padding: 8px 16px;
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+.lightbox-meta {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #ffffff;
+    padding: 12px 20px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    box-shadow: 0 20px 50px rgba(0, 10, 30, 0.35), 0 4px 14px rgba(0, 0, 0, 0.08);
+    max-width: min(90vw, 780px);
+    font-family: var(--font-main, 'Plus Jakarta Sans', system-ui, sans-serif);
+    animation: lightboxMetaIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes lightboxMetaIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .lightbox-counter {
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #38bdf8;
-    background: rgba(56, 189, 248, 0.16);
-    padding: 3px 9px;
-    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    color: var(--brand-blue, #0066ff);
+    background: linear-gradient(135deg, rgba(0, 168, 107, 0.12) 0%, rgba(0, 102, 255, 0.12) 100%);
+    border: 1px solid rgba(0, 102, 255, 0.22);
+    padding: 4px 12px;
+    border-radius: 999px;
     flex-shrink: 0;
 }
 
 .lightbox-caption {
-    font-size: 0.84rem;
+    font-size: 0.92rem;
+    font-weight: 600;
     line-height: 1.45;
-    color: #e2e8f0;
+    color: var(--text-heading, #0f172a);
     margin: 0;
     white-space: normal;
     word-break: break-word;
@@ -2272,16 +2287,18 @@ body.modal-is-open {
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    background: rgba(255, 255, 255, 0.12);
-    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--brand-blue, #0066ff);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     z-index: 10001;
-    transition: all 0.25s ease;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .lightbox-nav-btn.prev {
@@ -2295,8 +2312,8 @@ body.modal-is-open {
 .lightbox-nav-btn:hover:not(:disabled) {
     background: #ffffff;
     color: var(--brand-blue);
-    transform: translateY(-50%) scale(1.12);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 12px 32px rgba(0, 102, 255, 0.35);
 }
 
 .lightbox-nav-btn:active:not(:disabled) {
@@ -2312,10 +2329,9 @@ body.modal-is-open {
     position: fixed;
     top: 20px;
     right: 24px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    color: #ffffff;
-    font-size: 1.4rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    color: var(--text-heading, #0f172a);
     width: 42px;
     height: 42px;
     border-radius: 50%;
@@ -2324,13 +2340,17 @@ body.modal-is-open {
     justify-content: center;
     cursor: pointer;
     z-index: 10002;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
     transition: all 0.2s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .lightbox-close-btn:hover {
-    background: #ef4444;
-    border-color: #ef4444;
-    transform: scale(1.08);
+    background: #fee2e2;
+    border-color: #fca5a5;
+    color: #b91c1c;
+    transform: scale(1.08) rotate(90deg);
 }
 
 /* --------------------------------------------------------------------------
@@ -2798,25 +2818,27 @@ body.modal-is-open {
     .lightbox-meta {
         width: 94vw;
         max-width: 94vw;
-        padding: 6px 12px;
-        margin-top: 8px;
-        gap: 8px;
+        padding: 9px 14px;
+        margin-top: 10px;
+        gap: 10px;
+        border-radius: 12px;
     }
 
     .lightbox-caption {
-        font-size: 0.78rem;
+        font-size: 0.82rem;
         line-height: 1.35;
     }
 
     .lightbox-counter {
-        font-size: 0.72rem;
-        padding: 2px 6px;
+        font-size: 0.74rem;
+        padding: 3px 8px;
     }
 
     .lightbox-nav-btn {
-        width: 38px;
-        height: 38px;
-        background: rgba(15, 23, 42, 0.75);
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--brand-blue);
     }
 
     .lightbox-nav-btn.prev {
