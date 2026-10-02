@@ -818,21 +818,9 @@ body>header {
     line-height: 1.6;
 }
 
-/* Badge & Pill Tag Universale */
+/* Badge & Pill Tag Universale (rimosse) */
 .badge-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.72rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    background: rgba(0, 102, 255, 0.08);
-    color: var(--brand-blue);
-    margin-bottom: 8px;
-    width: fit-content;
+    display: none !important;
 }
 
 /* Quick Highlights Bar in Home */
@@ -2257,15 +2245,12 @@ body.modal-is-open {
 .lightbox-counter {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    font-size: 0.82rem;
-    font-weight: 800;
-    letter-spacing: 0.03em;
-    color: var(--brand-blue, #0066ff);
-    background: linear-gradient(135deg, rgba(0, 168, 107, 0.12) 0%, rgba(0, 102, 255, 0.12) 100%);
-    border: 1px solid rgba(0, 102, 255, 0.22);
-    padding: 4px 12px;
-    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted, #64748b);
+    background: transparent;
+    border: none;
+    padding: 0;
     flex-shrink: 0;
 }
 
@@ -2831,8 +2816,8 @@ body.modal-is-open {
     }
 
     .lightbox-counter {
-        font-size: 0.74rem;
-        padding: 3px 8px;
+        font-size: 0.78rem;
+        padding: 0;
     }
 
     .lightbox-nav-btn {
