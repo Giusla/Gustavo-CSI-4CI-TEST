@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    GustAvo â€” Portale Ufficiale del Progetto
    IIS Amedeo Avogadro, Torino Â· Classe 5CI
    Design editoriale, moderno, tecnologico e autentico
@@ -3107,12 +3107,14 @@ body.modal-is-open {
     box-shadow: 0 0 0 6px rgba(0, 102, 255, 0.25);
 }
 
-.g-a11y-btn svg {
-    width: 26px;
-    height: 26px;
+.g-a11y-btn svg,
+.g-a11y-btn .g-a11y-icon {
+    width: 28px;
+    height: 28px;
     pointer-events: none;
     display: block;
     flex-shrink: 0;
+    object-fit: contain;
 }
 
 /* â”€â”€ Tooltip â”€â”€ */

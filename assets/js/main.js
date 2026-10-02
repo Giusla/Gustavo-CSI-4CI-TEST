@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GustAvo â€” Script di navigazione, galleria e custom video player
  * Istituto Amedeo Avogadro, Torino Â· Classe 5CI
  */
@@ -978,17 +978,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const brainIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>`;
         const imageIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>`;
 
-        // â”€â”€ Costruzione pulsante â”€â”€
+        // ── Costruzione pulsante ──
         const btn = document.createElement('button');
         btn.id = 'gustavoA11yBtn';
         btn.className = 'g-a11y-btn';
         btn.type = 'button';
-        btn.setAttribute('aria-label', 'Apri impostazioni di accessibilitÃ ');
+        btn.setAttribute('aria-label', 'Apri impostazioni di accessibilità');
         btn.setAttribute('aria-expanded', 'false');
         btn.setAttribute('aria-controls', 'gustavoA11yPanel');
         btn.innerHTML = `
-            <span class="g-a11y-tooltip" aria-hidden="true">AccessibilitÃ </span>
-            ${iconSVG}
+            <span class="g-a11y-tooltip" aria-hidden="true">Accessibilità</span>
+            <img src="assets/img/accessibility-icon.png?v=4.6" alt="" class="g-a11y-icon" aria-hidden="true" draggable="false" />
         `;
 
         // â”€â”€ Linea guida lettura â”€â”€
