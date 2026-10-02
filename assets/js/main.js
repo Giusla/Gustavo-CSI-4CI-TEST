@@ -941,13 +941,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const triggerBtn = document.createElement('button');
         triggerBtn.className = 'a11y-trigger-btn';
         triggerBtn.id = 'a11yTriggerBtn';
-        triggerBtn.setAttribute('aria-label', 'Opzioni di accessibilità');
+        triggerBtn.setAttribute('aria-label', 'Menu opzioni di accessibilità');
         triggerBtn.setAttribute('aria-expanded', 'false');
         triggerBtn.setAttribute('title', 'Accessibilità del sito');
+        // Icona ufficiale accessibilità universale (sagoma a braccia e gambe aperte all'interno di un cerchio armonico)
         triggerBtn.innerHTML = `
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="4.5" r="2.5"></circle>
-                <path d="M4 9a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1h-3v10a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-6h-2v6a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V11H3a1 1 0 0 1-1-1V9z"></path>
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <circle cx="12" cy="4" r="2"></circle>
+                <path d="M19 8.5c-.5-.3-1.1-.1-1.4.4l-2.4 3.6-1.7-1.3c-.3-.2-.7-.3-1-.2-.4.1-.7.4-.8.7l-1.5 4.5-2.2-2.9c-.3-.4-.9-.5-1.4-.2s-.5.9-.2 1.4l3.1 4c.3.4.8.6 1.3.5.5-.1.9-.5 1.1-1l1.3-3.9 1.4 1.1c.3.2.7.3 1.1.2.4-.1.7-.4.9-.7l2.8-4.2c.3-.5.1-1.1-.4-1.4zM5 8c-.6 0-1 .4-1 1s.4 1 1 1h5.8l-1.3-2H5z"></path>
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18.2c-4.52 0-8.2-3.68-8.2-8.2s3.68-8.2 8.2-8.2 8.2 3.68 8.2 8.2-3.68 8.2-8.2 8.2z"></path>
             </svg>
         `;
 
@@ -959,12 +961,15 @@ document.addEventListener('DOMContentLoaded', () => {
         panel.innerHTML = `
             <div class="a11y-panel-header">
                 <div class="a11y-panel-title">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <circle cx="12" cy="12" r="10"></circle>
-                        <path d="M12 8v8"></path>
-                        <path d="M8 12h8"></path>
+                        <circle cx="12" cy="7.5" r="1.5" fill="currentColor"></circle>
+                        <path d="M7 11h10"></path>
+                        <path d="M12 11v7"></path>
+                        <path d="M9 18l3-3 3 3"></path>
                     </svg>
-                    Accessibilità
+                    <span>Accessibilità</span>
+                    <span class="a11y-panel-badge">GustAvo</span>
                 </div>
                 <button class="a11y-panel-close" id="a11yCloseBtn" aria-label="Chiudi pannello accessibilità">&times;</button>
             </div>
@@ -973,7 +978,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="a11y-item">
                     <div class="a11y-item-label">
                         <span class="a11y-item-name">Dimensione Testo</span>
-                        <span class="a11y-item-desc">Regola la grandezza dei caratteri</span>
+                        <span class="a11y-item-desc">Ingrandisce o riduce i caratteri</span>
                     </div>
                     <div class="a11y-btn-group">
                         <button class="a11y-btn-control" id="a11yDecFont" aria-label="Riduci testo">A-</button>
@@ -986,7 +991,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="a11y-item">
                     <div class="a11y-item-label">
                         <span class="a11y-item-name">Alto Contrasto</span>
-                        <span class="a11y-item-desc">Migliora visibilità dei testi e bordi</span>
+                        <span class="a11y-item-desc">Migliora contrasto per ipovedenti</span>
                     </div>
                     <label class="a11y-toggle">
                         <input type="checkbox" id="a11yHighContrast">
@@ -998,7 +1003,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="a11y-item">
                     <div class="a11y-item-label">
                         <span class="a11y-item-name">Font Alta Leggibilità</span>
-                        <span class="a11y-item-desc">Caratteri chiari e spaziatura adatta per dislessia</span>
+                        <span class="a11y-item-desc">Caratteri ideati per dislessia (DSA)</span>
                     </div>
                     <label class="a11y-toggle">
                         <input type="checkbox" id="a11yDyslexic">
@@ -1006,11 +1011,47 @@ document.addEventListener('DOMContentLoaded', () => {
                     </label>
                 </div>
 
-                <!-- 4. Riduci Animazioni -->
+                <!-- 4. Evidenzia Link -->
+                <div class="a11y-item">
+                    <div class="a11y-item-label">
+                        <span class="a11y-item-name">Evidenzia Tutti i Link</span>
+                        <span class="a11y-item-desc">Rende visibili tutti i collegamenti e bottoni</span>
+                    </div>
+                    <label class="a11y-toggle">
+                        <input type="checkbox" id="a11yHighlightLinks">
+                        <span class="a11y-toggle-slider" aria-hidden="true"></span>
+                    </label>
+                </div>
+
+                <!-- 5. Cursore Ingrandito -->
+                <div class="a11y-item">
+                    <div class="a11y-item-label">
+                        <span class="a11y-item-name">Cursore Grande & Colorato</span>
+                        <span class="a11y-item-desc">Puntatore mouse ingrandito e ad alta visibilità</span>
+                    </div>
+                    <label class="a11y-toggle">
+                        <input type="checkbox" id="a11yBigCursor">
+                        <span class="a11y-toggle-slider" aria-hidden="true"></span>
+                    </label>
+                </div>
+
+                <!-- 6. Spaziatura del Testo -->
+                <div class="a11y-item">
+                    <div class="a11y-item-label">
+                        <span class="a11y-item-name">Spaziatura Testo</span>
+                        <span class="a11y-item-desc">Aumenta interlinea e distanza tra lettere</span>
+                    </div>
+                    <label class="a11y-toggle">
+                        <input type="checkbox" id="a11yTextSpacing">
+                        <span class="a11y-toggle-slider" aria-hidden="true"></span>
+                    </label>
+                </div>
+
+                <!-- 7. Riduci Animazioni -->
                 <div class="a11y-item">
                     <div class="a11y-item-label">
                         <span class="a11y-item-name">Ferma Animazioni</span>
-                        <span class="a11y-item-desc">Disattiva transizioni e movimenti rapidi</span>
+                        <span class="a11y-item-desc">Disattiva movimenti e transizioni rapide</span>
                     </div>
                     <label class="a11y-toggle">
                         <input type="checkbox" id="a11yReducedMotion">
@@ -1018,11 +1059,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     </label>
                 </div>
 
-                <!-- 5. Guida di Lettura -->
+                <!-- 8. Guida di Lettura -->
                 <div class="a11y-item">
                     <div class="a11y-item-label">
                         <span class="a11y-item-name">Guida di Lettura</span>
-                        <span class="a11y-item-desc">Barra orizzontale che segue il cursore</span>
+                        <span class="a11y-item-desc">Barra azzurra che segue il cursore</span>
                     </div>
                     <label class="a11y-toggle">
                         <input type="checkbox" id="a11yReadingGuide">
@@ -1031,7 +1072,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             </div>
             <div class="a11y-panel-footer">
-                <button class="a11y-reset-btn" id="a11yResetBtn">Ripristina Predefiniti</button>
+                <span class="a11y-status-note">Preferenze salvate</span>
+                <button class="a11y-reset-btn" id="a11yResetBtn">Ripristina</button>
             </div>
         `;
 
@@ -1065,6 +1107,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     const cb = document.getElementById('a11yDyslexic');
                     if (cb) cb.checked = true;
                 }
+                if (prefs.highlightLinks) {
+                    document.documentElement.classList.add('a11y-highlight-links');
+                    const cb = document.getElementById('a11yHighlightLinks');
+                    if (cb) cb.checked = true;
+                }
+                if (prefs.bigCursor) {
+                    document.documentElement.classList.add('a11y-big-cursor');
+                    const cb = document.getElementById('a11yBigCursor');
+                    if (cb) cb.checked = true;
+                }
+                if (prefs.textSpacing) {
+                    document.documentElement.classList.add('a11y-text-spacing');
+                    const cb = document.getElementById('a11yTextSpacing');
+                    if (cb) cb.checked = true;
+                }
                 if (prefs.reducedMotion) {
                     document.documentElement.classList.add('a11y-reduced-motion');
                     const cb = document.getElementById('a11yReducedMotion');
@@ -1086,6 +1143,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     fontStep: currentFontIndex,
                     highContrast: document.documentElement.classList.contains('a11y-high-contrast'),
                     dyslexic: document.documentElement.classList.contains('a11y-dyslexic-font'),
+                    highlightLinks: document.documentElement.classList.contains('a11y-highlight-links'),
+                    bigCursor: document.documentElement.classList.contains('a11y-big-cursor'),
+                    textSpacing: document.documentElement.classList.contains('a11y-text-spacing'),
                     reducedMotion: document.documentElement.classList.contains('a11y-reduced-motion'),
                     readingGuide: document.documentElement.classList.contains('a11y-guide-active')
                 };
@@ -1181,6 +1241,30 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        const highlightLinksCb = document.getElementById('a11yHighlightLinks');
+        if (highlightLinksCb) {
+            highlightLinksCb.addEventListener('change', () => {
+                document.documentElement.classList.toggle('a11y-highlight-links', highlightLinksCb.checked);
+                savePrefs();
+            });
+        }
+
+        const bigCursorCb = document.getElementById('a11yBigCursor');
+        if (bigCursorCb) {
+            bigCursorCb.addEventListener('change', () => {
+                document.documentElement.classList.toggle('a11y-big-cursor', bigCursorCb.checked);
+                savePrefs();
+            });
+        }
+
+        const textSpacingCb = document.getElementById('a11yTextSpacing');
+        if (textSpacingCb) {
+            textSpacingCb.addEventListener('change', () => {
+                document.documentElement.classList.toggle('a11y-text-spacing', textSpacingCb.checked);
+                savePrefs();
+            });
+        }
+
         const reducedMotionCb = document.getElementById('a11yReducedMotion');
         if (reducedMotionCb) {
             reducedMotionCb.addEventListener('change', () => {
@@ -1212,11 +1296,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.documentElement.classList.remove(
                     'a11y-high-contrast',
                     'a11y-dyslexic-font',
+                    'a11y-highlight-links',
+                    'a11y-big-cursor',
+                    'a11y-text-spacing',
                     'a11y-reduced-motion',
                     'a11y-guide-active'
                 );
                 if (highContrastCb) highContrastCb.checked = false;
                 if (dyslexicCb) dyslexicCb.checked = false;
+                if (highlightLinksCb) highlightLinksCb.checked = false;
+                if (bigCursorCb) bigCursorCb.checked = false;
+                if (textSpacingCb) textSpacingCb.checked = false;
                 if (reducedMotionCb) reducedMotionCb.checked = false;
                 if (readingGuideCb) readingGuideCb.checked = false;
                 savePrefs();

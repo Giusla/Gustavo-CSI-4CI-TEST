@@ -3070,34 +3070,35 @@ body.modal-is-open {
 }
 
 /* --------------------------------------------------------------------------
-   13. Widget e Funzionalità di Accessibilità (a11y)
+   13. Widget e Funzionalità di Accessibilità Universale (a11y)
    -------------------------------------------------------------------------- */
 
-/* Tasto galleggiante tondo in basso a destra */
+/* Tasto galleggiante tondo in basso a destra (Logo ufficiale dell'Omino Universale / Accessibilità) */
 .a11y-trigger-btn {
     position: fixed;
     bottom: 24px;
     right: 24px;
-    width: 52px;
-    height: 52px;
+    width: 54px;
+    height: 54px;
     border-radius: 50%;
     background: var(--brand-gradient);
     color: #ffffff;
-    border: none;
-    box-shadow: 0 4px 16px rgba(0, 102, 255, 0.35), 0 2px 6px rgba(0, 0, 0, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 6px 20px rgba(0, 102, 255, 0.42), 0 2px 8px rgba(0, 0, 0, 0.16);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 9999;
-    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease;
     padding: 0;
     outline: none;
 }
 
 .a11y-trigger-btn:hover {
-    transform: scale(1.08);
-    box-shadow: 0 6px 22px rgba(0, 102, 255, 0.48), 0 2px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.09);
+    box-shadow: 0 10px 28px rgba(0, 102, 255, 0.55), 0 3px 10px rgba(0, 0, 0, 0.22);
+    border-color: #ffffff;
 }
 
 .a11y-trigger-btn:focus-visible {
@@ -3106,31 +3107,37 @@ body.modal-is-open {
 }
 
 .a11y-trigger-btn svg {
-    width: 26px;
-    height: 26px;
-    transition: transform 0.3s ease;
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.a11y-trigger-btn.attivo {
+    background: var(--brand-dark);
+    border-color: #38bdf8;
+    box-shadow: 0 8px 26px rgba(15, 23, 42, 0.5);
 }
 
 .a11y-trigger-btn.attivo svg {
-    transform: rotate(45deg);
+    transform: rotate(180deg);
 }
 
-/* Pannello modale accessibilità */
+/* Pannello modale accessibilità coerente con il design di GustAvo */
 .a11y-panel {
     position: fixed;
-    bottom: 86px;
+    bottom: 88px;
     right: 24px;
-    width: 320px;
+    width: 350px;
     max-width: calc(100vw - 32px);
     background: #ffffff;
-    border-radius: 16px;
-    border: 1px solid var(--border-subtle);
-    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.22), 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.25), 0 6px 18px rgba(0, 0, 0, 0.08);
     z-index: 9999;
     display: none;
     flex-direction: column;
     overflow: hidden;
-    animation: a11yPanelIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: a11yPanelIn 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .a11y-panel.attivo {
@@ -3140,7 +3147,7 @@ body.modal-is-open {
 @keyframes a11yPanelIn {
     from {
         opacity: 0;
-        transform: translateY(12px) scale(0.96);
+        transform: translateY(14px) scale(0.95);
     }
     to {
         opacity: 1;
@@ -3148,127 +3155,154 @@ body.modal-is-open {
     }
 }
 
+/* Header con gradiente ufficiale GustAvo */
 .a11y-panel-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 18px;
-    background: var(--brand-dark);
+    padding: 15px 20px;
+    background: var(--brand-gradient);
     color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .a11y-panel-title {
     display: flex;
     align-items: center;
-    gap: 8px;
-    font-size: 0.95rem;
-    font-weight: 700;
+    gap: 10px;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: -0.2px;
 }
 
-.a11y-panel-title svg {
-    width: 20px;
-    height: 20px;
-    color: #38bdf8;
+.a11y-panel-badge {
+    background: rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+    font-size: 0.70rem;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
 }
 
 .a11y-panel-close {
-    background: none;
+    background: rgba(255, 255, 255, 0.18);
     border: none;
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.4rem;
+    color: #ffffff;
+    font-size: 1.25rem;
     line-height: 1;
     cursor: pointer;
-    padding: 2px 6px;
-    border-radius: 4px;
-    transition: color 0.2s, background 0.2s;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
 }
 
 .a11y-panel-close:hover {
-    color: #ffffff;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.35);
+    transform: scale(1.08);
 }
 
 .a11y-panel-body {
-    padding: 16px;
+    padding: 14px 16px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    max-height: 380px;
+    gap: 10px;
+    max-height: 420px;
     overflow-y: auto;
+    background: #f8fafc;
 }
 
 .a11y-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 12px;
-    background: #f8fafc;
+    padding: 11px 14px;
+    background: #ffffff;
     border: 1px solid var(--border-subtle);
-    border-radius: 10px;
+    border-radius: 12px;
     gap: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.a11y-item:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 3px 8px rgba(0, 20, 60, 0.06);
 }
 
 .a11y-item-label {
     display: flex;
     flex-direction: column;
     gap: 2px;
+    flex: 1;
 }
 
 .a11y-item-name {
     font-size: 0.86rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--text-heading);
 }
 
 .a11y-item-desc {
-    font-size: 0.74rem;
+    font-size: 0.72rem;
     color: var(--text-muted);
+    line-height: 1.35;
 }
 
-/* Bottoni incremento/decremento testo */
+/* Pulsanti incremento/decremento testo */
 .a11y-btn-group {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    background: #ffffff;
+    gap: 2px;
+    background: #f1f5f9;
     border: 1px solid var(--border-subtle);
-    border-radius: 8px;
+    border-radius: 999px;
     padding: 2px;
 }
 
 .a11y-btn-control {
-    background: transparent;
-    border: none;
+    background: #ffffff;
+    border: 1px solid rgba(203, 213, 225, 0.7);
     color: var(--text-heading);
     font-weight: 700;
-    font-size: 0.88rem;
-    padding: 4px 10px;
-    border-radius: 6px;
+    font-size: 0.82rem;
+    width: 32px;
+    height: 30px;
+    border-radius: 999px;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
 }
 
-.a11y-btn-control:hover {
+.a11y-btn-control:hover:not(:disabled) {
     background: var(--brand-blue);
     color: #ffffff;
+    border-color: var(--brand-blue);
 }
 
 .a11y-btn-control:disabled {
     opacity: 0.35;
     cursor: not-allowed;
     background: transparent;
-    color: var(--text-muted);
+    border-color: transparent;
 }
 
 .a11y-size-indicator {
     font-size: 0.78rem;
     font-weight: 700;
     color: var(--brand-blue);
-    min-width: 32px;
+    min-width: 38px;
     text-align: center;
 }
 
-/* Switch toggle elegante */
+/* Toggle Switch con gradiente del brand */
 .a11y-toggle {
     position: relative;
     width: 44px;
@@ -3288,7 +3322,7 @@ body.modal-is-open {
     background-color: #cbd5e1;
     border-radius: 999px;
     cursor: pointer;
-    transition: background-color 0.25s ease;
+    transition: background 0.28s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .a11y-toggle-slider::before {
@@ -3300,12 +3334,12 @@ body.modal-is-open {
     bottom: 3px;
     background-color: #ffffff;
     border-radius: 50%;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    transition: transform 0.25s ease;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .a11y-toggle input:checked + .a11y-toggle-slider {
-    background: var(--brand-blue);
+    background: var(--brand-gradient);
 }
 
 .a11y-toggle input:checked + .a11y-toggle-slider::before {
@@ -3317,34 +3351,41 @@ body.modal-is-open {
     outline-offset: 2px;
 }
 
-/* Footer pannello con reset */
+/* Footer del pannello con reset */
 .a11y-panel-footer {
-    padding: 10px 16px;
-    background: #f8fafc;
+    padding: 12px 18px;
+    background: #ffffff;
     border-top: 1px solid var(--border-subtle);
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.a11y-status-note {
+    font-size: 0.72rem;
+    color: var(--text-muted);
 }
 
 .a11y-reset-btn {
     background: transparent;
-    border: none;
+    border: 1px solid rgba(0, 102, 255, 0.25);
     color: var(--brand-blue);
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.78rem;
+    font-weight: 700;
     cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 6px;
-    transition: background 0.2s;
+    padding: 5px 12px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
 }
 
 .a11y-reset-btn:hover {
-    background: rgba(0, 102, 255, 0.08);
-    text-decoration: underline;
+    background: var(--brand-blue);
+    color: #ffffff;
+    border-color: var(--brand-blue);
 }
 
 /* ==========================================================================
-   Classi di Accessibilità applicate a <html> o <body>
+   Classi di Accessibilità applicate al documento
    ========================================================================== */
 
 /* 1. Alto Contrasto */
@@ -3361,21 +3402,22 @@ html.a11y-high-contrast .unified-card,
 html.a11y-high-contrast .gallery-card,
 html.a11y-high-contrast .doc-section,
 html.a11y-high-contrast .story-chapter,
-html.a11y-high-contrast .team-card {
+html.a11y-high-contrast .team-card,
+html.a11y-high-contrast .highlight-box {
     border-color: #000000 !important;
-    box-shadow: 0 0 0 1px #000000 !important;
+    box-shadow: 0 0 0 1.5px #000000 !important;
 }
 
 /* 2. Font ad Alta Leggibilità / Dislessia */
 html.a11y-dyslexic-font body,
 html.a11y-dyslexic-font * {
     font-family: "Atkinson Hyperlegible", "Verdana", "Arial", sans-serif !important;
-    letter-spacing: 0.03em !important;
-    word-spacing: 0.08em !important;
-    line-height: 1.8 !important;
+    letter-spacing: 0.04em !important;
+    word-spacing: 0.09em !important;
+    line-height: 1.85 !important;
 }
 
-/* 3. Riduzione Animazioni / Moto */
+/* 3. Riduzione Animazioni */
 html.a11y-reduced-motion *,
 html.a11y-reduced-motion *::before,
 html.a11y-reduced-motion *::after {
@@ -3385,19 +3427,51 @@ html.a11y-reduced-motion *::after {
     scroll-behavior: auto !important;
 }
 
-/* 4. Guida di Lettura (ruler orizzontale) */
+/* 4. Evidenziazione Link */
+html.a11y-highlight-links a:not(.btn):not(.nav-links a):not(.nav-brand-logos a) {
+    background-color: #fef08a !important;
+    color: #000000 !important;
+    text-decoration: underline !important;
+    text-decoration-thickness: 2.5px !important;
+    text-underline-offset: 3px !important;
+    padding: 1px 4px !important;
+    border-radius: 4px !important;
+    font-weight: 700 !important;
+}
+
+/* 5. Cursore Ingrandito */
+html.a11y-big-cursor,
+html.a11y-big-cursor * {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 24 24' fill='%230066ff' stroke='%23ffffff' stroke-width='1.5'><polygon points='3,3 3,21 9,15 15,21 17,19 11,13 19,13'/></svg>"), default !important;
+}
+
+html.a11y-big-cursor a,
+html.a11y-big-cursor button,
+html.a11y-big-cursor [role="button"] {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36' viewBox='0 0 24 24' fill='%2300a86b' stroke='%23ffffff' stroke-width='1.5'><path d='M10 2a2 2 0 0 0-2 2v7.1a2 2 0 0 1-.6 1.4l-3 3a1.5 1.5 0 0 0 2.1 2.1l2.5-2.5V20a2 2 0 0 0 4 0v-6a2 2 0 0 1 4 0v2a2 2 0 0 0 4 0v-6a2 2 0 0 0-2-2h-2V4a2 2 0 0 0-2-2z'/></svg>"), pointer !important;
+}
+
+/* 6. Spaziatura Testo Aumentata */
+html.a11y-text-spacing body * {
+    letter-spacing: 0.08em !important;
+    word-spacing: 0.16em !important;
+    line-height: 2 !important;
+}
+
+/* 7. Guida di Lettura (ruler orizzontale al passaggio mouse) */
 .a11y-reading-guide {
     display: none;
     position: fixed;
     left: 0;
     width: 100vw;
-    height: 36px;
-    background: rgba(0, 102, 255, 0.12);
-    border-top: 2px solid var(--brand-blue);
-    border-bottom: 2px solid var(--brand-blue);
+    height: 38px;
+    background: rgba(0, 102, 255, 0.14);
+    border-top: 2.5px solid var(--brand-blue);
+    border-bottom: 2.5px solid var(--brand-blue);
     pointer-events: none;
     z-index: 99998;
     transform: translateY(-50%);
+    box-shadow: 0 0 16px rgba(0, 102, 255, 0.2);
 }
 
 html.a11y-guide-active .a11y-reading-guide {
@@ -3407,16 +3481,16 @@ html.a11y-guide-active .a11y-reading-guide {
 /* Posizionamento mobile */
 @media (max-width: 580px) {
     .a11y-trigger-btn {
-        bottom: 16px;
-        right: 16px;
-        width: 48px;
-        height: 48px;
+        bottom: 18px;
+        right: 18px;
+        width: 50px;
+        height: 50px;
     }
 
     .a11y-panel {
-        bottom: 74px;
-        right: 14px;
-        left: 14px;
+        bottom: 78px;
+        right: 12px;
+        left: 12px;
         width: auto;
         max-width: none;
     }
