@@ -27,3 +27,9 @@ GustAvo -- il chatbot che ti orienta a scuola(stile piu piccolo)
 
  <h2>Un progetto nato in classe, cresciuto al CSI Piemonte</h2>
             <h2>Un progetto nato in CSI Piemonte, cresciuto in classe</h2>
+
+[12:53 PM, 01/10/2026] Giuse: rimuovee scroll con freccie della tastiera e drag con la manina su pc, sistemare il responsive delle immagini su full screen, div delle immagini tutti della stess agrandezza
+[12:56 PM, 01/10/2026] Giuse: agviufnee lo scroll delle immagini della home
+[12:57 PM, 01/10/2026] Giuse: aggiungere che quando si condivide il link c'è l'immagine del logo di gustavo
+[1:00 PM, 01/10/2026] Giuse: fare che da telefono quando si preme fuori dal menù ad hamburger si chiude
+da aggiungere pure l accessibilità per i disabili
