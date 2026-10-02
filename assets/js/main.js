@@ -1,6 +1,6 @@
 /**
- * GustAvo â€” Script di navigazione, galleria e custom video player
- * Istituto Amedeo Avogadro, Torino Â· Classe 5CI
+ * GustAvo — Script di navigazione, galleria e custom video player
+ * Istituto Amedeo Avogadro, Torino · Classe 5CI
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', closeNavMobile);
         });
 
-        // Chiusura immediata al tocco o click all'esterno del menÃ¹ da mobile
+        // Chiusura immediata al tocco o click all'esterno del menù da mobile
         document.addEventListener('click', (e) => {
             if (!navMobile.classList.contains('visibile')) return;
             if (!navMobile.contains(e.target) && !hamburgerBtn.contains(e.target)) {
@@ -592,15 +592,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const encountersData = [
             {
                 id: "incontro-1",
-                badge: "1Â° Incontro Â· Sede CSI",
-                title: "1Â° Incontro: Presentazione e Introduzione al CSI Piemonte",
+                badge: "1° Incontro · Sede CSI",
+                title: "1° Incontro: Presentazione e Introduzione al CSI Piemonte",
                 desc: "Kickoff del percorso formativo con i mentor aziendali, analisi dei bisogni di orientamento degli studenti dell'IIS Avogadro e mappatura dei requisiti chiave per il chatbot GustAvo.",
                 photos: [
                     { src: "assets/img/galleria/foto_galleria_1.jpg", alt: "Presentazione introduttiva del percorso formativo presso CSI Piemonte", caption: "Presentazione introduttiva del percorso formativo presso CSI Piemonte" },
                     { src: "assets/img/galleria/foto_galleria_2.jpg", alt: "Sessione di brainstorming sui casi d'uso", caption: "Brainstorming e definizione dei requisiti essenziali del chatbot" },
                     { src: "assets/img/galleria/foto_galleria_3.jpg", alt: "Confronto con i tutor aziendali", caption: "Confronto con i tutor aziendali sulla struttura del servizio" },
                     { src: "assets/img/galleria/inc1_extra_1.svg", alt: "Mappatura Aree Tematiche", caption: "Mappatura delle aree informative dell'IIS Avogadro" },
-                    { src: "assets/img/galleria/inc1_extra_2.svg", alt: "Analisi FAQ Studenti", caption: "Raccolta e prioritizzazione dei quesiti piÃ¹ frequenti" },
+                    { src: "assets/img/galleria/inc1_extra_2.svg", alt: "Analisi FAQ Studenti", caption: "Raccolta e prioritizzazione dei quesiti più frequenti" },
                     { src: "assets/img/galleria/inc1_extra_3.svg", alt: "Categorie di Risposta", caption: "Strutturazione tassonomia: Orari, Didattica, Laboratori" },
                     { src: "assets/img/galleria/foto_galleria_4.jpg", alt: "La classe 5CI con i tutor di CSI Piemonte", caption: "La classe 5CI con i tutor aziendali di CSI Piemonte" },
                     { src: "assets/img/galleria/inc1_extra_4.svg", alt: "Focus Group & Feedback", caption: "Interviste e confronto di classe per convalidare i flussi" },
@@ -611,19 +611,19 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             {
                 id: "incontro-2",
-                badge: "2Â° Incontro Â· Modulo Formativo",
-                title: "2Â° Incontro: AI, Sicurezza Digitale e Seminario Polizia Postale",
-                desc: "Modulo specialistico incentrato su etica dell'intelligenza artificiale, riservatezza e conformitÃ  GDPR, arricchito dal seminario della Polizia Postale sulla prevenzione delle minacce web.",
+                badge: "2° Incontro · Modulo Formativo",
+                title: "2° Incontro: AI, Sicurezza Digitale e Seminario Polizia Postale",
+                desc: "Modulo specialistico incentrato su etica dell'intelligenza artificiale, riservatezza e conformità GDPR, arricchito dal seminario della Polizia Postale sulla prevenzione delle minacce web.",
                 photos: [
                     { src: "assets/img/galleria/foto_galleria_3.jpg", alt: "Incontro Polizia Postale: sicurezza e privacy", caption: "Incontro Polizia Postale: sicurezza informatica e tutela privacy" },
                     { src: "assets/img/galleria/foto_galleria_4.jpg", alt: "Approfondimento con i tutor CSI", caption: "La classe 5CI con i tutor aziendali di CSI Piemonte" },
                     { src: "assets/img/galleria/foto_galleria_5.jpg", alt: "Esposizione architettura privacy-first", caption: "Studio dell'architettura privacy-first senza tracciamento" },
-                    { src: "assets/img/galleria/inc2_extra_1.svg", alt: "Seminario Rischi Digitali", caption: "Sicurezza sul web, prevenzione del phishing e identitÃ  digitale" },
+                    { src: "assets/img/galleria/inc2_extra_1.svg", alt: "Seminario Rischi Digitali", caption: "Sicurezza sul web, prevenzione del phishing e identità digitale" },
                     { src: "assets/img/galleria/inc2_extra_2.svg", alt: "Valutazione Modelli AI", caption: "Confronto e selezione tra LLM e modelli leggeri" },
                     { src: "assets/img/galleria/inc2_extra_3.svg", alt: "Politiche Privacy-First", caption: "Garanzia di anonimato: zero raccolta di dati identificativi" },
                     { src: "assets/img/galleria/foto_galleria_6.jpg", alt: "Studio dei meccanismi di fallback", caption: "Studio dei meccanismi di fallback per domande impreviste" },
                     { src: "assets/img/galleria/inc2_extra_4.svg", alt: "Mitigazione Prompt Injection", caption: "Difesa attiva e sanificazione dei messaggi in input" },
-                    { src: "assets/img/galleria/inc2_extra_5.svg", alt: "Trasparenza Algoritmica", caption: "Principi di spiegabilitÃ  e affidabilitÃ  delle informazioni" },
+                    { src: "assets/img/galleria/inc2_extra_5.svg", alt: "Trasparenza Algoritmica", caption: "Principi di spiegabilità e affidabilità delle informazioni" },
                     { src: "assets/img/galleria/inc2_extra_6.svg", alt: "Filtri di Contenuto", caption: "Guardrails di moderazione e accuratezza scolastica" },
                     { src: "assets/img/galleria/inc2_extra_7.svg", alt: "Controlli API & Endpoint", caption: "Architettura dei microservizi nel cloud di CSI Piemonte" },
                     { src: "assets/img/galleria/foto_galleria_2.jpg", alt: "Discussione aperta con i relatori", caption: "Sessione Q&A e confronto diretto con gli ispettori" },
@@ -632,15 +632,15 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             {
                 id: "incontro-3",
-                badge: "3Â° Incontro Â· Modulo Conclusivo",
-                title: "3Â° Incontro: Prototipazione, Testing e Presentazione Finale",
+                badge: "3° Incontro · Modulo Conclusivo",
+                title: "3° Incontro: Prototipazione, Testing e Presentazione Finale",
                 desc: "Sessione di verifica funzionale e collaudo: stress test delle risposte del chatbot, validazione dell'esperienza utente su dispositivi mobili e consegna dei risultati.",
                 photos: [
                     { src: "assets/img/galleria/foto_galleria_5.jpg", alt: "Testing interattivo dei prototipi del chatbot", caption: "Testing interattivo dei prototipi del chatbot GustAvo" },
                     { src: "assets/img/galleria/foto_galleria_6.jpg", alt: "Conclusione del modulo e avvio dello sviluppo", caption: "Conclusione del modulo e avvio della fase di sviluppo" },
                     { src: "assets/img/galleria/foto_galleria_2.jpg", alt: "Verifica finale delle risposte", caption: "Verifica finale e validazione del concept con i mentor" },
                     { src: "assets/img/galleria/inc3_extra_1.svg", alt: "Test di Carico & Latenza", caption: "Benchmark delle risposte in tempo reale su varie connessioni" },
-                    { src: "assets/img/galleria/inc3_extra_2.svg", alt: "Sessione di Collaudo Utente", caption: "Test di usabilitÃ  con studenti e docenti dell'istituto" },
+                    { src: "assets/img/galleria/inc3_extra_2.svg", alt: "Sessione di Collaudo Utente", caption: "Test di usabilità con studenti e docenti dell'istituto" },
                     { src: "assets/img/galleria/foto_galleria_4.jpg", alt: "Presentazione demo ai tutor", caption: "Presentazione della demo live ai referenti del CSI Piemonte" },
                     { src: "assets/img/galleria/inc3_extra_3.svg", alt: "Verifica Responsive Mobile", caption: "Ottimizzazione della resa grafica su smartphone e tablet" },
                     { src: "assets/img/galleria/inc3_extra_4.svg", alt: "Consegna Documentazione", caption: "Consegna delle specifiche tecniche e manuale d'uso" },
@@ -739,7 +739,7 @@ document.addEventListener('DOMContentLoaded', () => {
             encounterModal.classList.remove('attivo');
             encounterModal.setAttribute('aria-hidden', 'true');
 
-            // Ripristina lo scroll solo se il lightbox non Ã¨ aperto
+            // Ripristina lo scroll solo se il lightbox non è aperto
             if (!lightbox || !lightbox.classList.contains('attivo')) {
                 document.documentElement.classList.remove('modal-is-open');
                 document.body.classList.remove('modal-is-open');
@@ -913,7 +913,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            // AccessibilitÃ  tastiera per ogni card
+            // Accessibilità tastiera per ogni card
             track.querySelectorAll('.gallery-card').forEach(card => {
                 card.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
@@ -934,13 +934,23 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ----------------------------------------------------
-    // 7. Sistema di AccessibilitÃ  GustAvo (v2 â€” Riprogettato da zero)
+    // 7. Sistema di Accessibilità GustAvo (v2 — Essenziale)
     // ----------------------------------------------------
     const initGustavoAccessibility = () => {
         // Evita duplicazioni nel DOM
         if (document.getElementById('gustavoA11yBtn')) return;
 
-        // â”€â”€ Icona SVG accessibilitÃ  moderna â”€â”€
+        // Rimozione preventiva di classi di accessibilità obsolete o rimosse
+        const OBSOLETE_CLASSES = [
+            'g-invert', 'g-grayscale', 'g-vivid', 'g-highlight-headings',
+            'g-highlight-active', 'g-reduce-motion', 'g-stop-motion',
+            'g-reduce-effects', 'g-reading-mode', 'g-reduce-distractions',
+            'g-reading-focus', 'g-hide-decorative', 'g-spacing',
+            'g-align-left', 'g-big-cursor', 'g-reading-guide', 'g-focus-visible'
+        ];
+        OBSOLETE_CLASSES.forEach(cls => document.documentElement.classList.remove(cls));
+
+        // ── Icona SVG accessibilità moderna ──
         const iconSVG = `<svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
             <circle cx="12" cy="4.5" r="1.8" fill="#ffffff" stroke="none"/>
             <path d="M12 7.5v5"/>
@@ -950,12 +960,12 @@ document.addEventListener('DOMContentLoaded', () => {
             <circle cx="17" cy="17.5" r="2" stroke="#ffffff" fill="none"/>
         </svg>`;
 
-        // â”€â”€ SVG chiusura â”€â”€
+        // ── SVG chiusura ──
         const closeSVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true" focusable="false">
             <path d="M18 6L6 18M6 6l12 12"/>
         </svg>`;
 
-        // â”€â”€ Helper: crea un toggle item â”€â”€
+        // ── Helper: crea un toggle item ──
         const makeItem = (id, label, desc) => `
             <div class="g-a11y-item">
                 <div class="g-a11y-item-info">
@@ -970,13 +980,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 </label>
             </div>`;
 
-        // â”€â”€ Helper: SVG icone sezione 14Ã—14 â”€â”€
-        const eyeIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+        // ── Helper: SVG icone sezione 14×14 ──
         const textIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h14"/></svg>`;
-        const cursorIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3l14 9-7 1-4 7z"/></svg>`;
-        const motionIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>`;
-        const brainIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>`;
-        const imageIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>`;
+        const eyeIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
 
         // ── Costruzione pulsante ──
         const btn = document.createElement('button');
@@ -988,47 +994,36 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.setAttribute('aria-controls', 'gustavoA11yPanel');
         btn.innerHTML = `
             <span class="g-a11y-tooltip" aria-hidden="true">Accessibilità</span>
-            <img src="assets/img/accessibility-icon.png?v=4.6" alt="" class="g-a11y-icon" aria-hidden="true" draggable="false" />
+            <span class="g-a11y-icon-wrap" aria-hidden="true">
+                <img src="assets/img/accessibility-icon.png?v=4.6" alt="" class="g-a11y-icon" draggable="false" />
+                <svg class="g-a11y-close-icon" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </span>
         `;
 
-        // â”€â”€ Linea guida lettura â”€â”€
-        const guideLine = document.createElement('div');
-        guideLine.className = 'g-guide-line';
-        guideLine.setAttribute('aria-hidden', 'true');
-
-        // â”€â”€ Costruzione pannello â”€â”€
+        // ── Costruzione pannello ──
         const panel = document.createElement('div');
         panel.id = 'gustavoA11yPanel';
         panel.className = 'g-a11y-panel';
         panel.setAttribute('role', 'region');
-        panel.setAttribute('aria-label', 'Impostazioni di accessibilitÃ ');
+        panel.setAttribute('aria-label', 'Impostazioni di accessibilità');
         panel.setAttribute('aria-hidden', 'true');
 
         panel.innerHTML = `
             <div class="g-a11y-header">
                 <div class="g-a11y-header-content">
-                    <h2 class="g-a11y-title">AccessibilitÃ </h2>
-                    <p class="g-a11y-subtitle">Personalizza la navigazione</p>
+                    <h2 class="g-a11y-title">Accessibilità</h2>
+                    <p class="g-a11y-subtitle">Personalizza la visualizzazione</p>
                 </div>
-                <button type="button" class="g-a11y-close" id="gustavoA11yClose" aria-label="Chiudi impostazioni di accessibilitÃ ">
+                <button type="button" class="g-a11y-close" id="gustavoA11yClose" aria-label="Chiudi impostazioni di accessibilità">
                     ${closeSVG}
                 </button>
             </div>
 
             <div class="g-a11y-body">
 
-                <!-- SEZIONE 1: Visualizzazione -->
-                <div class="g-a11y-section">
-                    <h3 class="g-a11y-section-title">${eyeIcon} Visualizzazione</h3>
-                    ${makeItem('gHighContrast', 'Contrasto elevato', 'Aumenta il contrasto tra testo e sfondo')}
-                    ${makeItem('gInvert', 'Contrasto invertito', 'Inverte tutti i colori della pagina')}
-                    ${makeItem('gGrayscale', 'Scala di grigi', 'Visualizza il sito in monocromatico')}
-                    ${makeItem('gVivid', 'Colori vividi', 'Aumenta la saturazione dei colori')}
-                    ${makeItem('gHighlightLinks', 'Evidenzia link', 'Marca i link con sfondo giallo')}
-                    ${makeItem('gHighlightHeadings', 'Evidenzia titoli', 'Aggiunge bordo colorato ai titoli')}
-                </div>
-
-                <!-- SEZIONE 2: Testo e lettura -->
+                <!-- SEZIONE 1: Testo e lettura -->
                 <div class="g-a11y-section">
                     <h3 class="g-a11y-section-title">${textIcon} Testo e lettura</h3>
                     <div class="g-a11y-font-row">
@@ -1037,46 +1032,20 @@ document.addEventListener('DOMContentLoaded', () => {
                             <span class="g-a11y-item-desc">Regola la grandezza del carattere</span>
                         </div>
                         <div class="g-a11y-font-controls" role="group" aria-label="Regolazione dimensione testo">
-                            <button type="button" class="g-a11y-font-btn" id="gDecFont" aria-label="Testo piÃ¹ piccolo">Aâˆ’</button>
+                            <button type="button" class="g-a11y-font-btn" id="gDecFont" aria-label="Testo più piccolo">A−</button>
                             <span class="g-a11y-font-val" id="gFontVal" aria-live="polite">100%</span>
-                            <button type="button" class="g-a11y-font-btn" id="gIncFont" aria-label="Testo piÃ¹ grande">A+</button>
+                            <button type="button" class="g-a11y-font-btn" id="gIncFont" aria-label="Testo più grande">A+</button>
                         </div>
                     </div>
-                    ${makeItem('gSpacing', 'Maggiore spaziatura', 'Aumenta spazio tra lettere e parole')}
-                    ${makeItem('gLineHeight', 'Maggiore interlinea', 'Aumenta la distanza tra le righe')}
-                    ${makeItem('gReadableFont', 'Font leggibile', 'Usa Arial per migliore leggibilitÃ ')}
-                    ${makeItem('gAlignLeft', 'Allineamento a sinistra', 'Forza allineamento a sinistra')}
+                    ${makeItem('gReadableFont', 'Font ad alta leggibilità', 'Usa un carattere chiaro e lineare')}
+                    ${makeItem('gLineHeight', 'Interlinea aumentata', 'Maggiore distanza tra le righe di testo')}
                 </div>
 
-                <!-- SEZIONE 3: Navigazione -->
+                <!-- SEZIONE 2: Contrasto e colori -->
                 <div class="g-a11y-section">
-                    <h3 class="g-a11y-section-title">${cursorIcon} Navigazione</h3>
-                    ${makeItem('gFocusVisible', 'Focus evidente', 'Evidenzia elemento attivo da tastiera')}
-                    ${makeItem('gHighlightActive', 'Evidenzia elemento attivo', 'Sfondo colorato su focus/click')}
-                    ${makeItem('gBigCursor', 'Cursore grande', 'Ingrandisce il puntatore del mouse')}
-                </div>
-
-                <!-- SEZIONE 4: Movimento -->
-                <div class="g-a11y-section">
-                    <h3 class="g-a11y-section-title">${motionIcon} Movimento</h3>
-                    ${makeItem('gReduceMotion', 'Riduci animazioni', 'Accelera/elimina transizioni')}
-                    ${makeItem('gStopMotion', 'Blocca animazioni', 'Disattiva tutte le animazioni')}
-                    ${makeItem('gReduceEffects', 'Riduci effetti', 'Rimuove ombre, filtri e glow')}
-                </div>
-
-                <!-- SEZIONE 5: Comprensione -->
-                <div class="g-a11y-section">
-                    <h3 class="g-a11y-section-title">${brainIcon} Comprensione</h3>
-                    ${makeItem('gReadingMode', 'ModalitÃ  lettura', 'Riduce opacitÃ  elementi decorativi')}
-                    ${makeItem('gReduceDistractions', 'Riduci distrazioni', 'Nasconde elementi decorativi')}
-                    ${makeItem('gReadingFocus', 'Focus sulla lettura', 'Layout centrato con font serif')}
-                    ${makeItem('gReadingGuide', 'Guida alla lettura', 'Linea che segue il cursore')}
-                </div>
-
-                <!-- SEZIONE 6: Immagini -->
-                <div class="g-a11y-section">
-                    <h3 class="g-a11y-section-title">${imageIcon} Immagini</h3>
-                    ${makeItem('gHideDecorative', 'Nascondi immagini decorative', 'Nasconde immagini senza testo alternativo')}
+                    <h3 class="g-a11y-section-title">${eyeIcon} Contrasto e colori</h3>
+                    ${makeItem('gHighContrast', 'Contrasto elevato', 'Aumenta il contrasto tra testi e sfondo')}
+                    ${makeItem('gHighlightLinks', 'Evidenzia link', 'Sottolinea e risalta tutti i collegamenti')}
                 </div>
 
             </div>
@@ -1088,41 +1057,46 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
 
-        // â”€â”€ Append al DOM â”€â”€
-        document.body.appendChild(guideLine);
+        // ── Append al DOM ──
         document.body.appendChild(btn);
         document.body.appendChild(panel);
 
-        // â”€â”€ Steps testo â”€â”€
+        // ── Steps testo ──
         const fontSteps = [100, 112, 125, 140];
         let fontIndex = 0;
 
-        // â”€â”€ Mappa: id-checkbox â†’ { htmlClass, extra } â”€â”€
+        // ── Mappa: id-checkbox → { htmlClass } ──
         const TOGGLES = {
-            gHighContrast:      { cls: 'g-high-contrast' },
-            gInvert:            { cls: 'g-invert' },
-            gGrayscale:         { cls: 'g-grayscale' },
-            gVivid:             { cls: 'g-vivid' },
-            gHighlightLinks:    { cls: 'g-highlight-links' },
-            gHighlightHeadings: { cls: 'g-highlight-headings' },
-            gSpacing:           { cls: 'g-spacing' },
-            gLineHeight:        { cls: 'g-line-height' },
-            gReadableFont:      { cls: 'g-readable-font' },
-            gAlignLeft:         { cls: 'g-align-left' },
-            gFocusVisible:      { cls: 'g-focus-visible' },
-            gHighlightActive:   { cls: 'g-highlight-active' },
-            gBigCursor:         { cls: 'g-big-cursor' },
-            gReduceMotion:      { cls: 'g-reduce-motion' },
-            gStopMotion:        { cls: 'g-stop-motion' },
-            gReduceEffects:     { cls: 'g-reduce-effects' },
-            gReadingMode:       { cls: 'g-reading-mode' },
-            gReduceDistractions:{ cls: 'g-reduce-distractions' },
-            gReadingFocus:      { cls: 'g-reading-focus' },
-            gReadingGuide:      { cls: 'g-reading-guide' },
-            gHideDecorative:    { cls: 'g-hide-decorative' }
+            gReadableFont:   { cls: 'g-readable-font' },
+            gLineHeight:     { cls: 'g-line-height' },
+            gHighContrast:   { cls: 'g-high-contrast' },
+            gHighlightLinks: { cls: 'g-highlight-links' }
         };
 
-        // â”€â”€ Salvataggio preferenze â”€â”€
+        // ── Riposiziona pulsante e pannello per evitare sovrapposizione col footer ──
+        const adjustPositionForFooter = () => {
+            const footer = document.querySelector('footer, .footer, .chatbot-direct-bar');
+            if (!footer) return;
+            const footerRect = footer.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const isMobile = window.innerWidth <= 580;
+            const baseBottom = isMobile ? 16 : 24;
+
+            if (footerRect.top < windowHeight) {
+                const overlap = windowHeight - footerRect.top;
+                const newBottom = overlap + baseBottom;
+                btn.style.bottom = `${newBottom}px`;
+                panel.style.bottom = `${newBottom + 64}px`;
+            } else {
+                btn.style.bottom = '';
+                panel.style.bottom = '';
+            }
+        };
+
+        window.addEventListener('scroll', adjustPositionForFooter, { passive: true });
+        window.addEventListener('resize', adjustPositionForFooter, { passive: true });
+
+        // ── Salvataggio preferenze ──
         const savePrefs = () => {
             try {
                 const prefs = { fontIndex };
@@ -1132,9 +1106,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 localStorage.setItem('gustavo_a11y_v2', JSON.stringify(prefs));
             } catch (e) {}
+            adjustPositionForFooter();
         };
 
-        // â”€â”€ Aggiornamento UI font â”€â”€
+        // ── Aggiornamento UI font ──
         const updateFontUI = () => {
             const pct = fontSteps[fontIndex];
             document.documentElement.style.fontSize = pct === 100 ? '' : `${(16 * pct) / 100}px`;
@@ -1144,9 +1119,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (valEl) valEl.textContent = `${pct}%`;
             if (decBtn) decBtn.disabled = fontIndex === 0;
             if (incBtn) incBtn.disabled = fontIndex === fontSteps.length - 1;
+            adjustPositionForFooter();
         };
 
-        // â”€â”€ Caricamento preferenze â”€â”€
+        // ── Caricamento preferenze ──
         const loadPrefs = () => {
             try {
                 const raw = localStorage.getItem('gustavo_a11y_v2');
@@ -1171,22 +1147,28 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (e) {}
         };
 
-        // â”€â”€ Apertura / chiusura pannello â”€â”€
+        // ── Apertura / chiusura pannello ──
         const setPanelOpen = (open) => {
             const isOpen = typeof open === 'boolean' ? open : !panel.classList.contains('is-open');
             panel.classList.toggle('is-open', isOpen);
             panel.setAttribute('aria-hidden', String(!isOpen));
             btn.setAttribute('aria-expanded', String(isOpen));
+            btn.classList.toggle('is-active', isOpen);
+            const tooltip = btn.querySelector('.g-a11y-tooltip');
+            if (tooltip) {
+                tooltip.textContent = isOpen ? 'Chiudi' : 'Accessibilità';
+            }
             btn.setAttribute('aria-label',
-                isOpen ? 'Chiudi impostazioni di accessibilitÃ ' : 'Apri impostazioni di accessibilitÃ '
+                isOpen ? 'Chiudi impostazioni di accessibilità' : 'Apri impostazioni di accessibilità'
             );
             if (isOpen) {
+                adjustPositionForFooter();
                 const firstFocusable = panel.querySelector('button:not(:disabled), input:not(:disabled)');
                 if (firstFocusable) setTimeout(() => firstFocusable.focus(), 50);
             }
         };
 
-        // â”€â”€ Event listeners: pulsante principale â”€â”€
+        // ── Event listeners: pulsante principale ──
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             setPanelOpen();
@@ -1199,7 +1181,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // â”€â”€ Chiusura â”€â”€
+        // ── Chiusura ──
         const closeBtn = document.getElementById('gustavoA11yClose');
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
@@ -1208,7 +1190,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // â”€â”€ Chiusura click esterno â”€â”€
+        // ── Chiusura click esterno ──
         document.addEventListener('click', (e) => {
             if (!panel.classList.contains('is-open')) return;
             if (!panel.contains(e.target) && !btn.contains(e.target)) {
@@ -1216,7 +1198,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // â”€â”€ Gestione tastiera (Escape + Tab trap) â”€â”€
+        // ── Gestione tastiera (Escape + Tab trap) ──
         panel.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 e.preventDefault();
@@ -1241,7 +1223,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // â”€â”€ Controlli font â”€â”€
+        // ── Controlli font ──
         const decBtn = document.getElementById('gDecFont');
         const incBtn = document.getElementById('gIncFont');
         if (decBtn) {
@@ -1255,7 +1237,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // â”€â”€ Toggle listeners (generici) â”€â”€
+        // ── Toggle listeners (generici) ──
         Object.keys(TOGGLES).forEach(id => {
             const cb = document.getElementById(id);
             if (!cb) return;
@@ -1265,14 +1247,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // â”€â”€ Guida lettura: segue il mouse â”€â”€
-        document.addEventListener('mousemove', (e) => {
-            if (document.documentElement.classList.contains('g-reading-guide')) {
-                guideLine.style.top = `${e.clientY}px`;
-            }
-        });
-
-        // â”€â”€ Reset â”€â”€
+        // ── Reset ──
         const resetBtn = document.getElementById('gustavoA11yReset');
         if (resetBtn) {
             resetBtn.addEventListener('click', () => {
@@ -1280,8 +1255,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 fontIndex = 0;
                 updateFontUI();
 
-                // Reset classi html
+                // Reset classi html (incluse classi rimosse/obsolete)
                 Object.values(TOGGLES).forEach(({ cls }) => {
+                    document.documentElement.classList.remove(cls);
+                });
+                OBSOLETE_CLASSES.forEach(cls => {
                     document.documentElement.classList.remove(cls);
                 });
 
@@ -1293,12 +1271,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Reset localStorage
                 try { localStorage.removeItem('gustavo_a11y_v2'); } catch (e) {}
+                adjustPositionForFooter();
             });
         }
 
-        // â”€â”€ Init â”€â”€
+        // ── Init ──
         updateFontUI();
         loadPrefs();
+        adjustPositionForFooter();
     };
 
     initPhotoSkeletons();

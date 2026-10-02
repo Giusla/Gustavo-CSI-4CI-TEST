@@ -1,6 +1,6 @@
 /* ==========================================================================
-   GustAvo â€” Portale Ufficiale del Progetto
-   IIS Amedeo Avogadro, Torino Â· Classe 5CI
+   GustAvo — Portale Ufficiale del Progetto
+   IIS Amedeo Avogadro, Torino · Classe 5CI
    Design editoriale, moderno, tecnologico e autentico
    ========================================================================== */
 
@@ -137,7 +137,7 @@ img {
 /* --------------------------------------------------------------------------
    4. Navbar
    -------------------------------------------------------------------------- */
-/* Sticky wrapper â€” applicato solo all'header principale del sito */
+/* Sticky wrapper — applicato solo all'header principale del sito */
 body>header {
     position: sticky;
     top: 0;
@@ -248,7 +248,7 @@ body>header {
 }
 
 /* --------------------------------------------------------------------------
-   Skeleton UI â€” ESCLUSIVAMENTE per le foto del sito (Wi-Fi / Rete lenta)
+   Skeleton UI — ESCLUSIVAMENTE per le foto del sito (Wi-Fi / Rete lenta)
    -------------------------------------------------------------------------- */
 .photo-skeleton-box {
     position: relative;
@@ -257,7 +257,7 @@ body>header {
     width: 100%;
 }
 
-/* Shimmer animato attivo finchÃ© la foto non ha completato il download */
+/* Shimmer animato attivo finché la foto non ha completato il download */
 .photo-skeleton-box:not(.is-loaded)::after {
     content: '';
     position: absolute;
@@ -290,7 +290,7 @@ body>header {
     transition: opacity 0.4s ease, filter 0.35s ease;
 }
 
-/* Foto trasparente finchÃ© Ã¨ in download over Wi-Fi / rete */
+/* Foto trasparente finché è in download over Wi-Fi / rete */
 .photo-skeleton-box:not(.is-loaded) img {
     opacity: 0 !important;
 }
@@ -722,7 +722,7 @@ body>header {
 
 /* Al passaggio del mouse: NESSUN MOVIMENTO/SALTELLO.
    Feedback visivo raffinato: primo piano immediato, bordino con la sfumatura
-   esatta dell'header (var(--brand-gradient)), ombra profonda e maggiore luminositÃ /nitidezza */
+   esatta dell'header (var(--brand-gradient)), ombra profonda e maggiore luminosità/nitidezza */
 .hero-photo:hover {
     z-index: 10;
     box-shadow: 0 20px 46px rgba(0, 40, 100, 0.22);
@@ -1010,7 +1010,7 @@ body>header {
     margin-bottom: 0;
 }
 
-/* Foto del Team / Classe â€” Stesso feedback e stile della Galleria */
+/* Foto del Team / Classe — Stesso feedback e stile della Galleria */
 .team-photo-wrapper {
     display: flex;
     flex-direction: column;
@@ -1876,7 +1876,7 @@ body.chatbot-page>header {
     transform: translateX(4px);
 }
 
-/* Blocco dello scorrimento della schermata dietro quando la modale Ã¨ aperta */
+/* Blocco dello scorrimento della schermata dietro quando la modale è aperta */
 html.modal-is-open,
 body.modal-is-open {
     overflow: hidden !important;
@@ -3070,10 +3070,10 @@ body.modal-is-open {
 }
 
 /* --------------------------------------------------------------------------
-   13. Sistema di AccessibilitÃ  GustAvo â€” Riprogettato da zero (v2)
+   13. Sistema di Accessibilità GustAvo — Riprogettato (v2)
    -------------------------------------------------------------------------- */
 
-/* â”€â”€ Pulsante circolare fisso â”€â”€ */
+/* ── Pulsante circolare fisso ("pallino") ── */
 .g-a11y-btn {
     position: fixed;
     bottom: 24px;
@@ -3091,7 +3091,7 @@ body.modal-is-open {
     justify-content: center;
     z-index: 10000;
     padding: 0;
-    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
+    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, bottom 0.15s ease-out;
     outline: none;
     -webkit-tap-highlight-color: transparent;
 }
@@ -3107,17 +3107,59 @@ body.modal-is-open {
     box-shadow: 0 0 0 6px rgba(0, 102, 255, 0.25);
 }
 
-.g-a11y-btn svg,
-.g-a11y-btn .g-a11y-icon {
+/* ── Feedback visivo quando la scheda è aperta ── */
+.g-a11y-btn.is-active,
+.g-a11y-btn[aria-expanded="true"] {
+    background: linear-gradient(135deg, #008855 0%, #0050d0 100%);
+    box-shadow: 0 0 0 3px #ffffff, 0 0 0 6px #0066ff, 0 8px 25px rgba(0, 102, 255, 0.48);
+    transform: scale(1.06);
+}
+
+.g-a11y-icon-wrap {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.g-a11y-btn .g-a11y-icon,
+.g-a11y-btn .g-a11y-close-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 28px;
     height: 28px;
     pointer-events: none;
     display: block;
-    flex-shrink: 0;
     object-fit: contain;
+    transition: opacity 0.22s ease, transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* â”€â”€ Tooltip â”€â”€ */
+.g-a11y-btn .g-a11y-icon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.g-a11y-btn .g-a11y-close-icon {
+    opacity: 0;
+    transform: scale(0.4) rotate(-90deg);
+}
+
+.g-a11y-btn.is-active .g-a11y-icon,
+.g-a11y-btn[aria-expanded="true"] .g-a11y-icon {
+    opacity: 0;
+    transform: scale(0.4) rotate(90deg);
+}
+
+.g-a11y-btn.is-active .g-a11y-close-icon,
+.g-a11y-btn[aria-expanded="true"] .g-a11y-close-icon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+/* ── Tooltip ── */
 .g-a11y-tooltip {
     position: absolute;
     bottom: calc(100% + 10px);
@@ -3151,12 +3193,15 @@ body.modal-is-open {
     transform: translateY(0);
 }
 
-/* â”€â”€ Pannello â”€â”€ */
+/* ── Scheda / Finestra Accessibilità (Altezza proporzionata: 40-50% dello schermo utente) ── */
 .g-a11y-panel {
     position: fixed;
     bottom: 88px;
     right: 24px;
     width: 340px;
+    max-width: calc(100vw - 32px);
+    max-height: 48vh;
+    max-height: 48dvh;
     background: #ffffff;
     border-radius: 16px;
     border: 1px solid var(--border-subtle, #e2e8f0);
@@ -3166,6 +3211,11 @@ body.modal-is-open {
     flex-direction: column;
     overflow: hidden;
     animation: gA11yPanelIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transition: bottom 0.15s ease-out;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+    font-size: 14px;
+    text-align: left;
+    letter-spacing: normal;
 }
 
 .g-a11y-panel.is-open {
@@ -3183,12 +3233,12 @@ body.modal-is-open {
     }
 }
 
-/* â”€â”€ Header pannello â”€â”€ */
+/* ── Header pannello ── */
 .g-a11y-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 18px 14px;
+    padding: 13px 16px 11px;
     background: linear-gradient(135deg, #00a86b 0%, #0066ff 100%);
     flex-shrink: 0;
 }
@@ -3200,18 +3250,20 @@ body.modal-is-open {
 }
 
 .g-a11y-title {
-    font-size: 1rem;
+    font-size: 1.02rem;
     font-weight: 700;
     color: #ffffff;
     margin: 0;
     line-height: 1.2;
+    font-family: inherit;
 }
 
 .g-a11y-subtitle {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.74rem;
+    color: rgba(255, 255, 255, 0.85);
     margin: 0;
     line-height: 1.3;
+    font-family: inherit;
 }
 
 .g-a11y-close {
@@ -3219,8 +3271,8 @@ body.modal-is-open {
     border: none;
     color: #ffffff;
     cursor: pointer;
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
@@ -3241,18 +3293,19 @@ body.modal-is-open {
 }
 
 .g-a11y-close svg {
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
     pointer-events: none;
 }
 
-/* â”€â”€ Body scrollabile â”€â”€ */
+/* ── Body scrollabile proporzionato ── */
 .g-a11y-body {
-    padding: 12px 14px;
+    padding: 10px 14px;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    max-height: calc(100vh - 240px);
+    flex: 1 1 auto;
+    min-height: 0;
     overflow-y: auto;
     background: #f8fafc;
     overscroll-behavior: contain;
@@ -3271,11 +3324,11 @@ body.modal-is-open {
     border-radius: 2px;
 }
 
-/* â”€â”€ Sezione â”€â”€ */
+/* ── Sezione ── */
 .g-a11y-section {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 5px;
 }
 
 .g-a11y-section-title {
@@ -3287,18 +3340,19 @@ body.modal-is-open {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--text-muted, #64748b);
-    margin: 0 0 2px 0;
-    padding: 6px 10px 4px;
+    margin: 0;
+    padding: 2px 4px 1px;
+    font-family: inherit;
 }
 
 .g-a11y-section-title svg {
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
     flex-shrink: 0;
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
-/* â”€â”€ Item (riga opzione) â”€â”€ */
+/* ── Item (riga opzione) ── */
 .g-a11y-item {
     display: flex;
     align-items: center;
@@ -3306,13 +3360,13 @@ body.modal-is-open {
     padding: 9px 12px;
     background: #ffffff;
     border: 1px solid var(--border-subtle, #e2e8f0);
-    border-radius: 8px;
-    gap: 10px;
+    border-radius: 10px;
+    gap: 12px;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
 .g-a11y-item:hover {
-    border-color: #c7d2fe;
+    border-color: #cbd5e1;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
@@ -3329,18 +3383,18 @@ body.modal-is-open {
     font-weight: 600;
     color: var(--text-heading, #0f172a);
     line-height: 1.3;
+    font-family: inherit;
 }
 
 .g-a11y-item-desc {
-    font-size: 0.7rem;
+    font-size: 0.71rem;
     color: var(--text-muted, #64748b);
     line-height: 1.35;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    word-break: normal;
+    font-family: inherit;
 }
 
-/* â”€â”€ Controlli font A- / [%] / A+ â”€â”€ */
+/* ── Controlli font A- / [%] / A+ ── */
 .g-a11y-font-row {
     display: flex;
     align-items: center;
@@ -3348,8 +3402,8 @@ body.modal-is-open {
     padding: 9px 12px;
     background: #ffffff;
     border: 1px solid var(--border-subtle, #e2e8f0);
-    border-radius: 8px;
-    gap: 10px;
+    border-radius: 10px;
+    gap: 12px;
 }
 
 .g-a11y-font-controls {
@@ -3368,9 +3422,9 @@ body.modal-is-open {
     border: 1px solid #cbd5e1;
     color: var(--text-heading, #0f172a);
     font-weight: 700;
-    font-size: 0.8rem;
-    width: 28px;
-    height: 26px;
+    font-size: 0.82rem;
+    width: 30px;
+    height: 28px;
     border-radius: 999px;
     cursor: pointer;
     display: inline-flex;
@@ -3400,14 +3454,16 @@ body.modal-is-open {
 }
 
 .g-a11y-font-val {
-    font-size: 0.74rem;
+    font-size: 0.75rem;
     font-weight: 700;
     color: #0066ff;
-    min-width: 34px;
+    min-width: 36px;
     text-align: center;
+    font-variant-numeric: tabular-nums;
+    font-family: inherit;
 }
 
-/* â”€â”€ Toggle iOS-style â”€â”€ */
+/* ── Toggle switch ── */
 .g-a11y-toggle {
     position: relative;
     display: inline-flex;
@@ -3458,9 +3514,9 @@ body.modal-is-open {
     outline-offset: 2px;
 }
 
-/* â”€â”€ Footer pannello â”€â”€ */
+/* ── Footer pannello ── */
 .g-a11y-footer {
-    padding: 12px 14px;
+    padding: 10px 14px;
     background: #ffffff;
     border-top: 1px solid var(--border-subtle, #e2e8f0);
     display: flex;
@@ -3494,63 +3550,25 @@ body.modal-is-open {
     outline-offset: 2px;
 }
 
-/* â”€â”€ Linea guida lettura â”€â”€ */
-.g-guide-line {
-    display: none;
-    position: fixed;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: rgba(0, 168, 107, 0.45);
-    pointer-events: none;
-    z-index: 99999;
-    transform: translateY(-50%);
-}
-
-html.g-reading-guide .g-guide-line {
-    display: block;
-}
-
 /* ==========================================================================
-   Classi applicate a <html> per le 23 funzioni di accessibilitÃ 
+   Classi applicate a <html> per le funzioni di accessibilità
    ========================================================================== */
 
-/* 1. Contrasto elevato */
+/* 1. Testo e lettura */
+html.g-readable-font body *:not(.g-a11y-panel):not(.g-a11y-panel *):not(.g-a11y-btn):not(.g-a11y-btn *) {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+html.g-line-height body *:not(.g-a11y-panel):not(.g-a11y-panel *):not(.g-a11y-btn):not(.g-a11y-btn *) {
+    line-height: 1.9 !important;
+}
+
+/* 2. Contrasto e colori */
 html.g-high-contrast {
     filter: contrast(1.5);
 }
 
-/* 2. Contrasto invertito */
-html.g-invert {
-    filter: invert(1) hue-rotate(180deg);
-}
-
-html.g-invert img,
-html.g-invert video {
-    filter: invert(1) hue-rotate(180deg);
-}
-
-/* Combinazioni filtri */
-html.g-high-contrast.g-grayscale {
-    filter: contrast(1.5) grayscale(1);
-}
-
-html.g-high-contrast.g-vivid {
-    filter: contrast(1.5) saturate(1.8);
-}
-
-/* 3. Scala di grigi */
-html.g-grayscale {
-    filter: grayscale(1);
-}
-
-/* 4. Colori vividi */
-html.g-vivid {
-    filter: saturate(1.8);
-}
-
-/* 5. Evidenzia link */
-html.g-highlight-links a {
+html.g-highlight-links a:not(.g-a11y-panel a):not(.g-a11y-btn) {
     background: #ffff00 !important;
     color: #000000 !important;
     text-decoration: underline 3px solid #000000 !important;
@@ -3558,123 +3576,7 @@ html.g-highlight-links a {
     border-radius: 2px !important;
 }
 
-/* 6. Evidenzia titoli */
-html.g-highlight-headings h1,
-html.g-highlight-headings h2,
-html.g-highlight-headings h3,
-html.g-highlight-headings h4,
-html.g-highlight-headings h5,
-html.g-highlight-headings h6 {
-    border-left: 4px solid #0066ff !important;
-    padding-left: 12px !important;
-}
-
-/* 7-8. Font size (gestito via JS su html) */
-
-/* 9. Maggiore spaziatura */
-html.g-spacing * {
-    letter-spacing: 0.1em !important;
-    word-spacing: 0.2em !important;
-}
-
-/* 10. Maggiore interlinea */
-html.g-line-height * {
-    line-height: 2 !important;
-}
-
-/* 11. Font leggibile */
-html.g-readable-font,
-html.g-readable-font * {
-    font-family: Arial, Helvetica, sans-serif !important;
-}
-
-/* 12. Allineamento a sinistra */
-html.g-align-left * {
-    text-align: left !important;
-}
-
-/* 13. Focus evidente */
-html.g-focus-visible *:focus {
-    outline: 3px solid #0066ff !important;
-    outline-offset: 3px !important;
-    box-shadow: 0 0 0 6px rgba(0, 102, 255, 0.25) !important;
-}
-
-/* 14. Evidenzia elemento attivo */
-html.g-highlight-active *:focus,
-html.g-highlight-active *:active {
-    background: rgba(0, 102, 255, 0.08) !important;
-}
-
-/* 15. Cursore grande */
-html.g-big-cursor,
-html.g-big-cursor * {
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M6 2 L6 26 L12 20 L17 30 L20 29 L15 19 L24 19 Z' fill='%23000' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E") 6 2, auto !important;
-}
-
-/* 16. Riduci animazioni */
-html.g-reduce-motion *,
-html.g-reduce-motion *::before,
-html.g-reduce-motion *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    scroll-behavior: auto !important;
-}
-
-/* 17. Blocca animazioni */
-html.g-stop-motion *,
-html.g-stop-motion *::before,
-html.g-stop-motion *::after {
-    animation: none !important;
-    transition: none !important;
-}
-
-/* 18. Riduci effetti */
-html.g-reduce-effects * {
-    filter: none !important;
-    backdrop-filter: none !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-}
-
-/* 19. ModalitÃ  lettura â€” riduce opacitÃ  elementi decorativi */
-html.g-reading-mode .decorative,
-html.g-reading-mode [aria-hidden="true"]:not(span):not(svg):not(path):not(circle):not(.g-a11y-toggle-thumb):not(.g-a11y-toggle-track) {
-    opacity: 0.25 !important;
-    pointer-events: none !important;
-}
-
-/* 20. Riduci distrazioni */
-html.g-reduce-distractions [data-decorative],
-html.g-reduce-distractions .decorative {
-    display: none !important;
-}
-
-/* 21. Focus sulla lettura (combo) */
-html.g-reading-focus body {
-    max-width: 720px !important;
-    margin: 0 auto !important;
-}
-
-html.g-reading-focus * {
-    font-family: Georgia, "Times New Roman", serif !important;
-    font-size: 1.05rem !important;
-    line-height: 1.85 !important;
-    color: #1a1a2e !important;
-    background-color: #fefdf7 !important;
-}
-
-/* 22. Guida alla lettura â€” gestita con .g-guide-line via JS */
-
-/* 23. Nascondi immagini decorative */
-html.g-hide-decorative img[role="presentation"],
-html.g-hide-decorative img[alt=""],
-html.g-hide-decorative img:not([alt]) {
-    visibility: hidden !important;
-}
-
-/* â”€â”€ Supporto prefers-reduced-motion di sistema â”€â”€ */
+/* ── Supporto prefers-reduced-motion di sistema ── */
 @media (prefers-reduced-motion: reduce) {
     .g-a11y-panel {
         animation: none !important;
@@ -3685,7 +3587,7 @@ html.g-hide-decorative img:not([alt]) {
     }
 }
 
-/* â”€â”€ Responsive mobile â”€â”€ */
+/* ── Responsive mobile ── */
 @media (max-width: 580px) {
     .g-a11y-btn {
         width: 52px;
@@ -3694,7 +3596,10 @@ html.g-hide-decorative img:not([alt]) {
         right: 16px;
     }
 
-    .g-a11y-btn svg {
+    .g-a11y-btn svg,
+    .g-a11y-icon-wrap,
+    .g-a11y-btn .g-a11y-icon,
+    .g-a11y-btn .g-a11y-close-icon {
         width: 24px;
         height: 24px;
     }
@@ -3703,10 +3608,11 @@ html.g-hide-decorative img:not([alt]) {
         right: 16px;
         bottom: 80px;
         width: calc(100vw - 32px);
+        max-height: 55vh;
+        max-height: 55dvh;
     }
 
     .g-a11y-tooltip {
         display: none;
     }
 }
-
