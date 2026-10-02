@@ -154,48 +154,70 @@
             </div>
         </section>
 
-        <!-- 3. QUICK HIGHLIGHTS (Punti chiave con design system unificato) -->
-        <section class="home-highlights-section" aria-labelledby="highlights-title">
+        <!-- 3. PILASTRI DEL PROGETTO (Struttura editoriale autentica e non-AI-generated) -->
+        <section class="home-pillars-section" aria-labelledby="pillars-title">
             <div class="container">
-                <h2 id="highlights-title" class="sr-only">Punti chiave del progetto</h2>
-                <div class="unified-cards-grid grid-3">
-                    <article class="unified-card">
-                        <div class="card-icon-box">
-                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
-                                <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z" />
-                            </svg>
+                <div class="pillars-header">
+                    <span class="pillars-kicker">I Punti di Forza</span>
+                    <h2 id="pillars-title" class="pillars-title">Costruito per rispondere ai dubbi reali di chi sceglie la scuola</h2>
+                </div>
+
+                <div class="pillars-grid">
+                    <!-- PILASTRO 1: I 4 INDIRIZZI DELL'AVOGADRO -->
+                    <article class="pillar-card pillar-card-primary">
+                        <div class="pillar-card-head">
+                            <span class="pillar-card-num">01</span>
+                            <span class="pillar-badge pillar-badge-blue">Orientamento Completo</span>
                         </div>
-                        <div class="card-content">
-                            <h3 class="card-title">4 Indirizzi di studio</h3>
-                            <p class="card-desc">Informatica, Elettronica, Meccanica e Liceo Scientifico Scienze
-                                Applicate.</p>
+                        <h3 class="pillar-card-title">Tutta l'offerta formativa in un unico posto</h3>
+                        <p class="pillar-card-desc">
+                            Dalle materie del biennio comune ai laboratori specialistici del triennio, GustAvo conosce ogni dettaglio dei percorsi dell'Avogadro per aiutarti a scegliere con chiarezza:
+                        </p>
+                        <div class="pillar-chips-list">
+                            <span class="pillar-chip"><span class="chip-point"></span>Informatica e Telecomunicazioni</span>
+                            <span class="pillar-chip"><span class="chip-point"></span>Elettronica ed Elettrotecnica</span>
+                            <span class="pillar-chip"><span class="chip-point"></span>Meccanica e Meccatronica</span>
+                            <span class="pillar-chip"><span class="chip-point"></span>Liceo Scientifico Scienze Applicate</span>
                         </div>
                     </article>
 
-                    <article class="unified-card">
-                        <div class="card-icon-box">
-                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
-                                <path
-                                    d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
-                            </svg>
+                    <!-- PILASTRO 2: RISPOSTE CERTIFICATE SUL CAMPO -->
+                    <article class="pillar-card pillar-card-verified">
+                        <div class="pillar-card-head">
+                            <span class="pillar-card-num">02</span>
+                            <span class="pillar-badge pillar-badge-green">Dati Certificati</span>
                         </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Risposte verificate</h3>
-                            <p class="card-desc">Informazioni ufficiali sui corsi, sugli orari e sui laboratori,
-                                raccolte dal sito dell’istituto e verificate con i docenti.</p>
+                        <h3 class="pillar-card-title">Zero allucinazioni, 100% fonti ufficiali</h3>
+                        <p class="pillar-card-desc">
+                            A differenza dei modelli generativi generici, GustAvo non inventa informazioni: interroga esclusivamente un dataset addestrato su documenti ufficiali e orari verificati con i docenti.
+                        </p>
+                        <div class="pillar-verified-badge">
+                            <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                            </svg>
+                            Convalidato sul PTOF e con il corpo docente
                         </div>
                     </article>
 
-                    <article class="unified-card">
-                        <div class="card-icon-box">
-                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
-                                <path d="M7 2v11h3v9l7-12h-4l4-8z" />
-                            </svg>
+                    <!-- PILASTRO 3: ACCESSO DIRETTO E PRIVACY ASSOLUTA -->
+                    <article class="pillar-card pillar-card-privacy">
+                        <div class="pillar-card-head">
+                            <span class="pillar-card-num">03</span>
+                            <span class="pillar-badge pillar-badge-neutral">Accesso Libero</span>
                         </div>
-                        <div class="card-content">
-                            <h3 class="card-title">Subito disponibile</h3>
-                            <p class="card-desc">Accesso immediato da ogni dispositivo, senza registrazione né cookie.
-                            </p>
+                        <h3 class="pillar-card-title">Subito pronto all'uso, zero barriere</h3>
+                        <p class="pillar-card-desc">
+                            Ideato per essere aperto in un istante durante gli Open Day o comodamente da casa. Nessuna schermata di registrazione, nessun tracciamento invasivo e conformità alle linee guida WCAG.
+                        </p>
+                        <div class="pillar-stats-row">
+                            <div class="pillar-stat-item">
+                                <span class="pillar-stat-val">0</span>
+                                <span class="pillar-stat-lbl">Cookie o dati salvati</span>
+                            </div>
+                            <div class="pillar-stat-item">
+                                <span class="pillar-stat-val">100%</span>
+                                <span class="pillar-stat-lbl">Gratuito e senza login</span>
+                            </div>
                         </div>
                     </article>
                 </div>
