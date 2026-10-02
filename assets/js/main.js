@@ -963,7 +963,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Rimozione preventiva di classi di accessibilità obsolete o non conformi
         const OBSOLETE_CLASSES = [
             'g-invert', 'g-vivid', 'g-highlight-headings',
-            'g-highlight-active', 'g-reduce-motion', 'g-stop-motion',
+            'g-highlight-active', 'g-highlight-links', 'g-reduce-motion', 'g-stop-motion',
             'g-reduce-effects', 'g-reading-mode', 'g-reduce-distractions',
             'g-reading-focus', 'g-hide-decorative', 'g-big-cursor',
             'g-spacing', 'g-line-height'
@@ -1054,7 +1054,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="g-a11y-section">
                     <h3 class="g-a11y-section-title">${eyeIcon} Contrasto e Colori</h3>
                     ${makeItem('gHighContrast', 'Contrasto elevato (AAA)', 'Rapporto di contrasto elevato testo/sfondo')}
-                    ${makeItem('gHighlightLinks', 'Evidenzia collegamenti', 'Sottolinea e risalta i link ipertestuali')}
                     ${makeItem('gGrayscale', 'Scala di grigi (Monocromatico)', 'Accesso senza dipendenza dalla percezione colori')}
                 </div>
 
@@ -1127,7 +1126,6 @@ document.addEventListener('DOMContentLoaded', () => {
             gTextSpacing:    { cls: 'g-text-spacing' },
             gAlignLeft:      { cls: 'g-align-left' },
             gHighContrast:   { cls: 'g-high-contrast' },
-            gHighlightLinks: { cls: 'g-highlight-links' },
             gGrayscale:      { cls: 'g-grayscale' },
             gFocusVisible:   { cls: 'g-focus-visible' },
             gReadingGuide:   { cls: 'g-reading-guide' }
