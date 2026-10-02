@@ -595,58 +595,42 @@ document.addEventListener('DOMContentLoaded', () => {
             {
                 id: "incontro-1",
                 badge: "1° Incontro · Sede CSI",
-                title: "1° Incontro: Presentazione e Introduzione al CSI Piemonte",
-                desc: "Kickoff del percorso formativo con i mentor aziendali, analisi dei bisogni di orientamento degli studenti dell'IIS Avogadro e mappatura dei requisiti chiave per il chatbot GustAvo.",
+                title: "1° Incontro: Formazione e Laboratori al CSI Piemonte",
+                desc: "Kickoff del percorso formativo presso la sede di CSI Piemonte: analisi dei bisogni di orientamento, requisiti architetturali e studio del chatbot GustAvo con i tutor aziendali.",
                 photos: [
-                    { src: "assets/img/galleria/foto_galleria_1.jpg", alt: "Presentazione introduttiva del percorso formativo presso CSI Piemonte", caption: "Presentazione introduttiva del percorso formativo presso CSI Piemonte" },
-                    { src: "assets/img/galleria/foto_galleria_2.jpg", alt: "Sessione di brainstorming sui casi d'uso", caption: "Brainstorming e definizione dei requisiti essenziali del chatbot" },
-                    { src: "assets/img/galleria/foto_galleria_3.jpg", alt: "Confronto con i tutor aziendali", caption: "Confronto con i tutor aziendali sulla struttura del servizio" },
-                    { src: "assets/img/galleria/inc1_extra_1.svg", alt: "Mappatura Aree Tematiche", caption: "Mappatura delle aree informative dell'IIS Avogadro" },
-                    { src: "assets/img/galleria/inc1_extra_2.svg", alt: "Analisi FAQ Studenti", caption: "Raccolta e prioritizzazione dei quesiti più frequenti" },
-                    { src: "assets/img/galleria/inc1_extra_3.svg", alt: "Categorie di Risposta", caption: "Strutturazione tassonomia: Orari, Didattica, Laboratori" },
-                    { src: "assets/img/galleria/foto_galleria_4.jpg", alt: "La classe 5CI con i tutor di CSI Piemonte", caption: "La classe 5CI con i tutor aziendali di CSI Piemonte" },
-                    { src: "assets/img/galleria/inc1_extra_4.svg", alt: "Focus Group & Feedback", caption: "Interviste e confronto di classe per convalidare i flussi" },
-                    { src: "assets/img/galleria/inc1_extra_5.svg", alt: "Linee Guida di Stile", caption: "Definizione del tono di voce amichevole ed empatico" },
-                    { src: "assets/img/galleria/inc1_extra_6.svg", alt: "Flussi Conversazionali", caption: "Schematizzazione su whiteboard dell'albero di dialogo" },
-                    { src: "assets/img/galleria/foto_galleria_5.jpg", alt: "Sintesi della prima giornata di lavoro", caption: "Sintesi della prima giornata di lavoro e pianificazione sprint" }
+                    { src: "assets/img/galleria/incontro_csi/foto_galleria_1.png", alt: "Sessione di lavoro del team GustAvo presso la sede di CSI Piemonte", caption: "Presentazione e avvio delle attività presso la sede di CSI Piemonte" },
+                    { src: "assets/img/galleria/incontro_csi/foto_galleria_2.jpg", alt: "Brainstorming e definizione dei requisiti essenziali del chatbot", caption: "Brainstorming e definizione dei requisiti essenziali del chatbot" },
+                    { src: "assets/img/galleria/incontro_csi/foto_galleria_3.jpg", alt: "Confronto con i tutor aziendali sulla struttura del servizio", caption: "Confronto con i tutor aziendali sulla struttura del servizio" },
+                    { src: "assets/img/galleria/incontro_csi/foto_galleria_4.jpg", alt: "La classe 5CI con i tutor aziendali di CSI Piemonte", caption: "La classe 5CI insieme ai tutor aziendali di CSI Piemonte" },
+                    { src: "assets/img/galleria/incontro_csi/foto_galleria_5.jpg", alt: "Studio dell'architettura privacy-first senza profilazione", caption: "Studio dell'architettura software e politiche privacy-first" },
+                    { src: "assets/img/galleria/incontro_csi/foto_galleria_6.jpg", alt: "Studio dei meccanismi di risposta e gestione fallback", caption: "Studio dei meccanismi di classificazione e gestione fallback" },
+                    { src: "assets/img/galleria/incontro_csi/foto_galleria_7.jpg", alt: "Approfondimento tecnico sulle API e integrazione con il modello", caption: "Approfondimento tecnico sull'integrazione del modello NLP" },
+                    { src: "assets/img/galleria/incontro_csi/foto_galleria_8.png", alt: "Momento di confronto e sintesi della sessione al CSI", caption: "Sintesi della sessione di lavoro e pianificazione sprint" }
                 ]
             },
             {
                 id: "incontro-2",
-                badge: "2° Incontro · Modulo Formativo",
-                title: "2° Incontro: AI, Sicurezza Digitale e Seminario Polizia Postale",
-                desc: "Modulo specialistico incentrato su etica dell'intelligenza artificiale, riservatezza e conformità GDPR, arricchito dal seminario della Polizia Postale sulla prevenzione delle minacce web.",
+                badge: "2° Incontro · Lavoro in Classe",
+                title: "2° Incontro: Sviluppo, Addestramento e Test in Classe",
+                desc: "Attività di programmazione e collaudo nei laboratori dell'IIS Amedeo Avogadro: strutturazione del dataset intents.json, addestramento del modello Scikit-learn e test del frontend.",
                 photos: [
-                    { src: "assets/img/galleria/foto_galleria_3.jpg", alt: "Incontro Polizia Postale: sicurezza e privacy", caption: "Incontro Polizia Postale: sicurezza informatica e tutela privacy" },
-                    { src: "assets/img/galleria/foto_galleria_4.jpg", alt: "Approfondimento con i tutor CSI", caption: "La classe 5CI con i tutor aziendali di CSI Piemonte" },
-                    { src: "assets/img/galleria/foto_galleria_5.jpg", alt: "Esposizione architettura privacy-first", caption: "Studio dell'architettura privacy-first senza tracciamento" },
-                    { src: "assets/img/galleria/inc2_extra_1.svg", alt: "Seminario Rischi Digitali", caption: "Sicurezza sul web, prevenzione del phishing e identità digitale" },
-                    { src: "assets/img/galleria/inc2_extra_2.svg", alt: "Valutazione Modelli AI", caption: "Confronto e selezione tra LLM e modelli leggeri" },
-                    { src: "assets/img/galleria/inc2_extra_3.svg", alt: "Politiche Privacy-First", caption: "Garanzia di anonimato: zero raccolta di dati identificativi" },
-                    { src: "assets/img/galleria/foto_galleria_6.jpg", alt: "Studio dei meccanismi di fallback", caption: "Studio dei meccanismi di fallback per domande impreviste" },
-                    { src: "assets/img/galleria/inc2_extra_4.svg", alt: "Mitigazione Prompt Injection", caption: "Difesa attiva e sanificazione dei messaggi in input" },
-                    { src: "assets/img/galleria/inc2_extra_5.svg", alt: "Trasparenza Algoritmica", caption: "Principi di spiegabilità e affidabilità delle informazioni" },
-                    { src: "assets/img/galleria/inc2_extra_6.svg", alt: "Filtri di Contenuto", caption: "Guardrails di moderazione e accuratezza scolastica" },
-                    { src: "assets/img/galleria/inc2_extra_7.svg", alt: "Controlli API & Endpoint", caption: "Architettura dei microservizi nel cloud di CSI Piemonte" },
-                    { src: "assets/img/galleria/foto_galleria_2.jpg", alt: "Discussione aperta con i relatori", caption: "Sessione Q&A e confronto diretto con gli ispettori" },
-                    { src: "assets/img/galleria/foto_galleria_1.jpg", alt: "Chiusura della sessione sicurezza", caption: "Chiusura del modulo formativo sull'uso etico dell'AI" }
+                    { src: "assets/img/galleria/in_classe/foto_classe_1.jpg", alt: "Sessione di programmazione e sviluppo in laboratorio all'IIS Avogadro", caption: "Sessione di sviluppo del codice e analisi dei requisiti in classe" },
+                    { src: "assets/img/galleria/in_classe/foto_classe_2.png", alt: "Lavoro di gruppo sulla strutturazione dei dati delle intenzioni", caption: "Lavoro di gruppo sulla categorizzazione e raffinamento del dataset" },
+                    { src: "assets/img/galleria/in_classe/foto_classe_3.png", alt: "Test interattivo delle risposte del chatbot GustAvo tra studenti", caption: "Collaudo interattivo delle risposte conversazionali" },
+                    { src: "assets/img/galleria/in_classe/foto_classe_4.png", alt: "Ottimizzazione del backend Flask e configurazione delle rotte", caption: "Ottimizzazione del backend e calibrazione della confidenza semantica" },
+                    { src: "assets/img/galleria/in_classe/foto_classe_5.png", alt: "Revisione del design dell'interfaccia utente", caption: "Revisione dell'interfaccia utente e accessibilità visiva" },
+                    { src: "assets/img/galleria/in_classe/foto_classe_6.png", alt: "Conclusione dei test in classe e validazione della versione finale", caption: "Validazione dei flussi e collaudo finale con i docenti" }
                 ]
             },
             {
                 id: "incontro-3",
-                badge: "3° Incontro · Modulo Conclusivo",
-                title: "3° Incontro: Prototipazione, Testing e Presentazione Finale",
-                desc: "Sessione di verifica funzionale e collaudo: stress test delle risposte del chatbot, validazione dell'esperienza utente su dispositivi mobili e consegna dei risultati.",
+                badge: "3° Incontro · Ce.Se.Di.",
+                title: "3° Incontro: Presentazione del Progetto al Ce.Se.Di.",
+                desc: "Presentazione ufficiale dei risultati di GustAvo presso il Centro Servizi Didattici (Ce.Se.Di.) della Città Metropolitana di Torino all'interno dei percorsi di orientamento e alternanza.",
                 photos: [
-                    { src: "assets/img/galleria/foto_galleria_5.jpg", alt: "Testing interattivo dei prototipi del chatbot", caption: "Testing interattivo dei prototipi del chatbot GustAvo" },
-                    { src: "assets/img/galleria/foto_galleria_6.jpg", alt: "Conclusione del modulo e avvio dello sviluppo", caption: "Conclusione del modulo e avvio della fase di sviluppo" },
-                    { src: "assets/img/galleria/foto_galleria_2.jpg", alt: "Verifica finale delle risposte", caption: "Verifica finale e validazione del concept con i mentor" },
-                    { src: "assets/img/galleria/inc3_extra_1.svg", alt: "Test di Carico & Latenza", caption: "Benchmark delle risposte in tempo reale su varie connessioni" },
-                    { src: "assets/img/galleria/inc3_extra_2.svg", alt: "Sessione di Collaudo Utente", caption: "Test di usabilità con studenti e docenti dell'istituto" },
-                    { src: "assets/img/galleria/foto_galleria_4.jpg", alt: "Presentazione demo ai tutor", caption: "Presentazione della demo live ai referenti del CSI Piemonte" },
-                    { src: "assets/img/galleria/inc3_extra_3.svg", alt: "Verifica Responsive Mobile", caption: "Ottimizzazione della resa grafica su smartphone e tablet" },
-                    { src: "assets/img/galleria/inc3_extra_4.svg", alt: "Consegna Documentazione", caption: "Consegna delle specifiche tecniche e manuale d'uso" },
-                    { src: "assets/img/galleria/foto_galleria_1.jpg", alt: "Foto conclusiva del percorso", caption: "Foto di rito conclusiva con il team di sviluppo 5CI" }
+                    { src: "assets/img/galleria/incontro_cesedi/foto_cesedi_1.png", alt: "Presentazione del progetto GustAvo presso il Ce.Se.Di. di Torino", caption: "Presentazione ufficiale di GustAvo al Ce.Se.Di. di Torino" },
+                    { src: "assets/img/galleria/incontro_cesedi/foto_cesedi_2.png", alt: "Esposizione dei risultati e della metodologia di sviluppo agli ospiti", caption: "Esposizione della metodologia di lavoro e del prototipo funzionale" },
+                    { src: "assets/img/galleria/incontro_cesedi/foto_cesedi_3.png", alt: "Confronto e feedback con i referenti didattici e istituzionali", caption: "Feedback e conclusioni della giornata al Ce.Se.Di." }
                 ]
             }
         ];
