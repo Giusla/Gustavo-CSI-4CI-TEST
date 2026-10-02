@@ -10,7 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/img/favicon.png">
     <link rel="apple-touch-icon" href="assets/img/favicon.png">
+    <link rel="stylesheet" href="assets/css/accessibility.css">
     <link rel="stylesheet" href="assets/css/style.css?v=2.2">
+    <script src="assets/js/accessibility.js" defer></script>
     <script src="assets/js/main.js" defer></script>
 </head>
 
@@ -45,6 +47,7 @@
                 <li><a href="documentazione.html">Documentazione</a></li>
                 <li><a href="chatbot.html">Chatbot</a></li>
                 <li><a href="galleria.html">Galleria</a></li>
+                <li><button class="nav-a11y-btn" type="button" data-a11y-trigger aria-label="Menu Accessibilità" title="Accessibilità (Alt+A)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg><span>Accessibilità</span></button></li>
             </ul>
 
             <button class="hamburger" id="hamburger" aria-label="Menu di navigazione" aria-expanded="false">
@@ -60,6 +63,7 @@
             <a href="documentazione.html">Documentazione</a>
             <a href="chatbot.html">Chatbot</a>
             <a href="galleria.html">Galleria</a>
+            <button class="nav-mobile-a11y-btn" type="button" data-a11y-trigger><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg> Accessibilità</button>
         </nav>
     </header>
 
@@ -194,6 +198,7 @@
                     <strong>
                         Progetto GustAvo - IIS Amedeo Avogadro, Torino - in collaborazione con CSI Piemonte
                     </strong>
+                    · <button type="button" class="footer-a11y-link" data-a11y-trigger title="Personalizza accessibilità (Alt+A)">Accessibilità</button>
                 </p>
             </div>
 

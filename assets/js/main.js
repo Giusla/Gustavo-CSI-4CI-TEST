@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
         });
 
-        navMobile.querySelectorAll('a').forEach(link => {
+        navMobile.querySelectorAll('a, button').forEach(link => {
             link.addEventListener('click', () => {
                 navMobile.classList.remove('visibile');
                 hamburgerBtn.classList.remove('aperto');
