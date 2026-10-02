@@ -1,6 +1,6 @@
-/* ==========================================================================
-   GustAvo — Portale Ufficiale del Progetto
-   IIS Amedeo Avogadro, Torino · Classe 5CI
+﻿/* ==========================================================================
+   GustAvo â€” Portale Ufficiale del Progetto
+   IIS Amedeo Avogadro, Torino Â· Classe 5CI
    Design editoriale, moderno, tecnologico e autentico
    ========================================================================== */
 
@@ -137,7 +137,7 @@ img {
 /* --------------------------------------------------------------------------
    4. Navbar
    -------------------------------------------------------------------------- */
-/* Sticky wrapper — applicato solo all'header principale del sito */
+/* Sticky wrapper â€” applicato solo all'header principale del sito */
 body>header {
     position: sticky;
     top: 0;
@@ -248,7 +248,7 @@ body>header {
 }
 
 /* --------------------------------------------------------------------------
-   Skeleton UI — ESCLUSIVAMENTE per le foto del sito (Wi-Fi / Rete lenta)
+   Skeleton UI â€” ESCLUSIVAMENTE per le foto del sito (Wi-Fi / Rete lenta)
    -------------------------------------------------------------------------- */
 .photo-skeleton-box {
     position: relative;
@@ -257,7 +257,7 @@ body>header {
     width: 100%;
 }
 
-/* Shimmer animato attivo finché la foto non ha completato il download */
+/* Shimmer animato attivo finchÃ© la foto non ha completato il download */
 .photo-skeleton-box:not(.is-loaded)::after {
     content: '';
     position: absolute;
@@ -290,7 +290,7 @@ body>header {
     transition: opacity 0.4s ease, filter 0.35s ease;
 }
 
-/* Foto trasparente finché è in download over Wi-Fi / rete */
+/* Foto trasparente finchÃ© Ã¨ in download over Wi-Fi / rete */
 .photo-skeleton-box:not(.is-loaded) img {
     opacity: 0 !important;
 }
@@ -722,7 +722,7 @@ body>header {
 
 /* Al passaggio del mouse: NESSUN MOVIMENTO/SALTELLO.
    Feedback visivo raffinato: primo piano immediato, bordino con la sfumatura
-   esatta dell'header (var(--brand-gradient)), ombra profonda e maggiore luminosità/nitidezza */
+   esatta dell'header (var(--brand-gradient)), ombra profonda e maggiore luminositÃ /nitidezza */
 .hero-photo:hover {
     z-index: 10;
     box-shadow: 0 20px 46px rgba(0, 40, 100, 0.22);
@@ -1010,7 +1010,7 @@ body>header {
     margin-bottom: 0;
 }
 
-/* Foto del Team / Classe — Stesso feedback e stile della Galleria */
+/* Foto del Team / Classe â€” Stesso feedback e stile della Galleria */
 .team-photo-wrapper {
     display: flex;
     flex-direction: column;
@@ -1876,7 +1876,7 @@ body.chatbot-page>header {
     transform: translateX(4px);
 }
 
-/* Blocco dello scorrimento della schermata dietro quando la modale è aperta */
+/* Blocco dello scorrimento della schermata dietro quando la modale Ã¨ aperta */
 html.modal-is-open,
 body.modal-is-open {
     overflow: hidden !important;
@@ -3070,210 +3070,305 @@ body.modal-is-open {
 }
 
 /* --------------------------------------------------------------------------
-   13. Nuovo Componente di Accessibilità (a11y) — Progettato da zero
+   13. Sistema di AccessibilitÃ  GustAvo â€” Riprogettato da zero (v2)
    -------------------------------------------------------------------------- */
 
-/* Pulsante circolare perfetto, sempre visibile in basso a destra */
-.gustavo-a11y-btn {
+/* â”€â”€ Pulsante circolare fisso â”€â”€ */
+.g-a11y-btn {
     position: fixed;
     bottom: 24px;
     right: 24px;
-    width: 54px;
-    height: 54px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
-    background: var(--brand-gradient);
+    background: linear-gradient(135deg, #00a86b 0%, #0066ff 100%);
     color: #ffffff;
     border: none;
-    box-shadow: 0 4px 14px rgba(0, 102, 255, 0.35);
+    box-shadow: 0 4px 16px rgba(0, 102, 255, 0.32), 0 2px 6px rgba(0, 0, 0, 0.12);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999;
+    z-index: 10000;
     padding: 0;
-    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease, opacity 0.2s ease;
+    transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
     outline: none;
     -webkit-tap-highlight-color: transparent;
 }
 
-.gustavo-a11y-btn:hover {
+.g-a11y-btn:hover {
     transform: scale(1.06);
-    box-shadow: 0 6px 20px rgba(0, 102, 255, 0.45);
+    box-shadow: 0 8px 24px rgba(0, 102, 255, 0.42), 0 3px 8px rgba(0, 0, 0, 0.14);
 }
 
-.gustavo-a11y-btn:focus-visible {
+.g-a11y-btn:focus-visible {
     outline: 3px solid #0066ff;
     outline-offset: 3px;
     box-shadow: 0 0 0 6px rgba(0, 102, 255, 0.25);
 }
 
-.gustavo-a11y-btn svg,
-.gustavo-a11y-btn .gustavo-a11y-icon {
-    width: 32px;
-    height: 32px;
-    object-fit: contain;
-    transition: transform 0.25s ease;
+.g-a11y-btn svg {
+    width: 26px;
+    height: 26px;
     pointer-events: none;
     display: block;
+    flex-shrink: 0;
 }
 
-.gustavo-a11y-btn[aria-expanded="true"] .gustavo-a11y-icon,
-.gustavo-a11y-btn[aria-expanded="true"] svg {
-    transform: rotate(15deg) scale(1.08);
+/* â”€â”€ Tooltip â”€â”€ */
+.g-a11y-tooltip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    right: 0;
+    background: #0f172a;
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 5px 10px;
+    border-radius: 6px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+    font-family: "Inter", -apple-system, sans-serif;
 }
 
-/* Pannello opzioni accessibilità */
-.gustavo-a11y-panel {
+.g-a11y-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    right: 18px;
+    border: 5px solid transparent;
+    border-top-color: #0f172a;
+}
+
+.g-a11y-btn:hover .g-a11y-tooltip,
+.g-a11y-btn:focus-visible .g-a11y-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* â”€â”€ Pannello â”€â”€ */
+.g-a11y-panel {
     position: fixed;
     bottom: 88px;
     right: 24px;
-    width: 320px;
-    max-width: calc(100vw - 32px);
+    width: 340px;
     background: #ffffff;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--border-subtle);
-    box-shadow: 0 16px 36px rgba(15, 23, 42, 0.18), 0 2px 8px rgba(0, 0, 0, 0.05);
-    z-index: 9999;
+    border-radius: 16px;
+    border: 1px solid var(--border-subtle, #e2e8f0);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 4px 16px rgba(0, 0, 0, 0.06);
+    z-index: 10000;
     display: none;
     flex-direction: column;
     overflow: hidden;
-    animation: gustavoA11yIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: gA11yPanelIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.gustavo-a11y-panel.is-open {
+.g-a11y-panel.is-open {
     display: flex;
 }
 
-@keyframes gustavoA11yIn {
+@keyframes gA11yPanelIn {
     from {
         opacity: 0;
-        transform: translateY(10px) scale(0.97);
+        transform: translateY(12px);
     }
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
     }
 }
 
-/* Header pannello con gradiente del brand */
-.gustavo-a11y-header {
+/* â”€â”€ Header pannello â”€â”€ */
+.g-a11y-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 18px;
-    background: var(--brand-gradient);
-    color: #ffffff;
+    padding: 16px 18px 14px;
+    background: linear-gradient(135deg, #00a86b 0%, #0066ff 100%);
+    flex-shrink: 0;
 }
 
-.gustavo-a11y-title {
+.g-a11y-header-content {
     display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.95rem;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.g-a11y-title {
+    font-size: 1rem;
     font-weight: 700;
+    color: #ffffff;
     margin: 0;
     line-height: 1.2;
 }
 
-.gustavo-a11y-title svg {
-    width: 20px;
-    height: 20px;
+.g-a11y-subtitle {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    line-height: 1.3;
 }
 
-.gustavo-a11y-close {
+.g-a11y-close {
     background: rgba(255, 255, 255, 0.18);
     border: none;
     color: #ffffff;
-    font-size: 1.25rem;
-    line-height: 1;
     cursor: pointer;
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     transition: background 0.15s ease, transform 0.15s ease;
     padding: 0;
+    flex-shrink: 0;
 }
 
-.gustavo-a11y-close:hover {
+.g-a11y-close:hover {
     background: rgba(255, 255, 255, 0.32);
-    transform: scale(1.06);
+    transform: scale(1.08);
 }
 
-.gustavo-a11y-close:focus-visible {
+.g-a11y-close:focus-visible {
     outline: 2px solid #ffffff;
     outline-offset: 2px;
 }
 
-/* Corpo delle opzioni */
-.gustavo-a11y-body {
-    padding: 14px 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    max-height: 380px;
-    overflow-y: auto;
-    background: #f8fafc;
+.g-a11y-close svg {
+    width: 16px;
+    height: 16px;
+    pointer-events: none;
 }
 
-/* Riga di opzione singola */
-.gustavo-a11y-row {
+/* â”€â”€ Body scrollabile â”€â”€ */
+.g-a11y-body {
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+    background: #f8fafc;
+    overscroll-behavior: contain;
+}
+
+.g-a11y-body::-webkit-scrollbar {
+    width: 4px;
+}
+
+.g-a11y-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.g-a11y-body::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 2px;
+}
+
+/* â”€â”€ Sezione â”€â”€ */
+.g-a11y-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.g-a11y-section-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted, #64748b);
+    margin: 0 0 2px 0;
+    padding: 6px 10px 4px;
+}
+
+.g-a11y-section-title svg {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+/* â”€â”€ Item (riga opzione) â”€â”€ */
+.g-a11y-item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 12px;
+    padding: 9px 12px;
     background: #ffffff;
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle, #e2e8f0);
+    border-radius: 8px;
     gap: 10px;
     transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
-.gustavo-a11y-row:hover {
-    border-color: #cbd5e1;
-    box-shadow: 0 2px 6px rgba(0, 20, 60, 0.04);
+.g-a11y-item:hover {
+    border-color: #c7d2fe;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
-.gustavo-a11y-label {
+.g-a11y-item-info {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 1px;
     flex: 1;
+    min-width: 0;
 }
 
-.gustavo-a11y-name {
-    font-size: 0.85rem;
+.g-a11y-item-label {
+    font-size: 0.83rem;
     font-weight: 600;
-    color: var(--text-heading);
-}
-
-.gustavo-a11y-desc {
-    font-size: 0.72rem;
-    color: var(--text-muted);
+    color: var(--text-heading, #0f172a);
     line-height: 1.3;
 }
 
-/* Controlli font step A- / A+ */
-.gustavo-a11y-font-group {
+.g-a11y-item-desc {
+    font-size: 0.7rem;
+    color: var(--text-muted, #64748b);
+    line-height: 1.35;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* â”€â”€ Controlli font A- / [%] / A+ â”€â”€ */
+.g-a11y-font-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 12px;
+    background: #ffffff;
+    border: 1px solid var(--border-subtle, #e2e8f0);
+    border-radius: 8px;
+    gap: 10px;
+}
+
+.g-a11y-font-controls {
     display: inline-flex;
     align-items: center;
     gap: 2px;
     background: #f1f5f9;
-    border: 1px solid var(--border-subtle);
+    border: 1px solid var(--border-subtle, #e2e8f0);
     border-radius: 999px;
     padding: 2px;
+    flex-shrink: 0;
 }
 
-.gustavo-a11y-font-btn {
+.g-a11y-font-btn {
     background: #ffffff;
     border: 1px solid #cbd5e1;
-    color: var(--text-heading);
+    color: var(--text-heading, #0f172a);
     font-weight: 700;
-    font-size: 0.82rem;
-    width: 30px;
-    height: 28px;
+    font-size: 0.8rem;
+    width: 28px;
+    height: 26px;
     border-radius: 999px;
     cursor: pointer;
     display: inline-flex;
@@ -3281,202 +3376,335 @@ body.modal-is-open {
     justify-content: center;
     transition: all 0.15s ease;
     padding: 0;
+    font-family: inherit;
 }
 
-.gustavo-a11y-font-btn:hover:not(:disabled) {
-    background: var(--brand-blue);
+.g-a11y-font-btn:hover:not(:disabled) {
+    background: #0066ff;
     color: #ffffff;
-    border-color: var(--brand-blue);
+    border-color: #0066ff;
 }
 
-.gustavo-a11y-font-btn:focus-visible {
-    outline: 2px solid var(--brand-blue);
+.g-a11y-font-btn:focus-visible {
+    outline: 2px solid #0066ff;
     outline-offset: 1px;
 }
 
-.gustavo-a11y-font-btn:disabled {
+.g-a11y-font-btn:disabled {
     opacity: 0.35;
     cursor: not-allowed;
     background: transparent;
     border-color: transparent;
 }
 
-.gustavo-a11y-font-val {
-    font-size: 0.76rem;
+.g-a11y-font-val {
+    font-size: 0.74rem;
     font-weight: 700;
-    color: var(--brand-blue);
-    min-width: 36px;
+    color: #0066ff;
+    min-width: 34px;
     text-align: center;
 }
 
-/* Toggle Switch elegante */
-.gustavo-a11y-switch {
+/* â”€â”€ Toggle iOS-style â”€â”€ */
+.g-a11y-toggle {
     position: relative;
-    width: 42px;
-    height: 24px;
-    flex-shrink: 0;
+    display: inline-flex;
     cursor: pointer;
+    flex-shrink: 0;
 }
 
-.gustavo-a11y-switch input {
+.g-a11y-checkbox {
+    position: absolute;
     opacity: 0;
     width: 0;
     height: 0;
-    position: absolute;
+    pointer-events: none;
 }
 
-.gustavo-a11y-slider {
-    position: absolute;
-    inset: 0;
-    background-color: #cbd5e1;
-    border-radius: 999px;
-    transition: background-color 0.25s ease;
+.g-a11y-toggle-track {
+    width: 44px;
+    height: 24px;
+    background: #d1d5db;
+    border-radius: 12px;
+    position: relative;
+    transition: background 0.22s ease;
+    display: block;
 }
 
-.gustavo-a11y-slider::before {
-    content: '';
+.g-a11y-checkbox:checked ~ .g-a11y-toggle-track {
+    background: linear-gradient(90deg, #00a86b, #0066ff);
+}
+
+.g-a11y-toggle-thumb {
     position: absolute;
-    height: 18px;
-    width: 18px;
-    left: 3px;
-    bottom: 3px;
-    background-color: #ffffff;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: #ffffff;
     border-radius: 50%;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.gustavo-a11y-switch input:checked + .gustavo-a11y-slider {
-    background: var(--brand-gradient);
+.g-a11y-checkbox:checked ~ .g-a11y-toggle-track .g-a11y-toggle-thumb {
+    transform: translateX(20px);
 }
 
-.gustavo-a11y-switch input:checked + .gustavo-a11y-slider::before {
-    transform: translateX(18px);
-}
-
-.gustavo-a11y-switch input:focus-visible + .gustavo-a11y-slider {
-    outline: 2px solid var(--brand-blue);
+.g-a11y-checkbox:focus-visible ~ .g-a11y-toggle-track {
+    outline: 2px solid #0066ff;
     outline-offset: 2px;
 }
 
-/* Footer del pannello con tasto reset */
-.gustavo-a11y-footer {
-    padding: 11px 16px;
+/* â”€â”€ Footer pannello â”€â”€ */
+.g-a11y-footer {
+    padding: 12px 14px;
     background: #ffffff;
-    border-top: 1px solid var(--border-subtle);
+    border-top: 1px solid var(--border-subtle, #e2e8f0);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
-.gustavo-a11y-footer-note {
-    font-size: 0.72rem;
-    color: var(--text-muted);
-}
-
-.gustavo-a11y-reset-btn {
+.g-a11y-reset-btn {
     background: transparent;
-    border: 1px solid var(--border-card);
-    color: var(--brand-blue);
-    font-size: 0.78rem;
+    border: 1px solid var(--border-card, #cbd5e1);
+    color: #0066ff;
+    font-size: 0.8rem;
     font-weight: 600;
     cursor: pointer;
-    padding: 5px 12px;
-    border-radius: var(--radius-sm);
+    padding: 7px 18px;
+    border-radius: 8px;
     transition: all 0.15s ease;
+    font-family: inherit;
+    width: 100%;
 }
 
-.gustavo-a11y-reset-btn:hover {
-    background: var(--brand-blue);
+.g-a11y-reset-btn:hover {
+    background: #0066ff;
     color: #ffffff;
-    border-color: var(--brand-blue);
+    border-color: #0066ff;
 }
 
-.gustavo-a11y-reset-btn:focus-visible {
-    outline: 2px solid var(--brand-blue);
-    outline-offset: 1px;
+.g-a11y-reset-btn:focus-visible {
+    outline: 2px solid #0066ff;
+    outline-offset: 2px;
+}
+
+/* â”€â”€ Linea guida lettura â”€â”€ */
+.g-guide-line {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: rgba(0, 168, 107, 0.45);
+    pointer-events: none;
+    z-index: 99999;
+    transform: translateY(-50%);
+}
+
+html.g-reading-guide .g-guide-line {
+    display: block;
 }
 
 /* ==========================================================================
-   Classi applicate a <html> per le funzioni di accessibilità
+   Classi applicate a <html> per le 23 funzioni di accessibilitÃ 
    ========================================================================== */
 
-/* 1. Contrasto Elevato */
-html.gustavo-high-contrast {
-    filter: contrast(1.35);
+/* 1. Contrasto elevato */
+html.g-high-contrast {
+    filter: contrast(1.5);
 }
 
-html.gustavo-high-contrast body {
-    background-color: #ffffff !important;
+/* 2. Contrasto invertito */
+html.g-invert {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+html.g-invert img,
+html.g-invert video {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/* Combinazioni filtri */
+html.g-high-contrast.g-grayscale {
+    filter: contrast(1.5) grayscale(1);
+}
+
+html.g-high-contrast.g-vivid {
+    filter: contrast(1.5) saturate(1.8);
+}
+
+/* 3. Scala di grigi */
+html.g-grayscale {
+    filter: grayscale(1);
+}
+
+/* 4. Colori vividi */
+html.g-vivid {
+    filter: saturate(1.8);
+}
+
+/* 5. Evidenzia link */
+html.g-highlight-links a {
+    background: #ffff00 !important;
     color: #000000 !important;
+    text-decoration: underline 3px solid #000000 !important;
+    padding: 0 2px !important;
+    border-radius: 2px !important;
 }
 
-html.gustavo-high-contrast .unified-card,
-html.gustavo-high-contrast .gallery-card,
-html.gustavo-high-contrast .doc-section,
-html.gustavo-high-contrast .story-chapter,
-html.gustavo-high-contrast .team-card,
-html.gustavo-high-contrast .highlight-box {
-    border-color: #000000 !important;
-    box-shadow: 0 0 0 1.5px #000000 !important;
+/* 6. Evidenzia titoli */
+html.g-highlight-headings h1,
+html.g-highlight-headings h2,
+html.g-highlight-headings h3,
+html.g-highlight-headings h4,
+html.g-highlight-headings h5,
+html.g-highlight-headings h6 {
+    border-left: 4px solid #0066ff !important;
+    padding-left: 12px !important;
 }
 
-/* 2. Scala di Grigi (Grayscale) */
-html.gustavo-grayscale {
-    filter: grayscale(100%);
+/* 7-8. Font size (gestito via JS su html) */
+
+/* 9. Maggiore spaziatura */
+html.g-spacing * {
+    letter-spacing: 0.1em !important;
+    word-spacing: 0.2em !important;
 }
 
-/* In caso entrambi siano attivi insieme */
-html.gustavo-high-contrast.gustavo-grayscale {
-    filter: contrast(1.35) grayscale(100%);
+/* 10. Maggiore interlinea */
+html.g-line-height * {
+    line-height: 2 !important;
 }
 
-/* 3. Riduci Animazioni */
-html.gustavo-reduced-motion *,
-html.gustavo-reduced-motion *::before,
-html.gustavo-reduced-motion *::after {
+/* 11. Font leggibile */
+html.g-readable-font,
+html.g-readable-font * {
+    font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* 12. Allineamento a sinistra */
+html.g-align-left * {
+    text-align: left !important;
+}
+
+/* 13. Focus evidente */
+html.g-focus-visible *:focus {
+    outline: 3px solid #0066ff !important;
+    outline-offset: 3px !important;
+    box-shadow: 0 0 0 6px rgba(0, 102, 255, 0.25) !important;
+}
+
+/* 14. Evidenzia elemento attivo */
+html.g-highlight-active *:focus,
+html.g-highlight-active *:active {
+    background: rgba(0, 102, 255, 0.08) !important;
+}
+
+/* 15. Cursore grande */
+html.g-big-cursor,
+html.g-big-cursor * {
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M6 2 L6 26 L12 20 L17 30 L20 29 L15 19 L24 19 Z' fill='%23000' stroke='%23fff' stroke-width='1.5'/%3E%3C/svg%3E") 6 2, auto !important;
+}
+
+/* 16. Riduci animazioni */
+html.g-reduce-motion *,
+html.g-reduce-motion *::before,
+html.g-reduce-motion *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
 }
 
-/* 4. Focus più evidente (per navigazione da tastiera) */
-html.gustavo-focus-visible :focus-visible {
-    outline: 3px solid #0066ff !important;
-    outline-offset: 3px !important;
-    box-shadow: 0 0 0 6px rgba(0, 102, 255, 0.3) !important;
+/* 17. Blocca animazioni */
+html.g-stop-motion *,
+html.g-stop-motion *::before,
+html.g-stop-motion *::after {
+    animation: none !important;
+    transition: none !important;
 }
 
-/* Supporto prefers-reduced-motion di sistema */
+/* 18. Riduci effetti */
+html.g-reduce-effects * {
+    filter: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+/* 19. ModalitÃ  lettura â€” riduce opacitÃ  elementi decorativi */
+html.g-reading-mode .decorative,
+html.g-reading-mode [aria-hidden="true"]:not(span):not(svg):not(path):not(circle):not(.g-a11y-toggle-thumb):not(.g-a11y-toggle-track) {
+    opacity: 0.25 !important;
+    pointer-events: none !important;
+}
+
+/* 20. Riduci distrazioni */
+html.g-reduce-distractions [data-decorative],
+html.g-reduce-distractions .decorative {
+    display: none !important;
+}
+
+/* 21. Focus sulla lettura (combo) */
+html.g-reading-focus body {
+    max-width: 720px !important;
+    margin: 0 auto !important;
+}
+
+html.g-reading-focus * {
+    font-family: Georgia, "Times New Roman", serif !important;
+    font-size: 1.05rem !important;
+    line-height: 1.85 !important;
+    color: #1a1a2e !important;
+    background-color: #fefdf7 !important;
+}
+
+/* 22. Guida alla lettura â€” gestita con .g-guide-line via JS */
+
+/* 23. Nascondi immagini decorative */
+html.g-hide-decorative img[role="presentation"],
+html.g-hide-decorative img[alt=""],
+html.g-hide-decorative img:not([alt]) {
+    visibility: hidden !important;
+}
+
+/* â”€â”€ Supporto prefers-reduced-motion di sistema â”€â”€ */
 @media (prefers-reduced-motion: reduce) {
-    .gustavo-a11y-panel {
+    .g-a11y-panel {
         animation: none !important;
     }
-    .gustavo-a11y-btn {
+
+    .g-a11y-btn {
         transition: none !important;
     }
 }
 
-/* Responsive mobile */
+/* â”€â”€ Responsive mobile â”€â”€ */
 @media (max-width: 580px) {
-    .gustavo-a11y-btn {
+    .g-a11y-btn {
+        width: 52px;
+        height: 52px;
         bottom: 16px;
         right: 16px;
-        width: 50px;
-        height: 50px;
     }
 
-    .gustavo-a11y-btn svg {
-        width: 26px;
-        height: 26px;
+    .g-a11y-btn svg {
+        width: 24px;
+        height: 24px;
     }
 
-    .gustavo-a11y-panel {
-        bottom: 74px;
+    .g-a11y-panel {
         right: 16px;
-        left: 16px;
-        width: auto;
-        max-width: none;
+        bottom: 80px;
+        width: calc(100vw - 32px);
+    }
+
+    .g-a11y-tooltip {
+        display: none;
     }
 }
+
