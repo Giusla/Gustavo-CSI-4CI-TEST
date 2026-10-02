@@ -140,70 +140,97 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const openLightboxGallery = (list, startIndex = 0) => {
-        if (!lightbox || !list || list.length === 0) return;
-        currentLightboxList = list;
-        lightbox.classList.add('attivo');
-        document.body.style.overflow = 'hidden';
-        showLightboxIndex(startIndex);
-    };
+        let lastLightboxTrigger = null;
 
-    const closeLightbox = () => {
-        if (!lightbox) return;
-        lightbox.classList.remove('attivo');
-        if (lightboxBox) {
-            lightboxBox.classList.remove('is-loaded');
-        }
-        if (currentLoadHandler) {
-            lightboxImg.removeEventListener('load', currentLoadHandler);
-            lightboxImg.removeEventListener('error', currentLoadHandler);
-            currentLoadHandler = null;
-        }
-        if (lightboxImg) {
-            lightboxImg.src = '';
-        }
-
-        const encounterModal = document.getElementById('encounterModal');
-        if (!encounterModal || !encounterModal.classList.contains('attivo')) {
-            document.body.style.overflow = '';
-        }
-    };
-
-    if (lightbox) {
-        if (lightboxClose) {
-            lightboxClose.addEventListener('click', closeLightbox);
-        }
-
-        if (lightboxPrev) {
-            lightboxPrev.addEventListener('click', (e) => {
-                e.stopPropagation();
-                showLightboxIndex(currentLightboxIndex - 1);
-            });
-        }
-
-        if (lightboxNext) {
-            lightboxNext.addEventListener('click', (e) => {
-                e.stopPropagation();
-                showLightboxIndex(currentLightboxIndex + 1);
-            });
-        }
-
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox || e.target.classList.contains('lightbox-stage')) {
-                closeLightbox();
+        const openLightboxGallery = (list, startIndex = 0) => {
+            if (!lightbox || !list || list.length === 0) return;
+            lastLightboxTrigger = document.activeElement;
+            currentLightboxList = list;
+            lightbox.classList.add('attivo');
+            document.body.style.overflow = 'hidden';
+            showLightboxIndex(startIndex);
+            if (lightboxClose) {
+                setTimeout(() => lightboxClose.focus(), 50);
             }
-        });
+        };
 
-        document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('attivo')) return;
-            if (e.key === 'Escape') {
-                closeLightbox();
-            } else if (e.key === 'ArrowLeft') {
-                showLightboxIndex(currentLightboxIndex - 1);
-            } else if (e.key === 'ArrowRight') {
-                showLightboxIndex(currentLightboxIndex + 1);
+        const closeLightbox = () => {
+            if (!lightbox) return;
+            lightbox.classList.remove('attivo');
+            if (lightboxBox) {
+                lightboxBox.classList.remove('is-loaded');
             }
-        });
+            if (currentLoadHandler) {
+                lightboxImg.removeEventListener('load', currentLoadHandler);
+                lightboxImg.removeEventListener('error', currentLoadHandler);
+                currentLoadHandler = null;
+            }
+            if (lightboxImg) {
+                lightboxImg.src = '';
+            }
+
+            const encounterModal = document.getElementById('encounterModal');
+            if (!encounterModal || !encounterModal.classList.contains('attivo')) {
+                document.body.style.overflow = '';
+            }
+
+            if (lastLightboxTrigger && typeof lastLightboxTrigger.focus === 'function') {
+                lastLightboxTrigger.focus();
+                lastLightboxTrigger = null;
+            }
+        };
+
+        if (lightbox) {
+            if (lightboxClose) {
+                lightboxClose.addEventListener('click', closeLightbox);
+            }
+
+            if (lightboxPrev) {
+                lightboxPrev.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    showLightboxIndex(currentLightboxIndex - 1);
+                });
+            }
+
+            if (lightboxNext) {
+                lightboxNext.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    showLightboxIndex(currentLightboxIndex + 1);
+                });
+            }
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox || e.target.classList.contains('lightbox-stage')) {
+                    closeLightbox();
+                }
+            });
+
+            lightbox.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    const focusables = Array.from(lightbox.querySelectorAll('button:not([disabled])'));
+                    if (focusables.length === 0) return;
+                    const first = focusables[0];
+                    const last = focusables[focusables.length - 1];
+                    if (e.shiftKey && document.activeElement === first) {
+                        e.preventDefault();
+                        last.focus();
+                    } else if (!e.shiftKey && document.activeElement === last) {
+                        e.preventDefault();
+                        first.focus();
+                    }
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('attivo')) return;
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft') {
+                    showLightboxIndex(currentLightboxIndex - 1);
+                } else if (e.key === 'ArrowRight') {
+                    showLightboxIndex(currentLightboxIndex + 1);
+                }
+            });
 
         let touchStartX = 0;
         lightbox.addEventListener('touchstart', (e) => {
@@ -310,11 +337,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (playPauseBtn) playPauseBtn.addEventListener('click', togglePlay);
         video.addEventListener('click', togglePlay);
 
-        // Avanzamento e tempi
+        // Avanzamento e tempi (WCAG 4.1.2)
         video.addEventListener('timeupdate', () => {
             if (!isNaN(video.duration) && video.duration > 0) {
                 const percent = (video.currentTime / video.duration) * 100;
                 if (videoProgress) videoProgress.style.width = `${percent}%`;
+                if (videoTimeline) {
+                    videoTimeline.setAttribute('aria-valuenow', Math.round(percent).toString());
+                    videoTimeline.setAttribute('aria-valuetext', `${formatTime(video.currentTime)} di ${formatTime(video.duration)}`);
+                }
             }
             if (currentTimeEl) currentTimeEl.textContent = formatTime(video.currentTime);
         });
@@ -440,6 +471,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
                 if (!isNaN(video.duration) && video.duration > 0) {
                     seekToPosition(pos * video.duration);
+                }
+            });
+
+            // Accessibilità da tastiera per slider video (WCAG 2.1.1)
+            videoTimeline.addEventListener('keydown', (e) => {
+                if (isNaN(video.duration) || video.duration <= 0) return;
+                const STEP = 5;
+                if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    seekToPosition(Math.min(video.duration, video.currentTime + STEP));
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    seekToPosition(Math.max(0, video.currentTime - STEP));
+                } else if (e.key === 'Home') {
+                    e.preventDefault();
+                    seekToPosition(0);
+                } else if (e.key === 'End') {
+                    e.preventDefault();
+                    seekToPosition(video.duration);
+                } else if (e.key === ' ' || e.key === 'Enter') {
+                    e.preventDefault();
+                    togglePlay();
                 }
             });
         }
@@ -687,9 +740,12 @@ document.addEventListener('DOMContentLoaded', () => {
             encounterModalBody.addEventListener('scroll', updateModalScrollbar, { passive: true });
         }
 
+        let lastEncounterTrigger = null;
+
         const openEncounterModal = (encIndex) => {
             const data = encountersData[encIndex];
             if (!encounterModal || !data) return;
+            lastEncounterTrigger = document.activeElement;
 
             if (encounterModalBadge) encounterModalBadge.textContent = data.badge;
             if (encounterModalTitle) encounterModalTitle.textContent = data.title;
@@ -730,6 +786,10 @@ document.addEventListener('DOMContentLoaded', () => {
             encounterModal.classList.add('attivo');
             encounterModal.setAttribute('aria-hidden', 'false');
 
+            if (encounterModalClose) {
+                setTimeout(() => encounterModalClose.focus(), 50);
+            }
+
             if (encounterModalBody) {
                 encounterModalBody.scrollTop = 0;
                 setTimeout(updateModalScrollbar, 50);
@@ -746,6 +806,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.documentElement.classList.remove('modal-is-open');
                 document.body.classList.remove('modal-is-open');
             }
+
+            if (lastEncounterTrigger && typeof lastEncounterTrigger.focus === 'function') {
+                lastEncounterTrigger.focus();
+                lastEncounterTrigger = null;
+            }
         };
 
         if (encounterModalClose) {
@@ -759,6 +824,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (encounterModal) {
             encounterModal.addEventListener('click', (e) => {
                 if (e.target === encounterModal) closeEncounterModal();
+            });
+
+            encounterModal.addEventListener('keydown', (e) => {
+                if (e.key === 'Tab') {
+                    const focusables = Array.from(encounterModal.querySelectorAll('button:not([disabled]), [tabindex="0"]'));
+                    if (focusables.length === 0) return;
+                    const first = focusables[0];
+                    const last = focusables[focusables.length - 1];
+                    if (e.shiftKey && document.activeElement === first) {
+                        e.preventDefault();
+                        last.focus();
+                    } else if (!e.shiftKey && document.activeElement === last) {
+                        e.preventDefault();
+                        first.focus();
+                    }
+                }
             });
 
             // Evita che la rotellina del mouse o il touch scrollino la pagina di sfondo

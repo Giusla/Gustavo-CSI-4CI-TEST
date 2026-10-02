@@ -82,6 +82,12 @@ html {
     -webkit-font-smoothing: antialiased;
     /* clip invece di hidden: evita scrollbar orizzontale senza rompere position:sticky */
     overflow-x: clip;
+    /* WCAG 2.4.11: Evita che l'header fisso copra l'elemento focalizzato da tastiera */
+    scroll-padding-top: calc(var(--nav-height, 60px) + 20px);
+}
+
+:target {
+    scroll-margin-top: calc(var(--nav-height, 60px) + 20px);
 }
 
 body {
@@ -110,6 +116,36 @@ a,
     user-select: none;
 }
 
+/* WCAG 1.4.1: Non comunicare informazioni basandosi solo sul colore (link nei testi sottolineati di default) */
+p a,
+.hero-lead a,
+.card-desc a,
+.doc-section a,
+.story-chapter a,
+.footer-info a {
+    color: var(--brand-blue, #005ce6);
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 3px;
+    font-weight: 500;
+}
+
+p a:hover,
+p a:focus-visible,
+.hero-lead a:hover,
+.hero-lead a:focus-visible,
+.card-desc a:hover,
+.card-desc a:focus-visible,
+.doc-section a:hover,
+.doc-section a:focus-visible,
+.story-chapter a:hover,
+.story-chapter a:focus-visible,
+.footer-info a:hover,
+.footer-info a:focus-visible {
+    color: #003d99;
+    text-decoration-thickness: 2.5px;
+}
+
 img {
     display: block;
     max-width: 100%;
@@ -120,13 +156,13 @@ img {
 }
 
 /* --------------------------------------------------------------------------
-   2. Variabili & Palette dell'Avogadro
+   2. Variabili & Palette dell'Avogadro (WCAG 1.4.3 / 1.4.11 AA Compliant)
    -------------------------------------------------------------------------- */
 :root {
-    --brand-green: #00a86b;
-    --brand-blue: #0066ff;
+    --brand-green: #008753;
+    --brand-blue: #005ce6;
     --brand-dark: #0f172a;
-    --brand-gradient: linear-gradient(90deg, #00a86b 0%, #0066ff 100%);
+    --brand-gradient: linear-gradient(90deg, #008753 0%, #005ce6 100%);
 
     --bg-page: #f8fafc;
     --bg-surface: #ffffff;
@@ -135,7 +171,7 @@ img {
 
     --text-heading: #0f172a;
     --text-body: #334155;
-    --text-muted: #64748b;
+    --text-muted: #475569;
 
     --max-w: 1060px;
     --radius-sm: 6px;
@@ -710,11 +746,16 @@ body>header {
 
 
 
-.link-scuola:hover,
+.link-scuola:hover {
+    background-size: 100% 100%;
+    color: #ffffff;
+}
+
 .link-scuola:focus-visible {
     background-size: 100% 100%;
     color: #ffffff;
-    outline: none;
+    outline: 2px solid #005ce6;
+    outline-offset: 3px;
 }
 
 /* Composizione Visiva Fotografica Sovrapposta & Leggermente Inclinata (Senza Saltelli) */
@@ -1342,8 +1383,12 @@ body>header {
     height: 5px;
     border-radius: 3px;
     background: linear-gradient(to right, #00a86b 0%, #0066ff var(--vol-fill, 100%), rgba(255, 255, 255, 0.25) var(--vol-fill, 100%));
-    outline: none;
     cursor: pointer;
+}
+
+.volume-range:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
 }
 
 .volume-range::-webkit-slider-thumb {
@@ -1677,7 +1722,6 @@ body.chatbot-page>header {
     -webkit-overflow-scrolling: touch;
     padding: 10px 4px 14px;
     margin: -10px -4px 0;
-    outline: none;
     cursor: default;
     scrollbar-width: none;
     -ms-overflow-style: none;
