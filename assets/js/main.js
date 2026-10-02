@@ -1296,9 +1296,25 @@ document.addEventListener('DOMContentLoaded', () => {
         adjustPositionForFooter();
     };
 
+    // ── Aggiornamento dinamico meta social al dominio reale del browser ──
+    const updateDynamicSocialMeta = () => {
+        try {
+            const currentOrigin = window.location.origin + window.location.pathname.replace(/\/[^/]*$/, '');
+            const ogElements = document.querySelectorAll('meta[property^="og:image"], meta[name="twitter:image"], link[rel="image_src"]');
+            ogElements.forEach(el => {
+                const attr = el.hasAttribute('content') ? 'content' : 'href';
+                const val = el.getAttribute(attr);
+                if (val && !val.startsWith('http://') && !val.startsWith('https://')) {
+                    el.setAttribute(attr, `${currentOrigin}/${val.replace(/^\.\//, '').replace(/^\//, '')}`);
+                }
+            });
+        } catch (e) {}
+    };
+
     initPhotoSkeletons();
     initEncountersGallery();
     initGustavoAccessibility();
     disableBrowserLinkPreview();
+    updateDynamicSocialMeta();
 });
 
