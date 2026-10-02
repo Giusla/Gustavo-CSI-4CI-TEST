@@ -2327,10 +2327,10 @@ body.modal-is-open {
 }
 
 .footer-logo-gustavo {
-    height: 42px;
+    height: 44px;
     width: auto;
     object-fit: contain;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.22));
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.35));
     transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
@@ -2869,7 +2869,7 @@ body.modal-is-open {
     }
 
     .footer-logo-gustavo {
-        height: 30px;
+        height: 32px;
         width: auto;
     }
 
@@ -2995,7 +2995,7 @@ body.modal-is-open {
     }
 
     .footer-logo-gustavo {
-        height: 26px;
+        height: 28px;
         width: auto;
     }
 
