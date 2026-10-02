@@ -22,6 +22,7 @@
         <div class="footer-info">
             <p class="footer-credits">
                  Progetto GustAvo <strong>5CI</strong> - <strong>IIS Amedeo Avogadro</strong>, Torino - <strong>in collaborazione con CSI Piemonte</strong>
+                · <button type="button" class="footer-a11y-link" data-a11y-trigger title="Personalizza accessibilità (Alt+A)">Accessibilità</button>
             </p>
         </div>
 

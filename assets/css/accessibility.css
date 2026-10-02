@@ -679,7 +679,8 @@ html.a11y-invert {
 html.a11y-invert img,
 html.a11y-invert video,
 html.a11y-invert iframe,
-html.a11y-invert .a11y-backdrop {
+html.a11y-invert .a11y-backdrop,
+html.a11y-invert .a11y-floating-trigger {
     filter: invert(100%) hue-rotate(180deg) !important;
 }
 

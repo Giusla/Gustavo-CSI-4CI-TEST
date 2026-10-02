@@ -37,8 +37,7 @@ $link_ext = '.html';
             <li><a href="documentazione<?php echo $link_ext; ?>" class="<?php echo ($active_page === 'documentazione' ? 'active' : ''); ?>">Documentazione</a></li>
             <li><a href="chatbot<?php echo $link_ext; ?>" class="<?php echo ($active_page === 'chatbot' ? 'active' : ''); ?>">Chatbot</a></li>
             <li><a href="galleria<?php echo $link_ext; ?>" class="<?php echo ($active_page === 'galleria' ? 'active' : ''); ?>">Galleria</a></li>
-            <li><button class="nav-a11y-btn" type="button" data-a11y-trigger aria-label="Menu Accessibilità" title="Accessibilità (Alt+A)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg><span>Accessibilità</span></button></li>
-        </ul>
+            
 
         <button class="hamburger" id="hamburger" aria-label="Menu di navigazione" aria-expanded="false">
             <span></span><span></span><span></span>

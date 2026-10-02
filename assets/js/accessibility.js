@@ -27,6 +27,10 @@
     let prefs = Object.assign({}, defaultPrefs);
     let isSpeechReading = false;
     let currentSpeakingElement = null;
+    let utteranceId = 0;
+    let currentUtterance = null;
+    let pageReading = false;
+    let lastSelection = '';
 
     // Carica preferenze dal LocalStorage prima di renderizzare
     try {
@@ -412,6 +416,7 @@
         const modal = document.getElementById('a11yModal');
         const trigger = document.getElementById('a11yTrigger');
         if (!modal) return;
+        lastSelection = window.getSelection().toString();
 
         modal.classList.add('is-open');
         if (trigger) trigger.setAttribute('aria-expanded', 'true');
@@ -469,6 +474,29 @@
         }, { passive: true });
     }
 
+
+    function getItalianVoice() {
+        const voices = window.speechSynthesis.getVoices();
+        return voices.find(v => v.lang === 'it-IT') ||
+            voices.find(v => v.lang.toLowerCase().startsWith('it'));
+    }
+
+    function splitText(text, max = 180) {
+        const sentences = text.replace(/\s+/g, ' ').match(/[^.!?;:]+[.!?;:]?/g) || [text];
+        const chunks = [];
+        let buf = '';
+        sentences.forEach(s => {
+            if ((buf + s).length > max && buf) { chunks.push(buf.trim()); buf = ''; }
+            buf += s + ' ';
+            while (buf.length > max * 1.5) {
+                const cut = buf.lastIndexOf(' ', max) > 0 ? buf.lastIndexOf(' ', max) : max;
+                chunks.push(buf.slice(0, cut).trim());
+                buf = buf.slice(cut);
+            }
+        });
+        if (buf.trim()) chunks.push(buf.trim());
+        return chunks;
+    }
     /**
      * Sintesi Vocale (Web Speech API)
      */
@@ -477,48 +505,57 @@
             alert('Il tuo browser non supporta la sintesi vocale.');
             return;
         }
+        text = (text || '').trim();
+        if (!text) return;
 
-        window.speechSynthesis.cancel();
-        if (!text || text.trim() === '') return;
+        const synth = window.speechSynthesis;
+        const myId = ++utteranceId;
+        const chunks = splitText(text);
+        let i = 0;
 
-        const utterance = new SpeechSynthesisUtterance(text.trim());
-        utterance.lang = 'it-IT';
-        utterance.rate = 1.0;
-        utterance.pitch = 1.0;
-
-        // Seleziona voce italiana disponibile
-        const voices = window.speechSynthesis.getVoices();
-        const italianVoice = voices.find(v => v.lang.startsWith('it'));
-        if (italianVoice) utterance.voice = italianVoice;
-
-        utterance.onend = () => {
-            isSpeechReading = false;
-            updateSpeechButtons();
-            if (currentSpeakingElement) {
-                currentSpeakingElement.classList.remove('a11y-speaking-element');
-                currentSpeakingElement = null;
-            }
-            if (onComplete) onComplete();
-        };
-
-        utterance.onerror = () => {
-            isSpeechReading = false;
-            updateSpeechButtons();
-            if (currentSpeakingElement) {
-                currentSpeakingElement.classList.remove('a11y-speaking-element');
-                currentSpeakingElement = null;
-            }
-        };
+        synth.cancel();
+        if (synth.paused) synth.resume();
 
         isSpeechReading = true;
         updateSpeechButtons();
-        window.speechSynthesis.speak(utterance);
+
+        function finish() {
+            if (myId !== utteranceId) return;
+            isSpeechReading = false;
+            updateSpeechButtons();
+            if (onComplete) onComplete();
+        }
+
+        function speakNext() {
+            if (myId !== utteranceId) return;
+            if (i >= chunks.length) { finish(); return; }
+
+            const u = new SpeechSynthesisUtterance(chunks[i++]);
+            u.lang = 'it-IT';
+            u.rate = 1.0;
+            u.pitch = 1.0;
+            const v = getItalianVoice();
+            if (v) u.voice = v;
+
+            u.onend = speakNext;
+            u.onerror = (e) => {
+                if (myId !== utteranceId) return;
+                if (e.error === 'interrupted' || e.error === 'canceled') return;
+                console.warn('GustAvo A11y: errore TTS', e.error);
+                finish();
+            };
+
+            currentUtterance = u;
+            synth.speak(u);
+        }
+
+        setTimeout(speakNext, 80);
     }
 
     function stopSpeech() {
-        if ('speechSynthesis' in window) {
-            window.speechSynthesis.cancel();
-        }
+        utteranceId++;
+        pageReading = false;
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
         isSpeechReading = false;
         if (currentSpeakingElement) {
             currentSpeakingElement.classList.remove('a11y-speaking-element');
@@ -538,55 +575,54 @@
     }
 
     function readSelectedText() {
-        const selected = window.getSelection().toString();
-        if (selected && selected.trim().length > 0) {
+        const selected = (window.getSelection().toString() || lastSelection).trim();
+        if (selected) {
             speakText(selected);
         } else {
-            // Se non c'è testo selezionato, invita a selezionare o legge il titolo
-            const pageTitle = document.title || 'Portate il cursore sopra un testo per selezionarlo.';
-            speakText('Nessun testo selezionato. Pagina: ' + pageTitle);
+            speakText('Nessun testo selezionato. Pagina: ' + (document.title || ''));
         }
     }
 
     function readFullPage() {
-        if (isSpeechReading) {
+        if (isSpeechReading || pageReading) {
             stopSpeech();
             return;
         }
 
-        const elements = Array.from(document.querySelectorAll('main h1, main h2, main h3, main p, main li, article h3, article p'));
+        closePanel(); // così vedi l'evidenziazione sulla pagina
+
+        const root = document.querySelector('main') || document.body;
+        let elements = Array.from(root.querySelectorAll('h1, h2, h3, h4, p, li'))
+            .filter(el => !el.closest('#a11yModal') && !el.closest('#a11yTrigger'));
+        elements = elements.filter(el => !elements.some(o => o !== el && el.contains(o)));
+
         if (elements.length === 0) {
-            speakText(document.body.innerText.substring(0, 1000));
+            speakText(root.innerText.substring(0, 1500));
             return;
         }
 
+        pageReading = true;
         let index = 0;
+
         function readNext() {
-            if (index >= elements.length || !isSpeechReading) {
+            if (currentSpeakingElement) {
+                currentSpeakingElement.classList.remove('a11y-speaking-element');
+                currentSpeakingElement = null;
+            }
+            if (!pageReading || index >= elements.length) {
                 stopSpeech();
                 return;
             }
+            const el = elements[index++];
+            const text = (el.innerText || '').trim();
+            if (text.length <= 2) { readNext(); return; }
 
-            const el = elements[index];
-            const text = el.innerText ? el.innerText.trim() : '';
-            if (text.length > 2) {
-                if (currentSpeakingElement) currentSpeakingElement.classList.remove('a11y-speaking-element');
-                currentSpeakingElement = el;
-                el.classList.add('a11y-speaking-element');
-                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-                index++;
-                speakText(text, () => {
-                    readNext();
-                });
-            } else {
-                index++;
-                readNext();
-            }
+            currentSpeakingElement = el;
+            el.classList.add('a11y-speaking-element');
+            el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            speakText(text, readNext);
         }
 
-        isSpeechReading = true;
-        updateSpeechButtons();
         readNext();
     }
 
