@@ -737,7 +737,7 @@ button:disabled {
 
         <!-- Occhio sinistro con pupilla mobile -->
         <g class="eye left">
-          <g class="pupil" style="transition: transform 0.1s ease;">
+          <g class="pupil" id="left-pupil" style="transition: transform 0.1s ease;">
             <ellipse cx="47" cy="67" rx="7" ry="8.5" fill="#0f172a" />
             <circle cx="45" cy="64.5" r="2.6" fill="#ffffff" />
             <circle cx="49" cy="69" r="1.2" fill="#ffffff" opacity="0.7" />
@@ -746,7 +746,7 @@ button:disabled {
 
         <!-- Occhio destro con pupilla mobile -->
         <g class="eye right">
-          <g class="pupil" style="transition: transform 0.1s ease;">
+          <g class="pupil" id="right-pupil" style="transition: transform 0.1s ease;">
             <ellipse cx="83" cy="67" rx="7" ry="8.5" fill="#0f172a" />
             <circle cx="81" cy="64.5" r="2.6" fill="#ffffff" />
             <circle cx="85" cy="69" r="1.2" fill="#ffffff" opacity="0.7" />
@@ -791,107 +791,7 @@ button:disabled {
     </label>
   `;
 
-  async function injectChatbotTheme() {
-    const iframe = document.querySelector('.chatbot-iframe');
-    if (!iframe) return;
-
-    const SERVER_URL = 'https://gustavo1.avoprogetti.it';
-
-    // Risoluzione assoluta del logo GustAvo completo (Mole + Robot + scritta gialla GUSTAVO)
-    const gustavoLogoUrl = new URL('assets/img/gustavo_icon.png', window.location.href).href;
-
-    // Funzione interna per recuperare l'HTML con retry e timeout per evitare fallimenti temporanei di rete
-    async function fetchWithRetry(url, options = {}, retries = 3, backoff = 400) {
-      for (let i = 0; i < retries; i++) {
-        try {
-          const controller = new AbortController();
-          const timeoutId = setTimeout(() => controller.abort(), 6000);
-          const res = await fetch(url, { ...options, signal: controller.signal });
-          clearTimeout(timeoutId);
-          if (res.ok) return res;
-          throw new Error('HTTP ' + res.status);
-        } catch (e) {
-          if (i === retries - 1) throw e;
-          await new Promise(r => setTimeout(r, backoff * (i + 1)));
-        }
-      }
-    }
-
-    try {
-      // 0. Caricamento del dataset locale intents (da window.GUSTAVO_INTENTS_DATA o fetch intents.json)
-      let localIntents = (typeof window !== 'undefined' && window.GUSTAVO_INTENTS_DATA) ? window.GUSTAVO_INTENTS_DATA : null;
-      if (!localIntents) {
-        try {
-          const intentsRes = await fetch('intents.json?v=' + Date.now());
-          if (intentsRes.ok) {
-            localIntents = await intentsRes.json();
-          }
-        } catch (e) {
-          console.warn('Impossibile caricare intents.json dinamicamente:', e);
-        }
-      }
-
-      // 1. Recupero dell'HTML del chatbot dal server ufficiale con retry garantito
-      const response = await fetchWithRetry(SERVER_URL, { cache: 'no-cache' });
-      let html = await response.text();
-
-      // Inserisci <base> se mancante per risolvere eventuali risorse relative del server
-      if (!html.includes('<base')) {
-        html = html.replace('<head>', `<head>\n  <base href="${SERVER_URL}/">`);
-      }
-
-      // Link al font Google Inter
-      const fontTags = `
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-`;
-
-      // Iniezione del CSS a tema
-      const styleTag = `\n  <style id="gustavo-injected-theme">\n${THEME_CSS}\n  </style>\n`;
-
-      if (html.includes('</head>')) {
-        html = html.replace('</head>', fontTags + styleTag + '</head>');
-      } else {
-        html = fontTags + styleTag + html;
-      }
-
-      // 2. Rimozione banner superiore per dare massimo spazio all'output della chat su schermi piccoli
-      html = html.replace(/<div\s+class=["']header["'][^>]*>[\s\S]*?<\/div>/i, '<div class="header"></div>');
-
-      // 3. Ripristino Avatar Professore SVG
-      html = html.replace(
-        /<div\s+class=["']avatar["'][^>]*>[\s\S]*?<\/div>/i,
-        AVATAR_SVG_HTML.trim()
-      );
-
-      // 4. Sostituzione emoji amplificatore / altoparlante
-      html = html.replace(
-        /<label for=["']voiceToggle["']>[\s\S]*?<\/label>/gi,
-        VOICE_LABEL_HTML.trim()
-      );
-
-      // 5. Sostituzione emoji microfono con Open & Closed Mic SVG
-      html = html.replace(
-        /<button id=["']mic-btn["'][^>]*>[\s\S]*?<\/button>/gi,
-        MIC_BUTTON_HTML.trim()
-      );
-
-      // 5b. Inserimento Disclaimer discreto sotto la casella di input
-      html = html.replace(
-        /(<div class="input-container">[\s\S]*?<\/div>)/i,
-        '$1\n    <div class="chat-disclaimer-note">GustAvo è un assistente virtuale e può commettere errori. Verifica le informazioni in segreteria o su <a href="https://www.itisavogadro.it" target="_blank" rel="noopener">itisavogadro.it</a></div>'
-      );
-
-      // 6. RIMOZIONE TOTALE DI QUALSIASI EMOJI DALL'HTML
-      html = html.replace(/💚/g, '.');
-      html = html.replace(/😅/g, '.');
-      html = html.replace(/🌟/g, '');
-      html = html.replace(/🎤/g, '');
-      html = html.replace(/🔊/g, '');
-
-      // 7. Sostituzione di animateMouthStart, animateMouthStop e botSpeak con gestione audio esclusiva e tasto Stop
-      const mouthAndBotSpeakLogic = `
+  const mouthAndBotSpeakLogic = `
 let _isSpeaking = false;
 let _currentAudio = null;
 let _speechTimeout = null;
@@ -1068,15 +968,12 @@ function botSpeak(rawText) {
 }
 `;
 
-      html = html.replace(
-        /function animateMouthStart\(\)\s*\{[\s\S]*?animateMouthStop\(\);\s*\}\s*\);\s*\}/i,
-        () => mouthAndBotSpeakLogic.trim()
-      );
-
-      // 8. Logica di Invio con NLP Locale basato su intents.json e Filtro Parolacce
-      const robustSendLogic = `
+  const robustSendLogic = `
 function getLocalIntents() {
-  if (window.parent && window.parent.GUSTAVO_INTENTS_DATA && Array.isArray(window.parent.GUSTAVO_INTENTS_DATA.intents)) {
+  if (typeof window !== "undefined" && window.GUSTAVO_INTENTS_DATA && Array.isArray(window.GUSTAVO_INTENTS_DATA.intents)) {
+    return window.GUSTAVO_INTENTS_DATA.intents;
+  }
+  if (typeof window !== "undefined" && window.parent && window.parent.GUSTAVO_INTENTS_DATA && Array.isArray(window.parent.GUSTAVO_INTENTS_DATA.intents)) {
     return window.parent.GUSTAVO_INTENTS_DATA.intents;
   }
   return [];
@@ -1133,7 +1030,7 @@ function matchLocalIntent(query) {
   const normQuery = normalizeNlpText(query);
 
   // 1. Riconoscimento intelligente e prioritario per qualsiasi aula scolastica (es. "aula 223", "dove e la 223", "223")
-  const aulaRegex = /(?:aula\s*|^|\b)(s0?[1-9]|[1-4]\d{2})\b/i;
+  const aulaRegex = /(?:aula\\s*|^|\\b)(s0?[1-9]|[1-4]\\d{2})\\b/i;
   const aulaMatch = query.match(aulaRegex);
   if (aulaMatch) {
     const code = aulaMatch[1].toUpperCase();
@@ -1141,7 +1038,7 @@ function matchLocalIntent(query) {
       return {
         intent: {
           responses: [
-            `L'Aula ${code} si trova al Primo Piano (l=1 su OpenLevelUp).\n\nVisualizza la mappa: [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.`
+            \`L'Aula \${code} si trova al Primo Piano (l=1 su OpenLevelUp).\\n\\nVisualizza la mappa: [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.\`
           ]
         },
         score: 1.0
@@ -1150,7 +1047,7 @@ function matchLocalIntent(query) {
       return {
         intent: {
           responses: [
-            `L'Aula ${code} si trova al Secondo Piano (l=2 su OpenLevelUp).\n\nVisualizza la mappa: [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.`
+            \`L'Aula \${code} si trova al Secondo Piano (l=2 su OpenLevelUp).\\n\\nVisualizza la mappa: [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.\`
           ]
         },
         score: 1.0
@@ -1159,7 +1056,7 @@ function matchLocalIntent(query) {
       return {
         intent: {
           responses: [
-            `L'Aula ${code} si trova al Terzo Piano (l=3 su OpenLevelUp).\n\nVisualizza la mappa: [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.`
+            \`L'Aula \${code} si trova al Terzo Piano (l=3 su OpenLevelUp).\\n\\nVisualizza la mappa: [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.\`
           ]
         },
         score: 1.0
@@ -1168,7 +1065,7 @@ function matchLocalIntent(query) {
       return {
         intent: {
           responses: [
-            `L'Aula ${code} si trova al Quarto Piano (l=4 su OpenLevelUp).\n\nVisualizza la mappa: [Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)\n\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.`
+            \`L'Aula \${code} si trova al Quarto Piano (l=4 su OpenLevelUp).\\n\\nVisualizza la mappa: [Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.\`
           ]
         },
         score: 1.0
@@ -1177,7 +1074,7 @@ function matchLocalIntent(query) {
       return {
         intent: {
           responses: [
-            `Il laboratorio/officina ${code} si trova al Piano Terra (l=0 su OpenLevelUp), nell'area delle officine e macchine CNC.\n\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)`
+            \`Il laboratorio/officina \${code} si trova al Piano Terra (l=0 su OpenLevelUp), nell'area delle officine e macchine CNC.\\n\\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)\`
           ]
         },
         score: 1.0
@@ -1186,11 +1083,11 @@ function matchLocalIntent(query) {
   }
 
   // Chiarimento su aule a numero basso (es. "aula 12", "aula 5")
-  if (/\b(?:aula|aule)\s*([1-9]|1[0-9]|20)\b/i.test(query)) {
+  if (/\\b(?:aula|aule)\\s*([1-9]|1[0-9]|20)\\b/i.test(query)) {
     return {
       intent: {
         responses: [
-          "All'IIS Avogadro le aule sono contrassegnate da numeri a tre cifre in base al piano:\n- Serie 100 (101-130): Primo Piano\n- Serie 200 (201-230): Secondo Piano\n- Serie 300 (301-330): Terzo Piano\n\nAl Piano Terra si trovano la Segreteria, la Presidenza, la Biblioteca Storica, l'Aula Magna, la Palestra, le Officine Meccaniche e il Bar.\n\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+          "All'IIS Avogadro le aule sono contrassegnate da numeri a tre cifre in base al piano:\\n- Serie 100 (101-130): Primo Piano\\n- Serie 200 (201-230): Secondo Piano\\n- Serie 300 (301-330): Terzo Piano\\n\\nAl Piano Terra si trovano la Segreteria, la Presidenza, la Biblioteca Storica, l'Aula Magna, la Palestra, le Officine Meccaniche e il Bar.\\n\\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
         ]
       },
       score: 1.0
@@ -1336,177 +1233,214 @@ async function sendMessage() {
 }
 `;
 
-      html = html.replace(
-        /async function sendMessage\(\)\s*\{[\s\S]*?botSpeak\("Errore di connessione\."\);\s*\}\s*\}/i,
-        () => robustSendLogic.trim()
-      );
+  function buildModernHtml() {
+    return `<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <base href="https://gustavo1.avoprogetti.it/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style id="gustavo-injected-theme">
+${THEME_CSS}
+  </style>
+</head>
+<body>
+  <div id="chat-container">
+    <div class="header"></div>
+    ${AVATAR_SVG_HTML.trim()}
+    <div class="voice-toggle">
+      <input type="checkbox" id="voiceToggle">
+      ${VOICE_LABEL_HTML.trim()}
+    </div>
+    <div id="messages">
+      <div class="msg bot">
+        <span class="strong">GustAvo:</span> Ciao! Sono GustAvo, l'assistente virtuale dell'IIS Avogadro. Chiedimi pure informazioni su corsi, aule, laboratori, orari o segreteria!
+      </div>
+    </div>
+    <div class="input-container">
+      <input type="text" id="input" placeholder="Scrivi un messaggio..." autocomplete="off">
+      <button id="btn-send" onclick="sendMessage()">Invia</button>
+      ${MIC_BUTTON_HTML.trim()}
+    </div>
+    <div class="chat-disclaimer-note">GustAvo è un assistente virtuale e può commettere errori. Verifica le informazioni in segreteria o su <a href="https://www.itisavogadro.it" target="_blank" rel="noopener">itisavogadro.it</a></div>
+  </div>
+  <script>
+    const SERVER_URL = "https://gustavo1.avoprogetti.it";
+    const messages = document.getElementById("messages");
+    const input = document.getElementById("input");
+    const voiceToggle = document.getElementById("voiceToggle");
+    const mouth = document.getElementById("mouth");
+    const leftP = document.getElementById("left-pupil") || document.querySelector('.eye.left .pupil');
+    const rightP = document.getElementById("right-pupil") || document.querySelector('.eye.right .pupil');
+    let mouthInterval = null;
+    let eyeInterval = null;
 
-      // Sostituzione pulsante invio e pulizia attributi Cloudflare
-      html = html.replace(
-        /<button[^>]*onclick="[^"]*sendMessage\(\)[^"]*"[^>]*>[\s\S]*?<\/button>/i,
-        '<button id="btn-send" onclick="sendMessage()">Invia</button>'
-      );
+    ${mouthAndBotSpeakLogic}
 
-      // Protezione microfono e tasto invio
-      html = html.replace(
-        /input\.value\s*=\s*data\.text;\s*sendMessage\(\);/i,
-        'input.value = data.text; sendMessage();'
-      );
-      html = html.replace(
-        /if\s*\(\s*event\.key\s*===\s*"Enter"\s*\)\s*\{\s*event\.preventDefault\(\);\s*sendMessage\(\);\s*\}/i,
-        'if (event.key === "Enter") { event.preventDefault(); sendMessage(); }'
-      );
+    ${robustSendLogic}
 
-      // Normalizzazione script Cloudflare Rocket Loader
-      html = html.replace(/type="[a-zA-Z0-9]+-text\/javascript"/g, 'type="text/javascript"');
-      html = html.replace(/data-cf-modified-[a-zA-Z0-9]+-=""/g, '');
-      html = html.replace(/if\s*\(!window\.__cfRLUnblockHandlers\)\s*return\s*false;\s*/g, '');
-      html = html.replace(/<script[^>]*rocket-loader\.min\.js[^>]*><\/script>/gi, '');
+    let mediaRecorder;
+    let audioChunks = [];
+    const micBtn = document.getElementById("mic-btn");
 
-      // Rende assoluti gli endpoint API affinché puntino correttamente a gustavo1.avoprogetti.it
-      html = html.replace(/fetch\((["'])\/chat\1/g, `fetch($1${SERVER_URL}/chat$1`);
-      html = html.replace(/window\.location\.origin\s*\+\s*(["'])\/api\/transcribe\1/g, `"${SERVER_URL}/api/transcribe"`);
-      html = html.replace(/([`"'])\/api\/tts\?text=/g, `$1${SERVER_URL}/api/tts?text=`);
-
-    const iframe = document.querySelector('.chatbot-iframe');
-    if (iframe) {
-      iframe.removeAttribute('src');
-      iframe.srcdoc = html;
-      iframe.setAttribute('data-theme-injected', 'true');
+    if (micBtn) {
+      micBtn.addEventListener("click", async () => {
+        if (_isSpeaking) { stopSpeaking(); return; }
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          alert("Registrazione audio non supportata in questo browser.");
+          return;
+        }
+        if (mediaRecorder && mediaRecorder.state === "recording") {
+          mediaRecorder.stop();
+          micBtn.classList.remove("listening");
+          return;
+        }
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          mediaRecorder = new MediaRecorder(stream);
+          audioChunks = [];
+          mediaRecorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
+          mediaRecorder.onstop = async () => {
+            const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
+            const formData = new FormData();
+            formData.append("file", audioBlob, "audio.webm");
+            try {
+              const res = await fetch(SERVER_URL + "/api/transcribe", { method: "POST", body: formData });
+              if (res.ok) {
+                const data = await res.json();
+                if (data.text) {
+                  input.value = data.text;
+                  sendMessage();
+                  return;
+                }
+              }
+            } catch (e) {
+              console.warn("Trascrizione vocale non riuscita:", e);
+            }
+          };
+          mediaRecorder.start();
+          micBtn.classList.add("listening");
+        } catch (err) {
+          console.warn("Permesso microfono non concesso:", err);
+        }
+      });
     }
 
-    console.info('GustAvo: Blocco anti-concorrenza, logo squadrato, dataset locale e rimozione totale emoji applicati!');
-
-  } catch (err) {
-    console.warn('GustAvo: Fetch non riuscito dopo i tentativi, applico iniezione su iframe live:', err);
-
-    const applyThemeDirectly = () => {
-      if (getUiMode() === 'legacy') return;
-      try {
-        const doc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);
-        if (doc && !doc.getElementById('gustavo-injected-theme')) {
-          if (!doc.head) return;
-          const fontLink = doc.createElement('link');
-          fontLink.rel = 'stylesheet';
-          fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap';
-          doc.head.appendChild(fontLink);
-
-          const style = doc.createElement('style');
-          style.id = 'gustavo-injected-theme';
-          style.textContent = THEME_CSS;
-          doc.head.appendChild(style);
-
-          const headerEl = doc.querySelector('.header');
-          if (headerEl) {
-            headerEl.remove();
+    if (input) {
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          if (_isSpeaking && !input.value.trim()) {
+            stopSpeaking();
+          } else {
+            sendMessage();
           }
-
-          iframe.setAttribute('data-theme-injected', 'true');
-          console.info('GustAvo: Iniezione diretta eseguita con successo su iframe live.');
         }
-      } catch (e) {
-        // Cross-origin fallback
-      }
-    };
-
-    iframe.addEventListener('load', applyThemeDirectly);
-    applyThemeDirectly();
-
-    // Tentativi ripetuti a intervalli ravvicinati se il caricamento ritarda
-    const pollTimer = setInterval(() => {
-      if (getUiMode() === 'legacy') {
-        clearInterval(pollTimer);
-        return;
-      }
-      applyThemeDirectly();
-      if (iframe.getAttribute('data-theme-injected') === 'true') {
-        clearInterval(pollTimer);
-      }
-    }, 500);
-    setTimeout(() => clearInterval(pollTimer), 8000);
-  }
-}
-
-const UI_STORAGE_KEY = 'gustavo_chat_ui_mode';
-
-function getUiMode() {
-  try {
-    return localStorage.getItem(UI_STORAGE_KEY) || 'modern';
-  } catch (e) {
-    return 'modern';
-  }
-}
-
-function setUiMode(mode) {
-  try {
-    localStorage.setItem(UI_STORAGE_KEY, mode);
-  } catch (e) {}
-
-  updateUiSwitcherButtons(mode);
-
-  const iframe = document.querySelector('.chatbot-iframe');
-  if (!iframe) return;
-
-  if (mode === 'legacy') {
-    iframe.removeAttribute('srcdoc');
-    iframe.removeAttribute('data-theme-injected');
-    iframe.src = 'https://gustavo1.avoprogetti.it?' + Date.now();
-    console.info('GustAvo: Modalità Legacy pura attivata (gustavo1.avoprogetti.it).');
-  } else {
-    iframe.removeAttribute('src');
-    injectChatbotTheme();
-  }
-}
-
-function updateUiSwitcherButtons(activeMode) {
-  const btnModern = document.getElementById('btnUiModern');
-  const btnLegacy = document.getElementById('btnUiLegacy');
-  if (btnModern) {
-    btnModern.classList.toggle('active', activeMode === 'modern');
-    btnModern.setAttribute('aria-checked', activeMode === 'modern' ? 'true' : 'false');
-  }
-  if (btnLegacy) {
-    btnLegacy.classList.toggle('active', activeMode === 'legacy');
-    btnLegacy.setAttribute('aria-checked', activeMode === 'legacy' ? 'true' : 'false');
-  }
-}
-
-function setupUiSwitcher() {
-  const btnModern = document.getElementById('btnUiModern');
-  const btnLegacy = document.getElementById('btnUiLegacy');
-
-  if (btnModern) {
-    btnModern.onclick = function (e) {
-      e.preventDefault();
-      setUiMode('modern');
-    };
+      });
+    }
+  <\/script>
+</body>
+</html>`;
   }
 
-  if (btnLegacy) {
-    btnLegacy.onclick = function (e) {
-      e.preventDefault();
-      setUiMode('legacy');
-    };
-  }
-
-  const currentMode = getUiMode();
-  updateUiSwitcherButtons(currentMode);
-  if (currentMode === 'legacy') {
+  function injectChatbotTheme() {
     const iframe = document.querySelector('.chatbot-iframe');
-    if (iframe) {
+    if (!iframe) return;
+
+    try {
+      const modernHtml = buildModernHtml();
+      iframe.removeAttribute('src');
+      iframe.srcdoc = modernHtml;
+      iframe.setAttribute('data-theme-injected', 'true');
+      console.info('GustAvo: Modern UI caricata istantaneamente con successo!');
+    } catch (err) {
+      console.error('GustAvo: Errore rendering Modern UI:', err);
+    }
+  }
+
+  const UI_STORAGE_KEY = 'gustavo_chat_ui_mode';
+
+  function getUiMode() {
+    try {
+      return localStorage.getItem(UI_STORAGE_KEY) || 'modern';
+    } catch (e) {
+      return 'modern';
+    }
+  }
+
+  function setUiMode(mode) {
+    try {
+      localStorage.setItem(UI_STORAGE_KEY, mode);
+    } catch (e) {}
+
+    updateUiSwitcherButtons(mode);
+
+    const iframe = document.querySelector('.chatbot-iframe');
+    if (!iframe) return;
+
+    if (mode === 'legacy') {
       iframe.removeAttribute('srcdoc');
       iframe.removeAttribute('data-theme-injected');
-      iframe.src = 'https://gustavo1.avoprogetti.it';
+      iframe.src = 'https://gustavo1.avoprogetti.it?' + Date.now();
+      console.info('GustAvo: Modalità Legacy pura attivata (gustavo1.avoprogetti.it).');
+    } else {
+      iframe.removeAttribute('src');
+      injectChatbotTheme();
     }
-  } else {
-    injectChatbotTheme();
   }
-}
 
-// Esecuzione al caricamento del DOM
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', setupUiSwitcher);
-} else {
-  setupUiSwitcher();
-}
+  function updateUiSwitcherButtons(activeMode) {
+    const btnModern = document.getElementById('btnUiModern');
+    const btnLegacy = document.getElementById('btnUiLegacy');
+    if (btnModern) {
+      btnModern.classList.toggle('active', activeMode === 'modern');
+      btnModern.setAttribute('aria-checked', activeMode === 'modern' ? 'true' : 'false');
+    }
+    if (btnLegacy) {
+      btnLegacy.classList.toggle('active', activeMode === 'legacy');
+      btnLegacy.setAttribute('aria-checked', activeMode === 'legacy' ? 'true' : 'false');
+    }
+  }
+
+  function setupUiSwitcher() {
+    const btnModern = document.getElementById('btnUiModern');
+    const btnLegacy = document.getElementById('btnUiLegacy');
+
+    if (btnModern) {
+      btnModern.onclick = function (e) {
+        e.preventDefault();
+        setUiMode('modern');
+      };
+    }
+
+    if (btnLegacy) {
+      btnLegacy.onclick = function (e) {
+        e.preventDefault();
+        setUiMode('legacy');
+      };
+    }
+
+    const currentMode = getUiMode();
+    updateUiSwitcherButtons(currentMode);
+    if (currentMode === 'legacy') {
+      const iframe = document.querySelector('.chatbot-iframe');
+      if (iframe) {
+        iframe.removeAttribute('srcdoc');
+        iframe.removeAttribute('data-theme-injected');
+        iframe.src = 'https://gustavo1.avoprogetti.it';
+      }
+    } else {
+      injectChatbotTheme();
+    }
+  }
+
+  // Esecuzione al caricamento del DOM
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupUiSwitcher);
+  } else {
+    setupUiSwitcher();
+  }
 })();
