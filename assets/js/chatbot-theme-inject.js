@@ -927,52 +927,20 @@ button:disabled {
 
       // 7. Sostituzione di animateMouthStart, animateMouthStop e botSpeak con gestione audio esclusiva e tasto Stop
       const mouthAndBotSpeakLogic = `
-let _isChatBusy = false;
 let _isSpeaking = false;
 let _currentAudio = null;
 let _speechTimeout = null;
 
-function setChatBusy(busy, placeholderText, btnText) {
-  _isChatBusy = !!busy;
-  _isSpeaking = false;
-  if (_speechTimeout) {
-    clearTimeout(_speechTimeout);
-    _speechTimeout = null;
-  }
-  const _inp = document.getElementById("input");
-  const _btn = document.querySelector('.input-container button:not(.mic-btn)');
-  const _mic = document.getElementById("mic-btn");
-
-  if (_inp) {
-    _inp.disabled = _isChatBusy;
-    _inp.placeholder = _isChatBusy ? (placeholderText || "GustAvo sta pensando...") : "Scrivi un messaggio...";
-    if (!_isChatBusy) {
-      setMicLedState(false);
-      setTimeout(() => _inp.focus(), 60);
-    }
-  }
-  if (_btn) {
-    _btn.disabled = _isChatBusy;
-    _btn.innerText = _isChatBusy ? (btnText || "Attendi...") : "Invia";
-    _btn.classList.remove('btn-stop-speaking');
-    _btn.title = _isChatBusy ? "Attendi..." : "Invia";
-  }
-  if (_mic) {
-    _mic.disabled = _isChatBusy;
-  }
-}
-
 function setSpeakingState(speaking) {
   _isSpeaking = !!speaking;
-  _isChatBusy = _isSpeaking;
   const _inp = document.getElementById("input");
   const _btn = document.querySelector('.input-container button:not(.mic-btn)');
   const _mic = document.getElementById("mic-btn");
 
   if (_isSpeaking) {
     if (_inp) {
-      _inp.disabled = true;
-      _inp.placeholder = "GustAvo sta parlando... Premi Stop per interrompere";
+      _inp.disabled = false;
+      _inp.placeholder = "GustAvo sta parlando...";
     }
     if (_btn) {
       _btn.disabled = false;
@@ -984,7 +952,20 @@ function setSpeakingState(speaking) {
       _mic.disabled = true;
     }
   } else {
-    setChatBusy(false);
+    if (_inp) {
+      _inp.disabled = false;
+      _inp.placeholder = "Scrivi un messaggio...";
+    }
+    if (_btn) {
+      _btn.disabled = false;
+      _btn.innerText = "Invia";
+      _btn.classList.remove('btn-stop-speaking');
+      _btn.title = "Invia";
+    }
+    if (_mic) {
+      _mic.disabled = false;
+    }
+    setMicLedState(false);
   }
 }
 
@@ -1001,7 +982,7 @@ function stopSpeaking() {
     _currentAudio = null;
   }
   animateMouthStop();
-  setChatBusy(false);
+  setSpeakingState(false);
 }
 
 function setMicLedState(speaking) {
@@ -1242,10 +1223,6 @@ function matchLocalIntent(query) {
 async function sendMessage() {
   if (_isSpeaking) {
     stopSpeaking();
-    return;
-  }
-  if (_isChatBusy) {
-    return;
   }
 
   const inp = document.getElementById("input");
@@ -1257,7 +1234,6 @@ async function sendMessage() {
   const containsBadWord = BAD_WORDS_REGEX.test(rawMsg);
   BAD_WORDS_REGEX.lastIndex = 0;
 
-  setChatBusy(true, "GustAvo sta pensando...", "Invio...");
   inp.value = "";
 
   const bubble = document.createElement("div");
@@ -1270,7 +1246,7 @@ async function sendMessage() {
   if (containsBadWord && isExclusivelyProfane(rawMsg)) {
     setTimeout(() => {
       botSpeak("Ti invito a mantenere un linguaggio consono ed educato nel rispetto dell'ambiente scolastico. Come posso aiutarti con le informazioni sull'IIS Avogadro?");
-    }, 400);
+    }, 250);
     return;
   }
 
@@ -1281,14 +1257,14 @@ async function sendMessage() {
     const pickedResponse = responses[Math.floor(Math.random() * responses.length)];
     setTimeout(() => {
       botSpeak(pickedResponse);
-    }, 350);
+    }, 200);
     return;
   }
 
   // 3. Fallback con il server remoto o fallback locale
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 4500);
+    const timeoutId = setTimeout(() => controller.abort(), 4000);
     const res = await fetch("https://gustavo1.avoprogetti.it/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -1309,11 +1285,6 @@ async function sendMessage() {
     const fallbackItem = LOCAL_INTENTS_DATA.find(i => i.tag === "fallback");
     const reply = (fallbackItem && fallbackItem.responses && fallbackItem.responses[0]) || "Non ho compreso la domanda. Prova a chiedermi informazioni su corsi, segreteria, orari o servizi dell'Avogadro!";
     botSpeak(reply);
-  } finally {
-    const voiceEnabled = voiceToggle && voiceToggle.checked;
-    if (!voiceEnabled) {
-      setTimeout(() => setChatBusy(false), 300);
-    }
   }
 }
 `;
@@ -1326,11 +1297,11 @@ async function sendMessage() {
       // Protezione microfono e tasto invio
       html = html.replace(
         /input\.value\s*=\s*data\.text;\s*sendMessage\(\);/i,
-        'if (!_isChatBusy) { input.value = data.text; sendMessage(); }'
+        'input.value = data.text; sendMessage();'
       );
       html = html.replace(
         /if\s*\(\s*event\.key\s*===\s*"Enter"\s*\)\s*\{\s*event\.preventDefault\(\);\s*sendMessage\(\);\s*\}/i,
-        'if (event.key === "Enter") { event.preventDefault(); if (_isSpeaking) stopSpeaking(); else if (!_isChatBusy) sendMessage(); }'
+        'if (event.key === "Enter") { event.preventDefault(); sendMessage(); }'
       );
 
       // Normalizzazione script Cloudflare Rocket Loader
