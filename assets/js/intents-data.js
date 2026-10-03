@@ -91,7 +91,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Mostrami la mappa"
       ],
       "responses": [
-        "Ecco la mappa interattiva dei piani dell'IIS Avogadro su OpenLevelUp:\n\nPiano Terra (Segreteria, Presidenza, Aula Magna, Biblioteca, Palestra, Officine Meccaniche, CNC): [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPrimo Piano (Aule serie 100, Lab Informatica): [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nSecondo Piano (Aule serie 200, Lab Elettronica, Fisica): [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nTerzo Piano (Aule serie 300, Lab Chimica, Scienze): [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi anche chiedermi un'aula o un laboratorio specifico, come 'Dov\\'è l\\'aula 223?' o 'Dov\\'è la segreteria?'!"
+        "Ecco la mappa interattiva dei piani dell'IIS Avogadro:\n\nPiano Terra (Segreteria, Presidenza, Aula Magna, Biblioteca, Palestre, Officine Meccaniche, CNC): [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPrimo Piano (Aule serie 100, Lab Informatica): [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nSecondo Piano (Aule serie 200, Lab Elettronica, Fisica): [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nTerzo Piano (Aule serie 300, Lab Chimica, Scienze): [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi anche chiedermi un'aula o un laboratorio specifico, come 'Dov\\'è l\\'aula 223?' o 'Dov\\'è la segreteria?'!"
       ]
     },
     {
@@ -111,7 +111,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Aule 100"
       ],
       "responses": [
-        "Le aule della serie 100 (da 101 a 130) si trovano al Primo Piano, dove sono presenti anche i laboratori di informatica.\n\nVisualizza la piantina su OpenLevelUp: [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria."
+        "Le aule della serie 100 (da 101 a 130) si trovano al Primo Piano, dove sono presenti anche i laboratori di informatica.\n\nVisualizza la mappa: [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria."
       ]
     },
     {
@@ -131,7 +131,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Aule 200"
       ],
       "responses": [
-        "Le aule della serie 200 (da 201 a 230) si trovano al Secondo Piano, lungo i corridoi dove sono situati anche i laboratori di elettronica, fisica e sistemi automatici.\n\nVisualizza la piantina su OpenLevelUp: [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nPuoi verificare le informazioni anche in segreteria o alla portineria."
+        "Le aule della serie 200 (da 201 a 230) si trovano al Secondo Piano, lungo i corridoi dove sono situati anche i laboratori di elettronica, fisica e sistemi automatici.\n\nVisualizza la mappa: [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nPuoi verificare le informazioni anche in segreteria o alla portineria."
       ]
     },
     {
@@ -151,7 +151,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Aule 300"
       ],
       "responses": [
-        "Le aule della serie 300 (da 301 a 330) si trovano al Terzo Piano, nell'area dedicata alle aule e ai laboratori di chimica, biologia, scienze naturali e CAD.\n\nVisualizza la piantina su OpenLevelUp: [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi chiedere conferma anche alla portineria o in segreteria."
+        "Le aule della serie 300 (da 301 a 330) si trovano al Terzo Piano, nell'area dedicata alle aule e ai laboratori di chimica, biologia, scienze naturali e CAD.\n\nVisualizza la mappa: [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi chiedere conferma anche alla portineria o in segreteria."
       ]
     },
     {
@@ -189,7 +189,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Biblioteca Avogadro"
       ],
       "responses": [
-        "La Biblioteca Storica dell'IIS Avogadro si trova al Piano Terra ed è uno spazio dedicato a consultazione, studio e conservazione del patrimonio storico dell'istituto (non è attivo il prestito libri per l'esterno).\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Biblioteca](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi chiedere ulteriori informazioni per orari o visite alla portineria o in segreteria."
+        "La Biblioteca Storica dell'IIS Avogadro si trova al Piano Terra ed è uno spazio dedicato a consultazione, studio e conservazione del patrimonio storico dell'istituto (non è attivo il prestito libri per l'esterno).\n\nVisualizza la mappa: [Apri Mappa Biblioteca](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi chiedere ulteriori informazioni per orari o visite alla portineria o in segreteria."
       ]
     },
     {
@@ -210,7 +210,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Dove trovo i laboratori di informatica?"
       ],
       "responses": [
-        "I Laboratori di Informatica (Lab 1, Lab 2, Lab 3) e l'Academy Cisco si trovano al Primo Piano.\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Lab Informatica](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPer maggiori dettagli sui corsi puoi consultare il sito itisavogadro.it o la segreteria."
+        "I Laboratori di Informatica (Lab 1, Lab 2, Lab 3) e l'Academy Cisco si trovano al Primo Piano.\n\nVisualizza la mappa: [Apri Mappa Lab Informatica](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPer maggiori dettagli sui corsi puoi consultare il sito itisavogadro.it o la segreteria."
       ]
     },
     {
@@ -228,7 +228,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Dove trovo i laboratori di elettronica e sistemi?"
       ],
       "responses": [
-        "I Laboratori di Elettronica, Elettrotecnica, Sistemi Automatici e Fisica si trovano al Secondo Piano.\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Lab Elettronica](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nPuoi chiedere indicazioni anche in segreteria o alla portineria."
+        "I Laboratori di Elettronica, Elettrotecnica, Sistemi Automatici e Fisica si trovano al Secondo Piano.\n\nVisualizza la mappa: [Apri Mappa Lab Elettronica](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nPuoi chiedere indicazioni anche in segreteria o alla portineria."
       ]
     },
     {
@@ -245,7 +245,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Dove trovo i laboratori di scienze e chimica?"
       ],
       "responses": [
-        "I Laboratori di Chimica, Scienze Naturali, Biologia e le Aule CAD si trovano al Terzo Piano.\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Lab Chimica e Scienze](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi verificare le informazioni anche in segreteria o alla portineria."
+        "I Laboratori di Chimica, Scienze Naturali, Biologia e le Aule CAD si trovano al Terzo Piano.\n\nVisualizza la mappa: [Apri Mappa Lab Chimica e Scienze](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi verificare le informazioni anche in segreteria o alla portineria."
       ]
     },
     {
@@ -262,7 +262,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "In che piano sono le officine meccaniche?"
       ],
       "responses": [
-        "Le Officine Meccaniche, i reparti Macchine Utensili, Torni, CNC e Saldatura si trovano al Piano Terra.\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Officine](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi chiedere conferma anche alla portineria all'ingresso."
+        "Le Officine Meccaniche, i reparti Macchine Utensili, Torni, CNC e Saldatura si trovano al Piano Terra.\n\nVisualizza la mappa: [Apri Mappa Officine](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi chiedere conferma anche alla portineria all'ingresso."
       ]
     },
     {
@@ -280,7 +280,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Dove sono gli uffici?"
       ],
       "responses": [
-        "La Segreteria (Didattica, Personale, Amministrativa) e la Presidenza si trovano al Piano Terra, vicino all'atrio principale dell'ingresso di Corso San Maurizio 8/A.\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Segreteria](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi verificare orari e sportelli anche su itisavogadro.it o direttamente in segreteria."
+        "La Segreteria (Didattica, Personale, Amministrativa) e la Presidenza si trovano al Piano Terra, vicino all'atrio principale dell'ingresso di Corso San Maurizio 8/A.\n\nVisualizza la mappa: [Apri Mappa Segreteria](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi verificare orari e sportelli anche su itisavogadro.it o direttamente in segreteria."
       ]
     },
     {
@@ -294,14 +294,24 @@ window.GUSTAVO_INTENTS_DATA = {
         "Dove si tengono le conferenze?"
       ],
       "responses": [
-        "L'Aula Magna 'Urbano Rattazzi' si trova al Piano Terra, proseguendo dall'ingresso principale lungo il corridoio centrale.\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Aula Magna](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "L'Aula Magna 'Urbano Rattazzi' si trova al Piano Terra, proseguendo dall'ingresso principale lungo il corridoio centrale.\n\nVisualizza la mappa: [Apri Mappa Aula Magna](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ]
     },
     {
       "tag": "luogo_palestra",
       "patterns": [
         "Dov'è la palestra?",
+        "dove la palestra",
+        "dove si trova la palestra",
         "Dove sono le palestre?",
+        "dove la palestra piccola",
+        "dov'è la palestra piccola",
+        "dove e la palestra piccola",
+        "palestra piccola",
+        "palestrina",
+        "palestra grande",
+        "palestra principale",
+        "palestre",
         "Dove si fa educazione fisica?",
         "Scienze motorie palestra",
         "Spogliatoi palestra",
@@ -309,7 +319,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Come vado in palestra?"
       ],
       "responses": [
-        "La Palestra principale si trova al Piano Terra con accesso agli spogliatoi al Piano Seminterrato.\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Palestra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "All'IIS Avogadro sono presenti due palestre al Piano Terra:\n- **Palestra Grande (Principale)**: adibita a scienze motorie e sport di squadra, con accesso agli spogliatoi al Piano Seminterrato.\n- **Palestra Piccola (Palestrina)**: situata nell'area sportiva al Piano Terra, utilizzata per ginnastica e potenziamento.\n\nVisualizza la mappa: [Apri Mappa Palestra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ]
     },
     {
@@ -348,7 +358,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Come vado al bar della scuola?"
       ],
       "responses": [
-        "Il Bar/Punto Ristoro della scuola e i distributori automatici di snack, bevande e caffè si trovano al Piano Terra dell'Istituto.\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Area Ristoro](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi chiedere conferma anche alla portineria all'ingresso."
+        "Il Bar/Punto Ristoro della scuola e i distributori automatici di snack, bevande e caffè si trovano al Piano Terra dell'Istituto.\n\nVisualizza la mappa: [Apri Mappa Area Ristoro](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi chiedere conferma anche alla portineria all'ingresso."
       ]
     },
     {
@@ -362,7 +372,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Accoglienza visitatori"
       ],
       "responses": [
-        "La Portineria e l'Ingresso principale dell'Istituto si trovano al Piano Terra in Corso San Maurizio 8/A a Torino.\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Ingresso](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "La Portineria e l'Ingresso principale dell'Istituto si trovano al Piano Terra in Corso San Maurizio 8/A a Torino.\n\nVisualizza la mappa: [Apri Mappa Ingresso](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ]
     },
     {
@@ -376,7 +386,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Come vado in sala professori?"
       ],
       "responses": [
-        "La Sala Docenti e l'ufficio di Vicepresidenza si trovano al Primo Piano.\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Sala Docenti](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "La Sala Docenti e l'ufficio di Vicepresidenza si trovano al Primo Piano.\n\nVisualizza la mappa: [Apri Mappa Sala Docenti](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ]
     },
     {
