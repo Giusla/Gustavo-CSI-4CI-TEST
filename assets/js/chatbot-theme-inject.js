@@ -470,91 +470,92 @@ button:disabled {
   100% { transform: scale(1.05); }
 }
 
-/* Ottimizzazione Responsive Mobile — Risolve la compressione della UI su smartphone */
+/* Ottimizzazione Responsive Mobile — Dimensioni fedeli e layout equilibrato */
 @media (max-width: 600px) {
   .header {
-    padding: 8px 14px 6px !important;
+    padding: 12px 16px 8px !important;
   }
   .header .logo {
-    height: 58px !important;
-    max-height: 58px !important;
+    height: 120px !important;
+    max-height: 120px !important;
+    max-width: 92% !important;
   }
   .avatar {
-    width: 74px !important;
-    height: 74px !important;
-    margin: 2px auto 0 !important;
+    width: 120px !important;
+    height: 120px !important;
+    margin: 4px auto 2px !important;
   }
   .avatar-svg {
-    width: 74px !important;
-    height: 74px !important;
+    width: 120px !important;
+    height: 120px !important;
   }
   .voice-toggle {
-    margin: 2px auto 4px !important;
-    padding: 3px 10px !important;
-    font-size: 0.72rem !important;
-    gap: 5px !important;
+    margin: 4px auto 6px !important;
+    padding: 4px 12px !important;
+    font-size: 0.78rem !important;
+    gap: 6px !important;
   }
   .voice-toggle .amp-svg {
-    width: 13px !important;
-    height: 13px !important;
+    width: 15px !important;
+    height: 15px !important;
   }
   .voice-toggle input[type="checkbox"] {
-    width: 13px !important;
-    height: 13px !important;
+    width: 15px !important;
+    height: 15px !important;
   }
   #messages {
+    padding: 10px 14px !important;
+    gap: 10px !important;
+  }
+  .msg {
+    padding: 9px 14px !important;
+    font-size: 0.90rem !important;
+    line-height: 1.45 !important;
+    border-radius: 14px !important;
+    max-width: 88% !important;
+  }
+  .input-container {
     padding: 8px 12px !important;
     gap: 8px !important;
   }
-  .msg {
-    padding: 8px 12px !important;
-    font-size: 0.86rem !important;
-    line-height: 1.4 !important;
-    border-radius: 12px !important;
-    max-width: 90% !important;
-  }
-  .input-container {
-    padding: 6px 10px !important;
-    gap: 6px !important;
-  }
   .input-container input {
-    padding: 8px 12px !important;
-    font-size: 0.88rem !important;
-    height: 38px !important;
+    padding: 9px 14px !important;
+    font-size: 0.92rem !important;
+    height: 42px !important;
   }
   .input-container button {
-    padding: 8px 14px !important;
-    font-size: 0.85rem !important;
-    height: 38px !important;
+    padding: 9px 16px !important;
+    font-size: 0.90rem !important;
+    height: 42px !important;
   }
   .mic-btn {
-    width: 38px !important;
-    height: 38px !important;
-    min-width: 38px !important;
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
   }
 }
 
 @media (max-height: 650px) {
   .header {
-    padding: 4px 10px !important;
+    padding: 8px 12px 6px !important;
   }
   .header .logo {
-    height: 44px !important;
-    max-height: 44px !important;
+    height: 100px !important;
+    max-height: 100px !important;
   }
   .avatar {
-    width: 54px !important;
-    height: 54px !important;
-    margin: 1px auto 0 !important;
+    width: 95px !important;
+    height: 95px !important;
+    margin: 2px auto 0 !important;
   }
   .avatar-svg {
-    width: 54px !important;
-    height: 54px !important;
+    width: 95px !important;
+    height: 95px !important;
   }
   .voice-toggle {
-    margin: 1px auto 2px !important;
-    padding: 2px 8px !important;
-    font-size: 0.68rem !important;
+    margin: 2px auto 4px !important;
+    padding: 3px 10px !important;
+    font-size: 0.72rem !important;
   }
 }
 `;

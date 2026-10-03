@@ -20,9 +20,9 @@
     <meta name="twitter:title" content="GustAvo">
     <meta name="twitter:description" content="GustAvo, Il chatbot che ti orienta a scuola · IIS Avogadro">
 
-    <link rel="stylesheet" href="assets/css/style.css?v=4.23">
-    <script src="assets/js/main.js?v=4.14" defer></script>
-    <script src="assets/js/chatbot-theme-inject.js?v=1.7" defer></script>
+    <link rel="stylesheet" href="assets/css/style.css?v=4.24">
+    <script src="assets/js/main.js?v=4.15" defer></script>
+    <script src="assets/js/chatbot-theme-inject.js?v=1.8" defer></script>
     <style>
         /* Regole di sicurezza viewport mobile e overlay menu hamburger */
         html.chatbot-page-html,
@@ -123,41 +123,46 @@
 
         @media (max-width: 768px) {
             .chatbot-page .g-a11y-btn {
-                bottom: auto !important;
-                top: 7px !important;
-                right: 54px !important;
-                width: 36px !important;
-                height: 36px !important;
+                bottom: 74px !important;
+                top: auto !important;
+                right: 16px !important;
+                width: 48px !important;
+                height: 48px !important;
                 z-index: 1007 !important;
-                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18) !important;
+                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25) !important;
             }
             .chatbot-page .g-a11y-panel {
-                top: 54px !important;
-                bottom: auto !important;
-                right: 8px !important;
-                max-height: 70vh !important;
-                max-height: 70dvh !important;
+                top: auto !important;
+                bottom: 132px !important;
+                left: 12px !important;
+                right: 12px !important;
+                margin: 0 auto !important;
+                width: calc(100vw - 24px) !important;
+                max-width: 420px !important;
+                max-height: 56vh !important;
+                max-height: 56dvh !important;
+                transform-origin: center bottom !important;
             }
             .chatbot-page .g-a11y-backdrop {
                 z-index: 9998 !important;
             }
             .chatbot-direct-bar {
-                padding: 4px 10px !important;
+                padding: 6px 12px !important;
                 flex-direction: row !important;
                 justify-content: space-between !important;
                 align-items: center !important;
-                gap: 6px !important;
+                gap: 8px !important;
             }
             .chatbot-direct-bar .chatbot-bar-note {
                 display: none !important;
             }
             .chatbot-direct-info a {
-                font-size: 0.70rem !important;
+                font-size: 0.74rem !important;
                 white-space: nowrap !important;
             }
             .pill-btn {
-                padding: 3px 8px !important;
-                font-size: 0.69rem !important;
+                padding: 4px 10px !important;
+                font-size: 0.72rem !important;
             }
         }
     </style>

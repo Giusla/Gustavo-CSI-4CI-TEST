@@ -1011,8 +1011,9 @@ document.addEventListener('DOMContentLoaded', () => {
             <span class="g-a11y-tooltip" aria-hidden="true">Accessibilità</span>
             <span class="g-a11y-icon-wrap" aria-hidden="true">
                 <img src="assets/img/accessibility-icon.png?v=4.6" alt="" class="g-a11y-icon" draggable="false" />
-                <svg class="g-a11y-close-icon" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.6" stroke-linecap="round">
-                    <path d="M18 6L6 18M6 6l12 12"/>
+                <svg class="g-a11y-close-icon" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
             </span>
         `;
@@ -1036,6 +1037,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h2 class="g-a11y-title">Accessibilità</h2>
                     <p class="g-a11y-subtitle">Personalizza navigazione e visualizzazione</p>
                 </div>
+                <button type="button" class="g-a11y-close" id="gustavoA11yHeaderClose" aria-label="Chiudi impostazioni di accessibilità">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
             </div>
 
             <div class="g-a11y-body">
@@ -1095,6 +1102,13 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="g-a11y-footer">
                 <button type="button" class="g-a11y-reset-btn" id="gustavoA11yReset">
                     Ripristina impostazioni
+                </button>
+                <button type="button" class="g-a11y-footer-close-btn" id="gustavoA11yCloseBtn" aria-label="Chiudi impostazioni di accessibilità">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                    <span>Chiudi</span>
                 </button>
             </div>
         `;
@@ -1704,6 +1718,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         window.addEventListener('beforeunload', stopSpeech);
+
+        // ── Pulsanti di chiusura esplicita (Header e Footer in basso al centro) ──
+        const headerCloseBtn = document.getElementById('gustavoA11yHeaderClose');
+        if (headerCloseBtn) {
+            headerCloseBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setPanelOpen(false);
+            });
+        }
+
+        const footerCloseBtn = document.getElementById('gustavoA11yCloseBtn');
+        if (footerCloseBtn) {
+            footerCloseBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setPanelOpen(false);
+            });
+        }
 
         // ── Reset ──
         const resetBtn = document.getElementById('gustavoA11yReset');
