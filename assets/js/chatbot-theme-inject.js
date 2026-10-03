@@ -123,8 +123,8 @@ img.logo,
 
 /* Avatar Vecchietto Saggio SVG */
 .avatar {
-  width: 145px !important;
-  height: 145px !important;
+  width: 165px !important;
+  height: 165px !important;
   margin: 10px auto 4px !important;
   position: relative !important;
   display: flex !important;
@@ -135,8 +135,8 @@ img.logo,
 }
 
 .avatar-svg {
-  width: 145px !important;
-  height: 145px !important;
+  width: 165px !important;
+  height: 165px !important;
   display: block !important;
 }
 
@@ -566,13 +566,13 @@ button:disabled {
 /* Ottimizzazione specifica schermi compatti (< 390px): previene qualsiasi taglio del tasto Invio */
 @media (max-width: 390px) {
   .avatar {
-    width: 110px !important;
-    height: 110px !important;
+    width: 125px !important;
+    height: 125px !important;
     margin: 4px auto 2px !important;
   }
   .avatar-svg {
-    width: 110px !important;
-    height: 110px !important;
+    width: 125px !important;
+    height: 125px !important;
   }
   .input-container {
     padding: 6px 8px !important;
@@ -605,13 +605,13 @@ button:disabled {
 
 @media (max-height: 650px) {
   .avatar {
-    width: 105px !important;
-    height: 105px !important;
+    width: 118px !important;
+    height: 118px !important;
     margin: 2px auto 2px !important;
   }
   .avatar-svg {
-    width: 105px !important;
-    height: 105px !important;
+    width: 118px !important;
+    height: 118px !important;
   }
   .voice-toggle {
     margin: 2px auto 4px !important;
@@ -675,7 +675,7 @@ button:disabled {
   // Markup SVG per l'avatar umano (vecchietto saggio / professore con capelli, occhiali azzurrini e microfono interattivo)
   const AVATAR_SVG_HTML = `
     <div class="avatar">
-      <svg class="avatar-svg" viewBox="0 0 130 130" width="125" height="125" xmlns="http://www.w3.org/2000/svg" aria-label="Avatar GustAvo">
+      <svg class="avatar-svg" viewBox="0 0 130 130" width="160" height="160" xmlns="http://www.w3.org/2000/svg" aria-label="Avatar GustAvo">
         <defs>
           <filter id="elderGlow" x="-20%" y="-20%" width="140%" height="140%">
             <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#0f172a" flood-opacity="0.12" />
@@ -1252,7 +1252,7 @@ ${THEME_CSS}
     <div class="header"></div>
     ${AVATAR_SVG_HTML.trim()}
     <div class="voice-toggle">
-      <input type="checkbox" id="voiceToggle">
+      <input type="checkbox" id="voiceToggle" checked>
       ${VOICE_LABEL_HTML.trim()}
     </div>
     <div id="messages">
