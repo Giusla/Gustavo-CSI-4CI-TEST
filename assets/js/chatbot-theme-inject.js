@@ -1034,10 +1034,58 @@ async function sendMessage() {
       html = html.replace(/window\.location\.origin\s*\+\s*(["'])\/api\/transcribe\1/g, `"${SERVER_URL}/api/transcribe"`);
       html = html.replace(/([`"'])\/api\/tts\?text=/g, `$1${SERVER_URL}/api/tts?text=`);
 
+      // 9. Persistenza cronologia messaggi tra le UI (salvataggio automatico e ripristino istantaneo)
+      const chatPersistenceScript = `
+<script>
+(function() {
+  const STORAGE_KEY = 'gustavo_chat_history_html';
+  function setupHistoryPersistence() {
+    const msgEl = document.getElementById('messages');
+    if (!msgEl) return;
+    try {
+      const saved = sessionStorage.getItem(STORAGE_KEY);
+      if (saved && saved.trim().length > 0) {
+        msgEl.innerHTML = saved;
+        msgEl.scrollTop = msgEl.scrollHeight;
+      }
+    } catch(e) {}
+
+    const observer = new MutationObserver(() => {
+      try {
+        if (msgEl && msgEl.innerHTML.trim().length > 0) {
+          sessionStorage.setItem(STORAGE_KEY, msgEl.innerHTML);
+        }
+      } catch(e) {}
+    });
+    observer.observe(msgEl, { childList: true, subtree: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupHistoryPersistence);
+  } else {
+    setupHistoryPersistence();
+  }
+})();
+</script>
+`;
+      if (html.includes('</body>')) {
+        html = html.replace('</body>', chatPersistenceScript + '\n</body>');
+      } else {
+        html += chatPersistenceScript;
+      }
+
       // Carica l'HTML con il tema iniettato nell'iframe
       iframe.srcdoc = html;
       iframe.setAttribute('data-theme-injected', 'true');
-      console.info('GustAvo: Blocco anti-concorrenza, logo squadrato e rimozione totale emoji applicati!');
+
+      // Ripristino di sicurezza ad ogni caricamento
+      const onModernLoad = () => {
+        iframe.removeEventListener('load', onModernLoad);
+        restoreChatHistory(iframe);
+      };
+      iframe.addEventListener('load', onModernLoad);
+
+      console.info('GustAvo: Blocco anti-concorrenza, logo squadrato, persistenza chat e rimozione totale emoji applicati!');
 
     } catch (err) {
       console.warn('GustAvo: Fetch non riuscito dopo i tentativi, applico iniezione su iframe live:', err);
@@ -1085,6 +1133,30 @@ async function sendMessage() {
   }
 
   const UI_STORAGE_KEY = 'gustavo_chat_ui_mode';
+  const CHAT_HISTORY_KEY = 'gustavo_chat_history_html';
+
+  function saveCurrentChatHistory(iframe) {
+    try {
+      const doc = iframe?.contentDocument || iframe?.contentWindow?.document;
+      const messagesEl = doc?.getElementById('messages');
+      if (messagesEl && messagesEl.innerHTML.trim().length > 0) {
+        sessionStorage.setItem(CHAT_HISTORY_KEY, messagesEl.innerHTML);
+      }
+    } catch (e) {}
+  }
+
+  function restoreChatHistory(iframe) {
+    try {
+      const savedHtml = sessionStorage.getItem(CHAT_HISTORY_KEY);
+      if (!savedHtml) return;
+      const doc = iframe?.contentDocument || iframe?.contentWindow?.document;
+      const messagesEl = doc?.getElementById('messages');
+      if (messagesEl) {
+        messagesEl.innerHTML = savedHtml;
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+      }
+    } catch (e) {}
+  }
 
   function getUiMode() {
     try {
@@ -1104,9 +1176,18 @@ async function sendMessage() {
     const iframe = document.querySelector('.chatbot-iframe');
     if (!iframe) return;
 
+    // Salva i messaggi correnti prima del cambio di interfaccia
+    saveCurrentChatHistory(iframe);
+
     if (mode === 'legacy') {
       iframe.removeAttribute('srcdoc');
       iframe.removeAttribute('data-theme-injected');
+
+      const onLegacyLoad = () => {
+        iframe.removeEventListener('load', onLegacyLoad);
+        restoreChatHistory(iframe);
+      };
+      iframe.addEventListener('load', onLegacyLoad);
       iframe.src = 'https://gustavo1.avoprogetti.it';
       console.info('GustAvo: Passato a UI Legacy originale.');
     } else {
