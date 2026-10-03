@@ -1458,50 +1458,127 @@ async function sendMessage() {
       iframe.srcdoc = html;
       iframe.setAttribute('data-theme-injected', 'true');
 
-      console.info('GustAvo: Blocco anti-concorrenza, logo squadrato, dataset locale e rimozione totale emoji applicati!');
+      console.info('GustAvo: Modern UI con dataset integrato e piantina OpenLevelUp caricata con successo!');
 
     } catch (err) {
-      console.warn('GustAvo: Fetch non riuscito dopo i tentativi, applico iniezione su iframe live:', err);
+      console.warn('GustAvo: Fetch server bloccato o offline, genero layout Modern UI autonomo:', err);
 
-      const applyThemeDirectly = () => {
+      const standaloneHtml = `<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="https://gustavo1.avoprogetti.it/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style id="gustavo-injected-theme">
+${THEME_CSS}
+  </style>
+</head>
+<body>
+  <div id="chat-container">
+    <div class="header">
+      <img src="${gustavoLogoUrl}" class="logo" alt="Logo GustAvo">
+    </div>
+    ${AVATAR_SVG_HTML.trim()}
+    <div class="voice-toggle">
+      <input type="checkbox" id="voiceToggle">
+      ${VOICE_LABEL_HTML.trim()}
+    </div>
+    <div id="messages">
+      <div class="msg bot">
+        <span class="strong">GustAvo:</span> Ciao! Sono GustAvo, l'assistente virtuale dell'IIS Avogadro. Chiedimi informazioni su corsi, aule, laboratori, orari o segreteria!
+      </div>
+    </div>
+    <div class="input-container">
+      <input type="text" id="input" placeholder="Scrivi un messaggio..." autocomplete="off">
+      <button onclick="sendMessage()">Invia</button>
+      ${MIC_BUTTON_HTML.trim()}
+    </div>
+    <div class="chat-disclaimer-note">GustAvo è un assistente virtuale e può commettere errori. Verifica le informazioni in segreteria o su <a href="https://www.itisavogadro.it" target="_blank" rel="noopener">itisavogadro.it</a></div>
+  </div>
+  <script>
+    const SERVER_URL = "https://gustavo1.avoprogetti.it";
+    const messages = document.getElementById("messages");
+    const input = document.getElementById("input");
+    const voiceToggle = document.getElementById("voiceToggle");
+    const mouth = document.getElementById("mouth");
+    const leftP = document.getElementById("left-pupil");
+    const rightP = document.getElementById("right-pupil");
+    let mouthInterval = null;
+    let eyeInterval = null;
+
+    ${mouthAndBotSpeakLogic}
+
+    ${robustSendLogic}
+
+    let mediaRecorder;
+    let audioChunks = [];
+    const micBtn = document.getElementById("mic-btn");
+
+    if (micBtn) {
+      micBtn.addEventListener("click", async () => {
+        if (_isSpeaking) { stopSpeaking(); return; }
+        if (_isChatBusy) return;
+        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+          alert("Registrazione audio non supportata in questo browser.");
+          return;
+        }
+        if (mediaRecorder && mediaRecorder.state === "recording") {
+          mediaRecorder.stop();
+          micBtn.classList.remove("listening");
+          return;
+        }
         try {
-          const doc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);
-          if (doc && !doc.getElementById('gustavo-injected-theme')) {
-            if (!doc.head) return;
-            const fontLink = doc.createElement('link');
-            fontLink.rel = 'stylesheet';
-            fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap';
-            doc.head.appendChild(fontLink);
-
-            const style = doc.createElement('style');
-            style.id = 'gustavo-injected-theme';
-            style.textContent = THEME_CSS;
-            doc.head.appendChild(style);
-
-            const headerEl = doc.querySelector('.header');
-            if (headerEl) {
-              headerEl.innerHTML = `<img src="${gustavoLogoUrl}" class="logo" alt="Logo GustAvo">`;
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          mediaRecorder = new MediaRecorder(stream);
+          audioChunks = [];
+          mediaRecorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
+          mediaRecorder.onstop = async () => {
+            const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
+            const formData = new FormData();
+            formData.append("file", audioBlob, "audio.webm");
+            setChatBusy(true, "Trascrizione vocale in corso...", "Trascrivo...");
+            try {
+              const res = await fetch(SERVER_URL + "/api/transcribe", { method: "POST", body: formData });
+              if (res.ok) {
+                const data = await res.json();
+                if (data.text) {
+                  input.value = data.text;
+                  setChatBusy(false);
+                  sendMessage();
+                  return;
+                }
+              }
+            } catch (e) {
+              console.warn("Trascrizione vocale non riuscita:", e);
             }
-
-            iframe.setAttribute('data-theme-injected', 'true');
-            console.info('GustAvo: Iniezione diretta eseguita con successo su iframe live.');
-          }
-        } catch (e) {
-          // Cross-origin fallback
+            setChatBusy(false);
+          };
+          mediaRecorder.start();
+          micBtn.classList.add("listening");
+        } catch (err) {
+          console.warn("Permesso microfono non concesso:", err);
         }
-      };
+      });
+    }
 
-      iframe.addEventListener('load', applyThemeDirectly);
-      applyThemeDirectly();
-
-      // Tentativi ripetuti a intervalli ravvicinati se il caricamento ritarda
-      const pollTimer = setInterval(() => {
-        applyThemeDirectly();
-        if (iframe.getAttribute('data-theme-injected') === 'true') {
-          clearInterval(pollTimer);
+    if (input) {
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          if (_isSpeaking) stopSpeaking();
+          else if (!_isChatBusy) sendMessage();
         }
-      }, 500);
-      setTimeout(() => clearInterval(pollTimer), 8000);
+      });
+    }
+  </script>
+</body>
+</html>`;
+
+      iframe.srcdoc = standaloneHtml;
+      iframe.setAttribute('data-theme-injected', 'true');
     }
   }
 
