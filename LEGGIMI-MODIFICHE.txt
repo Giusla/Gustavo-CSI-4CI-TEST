@@ -85,6 +85,7 @@ RIMOZIONE SEZIONE HOME & NAVIGAZIONE SCROLL DUE DITA DA LAPTOP SENZA BOUNCINESS
   * Rimossi `overflow-x: hidden` e `overscroll-behavior` da `body`, che in Chrome/Edge su Windows intercettavano e bloccavano i gesti a due dita del Precision Touchpad.
   * Mantenuto `overscroll-behavior-y: none` esclusivamente sulla radice `html` per disattivare l'effetto rimbalzo/molleggio elastico (rubber-banding) a inizio e fine pagina senza bloccare lo scorrimento del documento.
   * Pulizia stili e aggiornamento della versione di style.css a v=4.19 su tutti i file HTML.
+- Aggiornato il testo di presentazione della scheda Team ("Chi siamo e come abbiamo realizzato GustAvo") integrando la metodologia Agile e la collaborazione con MSC e CSI Piemonte secondo le indicazioni fornite.
 
 Conservati il font Inter, la palette blu-verde (#0066ff e #00a86b) e la conformità WCAG.
 
