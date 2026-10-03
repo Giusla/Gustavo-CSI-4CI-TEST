@@ -20,8 +20,8 @@
     <meta name="twitter:title" content="GustAvo">
     <meta name="twitter:description" content="GustAvo, Il chatbot che ti orienta a scuola · IIS Avogadro">
 
-    <link rel="stylesheet" href="assets/css/style.css?v=4.24">
-    <script src="assets/js/main.js?v=4.15" defer></script>
+    <link rel="stylesheet" href="assets/css/style.css?v=4.25">
+    <script src="assets/js/main.js?v=4.16" defer></script>
     <script src="assets/js/chatbot-theme-inject.js?v=1.8" defer></script>
     <style>
         /* Regole di sicurezza viewport mobile e overlay menu hamburger */
@@ -113,7 +113,7 @@
             flex-wrap: wrap;
         }
 
-        /* Risoluzione conflitti mobile (tastiera e sovrapposizione campo di input) */
+        /* Risoluzione conflitti chatbot: accessibilità sempre libera e mai sopra il tasto invio */
         .chatbot-page .back-to-top-btn {
             display: none !important;
             visibility: hidden !important;
@@ -121,9 +121,28 @@
             pointer-events: none !important;
         }
 
+        .chatbot-page .g-a11y-btn {
+            bottom: 125px !important;
+            top: auto !important;
+            right: 20px !important;
+            width: 52px !important;
+            height: 52px !important;
+            z-index: 1007 !important;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+        }
+
+        .chatbot-page .g-a11y-panel {
+            top: auto !important;
+            bottom: 190px !important;
+            right: 20px !important;
+            max-height: 52vh !important;
+            max-height: 52dvh !important;
+            transform-origin: center bottom !important;
+        }
+
         @media (max-width: 768px) {
             .chatbot-page .g-a11y-btn {
-                bottom: 74px !important;
+                bottom: 120px !important;
                 top: auto !important;
                 right: 16px !important;
                 width: 48px !important;
@@ -133,14 +152,14 @@
             }
             .chatbot-page .g-a11y-panel {
                 top: auto !important;
-                bottom: 132px !important;
+                bottom: 180px !important;
                 left: 12px !important;
                 right: 12px !important;
                 margin: 0 auto !important;
                 width: calc(100vw - 24px) !important;
                 max-width: 420px !important;
-                max-height: 56vh !important;
-                max-height: 56dvh !important;
+                max-height: 52vh !important;
+                max-height: 52dvh !important;
                 transform-origin: center bottom !important;
             }
             .chatbot-page .g-a11y-backdrop {
