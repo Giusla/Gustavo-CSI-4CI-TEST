@@ -1244,7 +1244,7 @@ function findAvogadroRoom(rawQuery) {
     q.includes("openlevelup") ||
     (q.includes("mappa") && (q.includes("scuola") || q.includes("aule") || q.includes("piani") || q.includes("istituto") || q.includes("edificio") || q.includes("tutto") || q.includes("generale"))) ||
     (q.includes("piantina") && (q.includes("scuola") || q.includes("aule") || q.includes("avogadro") || q.includes("piano"))) ||
-    q.includes("come mi oriento") || q.includes("orientarmi") || q.includes("orientamento aule") || q.includes("elenco aule")
+    q.includes("come mi oriento") || q.includes("orientarmi") || q.includes("orientamento aule") || q.includes("elenco aule") || q.includes("dove sono le aule") || q.includes("trovare le aule")
   ) {
     return "Ecco la mappa interattiva dei piani dell'IIS Avogadro su OpenLevelUp:\n\n" +
       "Piano Seminterrato (Officine meccaniche, CNC): [Apri Mappa Livello -1](https://openlevelup.net/?l=-1#19/45.07069/7.69253)\n\n" +
@@ -1255,9 +1255,10 @@ function findAvogadroRoom(rawQuery) {
       "Puoi verificare le posizioni delle aule anche in segreteria o alla portineria.";
   }
 
-  // 2. Controllo per Aule numeriche (es. 105, 214, 301, 12, S02)
+  // 2. Controllo per Aule numeriche (es. 105, la 214, 301, 12, S02)
   const roomMatch = rawQuery.match(/\\b(?:aula|classe|stanza|lab(?:oratorio)?)\\s*(?:n[°\\.]?|numero)?\\s*([0-3]?[0-9]{2}|[0-9]{1,2}|s[0-9]{1,2})\\b/i) ||
-                    rawQuery.match(/\\b(?:dove|dov'e|dov e|trovo|trova|raggiungo|andare|andare a|cercare|cerco|a)\\s+(?:all['\\s]?|l['\\s]?)?(?:aula\\s+)?([1-3][0-2][0-9]|[0-9]{1,2})\\b/i);
+                    rawQuery.match(/\\b(?:dove|dov'e|dov e|trovo|trova|raggiungo|andare|andare a|cercare|cerco|a)\\s+(?:all['\\s]?|l['\\s]?|la\s+|il\s+)?(?:aula\s+)?([1-3][0-2][0-9]|[0-9]{1,2})\\b/i) ||
+                    rawQuery.match(/\\b([1-3][0-2][0-9])\\b/);
 
   if (roomMatch) {
     const rawNum = roomMatch[1].toUpperCase();
@@ -1268,7 +1269,7 @@ function findAvogadroRoom(rawQuery) {
     const num = parseInt(rawNum, 10);
     if (!isNaN(num)) {
       if (num >= 300 && num <= 399) {
-        return `L'aula ${num} si trova al Terzo Piano (Livello 3), nell'area aule e laboratori di chimica/scienze.\n\nVisualizza la mappa su OpenLevelUp: [Vedi Aula ${num} sul Livello 3](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi verificare le informazioni anche in segreteria o alla portineria.`;
+        return `L'aula ${num} si trova al Terzo Piano (Livello 3), nell'area aule e laboratori di chimica e scienze.\n\nVisualizza la mappa su OpenLevelUp: [Vedi Aula ${num} sul Livello 3](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi verificare le informazioni anche in segreteria o alla portineria.`;
       }
       if (num >= 200 && num <= 299) {
         return `L'aula ${num} si trova al Secondo Piano (Livello 2), lungo i corridoi delle aule e dei laboratori di elettronica e fisica.\n\nVisualizza la mappa su OpenLevelUp: [Vedi Aula ${num} sul Livello 2](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nPuoi verificare le informazioni anche in segreteria o alla portineria.`;
@@ -1282,47 +1283,65 @@ function findAvogadroRoom(rawQuery) {
     }
   }
 
-  // 3. Luoghi specifici per nome
-  if (q.includes("segreteria") || q.includes("presidenza") || q.includes("dirigente") || q.includes("direzione") || q.includes("uffici")) {
+  // 3. Biblioteca
+  if (q.includes("biblioteca") || q.includes("sala lettura")) {
+    return "La Biblioteca Storica dell'IIS Avogadro si trova al Primo Piano (Livello 1).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Biblioteca sul Livello 1](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPuoi verificare le informazioni di prestito e orari anche in segreteria o su itisavogadro.it.";
+  }
+
+  // 4. Laboratori di Informatica
+  if (q.includes("informatica") || q.includes("cisco") || q.includes("computer")) {
+    if (q.includes("dove") || q.includes("trova") || q.includes("trovo") || q.includes("andare") || q.includes("raggiungere") || q.includes("lab") || q.includes("laborator") || q.includes("aula") || q.includes("piani") || q.includes("piano") || q.includes("mappa") || q.includes("sono")) {
+      return "I Laboratori di Informatica (Lab 1, Lab 2, Lab 3) e l'Academy Cisco si trovano al Primo Piano (Livello 1).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Laboratori Informatica sul Livello 1](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPer maggiori dettagli puoi consultare anche il sito itisavogadro.it o la segreteria.";
+    }
+  }
+
+  // 5. Laboratori di Elettronica / Elettrotecnica / Sistemi / Fisica / Automazione / PLC
+  if (q.includes("elettronica") || q.includes("elettrotecnica") || q.includes("sistemi") || q.includes("fisica") || q.includes("robotica") || q.includes("plc")) {
+    if (q.includes("dove") || q.includes("trova") || q.includes("trovo") || q.includes("andare") || q.includes("raggiungere") || q.includes("lab") || q.includes("laborator") || q.includes("aula") || q.includes("piani") || q.includes("piano") || q.includes("mappa") || q.includes("sono")) {
+      return "I Laboratori di Elettronica, Elettrotecnica, Sistemi Automatici e Fisica si trovano al Secondo Piano (Livello 2).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Laboratori Elettronica sul Livello 2](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nPuoi verificare ulteriori informazioni anche in segreteria.";
+    }
+  }
+
+  // 6. Laboratori di Chimica / Scienze / Biologia / CAD
+  if (q.includes("chimica") || q.includes("scienze") || q.includes("biologia") || q.includes("cad")) {
+    if (q.includes("dove") || q.includes("trova") || q.includes("trovo") || q.includes("andare") || q.includes("raggiungere") || q.includes("lab") || q.includes("laborator") || q.includes("aula") || q.includes("piani") || q.includes("piano") || q.includes("mappa") || q.includes("sono")) {
+      return "I Laboratori di Chimica, Scienze Naturali, Biologia e le Aule CAD si trovano al Terzo Piano (Livello 3).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Laboratori Chimica e Scienze sul Livello 3](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi chiedere informazioni anche in segreteria.";
+    }
+  }
+
+  // 7. Officine Meccaniche / CNC / Torni / Saldatura
+  if (q.includes("officina") || q.includes("officine") || q.includes("meccanica") || q.includes("torni") || q.includes("cnc") || q.includes("saldatura") || q.includes("macchine utensili")) {
+    if (q.includes("dove") || q.includes("trova") || q.includes("trovo") || q.includes("andare") || q.includes("raggiungere") || q.includes("lab") || q.includes("laborator") || q.includes("officin") || q.includes("piani") || q.includes("piano") || q.includes("mappa") || q.includes("sono")) {
+      return "Le Officine Meccaniche, i reparti Macchine Utensili, Torni, CNC e Saldatura si trovano al Piano Seminterrato (Livello -1).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Officine sul Livello -1](https://openlevelup.net/?l=-1#19/45.07069/7.69253)\n\nPuoi chiedere assistenza al personale tecnico all'ingresso.";
+    }
+  }
+
+  // 8. Segreteria / Presidenza / Uffici
+  if (q.includes("segreteria") || q.includes("presidenza") || q.includes("dirigente") || q.includes("direzione") || q.includes("uffici") || q.includes("didattica")) {
     return "La Segreteria (Didattica, Personale, Amministrativa) e la Presidenza si trovano al Piano Terra (Livello 0), vicino all'atrio principale dell'ingresso di Corso San Maurizio 8/A.\n\nVisualizza la posizione su OpenLevelUp: [Vedi Segreteria e Uffici sul Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi verificare orari e sportelli anche su itisavogadro.it o direttamente in segreteria.";
   }
 
+  // 9. Aula Magna / Rattazzi
   if (q.includes("aula magna") || q.includes("rattazzi")) {
     return "L'Aula Magna 'Urbano Rattazzi' si trova al Piano Terra (Livello 0), proseguendo dall'ingresso principale lungo il corridoio centrale.\n\nVisualizza la posizione su OpenLevelUp: [Vedi Aula Magna sul Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)";
   }
 
-  if (q.includes("biblioteca") || q.includes("sala lettura") || q.includes("libri")) {
-    return "La Biblioteca Storica dell'IIS Avogadro si trova al Primo Piano (Livello 1).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Biblioteca sul Livello 1](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPuoi verificare le informazioni di prestito anche in segreteria o su itisavogadro.it.";
-  }
-
-  if (q.includes("lab informatica") || q.includes("laboratorio informatica") || q.includes("laboratori informatica") || q.includes("lab di informatica") || q.includes("laboratorio di informatica") || q.includes("cisco") || q.includes("lab computer")) {
-    return "I Laboratori di Informatica (Lab 1, Lab 2, Lab 3) e l'Academy Cisco si trovano al Primo Piano (Livello 1).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Laboratori Informatica sul Livello 1](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPer maggiori dettagli sui corsi puoi consultare il sito itisavogadro.it o la segreteria.";
-  }
-
-  if (q.includes("lab elettronica") || q.includes("laboratorio elettronica") || q.includes("elettrotecnica") || q.includes("sistemi automatici") || q.includes("lab fisica") || q.includes("laboratorio fisica") || q.includes("automazione") || q.includes("plc")) {
-    return "I Laboratori di Elettronica, Elettrotecnica, Sistemi Automatici e Fisica si trovano al Secondo Piano (Livello 2).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Laboratori Elettronica sul Livello 2](https://openlevelup.net/?l=2#19/45.07069/7.69253)";
-  }
-
-  if (q.includes("lab chimica") || q.includes("laboratorio chimica") || q.includes("lab scienze") || q.includes("laboratorio scienze") || q.includes("biologia") || q.includes("lab cad") || q.includes("disegno cad")) {
-    return "I Laboratori di Chimica, Scienze Naturali, Biologia e le Aule CAD si trovano al Terzo Piano (Livello 3).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Laboratori Chimica e Scienze sul Livello 3](https://openlevelup.net/?l=3#19/45.07069/7.69253)";
-  }
-
-  if (q.includes("officina") || q.includes("officine") || q.includes("lab meccanica") || q.includes("laboratorio meccanica") || q.includes("torni") || q.includes("cnc") || q.includes("saldatura") || q.includes("macchine utensili")) {
-    return "Le Officine Meccaniche, i reparti Macchine Utensili, Torni, CNC e Saldatura si trovano al Piano Seminterrato (Livello -1).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Officine sul Livello -1](https://openlevelup.net/?l=-1#19/45.07069/7.69253)";
-  }
-
+  // 10. Palestra
   if (q.includes("palestra") || q.includes("palestre") || q.includes("scienze motorie") || q.includes("ginnastica") || q.includes("spogliatoi")) {
     return "La Palestra principale si trova al Piano Terra (Livello 0) con accesso agli spogliatoi al Piano Seminterrato (Livello -1).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Palestra sul Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)";
   }
 
+  // 11. Bar / Mensa / Macchinette
   if (q.includes("bar") || q.includes("mensa") || q.includes("ristoro") || q.includes("macchinette") || q.includes("caffe") || q.includes("mangiare") || q.includes("panino")) {
     return "Il servizio Bar/Mensa e i punti ristoro con distributori automatici si trovano al Piano Terra (Livello 0).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Area Ristoro sul Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)";
   }
 
+  // 12. Portineria / Ingresso
   if (q.includes("portineria") || q.includes("ingresso") || q.includes("entrata") || q.includes("san maurizio")) {
     return "La Portineria e l'Ingresso principale dell'Istituto si trovano al Piano Terra (Livello 0) in Corso San Maurizio 8/A a Torino.\n\nVisualizza la posizione su OpenLevelUp: [Vedi Ingresso sul Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)";
   }
 
+  // 13. Sala Docenti / Vicepresidenza
   if (q.includes("sala docenti") || q.includes("sala professori") || q.includes("vicepresidenza") || q.includes("vicepreside")) {
     return "La Sala Docenti e l'ufficio di Vicepresidenza si trovano al Primo Piano (Livello 1).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Sala Docenti sul Livello 1](https://openlevelup.net/?l=1#19/45.07069/7.69253)";
   }
