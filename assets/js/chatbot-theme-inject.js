@@ -1287,11 +1287,15 @@ async function sendMessage() {
 
   // 3. Fallback con il server remoto o fallback locale
   try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 4500);
     const res = await fetch("https://gustavo1.avoprogetti.it/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: rawMsg })
+      body: JSON.stringify({ message: rawMsg }),
+      signal: controller.signal
     });
+    clearTimeout(timeoutId);
 
     if (!res.ok) throw new Error("HTTP " + res.status);
     const data = await res.json();
@@ -1305,6 +1309,11 @@ async function sendMessage() {
     const fallbackItem = LOCAL_INTENTS_DATA.find(i => i.tag === "fallback");
     const reply = (fallbackItem && fallbackItem.responses && fallbackItem.responses[0]) || "Non ho compreso la domanda. Prova a chiedermi informazioni su corsi, segreteria, orari o servizi dell'Avogadro!";
     botSpeak(reply);
+  } finally {
+    const voiceEnabled = voiceToggle && voiceToggle.checked;
+    if (!voiceEnabled) {
+      setTimeout(() => setChatBusy(false), 300);
+    }
   }
 }
 `;
