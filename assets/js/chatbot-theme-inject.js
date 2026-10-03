@@ -787,16 +787,20 @@ button:disabled {
         html = fontTags + styleTag + html;
       }
 
-      // 2. Sostituzione dell'header: Solo il logo completo GustAvo (senza angoli tondi, senza testo)
+      // 2. Header: Logo GustAvo moderno con fallback/toggle all'originale legacy
       html = html.replace(
-        /<div class="header">[\s\S]*?<\/div>/i,
-        `<div class="header">\n      <img src="${gustavoLogoUrl}" class="logo" alt="Logo GustAvo">\n    </div>`
+        /<div class="header">([\s\S]*?)<\/div>/i,
+        `<div class="header">
+          <div id="gustavo-legacy-logo" style="display: none;">$1</div>
+          <img id="gustavo-modern-logo" src="${gustavoLogoUrl}" class="logo" alt="Logo GustAvo">
+        </div>`
       );
 
-      // 3. Ripristino Robottino SVG (con lookahead a .voice-toggle per preservare intatto #chat-container)
+      // 3. Avatar: Robottino SVG moderno con toggle all'avatar legacy originale
       html = html.replace(
-        /<div class="avatar">[\s\S]*?(?=(?:<!--[\s\S]*?-->\s*)?<div class="voice-toggle">)/i,
-        AVATAR_SVG_HTML.trim() + '\n\n    '
+        /(<div class="avatar">[\s\S]*?<\/div>)(?=(?:<!--[\s\S]*?-->\s*)?<div class="voice-toggle">)/i,
+        `<div id="gustavo-legacy-avatar" style="display: none;">$1</div>
+        <div id="gustavo-modern-avatar">${AVATAR_SVG_HTML.trim()}</div>\n\n    `
       );
 
       // 4. Sostituzione emoji amplificatore / altoparlante
@@ -812,15 +816,10 @@ button:disabled {
       );
 
       // 6. RIMOZIONE TOTALE DI QUALSIASI EMOJI DALL'HTML
-      // Rimuove il cuore verde dal messaggio iniziale di benvenuto
       html = html.replace(/💚/g, '.');
-      // Rimuove la faccina con la goccia di sudore
       html = html.replace(/😅/g, '.');
-      // Rimuove le stelline
       html = html.replace(/🌟/g, '');
-      // Rimuove il microfono emoji
       html = html.replace(/🎤/g, '');
-      // Rimuove l'altoparlante emoji
       html = html.replace(/🔊/g, '');
 
       // 7. Sostituzione di animateMouthStart, animateMouthStop e botSpeak con gestione audio esclusiva
@@ -1034,56 +1033,20 @@ async function sendMessage() {
       html = html.replace(/window\.location\.origin\s*\+\s*(["'])\/api\/transcribe\1/g, `"${SERVER_URL}/api/transcribe"`);
       html = html.replace(/([`"'])\/api\/tts\?text=/g, `$1${SERVER_URL}/api/tts?text=`);
 
-      // 9. Persistenza cronologia messaggi tra le UI (salvataggio automatico e ripristino istantaneo)
-      const chatPersistenceScript = `
-<script>
-(function() {
-  const STORAGE_KEY = 'gustavo_chat_history_html';
-  function setupHistoryPersistence() {
-    const msgEl = document.getElementById('messages');
-    if (!msgEl) return;
-    try {
-      const saved = sessionStorage.getItem(STORAGE_KEY);
-      if (saved && saved.trim().length > 0) {
-        msgEl.innerHTML = saved;
-        msgEl.scrollTop = msgEl.scrollHeight;
-      }
-    } catch(e) {}
-
-    const observer = new MutationObserver(() => {
-      try {
-        if (msgEl && msgEl.innerHTML.trim().length > 0) {
-          sessionStorage.setItem(STORAGE_KEY, msgEl.innerHTML);
-        }
-      } catch(e) {}
-    });
-    observer.observe(msgEl, { childList: true, subtree: true });
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupHistoryPersistence);
-  } else {
-    setupHistoryPersistence();
-  }
-})();
-</script>
-`;
-      if (html.includes('</body>')) {
-        html = html.replace('</body>', chatPersistenceScript + '\n</body>');
-      } else {
-        html += chatPersistenceScript;
-      }
-
-      // Carica l'HTML con il tema iniettato nell'iframe
+      // Carica l'HTML iniettato nell'iframe
       iframe.srcdoc = html;
       iframe.setAttribute('data-theme-injected', 'true');
 
-      // Ripristino di sicurezza ad ogni caricamento
-      const onModernLoad = () => {
-        iframe.removeEventListener('load', onModernLoad);
-        restoreChatHistory(iframe);
+      // All'avvio dell'iframe applica la modalita corrente (modern o legacy) senza ricaricare
+      const onIframeReady = () => {
+        try {
+          const doc = iframe.contentDocument || iframe.contentWindow?.document;
+          if (doc) {
+            applyUiModeToDocument(doc, getUiMode());
+          }
+        } catch (e) {}
       };
-      iframe.addEventListener('load', onModernLoad);
+      iframe.addEventListener('load', onIframeReady);
 
       console.info('GustAvo: Blocco anti-concorrenza, logo squadrato, persistenza chat e rimozione totale emoji applicati!');
 
@@ -1133,36 +1096,50 @@ async function sendMessage() {
   }
 
   const UI_STORAGE_KEY = 'gustavo_chat_ui_mode';
-  const CHAT_HISTORY_KEY = 'gustavo_chat_history_html';
-
-  function saveCurrentChatHistory(iframe) {
-    try {
-      const doc = iframe?.contentDocument || iframe?.contentWindow?.document;
-      const messagesEl = doc?.getElementById('messages');
-      if (messagesEl && messagesEl.innerHTML.trim().length > 0) {
-        sessionStorage.setItem(CHAT_HISTORY_KEY, messagesEl.innerHTML);
-      }
-    } catch (e) {}
-  }
-
-  function restoreChatHistory(iframe) {
-    try {
-      const savedHtml = sessionStorage.getItem(CHAT_HISTORY_KEY);
-      if (!savedHtml) return;
-      const doc = iframe?.contentDocument || iframe?.contentWindow?.document;
-      const messagesEl = doc?.getElementById('messages');
-      if (messagesEl) {
-        messagesEl.innerHTML = savedHtml;
-        messagesEl.scrollTop = messagesEl.scrollHeight;
-      }
-    } catch (e) {}
-  }
 
   function getUiMode() {
     try {
       return localStorage.getItem(UI_STORAGE_KEY) || 'modern';
     } catch (e) {
       return 'modern';
+    }
+  }
+
+  function applyUiModeToDocument(doc, mode) {
+    if (!doc) return;
+    const isLegacy = mode === 'legacy';
+    
+    // Toggle classe su html/body
+    if (doc.documentElement) {
+      doc.documentElement.classList.toggle('gustavo-legacy-mode', isLegacy);
+    }
+    if (doc.body) {
+      doc.body.classList.toggle('gustavo-legacy-mode', isLegacy);
+    }
+
+    // Abilita o disabilita il tema CSS iniettato
+    const styleEl = doc.getElementById('gustavo-injected-theme');
+    if (styleEl) {
+      styleEl.disabled = isLegacy;
+    }
+
+    // Toggle visibilità elementi Modern / Legacy
+    const modernAvatar = doc.getElementById('gustavo-modern-avatar');
+    if (modernAvatar) {
+      modernAvatar.style.display = isLegacy ? 'none' : '';
+    }
+    const legacyAvatar = doc.getElementById('gustavo-legacy-avatar');
+    if (legacyAvatar) {
+      legacyAvatar.style.display = isLegacy ? '' : 'none';
+    }
+
+    const modernLogo = doc.getElementById('gustavo-modern-logo');
+    if (modernLogo) {
+      modernLogo.style.display = isLegacy ? 'none' : '';
+    }
+    const legacyLogo = doc.getElementById('gustavo-legacy-logo');
+    if (legacyLogo) {
+      legacyLogo.style.display = isLegacy ? '' : 'none';
     }
   }
 
@@ -1176,24 +1153,17 @@ async function sendMessage() {
     const iframe = document.querySelector('.chatbot-iframe');
     if (!iframe) return;
 
-    // Salva i messaggi correnti prima del cambio di interfaccia
-    saveCurrentChatHistory(iframe);
+    try {
+      const doc = iframe.contentDocument || iframe.contentWindow?.document;
+      if (doc) {
+        applyUiModeToDocument(doc, mode);
+        console.info('GustAvo: Switch interfaccia eseguito istantaneamente senza reload. Modalita:', mode);
+        return;
+      }
+    } catch (e) {}
 
-    if (mode === 'legacy') {
-      iframe.removeAttribute('srcdoc');
-      iframe.removeAttribute('data-theme-injected');
-
-      const onLegacyLoad = () => {
-        iframe.removeEventListener('load', onLegacyLoad);
-        restoreChatHistory(iframe);
-      };
-      iframe.addEventListener('load', onLegacyLoad);
-      iframe.src = 'https://gustavo1.avoprogetti.it';
-      console.info('GustAvo: Passato a UI Legacy originale.');
-    } else {
-      injectChatbotTheme();
-      console.info('GustAvo: Passato a UI Moderna personalizzata.');
-    }
+    // Fallback se l'iframe non e ancora pronto
+    injectChatbotTheme();
   }
 
   function updateUiSwitcherButtons(activeMode) {
@@ -1229,17 +1199,7 @@ async function sendMessage() {
 
     const currentMode = getUiMode();
     updateUiSwitcherButtons(currentMode);
-
-    if (currentMode === 'legacy') {
-      const iframe = document.querySelector('.chatbot-iframe');
-      if (iframe) {
-        iframe.removeAttribute('srcdoc');
-        iframe.removeAttribute('data-theme-injected');
-        iframe.src = 'https://gustavo1.avoprogetti.it';
-      }
-    } else {
-      injectChatbotTheme();
-    }
+    injectChatbotTheme();
   }
 
   // Esecuzione al caricamento del DOM
