@@ -1185,9 +1185,76 @@ function tokenizeQuery(text) {
 }
 
 function matchLocalIntent(query) {
+  if (!query) return null;
+  const normQuery = normalizeNlpText(query);
+
+  // 1. Riconoscimento intelligente e prioritario per qualsiasi aula scolastica (es. "aula 223", "dove e la 223", "223")
+  const aulaRegex = /(?:aula\s*|^|\b)(s0?[1-9]|[1-4]\d{2})\b/i;
+  const aulaMatch = query.match(aulaRegex);
+  if (aulaMatch) {
+    const code = aulaMatch[1].toUpperCase();
+    if (code.startsWith("1")) {
+      return {
+        intent: {
+          responses: [
+            `L'Aula ${code} si trova al Primo Piano (l=1 su OpenLevelUp).\n\nVisualizza la mappa: [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.`
+          ]
+        },
+        score: 1.0
+      };
+    } else if (code.startsWith("2")) {
+      return {
+        intent: {
+          responses: [
+            `L'Aula ${code} si trova al Secondo Piano (l=2 su OpenLevelUp).\n\nVisualizza la mappa: [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.`
+          ]
+        },
+        score: 1.0
+      };
+    } else if (code.startsWith("3")) {
+      return {
+        intent: {
+          responses: [
+            `L'Aula ${code} si trova al Terzo Piano (l=3 su OpenLevelUp).\n\nVisualizza la mappa: [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.`
+          ]
+        },
+        score: 1.0
+      };
+    } else if (code.startsWith("4")) {
+      return {
+        intent: {
+          responses: [
+            `L'Aula ${code} si trova al Quarto Piano (l=4 su OpenLevelUp).\n\nVisualizza la mappa: [Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)\n\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.`
+          ]
+        },
+        score: 1.0
+      };
+    } else if (code.startsWith("S")) {
+      return {
+        intent: {
+          responses: [
+            `Il laboratorio/aula ${code} si trova al Piano Seminterrato (l=-1 su OpenLevelUp), nell'area delle officine e macchine CNC.\n\nVisualizza la mappa: [Apri Mappa Piano Seminterrato](https://openlevelup.net/?l=-1#19/45.07069/7.69253)`
+          ]
+        },
+        score: 1.0
+      };
+    }
+  }
+
+  // Chiarimento su aule a numero basso (es. "aula 12", "aula 5")
+  if (/\b(?:aula|aule)\s*([1-9]|1[0-9]|20)\b/i.test(query)) {
+    return {
+      intent: {
+        responses: [
+          "All'IIS Avogadro le aule sono contrassegnate da numeri a tre cifre in base al piano:\n- Serie 100 (101-130): Primo Piano\n- Serie 200 (201-230): Secondo Piano\n- Serie 300 (301-330): Terzo Piano\n- Serie S (S01, S02...): Piano Seminterrato (Officine)\n\nAl Piano Terra non ci sono aule didattiche con numerazione 1-20, ma si trovano la Segreteria, la Presidenza, la Biblioteca Storica, l'Aula Magna, la Palestra e il Bar.\n\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        ]
+      },
+      score: 1.0
+    };
+  }
+
   const intentsList = getLocalIntents();
   if (!intentsList || intentsList.length === 0) return null;
-  const normQuery = normalizeNlpText(query);
   const qTokens = tokenizeQuery(query);
 
   let bestMatch = null;
