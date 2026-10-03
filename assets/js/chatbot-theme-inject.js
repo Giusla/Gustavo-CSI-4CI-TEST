@@ -469,6 +469,94 @@ button:disabled {
   50% { transform: scale(1.15); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.2), 0 4px 16px rgba(239, 68, 68, 0.5); }
   100% { transform: scale(1.05); }
 }
+
+/* Ottimizzazione Responsive Mobile — Risolve la compressione della UI su smartphone */
+@media (max-width: 600px) {
+  .header {
+    padding: 8px 14px 6px !important;
+  }
+  .header .logo {
+    height: 58px !important;
+    max-height: 58px !important;
+  }
+  .avatar {
+    width: 74px !important;
+    height: 74px !important;
+    margin: 2px auto 0 !important;
+  }
+  .avatar-svg {
+    width: 74px !important;
+    height: 74px !important;
+  }
+  .voice-toggle {
+    margin: 2px auto 4px !important;
+    padding: 3px 10px !important;
+    font-size: 0.72rem !important;
+    gap: 5px !important;
+  }
+  .voice-toggle .amp-svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
+  .voice-toggle input[type="checkbox"] {
+    width: 13px !important;
+    height: 13px !important;
+  }
+  #messages {
+    padding: 8px 12px !important;
+    gap: 8px !important;
+  }
+  .msg {
+    padding: 8px 12px !important;
+    font-size: 0.86rem !important;
+    line-height: 1.4 !important;
+    border-radius: 12px !important;
+    max-width: 90% !important;
+  }
+  .input-container {
+    padding: 6px 10px !important;
+    gap: 6px !important;
+  }
+  .input-container input {
+    padding: 8px 12px !important;
+    font-size: 0.88rem !important;
+    height: 38px !important;
+  }
+  .input-container button {
+    padding: 8px 14px !important;
+    font-size: 0.85rem !important;
+    height: 38px !important;
+  }
+  .mic-btn {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+  }
+}
+
+@media (max-height: 650px) {
+  .header {
+    padding: 4px 10px !important;
+  }
+  .header .logo {
+    height: 44px !important;
+    max-height: 44px !important;
+  }
+  .avatar {
+    width: 54px !important;
+    height: 54px !important;
+    margin: 1px auto 0 !important;
+  }
+  .avatar-svg {
+    width: 54px !important;
+    height: 54px !important;
+  }
+  .voice-toggle {
+    margin: 1px auto 2px !important;
+    padding: 2px 8px !important;
+    font-size: 0.68rem !important;
+  }
+}
 `;
 
   // Markup SVG per l'avatar umano (vecchietto saggio / professore con capelli, occhiali azzurrini e microfono interattivo)

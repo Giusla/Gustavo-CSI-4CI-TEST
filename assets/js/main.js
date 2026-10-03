@@ -54,21 +54,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         navMobile.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', closeNavMobile);
+            link.addEventListener('click', () => {
+                // Chiudi il menu mobile permettendo la normale navigazione del link
+                navMobile.classList.remove('visibile');
+                navMobile.setAttribute('aria-hidden', 'true');
+                hamburgerBtn.classList.remove('aperto');
+                hamburgerBtn.setAttribute('aria-expanded', 'false');
+                if (navBackdrop) navBackdrop.classList.remove('visibile');
+            });
         });
 
         // Intercettazione in fase di cattura (capture) per chiudere il menu ed evitare
         // che il click o il tocco tocchi e apra immagini, card o modali sottostanti
         const handleOutsideNavMobile = (e) => {
+            // Se il click o tocco è DENTRO al menu o al pulsante hamburger, NON interferire
+            if (navMobile.contains(e.target) || hamburgerBtn.contains(e.target)) {
+                return;
+            }
+
             if (navMobile.classList.contains('visibile')) {
-                if (!navMobile.contains(e.target) && !hamburgerBtn.contains(e.target)) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    e.stopImmediatePropagation();
-                    closeNavMobile();
-                }
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                closeNavMobile();
             } else if (Date.now() - navMobileClosedTimestamp < 450) {
-                // Blocca qualsiasi click/touch fantasma derivante dal tocco che ha chiuso il menu
+                // Blocca solo i click fantasma che colpiscono elementi esterni (es. immagini della pagina)
                 e.preventDefault();
                 e.stopPropagation();
                 e.stopImmediatePropagation();
