@@ -999,7 +999,7 @@ function botSpeak(rawText) {
   const cleanForTts = cleanText
     .replace(/\\[([^\\]]+)\\]\\([^)]+\\)/g, '$1')
     .replace(/https?:\\/\\/\\S+/g, '')
-    .replace(/[*_~`#>-]/g, ' ')
+    .replace(/[*_~\\x60#>-]/g, ' ')
     .replace(/↗/g, '')
     .replace(/\\s+/g, ' ')
     .trim();
@@ -1151,7 +1151,7 @@ function matchLocalIntent(query) {
       return {
         intent: {
           responses: [
-            \`L'Aula \${code} si trova al Primo Piano.\\n\\nVisualizza la mappa: [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.\`
+            "L'Aula " + code + " si trova al Primo Piano.\\n\\nVisualizza la mappa: [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria."
           ]
         },
         score: 1.0
@@ -1160,7 +1160,7 @@ function matchLocalIntent(query) {
       return {
         intent: {
           responses: [
-            \`L'Aula \${code} si trova al Secondo Piano.\\n\\nVisualizza la mappa: [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.\`
+            "L'Aula " + code + " si trova al Secondo Piano.\\n\\nVisualizza la mappa: [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria."
           ]
         },
         score: 1.0
@@ -1169,7 +1169,7 @@ function matchLocalIntent(query) {
       return {
         intent: {
           responses: [
-            \`L'Aula \${code} si trova al Terzo Piano.\\n\\nVisualizza la mappa: [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.\`
+            "L'Aula " + code + " si trova al Terzo Piano.\\n\\nVisualizza la mappa: [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria."
           ]
         },
         score: 1.0
@@ -1178,7 +1178,7 @@ function matchLocalIntent(query) {
       return {
         intent: {
           responses: [
-            \`L'Aula \${code} si trova al Quarto Piano.\\n\\nVisualizza la mappa: [Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.\`
+            "L'Aula " + code + " si trova al Quarto Piano.\\n\\nVisualizza la mappa: [Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria."
           ]
         },
         score: 1.0
@@ -1187,7 +1187,7 @@ function matchLocalIntent(query) {
       return {
         intent: {
           responses: [
-            \`Il laboratorio/officina \${code} si trova al Piano Terra, nell'area delle officine e macchine CNC.\\n\\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)\`
+            "Il laboratorio/officina " + code + " si trova al Piano Terra, nell'area delle officine e macchine CNC.\\n\\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
           ]
         },
         score: 1.0
@@ -1355,6 +1355,12 @@ async function sendMessage() {
 `;
 
   function buildModernHtml() {
+    const intentsJson = JSON.stringify(
+      (typeof window !== 'undefined' && window.GUSTAVO_INTENTS_DATA) || 
+      (typeof window !== 'undefined' && window.parent && window.parent.GUSTAVO_INTENTS_DATA) || 
+      { intents: [] }
+    );
+
     return `<!DOCTYPE html>
 <html lang="it">
 <head>
@@ -1391,6 +1397,7 @@ ${THEME_CSS}
     <div class="chat-disclaimer-note">GustAvo è un assistente virtuale e può commettere errori. Verifica le informazioni in segreteria o su <a href="https://www.itisavogadro.it" target="_blank" rel="noopener">itisavogadro.it</a></div>
   </div>
   <script>
+    window.GUSTAVO_INTENTS_DATA = ${intentsJson};
     const SERVER_URL = "https://gustavo1.avoprogetti.it";
     const messages = document.getElementById("messages");
     const input = document.getElementById("input");
@@ -1470,14 +1477,20 @@ ${THEME_CSS}
   }
 
   function injectChatbotTheme() {
-    const iframe = document.querySelector('.chatbot-iframe');
-    if (!iframe) return;
+    const container = document.querySelector('.chatbot-iframe-box');
+    if (!container) return;
 
     try {
       const modernHtml = buildModernHtml();
-      iframe.removeAttribute('src');
-      iframe.srcdoc = modernHtml;
-      iframe.setAttribute('data-theme-injected', 'true');
+      const freshIframe = document.createElement('iframe');
+      freshIframe.className = 'chatbot-iframe';
+      freshIframe.title = 'Chatbot GustAvo — Interfaccia Moderna';
+      freshIframe.allow = 'microphone; autoplay';
+      freshIframe.setAttribute('scrolling', 'no');
+      freshIframe.setAttribute('data-theme-injected', 'true');
+      freshIframe.srcdoc = modernHtml;
+      
+      container.replaceChildren(freshIframe);
       console.info('GustAvo: Modern UI caricata istantaneamente con successo!');
     } catch (err) {
       console.error('GustAvo: Errore rendering Modern UI:', err);
@@ -1488,7 +1501,7 @@ ${THEME_CSS}
 
   function getUiMode() {
     try {
-      return localStorage.getItem(UI_STORAGE_KEY) || 'modern';
+      return sessionStorage.getItem(UI_STORAGE_KEY) || 'modern';
     } catch (e) {
       return 'modern';
     }
@@ -1496,21 +1509,25 @@ ${THEME_CSS}
 
   function setUiMode(mode) {
     try {
-      localStorage.setItem(UI_STORAGE_KEY, mode);
+      sessionStorage.setItem(UI_STORAGE_KEY, mode);
+      localStorage.removeItem(UI_STORAGE_KEY);
     } catch (e) {}
 
     updateUiSwitcherButtons(mode);
 
-    const iframe = document.querySelector('.chatbot-iframe');
-    if (!iframe) return;
+    const container = document.querySelector('.chatbot-iframe-box');
+    if (!container) return;
 
     if (mode === 'legacy') {
-      iframe.removeAttribute('srcdoc');
-      iframe.removeAttribute('data-theme-injected');
-      iframe.src = 'https://gustavo1.avoprogetti.it?' + Date.now();
+      const legacyIframe = document.createElement('iframe');
+      legacyIframe.className = 'chatbot-iframe';
+      legacyIframe.title = 'Chatbot GustAvo — Server Ufficiale gustavo1.avoprogetti.it';
+      legacyIframe.allow = 'microphone; autoplay';
+      legacyIframe.setAttribute('scrolling', 'no');
+      legacyIframe.src = 'https://gustavo1.avoprogetti.it?' + Date.now();
+      container.replaceChildren(legacyIframe);
       console.info('GustAvo: Modalità Legacy pura attivata (gustavo1.avoprogetti.it).');
     } else {
-      iframe.removeAttribute('src');
       injectChatbotTheme();
     }
   }
@@ -1529,6 +1546,10 @@ ${THEME_CSS}
   }
 
   function setupUiSwitcher() {
+    try {
+      localStorage.removeItem(UI_STORAGE_KEY);
+    } catch (e) {}
+
     const btnModern = document.getElementById('btnUiModern');
     const btnLegacy = document.getElementById('btnUiLegacy');
 
@@ -1547,17 +1568,7 @@ ${THEME_CSS}
     }
 
     const currentMode = getUiMode();
-    updateUiSwitcherButtons(currentMode);
-    if (currentMode === 'legacy') {
-      const iframe = document.querySelector('.chatbot-iframe');
-      if (iframe) {
-        iframe.removeAttribute('srcdoc');
-        iframe.removeAttribute('data-theme-injected');
-        iframe.src = 'https://gustavo1.avoprogetti.it';
-      }
-    } else {
-      injectChatbotTheme();
-    }
+    setUiMode(currentMode);
   }
 
   // Esecuzione al caricamento del DOM
