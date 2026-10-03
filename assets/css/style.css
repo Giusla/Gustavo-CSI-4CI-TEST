@@ -584,7 +584,8 @@ body>header {
     background: rgba(10, 15, 29, 0.45);
     backdrop-filter: blur(2px);
     -webkit-backdrop-filter: blur(2px);
-    z-index: 999;
+    z-index: 1000;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .nav-mobile-backdrop.visibile {
@@ -3812,6 +3813,28 @@ body.modal-is-open {
 
 .g-a11y-panel.is-open {
     display: flex;
+}
+
+/* ── Backdrop accessibilità per tocco esterno su mobile e desktop ── */
+.g-a11y-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: transparent;
+    z-index: 9998;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.g-a11y-backdrop.is-visible {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .g-a11y-backdrop {
+        background: rgba(15, 23, 42, 0.32);
+        backdrop-filter: blur(1.5px);
+        -webkit-backdrop-filter: blur(1.5px);
+    }
 }
 
 @keyframes gA11yPanelIn {

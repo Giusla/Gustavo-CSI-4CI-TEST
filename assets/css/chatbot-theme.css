@@ -113,7 +113,7 @@ html, body {
   content: "" !important;
   position: absolute !important;
   inset: 0 !important;
-  background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.16), transparent 70%) !important;
+  background: radial-gradient(ellipse 80% 90% at 50% 50%, rgba(250, 204, 21, 0.16) 0%, rgba(250, 204, 21, 0.05) 55%, transparent 85%) !important;
   pointer-events: none !important;
 }
 
@@ -123,7 +123,7 @@ html, body {
 }
 
 .header .logo {
-  height: 125px !important;
+  height: 128px !important;
   width: auto !important;
   max-width: 90% !important;
   object-fit: contain !important;
@@ -134,7 +134,7 @@ html, body {
   padding: 0 !important;
   display: block !important;
   margin: 0 auto !important;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.28)) !important;
+  filter: drop-shadow(0 0 18px rgba(250, 204, 21, 0.28)) drop-shadow(0 0 45px rgba(250, 204, 21, 0.15)) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.35)) !important;
   transition: transform 0.25s ease !important;
 }
 
@@ -142,22 +142,22 @@ html, body {
   transform: scale(1.04) !important;
 }
 
-/* Avatar Robottino SVG */
+/* Avatar Vecchietto Saggio SVG */
 .avatar {
-  width: 120px !important;
-  height: 120px !important;
+  width: 125px !important;
+  height: 125px !important;
   margin: 6px auto 2px !important;
   position: relative !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  filter: drop-shadow(0 6px 16px rgba(0, 102, 255, 0.15)) !important;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.12)) !important;
   flex: 0 0 auto !important;
 }
 
 .avatar-svg {
-  width: 120px !important;
-  height: 120px !important;
+  width: 125px !important;
+  height: 125px !important;
   display: block !important;
 }
 

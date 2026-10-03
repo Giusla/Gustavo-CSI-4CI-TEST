@@ -20,9 +20,9 @@
     <meta name="twitter:title" content="GustAvo">
     <meta name="twitter:description" content="GustAvo, Il chatbot che ti orienta a scuola · IIS Avogadro">
 
-    <link rel="stylesheet" href="assets/css/style.css?v=4.21">
-    <script src="assets/js/main.js?v=4.12" defer></script>
-    <script src="assets/js/chatbot-theme-inject.js?v=1.1" defer></script>
+    <link rel="stylesheet" href="assets/css/style.css?v=4.22">
+    <script src="assets/js/main.js?v=4.13" defer></script>
+    <script src="assets/js/chatbot-theme-inject.js?v=1.6" defer></script>
     <style>
         /* Regole di sicurezza viewport mobile e overlay menu hamburger */
         html.chatbot-page-html,
@@ -61,6 +61,85 @@
             height: 100% !important;
             max-width: 100% !important;
             transform: none !important;
+        }
+        .chatbot-ui-switch-wrapper {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .chatbot-toggle-pill {
+            display: inline-flex;
+            align-items: center;
+            background: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 20px;
+            padding: 2px;
+            gap: 2px;
+        }
+        .pill-btn {
+            border: none;
+            background: transparent;
+            color: #64748b;
+            font-size: 0.74rem;
+            font-weight: 600;
+            font-family: inherit;
+            padding: 4px 10px;
+            border-radius: 16px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s ease;
+            user-select: none;
+            line-height: 1.2;
+        }
+        .pill-btn:hover:not(.active) {
+            color: #0f172a;
+            background: rgba(0, 0, 0, 0.04);
+        }
+        .pill-btn.active {
+            background: linear-gradient(135deg, #00a86b 0%, #0066ff 100%);
+            color: #ffffff;
+            box-shadow: 0 2px 6px rgba(0, 102, 255, 0.28);
+        }
+        .pill-btn .pill-icon {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .chatbot-direct-info {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        /* Risoluzione conflitti mobile (tastiera e sovrapposizione campo di input) */
+        .chatbot-page .back-to-top-btn {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .chatbot-page .g-a11y-btn {
+                bottom: auto !important;
+                top: 68px !important;
+                right: 12px !important;
+                width: 44px !important;
+                height: 44px !important;
+                z-index: 9999 !important;
+                box-shadow: 0 4px 14px rgba(0, 30, 80, 0.22) !important;
+            }
+            .chatbot-page .g-a11y-panel {
+                top: 118px !important;
+                bottom: auto !important;
+                max-height: 65vh !important;
+                max-height: 65dvh !important;
+            }
+            .chatbot-page .g-a11y-backdrop {
+                z-index: 9998 !important;
+            }
         }
     </style>
 </head>
@@ -127,10 +206,25 @@
             </iframe>
         </div>
 
-        <!-- BARRA INFORMATIVA SERVER -->
+        <!-- BARRA INFORMATIVA SERVER E SELEZIONE UI -->
         <div class="chatbot-direct-bar">
-            <span class="chatbot-bar-note">Chatbot ospitato sul server della scuola</span>
-            <a href="https://gustavo1.avoprogetti.it" target="_blank" rel="noopener">Apri direttamente gustavo1.avoprogetti.it ↗</a>
+            <div class="chatbot-ui-switch-wrapper">
+                <span class="chatbot-bar-note">Interfaccia:</span>
+                <div class="chatbot-toggle-pill" role="radiogroup" aria-label="Selettore versione interfaccia">
+                    <button type="button" class="pill-btn active" id="btnUiModern" aria-checked="true" role="radio" title="Passa all'interfaccia moderna personalizzata">
+                        <svg class="pill-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M9 3v18"/><path d="M14 9h4"/><path d="M14 15h4"/></svg>
+                        <span>UI Moderna</span>
+                    </button>
+                    <button type="button" class="pill-btn" id="btnUiLegacy" aria-checked="false" role="radio" title="Passa all'interfaccia originale legacy">
+                        <svg class="pill-icon" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+                        <span>UI Legacy</span>
+                    </button>
+                </div>
+            </div>
+            <div class="chatbot-direct-info">
+                <span class="chatbot-bar-note">Chatbot hostato sul server della scuola:</span>
+                <a href="https://gustavo1.avoprogetti.it" target="_blank" rel="noopener">Apri direttamente gustavo1.avoprogetti.it ↗</a>
+            </div>
         </div>
     </main>
 

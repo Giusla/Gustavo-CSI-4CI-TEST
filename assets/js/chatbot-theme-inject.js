@@ -122,7 +122,7 @@ html, body {
   content: "" !important;
   position: absolute !important;
   inset: 0 !important;
-  background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.16), transparent 70%) !important;
+  background: radial-gradient(ellipse 80% 90% at 50% 50%, rgba(250, 204, 21, 0.16) 0%, rgba(250, 204, 21, 0.05) 55%, transparent 85%) !important;
   pointer-events: none !important;
 }
 
@@ -132,7 +132,7 @@ html, body {
 }
 
 .header .logo {
-  height: 125px !important;
+  height: 128px !important;
   width: auto !important;
   max-width: 90% !important;
   object-fit: contain !important;
@@ -143,7 +143,7 @@ html, body {
   padding: 0 !important;
   display: block !important;
   margin: 0 auto !important;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.28)) !important;
+  filter: drop-shadow(0 0 18px rgba(250, 204, 21, 0.28)) drop-shadow(0 0 45px rgba(250, 204, 21, 0.15)) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.35)) !important;
   transition: transform 0.25s ease !important;
 }
 
@@ -151,22 +151,22 @@ html, body {
   transform: scale(1.04) !important;
 }
 
-/* Avatar Robottino SVG */
+/* Avatar Vecchietto Saggio SVG */
 .avatar {
-  width: 120px !important;
-  height: 120px !important;
+  width: 125px !important;
+  height: 125px !important;
   margin: 6px auto 2px !important;
   position: relative !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  filter: drop-shadow(0 6px 16px rgba(0, 102, 255, 0.15)) !important;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.12)) !important;
   flex: 0 0 auto !important;
 }
 
 .avatar-svg {
-  width: 120px !important;
-  height: 120px !important;
+  width: 125px !important;
+  height: 125px !important;
   display: block !important;
 }
 
@@ -471,59 +471,96 @@ button:disabled {
 }
 `;
 
-  // Markup SVG per il robottino ufficiale GustAvo
+  // Markup SVG per l'avatar umano (vecchietto saggio / professore con capelli, occhiali azzurrini e microfono interattivo)
   const AVATAR_SVG_HTML = `
     <div class="avatar">
-      <svg class="avatar-svg" viewBox="0 0 120 120" width="120" height="120" xmlns="http://www.w3.org/2000/svg" aria-label="Avatar GustAvo">
+      <svg class="avatar-svg" viewBox="0 0 130 130" width="125" height="125" xmlns="http://www.w3.org/2000/svg" aria-label="Avatar GustAvo">
         <defs>
-          <linearGradient id="headGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#00a86b" />
-            <stop offset="100%" stop-color="#0066ff" />
-          </linearGradient>
-          <filter id="avatarGlow" x="-20%" y="-20%" width="140%" height="140%">
-            <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#0066ff" flood-opacity="0.18" />
+          <filter id="elderGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#0f172a" flood-opacity="0.12" />
+          </filter>
+          <filter id="mustacheDrop" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="#0f172a" flood-opacity="0.15" />
           </filter>
         </defs>
 
-        <!-- Antenna -->
-        <rect x="58" y="4" width="4" height="15" rx="2" fill="#00a86b" />
-        <circle cx="60" cy="5" r="5" fill="#facc15" stroke="#008f5b" stroke-width="1.5" />
+        <!-- Orecchie pulite (senza forme dietro l'orecchio) -->
+        <circle cx="24" cy="74" r="8.5" fill="#fcd8ba" />
+        <circle cx="106" cy="74" r="8.5" fill="#fcd8ba" />
+        <circle cx="24" cy="74" r="4.5" fill="#f5be98" opacity="0.45" />
+        <circle cx="106" cy="74" r="4.5" fill="#f5be98" opacity="0.45" />
 
-        <!-- Cuffie laterali -->
-        <rect x="8" y="44" width="11" height="30" rx="5.5" fill="#00a86b" />
-        <rect x="101" y="44" width="11" height="30" rx="5.5" fill="#0066ff" />
+        <!-- Maglia / Abbigliamento migliore: Cardigan brand blue, camicia bianca e cravatta verde -->
+        <path d="M 26 130 L 38 114 Q 65 125 92 114 L 104 130 Z" fill="#0066ff" />
+        <path d="M 38 114 L 48 114 L 43 130 L 26 130 Z" fill="#0052cc" />
+        <path d="M 92 114 L 82 114 L 87 130 L 104 130 Z" fill="#0052cc" />
+        <polygon points="48,114 65,124 59,130 45,117" fill="#ffffff" />
+        <polygon points="82,114 65,124 71,130 85,117" fill="#ffffff" />
+        <!-- Cravatta gialla ufficiale Avogadro -->
+        <polygon points="62,121 68,121 66,124 64,124" fill="#ca8a04" />
+        <polygon points="63,124 67,124 69,130 61,130" fill="#facc15" />
 
-        <!-- Testa Robot con gradiente brand -->
-        <rect x="16" y="16" width="88" height="86" rx="28" fill="url(#headGrad)" filter="url(#avatarGlow)" />
+        <!-- Forma del Viso pulita (senza dettagli o rughe sulla fronte) -->
+        <circle cx="65" cy="75" r="41" fill="#fde2cb" filter="url(#elderGlow)" />
 
-        <!-- Visore scuro -->
-        <rect x="23" y="24" width="74" height="70" rx="20" fill="#0f172a" />
-        <rect x="25" y="26" width="70" height="66" rx="18" fill="#1e293b" />
+        <!-- Guance rosee stilizzate -->
+        <ellipse cx="36" cy="81" rx="8" ry="5.5" fill="#f87171" opacity="0.32" />
+        <ellipse cx="94" cy="81" rx="8" ry="5.5" fill="#f87171" opacity="0.32" />
 
-        <!-- Guance accento brand -->
-        <ellipse cx="34" cy="67" rx="5" ry="3" fill="#00a86b" opacity="0.4" />
-        <ellipse cx="86" cy="67" rx="5" ry="3" fill="#0066ff" opacity="0.4" />
+        <!-- Capelli eleganti da professore anziano (senza basco) -->
+        <path d="M 24 67 C 20 40, 31 18, 65 18 C 99 18, 110 40, 106 67 C 101 44, 88 28, 65 28 C 42 28, 29 44, 24 67 Z" fill="#cbd5e1" />
+        <path d="M 25 63 C 22 38, 34 19, 65 19 C 96 19, 108 38, 105 63 C 100 47, 88 32, 65 32 C 42 32, 30 47, 25 63 Z" fill="#f1f5f9" />
+        <path d="M 44 26.5 Q 65 22.5 86 26.5" stroke="#ffffff" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7" />
+        <path d="M 36 34 Q 65 27 94 34" stroke="#e2e8f0" stroke-width="2.2" stroke-linecap="round" fill="none" />
 
-        <!-- Occhio sinistro -->
-        <g class="eye left">
-          <ellipse cx="43" cy="50" rx="9" ry="12" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
-          <g class="pupil" style="transition: transform 0.1s ease;">
-            <ellipse cx="43" cy="50" rx="6.5" ry="9" fill="#38bdf8" />
-            <circle cx="41" cy="47" r="2.2" fill="#ffffff" />
-          </g>
-        </g>
-
-        <!-- Occhio destro -->
-        <g class="eye right">
-          <ellipse cx="77" cy="50" rx="9" ry="12" fill="#0f172a" stroke="#334155" stroke-width="1.5" />
-          <g class="pupil" style="transition: transform 0.1s ease;">
-            <ellipse cx="77" cy="50" rx="6.5" ry="9" fill="#38bdf8" />
-            <circle cx="75" cy="47" r="2.2" fill="#ffffff" />
-          </g>
-        </g>
+        <!-- Sopracciglia folte e bianche -->
+        <path d="M 37 51 C 44 44, 55 45, 61 51" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" fill="none" filter="url(#mustacheDrop)" />
+        <path d="M 69 51 C 75 45, 86 44, 93 51" stroke="#ffffff" stroke-width="6.5" stroke-linecap="round" fill="none" filter="url(#mustacheDrop)" />
 
         <!-- Bocca animata interattiva parlante -->
-        <rect id="mouth" x="44" y="74" width="32" height="6" rx="3" fill="#38bdf8" />
+        <rect id="mouth" x="55" y="93" width="20" height="6" rx="3" fill="#be123c" />
+
+        <!-- Baffoni bianchi da saggio -->
+        <path d="M 65 78 C 52 78, 30 86, 23 97 C 38 100, 54 94, 65 89 C 76 94, 92 100, 107 97 C 100 86, 78 78, 65 78 Z" fill="#ffffff" filter="url(#mustacheDrop)" />
+
+        <!-- Grandi occhiali tondi azzurrini come il tema del sito -->
+        <!-- Lente sinistra -->
+        <circle cx="47" cy="67" r="16.5" fill="#ffffff" stroke="#0066ff" stroke-width="4.5" />
+        <!-- Lente destra -->
+        <circle cx="83" cy="67" r="16.5" fill="#ffffff" stroke="#0066ff" stroke-width="4.5" />
+        <!-- Ponte occhiali -->
+        <path d="M 63 65 Q 65 60 67 65" stroke="#0066ff" stroke-width="4.5" stroke-linecap="round" fill="none" />
+        <!-- Stanghette occhiali verso le orecchie -->
+        <path d="M 31 66 L 24 70" stroke="#0066ff" stroke-width="3.5" stroke-linecap="round" fill="none" />
+        <path d="M 99 66 L 106 70" stroke="#0066ff" stroke-width="3.5" stroke-linecap="round" fill="none" />
+
+        <!-- Occhio sinistro con pupilla mobile -->
+        <g class="eye left">
+          <g class="pupil" style="transition: transform 0.1s ease;">
+            <ellipse cx="47" cy="67" rx="7" ry="8.5" fill="#0f172a" />
+            <circle cx="45" cy="64.5" r="2.6" fill="#ffffff" />
+            <circle cx="49" cy="69" r="1.2" fill="#ffffff" opacity="0.7" />
+          </g>
+        </g>
+
+        <!-- Occhio destro con pupilla mobile -->
+        <g class="eye right">
+          <g class="pupil" style="transition: transform 0.1s ease;">
+            <ellipse cx="83" cy="67" rx="7" ry="8.5" fill="#0f172a" />
+            <circle cx="81" cy="64.5" r="2.6" fill="#ffffff" />
+            <circle cx="85" cy="69" r="1.2" fill="#ffffff" opacity="0.7" />
+          </g>
+        </g>
+
+        <!-- Nasone rotondo da nonnino -->
+        <ellipse cx="65" cy="74" rx="8" ry="6.5" fill="#f4a27e" />
+
+        <!-- Archetto microfono (cuffie operatore da guida) -->
+        <ellipse cx="19" cy="73" rx="3.5" ry="6" fill="#1e293b" />
+        <path d="M 19 78 C 16 97, 26 112, 53 111" stroke="#1e293b" stroke-width="3.5" stroke-linecap="round" fill="none" />
+        <rect x="51" y="107" width="10" height="7" rx="3.5" fill="#1e293b" />
+        <!-- Luce LED dinamica: rossa a riposo, verde quando parla -->
+        <circle id="mic-led" cx="57" cy="110.5" r="2.2" fill="#ef4444" />
       </svg>
     </div>
   `;
@@ -643,6 +680,7 @@ function setChatBusy(busy, placeholderText, btnText) {
     _inp.disabled = _isChatBusy;
     _inp.placeholder = _isChatBusy ? (placeholderText || "GustAvo sta parlando...") : "Scrivi un messaggio...";
     if (!_isChatBusy) {
+      setMicLedState(false);
       setTimeout(() => _inp.focus(), 60);
     }
   }
@@ -655,15 +693,23 @@ function setChatBusy(busy, placeholderText, btnText) {
   }
 }
 
+function setMicLedState(speaking) {
+  const _led = document.getElementById("mic-led");
+  if (_led) {
+    _led.setAttribute("fill", speaking ? "#00a86b" : "#ef4444");
+  }
+}
+
 function animateMouthStart() {
+  setMicLedState(true);
   if (mouthInterval) clearInterval(mouthInterval);
   if (eyeInterval) clearInterval(eyeInterval);
 
   mouthInterval = setInterval(() => {
-    const h = Math.random() * 16 + 6;
+    const h = Math.random() * 14 + 5;
     if (mouth && mouth.setAttribute) {
       mouth.setAttribute("height", h);
-      mouth.setAttribute("y", 77 - h/2);
+      mouth.setAttribute("y", 96 - h/2);
       mouth.setAttribute("rx", Math.min(h/2, 4));
     } else if (mouth) {
       mouth.style.height = h + "px";
@@ -679,6 +725,7 @@ function animateMouthStart() {
 }
 
 function animateMouthStop() {
+  setMicLedState(false);
   if (mouthInterval) clearInterval(mouthInterval);
   if (eyeInterval) clearInterval(eyeInterval);
   mouthInterval = null;
@@ -686,7 +733,7 @@ function animateMouthStop() {
 
   if (mouth && mouth.setAttribute) {
     mouth.setAttribute("height", "6");
-    mouth.setAttribute("y", "74");
+    mouth.setAttribute("y", "93");
     mouth.setAttribute("rx", "3");
   } else if (mouth) {
     mouth.style.height = "6px";
@@ -868,10 +915,87 @@ async function sendMessage() {
     }
   }
 
+  const UI_STORAGE_KEY = 'gustavo_chat_ui_mode';
+
+  function getUiMode() {
+    try {
+      return localStorage.getItem(UI_STORAGE_KEY) || 'modern';
+    } catch (e) {
+      return 'modern';
+    }
+  }
+
+  function setUiMode(mode) {
+    try {
+      localStorage.setItem(UI_STORAGE_KEY, mode);
+    } catch (e) {}
+
+    updateUiSwitcherButtons(mode);
+
+    const iframe = document.querySelector('.chatbot-iframe');
+    if (!iframe) return;
+
+    if (mode === 'legacy') {
+      iframe.removeAttribute('srcdoc');
+      iframe.removeAttribute('data-theme-injected');
+      iframe.src = 'https://gustavo1.avoprogetti.it';
+      console.info('GustAvo: Passato a UI Legacy originale.');
+    } else {
+      injectChatbotTheme();
+      console.info('GustAvo: Passato a UI Moderna personalizzata.');
+    }
+  }
+
+  function updateUiSwitcherButtons(activeMode) {
+    const btnModern = document.getElementById('btnUiModern');
+    const btnLegacy = document.getElementById('btnUiLegacy');
+    if (btnModern) {
+      btnModern.classList.toggle('active', activeMode === 'modern');
+      btnModern.setAttribute('aria-checked', activeMode === 'modern' ? 'true' : 'false');
+    }
+    if (btnLegacy) {
+      btnLegacy.classList.toggle('active', activeMode === 'legacy');
+      btnLegacy.setAttribute('aria-checked', activeMode === 'legacy' ? 'true' : 'false');
+    }
+  }
+
+  function setupUiSwitcher() {
+    const btnModern = document.getElementById('btnUiModern');
+    const btnLegacy = document.getElementById('btnUiLegacy');
+
+    if (btnModern) {
+      btnModern.onclick = function (e) {
+        e.preventDefault();
+        setUiMode('modern');
+      };
+    }
+
+    if (btnLegacy) {
+      btnLegacy.onclick = function (e) {
+        e.preventDefault();
+        setUiMode('legacy');
+      };
+    }
+
+    const currentMode = getUiMode();
+    updateUiSwitcherButtons(currentMode);
+
+    if (currentMode === 'legacy') {
+      const iframe = document.querySelector('.chatbot-iframe');
+      if (iframe) {
+        iframe.removeAttribute('srcdoc');
+        iframe.removeAttribute('data-theme-injected');
+        iframe.src = 'https://gustavo1.avoprogetti.it';
+      }
+    } else {
+      injectChatbotTheme();
+    }
+  }
+
   // Esecuzione al caricamento del DOM
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', injectChatbotTheme);
+    document.addEventListener('DOMContentLoaded', setupUiSwitcher);
   } else {
-    injectChatbotTheme();
+    setupUiSwitcher();
   }
 })();

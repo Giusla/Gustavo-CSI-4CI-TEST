@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
     const hamburgerBtn = document.getElementById('hamburger');
     const navMobile = document.getElementById('navMobile');
+    let navMobileClosedTimestamp = 0;
 
     if (hamburgerBtn && navMobile) {
         let navBackdrop = document.querySelector('.nav-mobile-backdrop');
@@ -25,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburgerBtn.classList.remove('aperto');
             hamburgerBtn.setAttribute('aria-expanded', 'false');
             if (navBackdrop) navBackdrop.classList.remove('visibile');
+            navMobileClosedTimestamp = Date.now();
         };
 
         hamburgerBtn.addEventListener('click', (e) => {
@@ -34,31 +36,48 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburgerBtn.classList.toggle('aperto', isOpen);
             hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
             if (navBackdrop) navBackdrop.classList.toggle('visibile', isOpen);
+            if (!isOpen) {
+                navMobileClosedTimestamp = Date.now();
+            }
         });
 
         if (navBackdrop) {
-            navBackdrop.addEventListener('click', closeNavMobile);
-            navBackdrop.addEventListener('touchstart', closeNavMobile, { passive: true });
+            const handleBackdropClose = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                closeNavMobile();
+            };
+            navBackdrop.addEventListener('click', handleBackdropClose, true);
+            navBackdrop.addEventListener('touchstart', handleBackdropClose, { passive: false, capture: true });
+            navBackdrop.addEventListener('pointerdown', handleBackdropClose, true);
         }
 
         navMobile.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', closeNavMobile);
         });
 
-        // Chiusura immediata al tocco o click all'esterno del menù da mobile
-        document.addEventListener('click', (e) => {
-            if (!navMobile.classList.contains('visibile')) return;
-            if (!navMobile.contains(e.target) && !hamburgerBtn.contains(e.target)) {
-                closeNavMobile();
+        // Intercettazione in fase di cattura (capture) per chiudere il menu ed evitare
+        // che il click o il tocco tocchi e apra immagini, card o modali sottostanti
+        const handleOutsideNavMobile = (e) => {
+            if (navMobile.classList.contains('visibile')) {
+                if (!navMobile.contains(e.target) && !hamburgerBtn.contains(e.target)) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                    closeNavMobile();
+                }
+            } else if (Date.now() - navMobileClosedTimestamp < 450) {
+                // Blocca qualsiasi click/touch fantasma derivante dal tocco che ha chiuso il menu
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
             }
-        });
+        };
 
-        document.addEventListener('touchstart', (e) => {
-            if (!navMobile.classList.contains('visibile')) return;
-            if (!navMobile.contains(e.target) && !hamburgerBtn.contains(e.target)) {
-                closeNavMobile();
-            }
-        }, { passive: true });
+        document.addEventListener('click', handleOutsideNavMobile, true);
+        document.addEventListener('touchstart', handleOutsideNavMobile, { passive: false, capture: true });
+        document.addEventListener('pointerdown', handleOutsideNavMobile, true);
 
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && navMobile.classList.contains('visibile')) {
@@ -175,6 +194,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const openLightboxGallery = (list, startIndex = 0) => {
         if (!lightbox || !list || list.length === 0) return;
+        if (Date.now() - navMobileClosedTimestamp < 450 || (navMobile && navMobile.classList.contains('visibile'))) {
+            return;
+        }
         currentLightboxList = list;
         lightbox.classList.add('attivo');
         lightbox.setAttribute('aria-hidden', 'false');
@@ -686,6 +708,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const openEncounterModal = (encIndex) => {
             const data = encountersData[encIndex];
             if (!encounterModal || !data) return;
+            if (Date.now() - navMobileClosedTimestamp < 450 || (navMobile && navMobile.classList.contains('visibile'))) {
+                return;
+            }
 
             if (encounterModalBadge) encounterModalBadge.textContent = data.badge;
             if (encounterModalTitle) encounterModalTitle.textContent = data.title;
@@ -1132,7 +1157,12 @@ document.addEventListener('DOMContentLoaded', () => {
         adjustPositionForFooter();
 
         // ── Append al DOM ──
+        const a11yBackdrop = document.createElement('div');
+        a11yBackdrop.className = 'g-a11y-backdrop';
+        a11yBackdrop.setAttribute('aria-hidden', 'true');
+
         document.body.appendChild(guideLine);
+        document.body.appendChild(a11yBackdrop);
         document.body.appendChild(btn);
         document.body.appendChild(panel);
         document.body.appendChild(readingBox);
@@ -1206,6 +1236,9 @@ document.addEventListener('DOMContentLoaded', () => {
             panel.setAttribute('aria-hidden', String(!isOpen));
             btn.setAttribute('aria-expanded', String(isOpen));
             btn.classList.toggle('is-active', isOpen);
+            if (a11yBackdrop) {
+                a11yBackdrop.classList.toggle('is-visible', isOpen);
+            }
             const tooltip = btn.querySelector('.g-a11y-tooltip');
             if (tooltip) {
                 tooltip.textContent = isOpen ? 'Chiudi' : 'Accessibilità';
@@ -1243,10 +1276,41 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // ── Chiusura click esterno ──
-        document.addEventListener('click', (e) => {
+        // ── Chiusura click / tocco esterno conforme mobile & desktop ──
+        const closeA11yOutside = (e) => {
             if (!panel.classList.contains('is-open')) return;
             if (!panel.contains(e.target) && !btn.contains(e.target)) {
+                e.preventDefault();
+                e.stopPropagation();
+                setPanelOpen(false);
+            }
+        };
+
+        if (a11yBackdrop) {
+            a11yBackdrop.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setPanelOpen(false);
+            });
+            a11yBackdrop.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setPanelOpen(false);
+            }, { passive: false });
+            a11yBackdrop.addEventListener('pointerdown', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setPanelOpen(false);
+            });
+        }
+
+        document.addEventListener('click', closeA11yOutside, true);
+        document.addEventListener('touchstart', closeA11yOutside, { passive: false, capture: true });
+        document.addEventListener('pointerdown', closeA11yOutside, true);
+
+        // Chiude automaticamente se la finestra perde il focus (es. tocco su iframe)
+        window.addEventListener('blur', () => {
+            if (panel.classList.contains('is-open')) {
                 setPanelOpen(false);
             }
         });
