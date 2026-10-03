@@ -273,7 +273,7 @@ img.logo,
   border: 1px solid var(--border-subtle) !important;
   border-left: 4px solid var(--brand-green) !important;
   border-bottom-left-radius: 4px !important;
-  box-shadow: 0 4px 166px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(0, 168, 107, 0.06) !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(0, 168, 107, 0.06) !important;
 }
 
 .msg.bot strong,
@@ -857,14 +857,12 @@ button:disabled {
       }
 
       // 2. Rimozione banner superiore per dare massimo spazio all'output della chat su schermi piccoli
-      html = html.replace(/<div\s+class=["'][^"']*header[^"']*["'][^>]*>[\s\S]*?<\/div>/gi, '');
-      html = html.replace(/<header[\s\S]*?<\/header>/gi, '');
-      html = html.replace(/<img[^>]*class=["'][^"']*logo[^"']*["'][^>]*>/gi, '');
+      html = html.replace(/<div\s+class=["']header["'][^>]*>[\s\S]*?<\/div>/i, '<div class="header"></div>');
 
-      // 3. Ripristino Avatar Professore SVG (con lookahead a .voice-toggle per preservare intatto #chat-container)
+      // 3. Ripristino Avatar Professore SVG
       html = html.replace(
-        /<div class="avatar">[\s\S]*?(?=(?:<!--[\s\S]*?-->\s*)?<div class="voice-toggle">)/i,
-        AVATAR_SVG_HTML.trim() + '\n\n    '
+        /<div\s+class=["']avatar["'][^>]*>[\s\S]*?<\/div>/i,
+        AVATAR_SVG_HTML.trim()
       );
 
       // 4. Sostituzione emoji amplificatore / altoparlante
@@ -1370,165 +1368,145 @@ async function sendMessage() {
       html = html.replace(/window\.location\.origin\s*\+\s*(["'])\/api\/transcribe\1/g, `"${SERVER_URL}/api/transcribe"`);
       html = html.replace(/([`"'])\/api\/tts\?text=/g, `$1${SERVER_URL}/api/tts?text=`);
 
-      // Carica l'HTML iniettato nell'iframe
+    const iframe = document.querySelector('.chatbot-iframe');
+    if (iframe) {
+      iframe.removeAttribute('src');
       iframe.srcdoc = html;
       iframe.setAttribute('data-theme-injected', 'true');
+    }
 
-      console.info('GustAvo: Blocco anti-concorrenza, logo squadrato, dataset locale e rimozione totale emoji applicati!');
+    console.info('GustAvo: Blocco anti-concorrenza, logo squadrato, dataset locale e rimozione totale emoji applicati!');
 
-    } catch (err) {
-      console.warn('GustAvo: Fetch non riuscito dopo i tentativi, applico iniezione su iframe live:', err);
+  } catch (err) {
+    console.warn('GustAvo: Fetch non riuscito dopo i tentativi, applico iniezione su iframe live:', err);
 
-      const applyThemeDirectly = () => {
-        if (getUiMode() === 'legacy') return;
-        try {
-          const doc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);
-          if (doc && !doc.getElementById('gustavo-injected-theme')) {
-            if (!doc.head) return;
-            const fontLink = doc.createElement('link');
-            fontLink.rel = 'stylesheet';
-            fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap';
-            doc.head.appendChild(fontLink);
+    const applyThemeDirectly = () => {
+      if (getUiMode() === 'legacy') return;
+      try {
+        const doc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);
+        if (doc && !doc.getElementById('gustavo-injected-theme')) {
+          if (!doc.head) return;
+          const fontLink = doc.createElement('link');
+          fontLink.rel = 'stylesheet';
+          fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap';
+          doc.head.appendChild(fontLink);
 
-            const style = doc.createElement('style');
-            style.id = 'gustavo-injected-theme';
-            style.textContent = THEME_CSS;
-            doc.head.appendChild(style);
+          const style = doc.createElement('style');
+          style.id = 'gustavo-injected-theme';
+          style.textContent = THEME_CSS;
+          doc.head.appendChild(style);
 
-            const headerEl = doc.querySelector('.header');
-            if (headerEl) {
-              headerEl.remove();
-            }
-
-            iframe.setAttribute('data-theme-injected', 'true');
-            console.info('GustAvo: Iniezione diretta eseguita con successo su iframe live.');
+          const headerEl = doc.querySelector('.header');
+          if (headerEl) {
+            headerEl.remove();
           }
-        } catch (e) {
-          // Cross-origin fallback
+
+          iframe.setAttribute('data-theme-injected', 'true');
+          console.info('GustAvo: Iniezione diretta eseguita con successo su iframe live.');
         }
-      };
-
-      iframe.addEventListener('load', applyThemeDirectly);
-      applyThemeDirectly();
-
-      // Tentativi ripetuti a intervalli ravvicinati se il caricamento ritarda
-      const pollTimer = setInterval(() => {
-        if (getUiMode() === 'legacy') {
-          clearInterval(pollTimer);
-          return;
-        }
-        applyThemeDirectly();
-        if (iframe.getAttribute('data-theme-injected') === 'true') {
-          clearInterval(pollTimer);
-        }
-      }, 500);
-      setTimeout(() => clearInterval(pollTimer), 8000);
-    }
-  }
-
-  const UI_STORAGE_KEY = 'gustavo_chat_ui_mode';
-
-  function getUiMode() {
-    try {
-      return localStorage.getItem(UI_STORAGE_KEY) || 'modern';
-    } catch (e) {
-      return 'modern';
-    }
-  }
-
-  function setUiMode(mode) {
-    try {
-      localStorage.setItem(UI_STORAGE_KEY, mode);
-    } catch (e) {}
-
-    updateUiSwitcherButtons(mode);
-
-    const iframeBox = document.querySelector('.chatbot-iframe-box');
-    if (!iframeBox) return;
-
-    if (mode === 'legacy') {
-      iframeBox.innerHTML = `
-        <iframe
-            src="https://gustavo1.avoprogetti.it"
-            class="chatbot-iframe"
-            title="Chatbot GustAvo — Server Ufficiale gustavo1.avoprogetti.it"
-            allow="microphone; autoplay"
-            scrolling="yes"
-            loading="eager">
-        </iframe>
-      `;
-      console.info('GustAvo: Modalità Legacy pura attivata (gustavo1.avoprogetti.it).');
-    } else {
-      iframeBox.innerHTML = `
-        <iframe
-            src="https://gustavo1.avoprogetti.it"
-            class="chatbot-iframe"
-            title="Chatbot GustAvo — Server Ufficiale gustavo1.avoprogetti.it"
-            allow="microphone; autoplay"
-            scrolling="no"
-            loading="eager">
-        </iframe>
-      `;
-      injectChatbotTheme();
-    }
-  }
-
-  function updateUiSwitcherButtons(activeMode) {
-    const btnModern = document.getElementById('btnUiModern');
-    const btnLegacy = document.getElementById('btnUiLegacy');
-    if (btnModern) {
-      btnModern.classList.toggle('active', activeMode === 'modern');
-      btnModern.setAttribute('aria-checked', activeMode === 'modern' ? 'true' : 'false');
-    }
-    if (btnLegacy) {
-      btnLegacy.classList.toggle('active', activeMode === 'legacy');
-      btnLegacy.setAttribute('aria-checked', activeMode === 'legacy' ? 'true' : 'false');
-    }
-  }
-
-  function setupUiSwitcher() {
-    const btnModern = document.getElementById('btnUiModern');
-    const btnLegacy = document.getElementById('btnUiLegacy');
-
-    if (btnModern) {
-      btnModern.onclick = function (e) {
-        e.preventDefault();
-        setUiMode('modern');
-      };
-    }
-
-    if (btnLegacy) {
-      btnLegacy.onclick = function (e) {
-        e.preventDefault();
-        setUiMode('legacy');
-      };
-    }
-
-    const currentMode = getUiMode();
-    updateUiSwitcherButtons(currentMode);
-    if (currentMode === 'legacy') {
-      const iframeBox = document.querySelector('.chatbot-iframe-box');
-      if (iframeBox) {
-        iframeBox.innerHTML = `
-          <iframe
-              src="https://gustavo1.avoprogetti.it"
-              class="chatbot-iframe"
-              title="Chatbot GustAvo — Server Ufficiale gustavo1.avoprogetti.it"
-              allow="microphone; autoplay"
-              scrolling="yes"
-              loading="eager">
-          </iframe>
-        `;
+      } catch (e) {
+        // Cross-origin fallback
       }
-    } else {
-      injectChatbotTheme();
-    }
+    };
+
+    iframe.addEventListener('load', applyThemeDirectly);
+    applyThemeDirectly();
+
+    // Tentativi ripetuti a intervalli ravvicinati se il caricamento ritarda
+    const pollTimer = setInterval(() => {
+      if (getUiMode() === 'legacy') {
+        clearInterval(pollTimer);
+        return;
+      }
+      applyThemeDirectly();
+      if (iframe.getAttribute('data-theme-injected') === 'true') {
+        clearInterval(pollTimer);
+      }
+    }, 500);
+    setTimeout(() => clearInterval(pollTimer), 8000);
+  }
+}
+
+const UI_STORAGE_KEY = 'gustavo_chat_ui_mode';
+
+function getUiMode() {
+  try {
+    return localStorage.getItem(UI_STORAGE_KEY) || 'modern';
+  } catch (e) {
+    return 'modern';
+  }
+}
+
+function setUiMode(mode) {
+  try {
+    localStorage.setItem(UI_STORAGE_KEY, mode);
+  } catch (e) {}
+
+  updateUiSwitcherButtons(mode);
+
+  const iframe = document.querySelector('.chatbot-iframe');
+  if (!iframe) return;
+
+  if (mode === 'legacy') {
+    iframe.removeAttribute('srcdoc');
+    iframe.removeAttribute('data-theme-injected');
+    iframe.src = 'https://gustavo1.avoprogetti.it?' + Date.now();
+    console.info('GustAvo: Modalità Legacy pura attivata (gustavo1.avoprogetti.it).');
+  } else {
+    iframe.removeAttribute('src');
+    injectChatbotTheme();
+  }
+}
+
+function updateUiSwitcherButtons(activeMode) {
+  const btnModern = document.getElementById('btnUiModern');
+  const btnLegacy = document.getElementById('btnUiLegacy');
+  if (btnModern) {
+    btnModern.classList.toggle('active', activeMode === 'modern');
+    btnModern.setAttribute('aria-checked', activeMode === 'modern' ? 'true' : 'false');
+  }
+  if (btnLegacy) {
+    btnLegacy.classList.toggle('active', activeMode === 'legacy');
+    btnLegacy.setAttribute('aria-checked', activeMode === 'legacy' ? 'true' : 'false');
+  }
+}
+
+function setupUiSwitcher() {
+  const btnModern = document.getElementById('btnUiModern');
+  const btnLegacy = document.getElementById('btnUiLegacy');
+
+  if (btnModern) {
+    btnModern.onclick = function (e) {
+      e.preventDefault();
+      setUiMode('modern');
+    };
   }
 
-  // Esecuzione al caricamento del DOM
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupUiSwitcher);
-  } else {
-    setupUiSwitcher();
+  if (btnLegacy) {
+    btnLegacy.onclick = function (e) {
+      e.preventDefault();
+      setUiMode('legacy');
+    };
   }
+
+  const currentMode = getUiMode();
+  updateUiSwitcherButtons(currentMode);
+  if (currentMode === 'legacy') {
+    const iframe = document.querySelector('.chatbot-iframe');
+    if (iframe) {
+      iframe.removeAttribute('srcdoc');
+      iframe.removeAttribute('data-theme-injected');
+      iframe.src = 'https://gustavo1.avoprogetti.it';
+    }
+  } else {
+    injectChatbotTheme();
+  }
+}
+
+// Esecuzione al caricamento del DOM
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', setupUiSwitcher);
+} else {
+  setupUiSwitcher();
+}
 })();
