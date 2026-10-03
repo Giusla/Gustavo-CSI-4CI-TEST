@@ -561,47 +561,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ----------------------------------------------------
-    // 4. Rimozione banner/tooltip nativo del browser in basso a sinistra sui link
-    // ----------------------------------------------------
-    const disableBrowserLinkPreview = () => {
-        document.querySelectorAll('a[href]').forEach(a => {
-            const url = a.getAttribute('href');
-            if (!url || url.startsWith('#')) return;
-
-            a.dataset.href = url;
-            a.removeAttribute('href');
-            a.setAttribute('role', 'link');
-            a.setAttribute('tabindex', '0');
-
-            const navigate = (openInNewTab = false) => {
-                if (openInNewTab || a.target === '_blank') {
-                    window.open(url, '_blank', 'noopener,noreferrer');
-                } else {
-                    window.location.href = url;
-                }
-            };
-
-            a.addEventListener('click', (e) => {
-                e.preventDefault();
-                navigate(e.ctrlKey || e.metaKey || e.button === 1);
-            });
-
-            a.addEventListener('auxclick', (e) => {
-                if (e.button === 1) { // Click rotellina mouse
-                    e.preventDefault();
-                    navigate(true);
-                }
-            });
-
-            a.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    navigate(e.ctrlKey || e.metaKey);
-                }
-            });
-        });
-    };
+    // (funzione disableBrowserLinkPreview rimossa — causava long tasks al DOMContentLoaded
+    //  aggiungendo 3 listener per ogni link e impedendo il prefetch nativo del browser)
 
     // ----------------------------------------------------
     // 5. Skeleton UI per le foto (gestione Wi-Fi lento)
@@ -629,6 +590,18 @@ document.addEventListener('DOMContentLoaded', () => {
     // ----------------------------------------------------
     // 6. Gestione 3 Caroselli Incontri, Card +X, Modale Semi-Fullscreen e Drag Fluido
     // ----------------------------------------------------
+
+    // Listener resize condiviso (un solo addEventListener su window per tutti i caroselli)
+    const _resizeCallbacks = [];
+    let _resizeRaf = null;
+    window.addEventListener('resize', () => {
+        if (_resizeRaf) return;
+        _resizeRaf = requestAnimationFrame(() => {
+            _resizeCallbacks.forEach(fn => fn());
+            _resizeRaf = null;
+        });
+    }, { passive: true });
+
     const initEncountersGallery = () => {
         const encountersData = [
             {
@@ -901,10 +874,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateCustomScrollbar();
             }, { passive: true });
 
-            window.addEventListener('resize', () => {
+            // Registra callback per il resize condiviso (vedi sotto)
+            _resizeCallbacks.push(() => {
                 updateButtonStates();
                 updateCustomScrollbar();
-            }, { passive: true });
+            });
 
             updateButtonStates();
             updateCustomScrollbar();
@@ -1701,6 +1675,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initPhotoSkeletons();
     initEncountersGallery();
     initGustavoAccessibility();
-    disableBrowserLinkPreview();
 });
 

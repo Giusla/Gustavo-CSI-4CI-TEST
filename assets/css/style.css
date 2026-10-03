@@ -325,6 +325,7 @@ body>header {
     );
     background-size: 200% 100%;
     animation: photo-skeleton-shimmer 1.5s infinite linear;
+    will-change: background-position;
     z-index: 4;
     pointer-events: none;
 }
@@ -4524,6 +4525,7 @@ html.g-highlight-links [role="button"] {
     pointer-events: none;
     transform: scale(0.85);
     transition: opacity 0.22s ease, visibility 0.22s ease, transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
+    will-change: transform, opacity;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
     -webkit-user-select: none;
