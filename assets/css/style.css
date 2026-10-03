@@ -3578,15 +3578,19 @@ body.modal-is-open {
 
 @media (max-width: 390px) {
     .chatbot-page .navbar {
-        height: 46px;
-        min-height: 46px;
+        height: 48px;
+        min-height: 48px;
     }
 
     .chatbot-direct-bar {
-        padding: 4px 8px;
-        padding-bottom: max(4px, env(safe-area-inset-bottom, 4px));
+        padding: 5px 8px;
+        padding-bottom: max(5px, env(safe-area-inset-bottom, 5px));
         font-size: 0.68rem;
-        gap: 3px 8px;
+        gap: 4px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
     }
 
     .chatbot-iframe {
@@ -3706,11 +3710,14 @@ body.modal-is-open {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 10000;
+    z-index: 10005;
     transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
     -webkit-tap-highlight-color: transparent;
     user-select: none;
     -webkit-user-select: none;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    transform: translateZ(0);
 }
 
 .g-a11y-btn:hover {

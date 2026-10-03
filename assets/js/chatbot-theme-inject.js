@@ -517,21 +517,77 @@ button:disabled {
   .input-container {
     padding: 8px 12px !important;
     gap: 8px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   .input-container input {
-    padding: 9px 14px !important;
-    font-size: 0.92rem !important;
-    height: 42px !important;
-  }
-  .input-container button {
-    padding: 9px 16px !important;
+    padding: 9px 12px !important;
     font-size: 0.90rem !important;
-    height: 42px !important;
+    height: 40px !important;
+    min-width: 0 !important;
+    flex: 1 1 0% !important;
+    box-sizing: border-box !important;
+  }
+  .input-container button:not(.mic-btn) {
+    padding: 9px 14px !important;
+    font-size: 0.85rem !important;
+    height: 40px !important;
+    min-width: 68px !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
   }
   .mic-btn {
-    width: 42px !important;
-    height: 42px !important;
-    min-width: 42px !important;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+/* Ottimizzazione specifica schermi compatti (< 390px): previene qualsiasi taglio del tasto Invio */
+@media (max-width: 390px) {
+  .header {
+    padding: 8px 10px 6px !important;
+  }
+  .header .logo {
+    height: 100px !important;
+    max-height: 100px !important;
+  }
+  .avatar {
+    width: 95px !important;
+    height: 95px !important;
+  }
+  .avatar-svg {
+    width: 95px !important;
+    height: 95px !important;
+  }
+  .input-container {
+    padding: 6px 8px !important;
+    gap: 6px !important;
+    box-sizing: border-box !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .input-container input {
+    padding: 7px 10px !important;
+    font-size: 0.84rem !important;
+    height: 36px !important;
+    min-width: 0 !important;
+    flex: 1 1 0% !important;
+  }
+  .input-container button:not(.mic-btn) {
+    padding: 7px 10px !important;
+    font-size: 0.82rem !important;
+    height: 36px !important;
+    min-width: 58px !important;
+    flex-shrink: 0 !important;
+  }
+  .mic-btn {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    flex-shrink: 0 !important;
   }
 }
 
