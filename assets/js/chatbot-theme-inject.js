@@ -762,6 +762,17 @@ button:disabled {
     }
 
     try {
+      // 0. Caricamento del dataset locale intents.json
+      let localIntents = null;
+      try {
+        const intentsRes = await fetch('intents.json?v=' + Date.now());
+        if (intentsRes.ok) {
+          localIntents = await intentsRes.json();
+        }
+      } catch (e) {
+        console.warn('Impossibile caricare intents.json dinamicamente:', e);
+      }
+
       // 1. Recupero dell'HTML del chatbot dal server ufficiale con retry garantito
       const response = await fetchWithRetry(SERVER_URL, { cache: 'no-cache' });
       let html = await response.text();
@@ -969,8 +980,11 @@ function botSpeak(rawText) {
         mouthAndBotSpeakLogic.trim()
       );
 
-      // 8. Logica di Invio Robusta con Filtro Parolacce (Anti-concorrenza / Mutex totale, censura parole volgari)
+      // 8. Logica di Invio con NLP Locale basato su intents.json e Filtro Parolacce
+      const serializedIntents = JSON.stringify(localIntents ? localIntents.intents : []);
       const robustSendLogic = `
+const LOCAL_INTENTS_DATA = ${serializedIntents};
+
 const BAD_WORDS_REGEX = /\\b(cazzo|cazzi|cazzata|cazzate|merda|merde|merdaccia|vaffanculo|fanculo|vaffanbagno|stronzo|stronzi|stronza|stronze|coglione|coglioni|coglioneria|puttana|puttane|troia|troie|bastardo|bastardi|bastarda|bastarde|porco\\s+dio|dio\\s+cane|madonna\\s+puttana|porca\\s+madonna|vaffan|idiota|deficiente|scemo|cretino|fancazzista)\\b/gi;
 
 function filterProfanity(text) {
@@ -984,6 +998,96 @@ function filterProfanity(text) {
 function isExclusivelyProfane(text) {
   const stripped = text.replace(BAD_WORDS_REGEX, "").replace(/[^a-zA-Z0-9]/g, "").trim();
   return stripped.length === 0;
+}
+
+function normalizeNlpText(str) {
+  if (!str) return "";
+  return str
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\\u0300-\\u036f]/g, "")
+    .replace(/[^a-z0-9\\s]/g, " ")
+    .replace(/\\s+/g, " ")
+    .trim();
+}
+
+const STOP_WORDS_SET = new Set([
+  "il", "lo", "la", "i", "gli", "le", "un", "uno", "una",
+  "di", "a", "da", "in", "con", "su", "per", "tra", "fra",
+  "e", "ed", "o", "od", "che", "chi", "cui", "quale", "quali",
+  "mi", "ti", "si", "ci", "vi", "ne", "me", "te", "noi", "voi",
+  "lui", "lei", "loro", "mio", "tuo", "suo", "nostro", "vostro",
+  "del", "dello", "della", "dei", "degli", "delle",
+  "al", "allo", "alla", "ai", "agli", "alle",
+  "nel", "nello", "nella", "nei", "negli", "nelle",
+  "sul", "sullo", "sulla", "sui", "sugli", "sulle",
+  "dal", "dallo", "dalla", "dai", "dagli", "dalle",
+  "e", "ed", "sono", "sei", "e'", "ce", "c'e", "ce'", "ci",
+  "vorrei", "sapere", "dimmi", "puoi", "dirmi", "spiegarmi", "cosa", "come", "dove", "quando", "perche"
+]);
+
+function tokenizeQuery(text) {
+  const words = normalizeNlpText(text).split(" ").filter(w => w.length > 0);
+  return words.filter(w => !STOP_WORDS_SET.has(w) && w.length > 1);
+}
+
+function matchLocalIntent(query) {
+  if (!LOCAL_INTENTS_DATA || LOCAL_INTENTS_DATA.length === 0) return null;
+  const normQuery = normalizeNlpText(query);
+  const qTokens = tokenizeQuery(query);
+
+  let bestMatch = null;
+  let bestScore = 0;
+
+  for (const item of LOCAL_INTENTS_DATA) {
+    if (item.tag === "fallback") continue;
+    if (!item.patterns || item.patterns.length === 0) continue;
+
+    for (const pattern of item.patterns) {
+      const normPattern = normalizeNlpText(pattern);
+      if (normQuery === normPattern) {
+        return { intent: item, score: 1.0 };
+      }
+      if (normQuery.length > 3 && normPattern.length > 3) {
+        if (normQuery.includes(normPattern) || normPattern.includes(normQuery)) {
+          const score = 0.95;
+          if (score > bestScore) {
+            bestScore = score;
+            bestMatch = item;
+          }
+        }
+      }
+
+      const pTokens = tokenizeQuery(pattern);
+      if (pTokens.length === 0) continue;
+
+      let matchWeight = 0;
+      for (const qt of qTokens) {
+        if (pTokens.includes(qt)) {
+          matchWeight += 1.5;
+        } else {
+          for (const pt of pTokens) {
+            if ((qt.length >= 4 && pt.includes(qt)) || (pt.length >= 4 && qt.includes(pt))) {
+              matchWeight += 1.0;
+              break;
+            }
+          }
+        }
+      }
+
+      const unionSize = new Set([...qTokens, ...pTokens]).size || 1;
+      const score = matchWeight / unionSize;
+      if (score > bestScore) {
+        bestScore = score;
+        bestMatch = item;
+      }
+    }
+  }
+
+  if (bestScore >= 0.20 && bestMatch) {
+    return { intent: bestMatch, score: bestScore };
+  }
+  return null;
 }
 
 async function sendMessage() {
@@ -1009,6 +1113,7 @@ async function sendMessage() {
   messages.appendChild(bubble);
   messages.scrollTop = messages.scrollHeight;
 
+  // 1. Controllo linguaggio inappropriato / insulti
   if (containsBadWord && isExclusivelyProfane(rawMsg)) {
     setTimeout(() => {
       botSpeak("Ti invito a mantenere un linguaggio consono ed educato nel rispetto dell'ambiente scolastico. Come posso aiutarti con le informazioni sull'IIS Avogadro?");
@@ -1016,6 +1121,18 @@ async function sendMessage() {
     return;
   }
 
+  // 2. Classificazione locale con intents.json
+  const localMatch = matchLocalIntent(rawMsg);
+  if (localMatch && localMatch.intent && localMatch.intent.responses && localMatch.intent.responses.length > 0) {
+    const responses = localMatch.intent.responses;
+    const pickedResponse = responses[Math.floor(Math.random() * responses.length)];
+    setTimeout(() => {
+      botSpeak(pickedResponse);
+    }, 350);
+    return;
+  }
+
+  // 3. Fallback con il server remoto o fallback locale
   try {
     const res = await fetch("https://gustavo1.avoprogetti.it/chat", {
       method: "POST",
@@ -1025,10 +1142,16 @@ async function sendMessage() {
 
     if (!res.ok) throw new Error("HTTP " + res.status);
     const data = await res.json();
-    let reply = data.answer || "Non ho capito bene.";
+    let reply = data.answer;
+    if (!reply || reply === "Non ho capito bene." || reply.trim().length === 0) {
+      const fallbackItem = LOCAL_INTENTS_DATA.find(i => i.tag === "fallback");
+      reply = (fallbackItem && fallbackItem.responses && fallbackItem.responses[0]) || "Non ho compreso la domanda. Prova a chiedermi informazioni su corsi, segreteria, orari o servizi dell'Avogadro!";
+    }
     botSpeak(reply);
   } catch (err) {
-    botSpeak("Errore di connessione.");
+    const fallbackItem = LOCAL_INTENTS_DATA.find(i => i.tag === "fallback");
+    const reply = (fallbackItem && fallbackItem.responses && fallbackItem.responses[0]) || "Non ho compreso la domanda. Prova a chiedermi informazioni su corsi, segreteria, orari o servizi dell'Avogadro!";
+    botSpeak(reply);
   }
 }
 `;
