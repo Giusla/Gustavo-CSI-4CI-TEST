@@ -1041,7 +1041,7 @@ function matchLocalIntent(query) {
       return {
         intent: {
           responses: [
-            \`L'Aula \${code} si trova al Primo Piano (l=1 su OpenLevelUp).\\n\\nVisualizza la mappa: [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.\`
+            \`L'Aula \${code} si trova al Primo Piano.\\n\\nVisualizza la mappa: [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.\`
           ]
         },
         score: 1.0
@@ -1050,7 +1050,7 @@ function matchLocalIntent(query) {
       return {
         intent: {
           responses: [
-            \`L'Aula \${code} si trova al Secondo Piano (l=2 su OpenLevelUp).\\n\\nVisualizza la mappa: [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.\`
+            \`L'Aula \${code} si trova al Secondo Piano.\\n\\nVisualizza la mappa: [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.\`
           ]
         },
         score: 1.0
@@ -1059,7 +1059,7 @@ function matchLocalIntent(query) {
       return {
         intent: {
           responses: [
-            \`L'Aula \${code} si trova al Terzo Piano (l=3 su OpenLevelUp).\\n\\nVisualizza la mappa: [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.\`
+            \`L'Aula \${code} si trova al Terzo Piano.\\n\\nVisualizza la mappa: [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.\`
           ]
         },
         score: 1.0
@@ -1068,7 +1068,7 @@ function matchLocalIntent(query) {
       return {
         intent: {
           responses: [
-            \`L'Aula \${code} si trova al Quarto Piano (l=4 su OpenLevelUp).\\n\\nVisualizza la mappa: [Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.\`
+            \`L'Aula \${code} si trova al Quarto Piano.\\n\\nVisualizza la mappa: [Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria.\`
           ]
         },
         score: 1.0
@@ -1077,7 +1077,7 @@ function matchLocalIntent(query) {
       return {
         intent: {
           responses: [
-            \`Il laboratorio/officina \${code} si trova al Piano Terra (l=0 su OpenLevelUp), nell'area delle officine e macchine CNC.\\n\\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)\`
+            \`Il laboratorio/officina \${code} si trova al Piano Terra, nell'area delle officine e macchine CNC.\\n\\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)\`
           ]
         },
         score: 1.0
