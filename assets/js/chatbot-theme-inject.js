@@ -1122,7 +1122,7 @@ function botSpeak(rawText) {
 
       html = html.replace(
         /function animateMouthStart\(\)\s*\{[\s\S]*?animateMouthStop\(\);\s*\}\s*\);\s*\}/i,
-        mouthAndBotSpeakLogic.trim()
+        () => mouthAndBotSpeakLogic.trim()
       );
 
       // 8. Logica di Invio con NLP Locale basato su intents.json e Filtro Parolacce
@@ -1430,7 +1430,7 @@ async function sendMessage() {
 
       html = html.replace(
         /async function sendMessage\(\)\s*\{[\s\S]*?botSpeak\("Errore di connessione\."\);\s*\}\s*\}/i,
-        robustSendLogic.trim()
+        () => robustSendLogic.trim()
       );
 
       // Protezione microfono e tasto invio
