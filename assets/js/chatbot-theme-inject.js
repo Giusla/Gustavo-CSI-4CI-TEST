@@ -638,6 +638,33 @@ button:disabled {
 .chat-disclaimer-note a:hover {
   color: var(--brand-blue-hover) !important;
 }
+
+.input-container button.btn-stop-speaking {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.35) !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  animation: pulseStopBtn 1.2s infinite ease-in-out !important;
+}
+
+.input-container button.btn-stop-speaking:hover {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+  box-shadow: 0 6px 16px rgba(220, 38, 38, 0.45) !important;
+  transform: translateY(-1px) !important;
+}
+
+@keyframes pulseStopBtn {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4), 0 4px 12px rgba(239, 68, 68, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(239, 68, 68, 0), 0 4px 14px rgba(239, 68, 68, 0.5);
+  }
+}
 `;
 
   // Markup SVG per l'avatar umano (vecchietto saggio / professore con capelli, occhiali azzurrini e microfono interattivo)
@@ -863,20 +890,27 @@ button:disabled {
       html = html.replace(/🎤/g, '');
       html = html.replace(/🔊/g, '');
 
-      // 7. Sostituzione di animateMouthStart, animateMouthStop e botSpeak con gestione audio esclusiva
+      // 7. Sostituzione di animateMouthStart, animateMouthStop e botSpeak con gestione audio esclusiva e tasto Stop
       const mouthAndBotSpeakLogic = `
 let _isChatBusy = false;
+let _isSpeaking = false;
 let _currentAudio = null;
+let _speechTimeout = null;
 
 function setChatBusy(busy, placeholderText, btnText) {
   _isChatBusy = !!busy;
+  _isSpeaking = false;
+  if (_speechTimeout) {
+    clearTimeout(_speechTimeout);
+    _speechTimeout = null;
+  }
   const _inp = document.getElementById("input");
   const _btn = document.querySelector('.input-container button:not(.mic-btn)');
   const _mic = document.getElementById("mic-btn");
 
   if (_inp) {
     _inp.disabled = _isChatBusy;
-    _inp.placeholder = _isChatBusy ? (placeholderText || "GustAvo sta parlando...") : "Scrivi un messaggio...";
+    _inp.placeholder = _isChatBusy ? (placeholderText || "GustAvo sta pensando...") : "Scrivi un messaggio...";
     if (!_isChatBusy) {
       setMicLedState(false);
       setTimeout(() => _inp.focus(), 60);
@@ -885,10 +919,54 @@ function setChatBusy(busy, placeholderText, btnText) {
   if (_btn) {
     _btn.disabled = _isChatBusy;
     _btn.innerText = _isChatBusy ? (btnText || "Attendi...") : "Invia";
+    _btn.classList.remove('btn-stop-speaking');
+    _btn.title = _isChatBusy ? "Attendi..." : "Invia";
   }
   if (_mic) {
     _mic.disabled = _isChatBusy;
   }
+}
+
+function setSpeakingState(speaking) {
+  _isSpeaking = !!speaking;
+  _isChatBusy = _isSpeaking;
+  const _inp = document.getElementById("input");
+  const _btn = document.querySelector('.input-container button:not(.mic-btn)');
+  const _mic = document.getElementById("mic-btn");
+
+  if (_isSpeaking) {
+    if (_inp) {
+      _inp.disabled = true;
+      _inp.placeholder = "GustAvo sta parlando... Premi Stop per interrompere";
+    }
+    if (_btn) {
+      _btn.disabled = false;
+      _btn.innerText = "Stop";
+      _btn.classList.add('btn-stop-speaking');
+      _btn.title = "Ferma la voce di GustAvo";
+    }
+    if (_mic) {
+      _mic.disabled = true;
+    }
+  } else {
+    setChatBusy(false);
+  }
+}
+
+function stopSpeaking() {
+  if (_speechTimeout) {
+    clearTimeout(_speechTimeout);
+    _speechTimeout = null;
+  }
+  if (_currentAudio) {
+    try {
+      _currentAudio.pause();
+      _currentAudio.currentTime = 0;
+    } catch (e) {}
+    _currentAudio = null;
+  }
+  animateMouthStop();
+  setChatBusy(false);
 }
 
 function setMicLedState(speaking) {
@@ -941,13 +1019,7 @@ function animateMouthStop() {
 }
 
 function botSpeak(rawText) {
-  if (_currentAudio) {
-    try {
-      _currentAudio.pause();
-      _currentAudio.currentTime = 0;
-    } catch (e) {}
-    _currentAudio = null;
-  }
+  stopSpeaking();
 
   // Rimuove QUALSIASI emoji dal testo della risposta
   const cleanText = (rawText || "")
@@ -965,11 +1037,11 @@ function botSpeak(rawText) {
   if (!voiceEnabled) {
     setTimeout(() => {
       setChatBusy(false);
-    }, 600);
+    }, 400);
     return;
   }
 
-  setChatBusy(true, "GustAvo sta parlando...", "Parla...");
+  setSpeakingState(true);
   animateMouthStart();
 
   const ttsUrl = "https://gustavo1.avoprogetti.it/api/tts?text=" + encodeURIComponent(cleanText);
@@ -977,14 +1049,12 @@ function botSpeak(rawText) {
   _currentAudio = audio;
 
   const finishSpeaking = () => {
-    animateMouthStop();
-    setChatBusy(false);
-    _currentAudio = null;
+    stopSpeaking();
   };
 
   audio.onplay = () => {
     animateMouthStart();
-    setChatBusy(true, "GustAvo sta parlando...", "Parla...");
+    setSpeakingState(true);
   };
 
   audio.onended = () => {
@@ -998,7 +1068,7 @@ function botSpeak(rawText) {
 
   audio.play().catch(err => {
     const readingTime = Math.min(Math.max(cleanText.length * 45, 1200), 5000);
-    setTimeout(() => {
+    _speechTimeout = setTimeout(() => {
       finishSpeaking();
     }, readingTime);
   });
@@ -1121,6 +1191,10 @@ function matchLocalIntent(query) {
 }
 
 async function sendMessage() {
+  if (_isSpeaking) {
+    stopSpeaking();
+    return;
+  }
   if (_isChatBusy) {
     return;
   }
@@ -1198,7 +1272,7 @@ async function sendMessage() {
       );
       html = html.replace(
         /if\s*\(\s*event\.key\s*===\s*"Enter"\s*\)\s*\{\s*event\.preventDefault\(\);\s*sendMessage\(\);\s*\}/i,
-        'if (event.key === "Enter") { event.preventDefault(); if (!_isChatBusy) sendMessage(); }'
+        'if (event.key === "Enter") { event.preventDefault(); if (_isSpeaking) stopSpeaking(); else if (!_isChatBusy) sendMessage(); }'
       );
 
       // Normalizzazione script Cloudflare Rocket Loader
