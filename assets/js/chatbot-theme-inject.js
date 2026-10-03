@@ -1090,7 +1090,19 @@ function matchLocalIntent(query) {
     return {
       intent: {
         responses: [
-          "All'IIS Avogadro le aule sono contrassegnate da numeri a tre cifre in base al piano:\\n- Serie 100 (101-130): Primo Piano\\n- Serie 200 (201-230): Secondo Piano\\n- Serie 300 (301-330): Terzo Piano\\n\\nAl Piano Terra si trovano la Segreteria, la Presidenza, la Biblioteca Storica, l'Aula Magna, la Palestra, le Officine Meccaniche e il Bar.\\n\\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+          "All'IIS Avogadro le aule sono contrassegnate da numeri a tre cifre in base al piano:\\n- Serie 100 (101-130): Primo Piano\\n- Serie 200 (201-230): Secondo Piano\\n- Serie 300 (301-330): Terzo Piano\\n- Serie 400 (401-430): Quarto Piano\\n- Serie S / Officine: Piano Terra e Seminterrato\\n\\nAl Piano Terra si trovano la Segreteria, la Presidenza, la Biblioteca Storica, l'Aula Magna, le Palestre, le Officine Meccaniche e il Bar.\\n\\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        ]
+      },
+      score: 1.0
+    };
+  }
+
+  // Riconoscimento esplicito seminterrato
+  if (/\\b(?:seminterrat[oi]|interrat[oi]|spogliatoi?)\\b/i.test(normQuery)) {
+    return {
+      intent: {
+        responses: [
+          "Il Piano Seminterrato dell'IIS Avogadro ospita gli spogliatoi delle palestre e alcuni locali tecnici/laboratori. Vi si accede dalle scale interne vicino all'area sportiva e al piano terra.\\n\\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
         ]
       },
       score: 1.0
