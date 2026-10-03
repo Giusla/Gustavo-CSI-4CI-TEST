@@ -744,13 +744,26 @@ button:disabled {
     // Risoluzione assoluta del logo GustAvo completo (Mole + Robot + scritta gialla GUSTAVO)
     const gustavoLogoUrl = new URL('assets/img/gustavo_icon.png', window.location.href).href;
 
-    try {
-      // 1. Recupero dell'HTML del chatbot dal server ufficiale (CORS: *)
-      const response = await fetch(SERVER_URL, { cache: 'no-cache' });
-      if (!response.ok) {
-        throw new Error('HTTP status ' + response.status);
+    // Funzione interna per recuperare l'HTML con retry e timeout per evitare fallimenti temporanei di rete
+    async function fetchWithRetry(url, options = {}, retries = 3, backoff = 400) {
+      for (let i = 0; i < retries; i++) {
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 6000);
+          const res = await fetch(url, { ...options, signal: controller.signal });
+          clearTimeout(timeoutId);
+          if (res.ok) return res;
+          throw new Error('HTTP ' + res.status);
+        } catch (e) {
+          if (i === retries - 1) throw e;
+          await new Promise(r => setTimeout(r, backoff * (i + 1)));
+        }
       }
+    }
 
+    try {
+      // 1. Recupero dell'HTML del chatbot dal server ufficiale con retry garantito
+      const response = await fetchWithRetry(SERVER_URL, { cache: 'no-cache' });
       let html = await response.text();
 
       // Inserisci <base> se mancante per risolvere eventuali risorse relative del server
@@ -1027,12 +1040,13 @@ async function sendMessage() {
       console.info('GustAvo: Blocco anti-concorrenza, logo squadrato e rimozione totale emoji applicati!');
 
     } catch (err) {
-      console.warn('GustAvo: Impossibile effettuare fetch per srcdoc (fallback ad iframe diretto):', err);
+      console.warn('GustAvo: Fetch non riuscito dopo i tentativi, applico iniezione su iframe live:', err);
 
-      const tryDirectInjection = () => {
+      const applyThemeDirectly = () => {
         try {
           const doc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);
           if (doc && !doc.getElementById('gustavo-injected-theme')) {
+            if (!doc.head) return;
             const fontLink = doc.createElement('link');
             fontLink.rel = 'stylesheet';
             fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap';
@@ -1049,14 +1063,24 @@ async function sendMessage() {
             }
 
             iframe.setAttribute('data-theme-injected', 'true');
+            console.info('GustAvo: Iniezione diretta eseguita con successo su iframe live.');
           }
         } catch (e) {
           // Cross-origin fallback
         }
       };
 
-      iframe.addEventListener('load', tryDirectInjection);
-      tryDirectInjection();
+      iframe.addEventListener('load', applyThemeDirectly);
+      applyThemeDirectly();
+
+      // Tentativi ripetuti a intervalli ravvicinati se il caricamento ritarda
+      const pollTimer = setInterval(() => {
+        applyThemeDirectly();
+        if (iframe.getAttribute('data-theme-injected') === 'true') {
+          clearInterval(pollTimer);
+        }
+      }, 500);
+      setTimeout(() => clearInterval(pollTimer), 8000);
     }
   }
 
