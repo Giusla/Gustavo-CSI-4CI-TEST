@@ -798,20 +798,18 @@ button:disabled {
         html = fontTags + styleTag + html;
       }
 
-      // 2. Header: Logo GustAvo moderno con fallback/toggle all'originale legacy
+      // 2. Header: Logo GustAvo moderno
       html = html.replace(
-        /<div class="header">([\s\S]*?)<\/div>/i,
+        /<div class="header">[\s\S]*?<\/div>/i,
         `<div class="header">
-          <div id="gustavo-legacy-logo" style="display: none;">$1</div>
-          <img id="gustavo-modern-logo" src="${gustavoLogoUrl}" class="logo" alt="Logo GustAvo">
+          <img src="${gustavoLogoUrl}" class="logo" alt="Logo GustAvo">
         </div>`
       );
 
-      // 3. Avatar: Robottino SVG moderno con toggle all'avatar legacy originale
+      // 3. Ripristino Avatar Professore SVG (con lookahead a .voice-toggle per preservare intatto #chat-container)
       html = html.replace(
-        /(<div class="avatar">[\s\S]*?<\/div>)(?=(?:<!--[\s\S]*?-->\s*)?<div class="voice-toggle">)/i,
-        `<div id="gustavo-legacy-avatar" style="display: none;">$1</div>
-        <div id="gustavo-modern-avatar">${AVATAR_SVG_HTML.trim()}</div>\n\n    `
+        /<div class="avatar">[\s\S]*?(?=(?:<!--[\s\S]*?-->\s*)?<div class="voice-toggle">)/i,
+        AVATAR_SVG_HTML.trim() + '\n\n    '
       );
 
       // 4. Sostituzione emoji amplificatore / altoparlante
