@@ -437,6 +437,18 @@ button:not(.mic-btn):active:not(:disabled) {
   transform: translateY(0) !important;
 }
 
+button.btn-stop-speaking {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%) !important;
+  box-shadow: 0 4px 14px rgba(239, 68, 68, 0.35) !important;
+  color: #ffffff !important;
+}
+
+button.btn-stop-speaking:hover:not(:disabled) {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%) !important;
+  box-shadow: 0 6px 18px rgba(239, 68, 68, 0.5) !important;
+  transform: translateY(-1.5px) !important;
+}
+
 button:disabled {
   opacity: 0.65 !important;
   cursor: not-allowed !important;
@@ -934,7 +946,7 @@ let _speechTimeout = null;
 function setSpeakingState(speaking) {
   _isSpeaking = !!speaking;
   const _inp = document.getElementById("input");
-  const _btn = document.querySelector('.input-container button:not(.mic-btn)');
+  const _btn = document.getElementById("btn-send") || document.querySelector('.input-container button:not(.mic-btn)');
   const _mic = document.getElementById("mic-btn");
 
   if (_isSpeaking) {
@@ -1037,9 +1049,9 @@ function animateMouthStop() {
 function formatBotMessage(text) {
   if (!text) return "";
   return text
-    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener" class="chat-map-btn">$1</a>')
-    .replace(/(^|[^"'])(https:\/\/openlevelup\.net[^\s<]+)/g, '$1<a href="$2" target="_blank" rel="noopener" class="chat-map-btn">Mappa OpenLevelUp ↗</a>')
-    .replace(/\n/g, '<br>');
+    .replace(/\\[([^\\]]+)\\]\\((https?:\\/\\/[^\\s)]+)\\)/g, '<a href="$2" target="_blank" rel="noopener" class="chat-map-btn">$1</a>')
+    .replace(/(^|[^"'])(https:\\/\\/openlevelup\\.net[^\\s<]+)/g, '$1<a href="$2" target="_blank" rel="noopener" class="chat-map-btn">Mappa OpenLevelUp ↗</a>')
+    .replace(/\\n/g, '<br>');
 }
 
 function botSpeak(rawText) {
@@ -1051,8 +1063,8 @@ function botSpeak(rawText) {
     .trim();
 
   const cleanForTts = cleanText
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-    .replace(/https?:\/\/\S+/g, '')
+    .replace(/\\[([^\\]]+)\\]\\([^)]+\\)/g, '$1')
+    .replace(/https?:\\/\\/\\S+/g, '')
     .replace(/↗/g, '')
     .trim();
 
@@ -1065,9 +1077,7 @@ function botSpeak(rawText) {
   const voiceEnabled = voiceToggle && voiceToggle.checked;
 
   if (!voiceEnabled) {
-    setTimeout(() => {
-      setChatBusy(false);
-    }, 400);
+    setSpeakingState(false);
     return;
   }
 
@@ -1111,9 +1121,13 @@ function botSpeak(rawText) {
       );
 
       // 8. Logica di Invio con NLP Locale basato su intents.json e Filtro Parolacce
-      const serializedIntents = JSON.stringify(localIntents ? localIntents.intents : []);
       const robustSendLogic = `
-const LOCAL_INTENTS_DATA = ${serializedIntents};
+function getLocalIntents() {
+  if (window.parent && window.parent.GUSTAVO_INTENTS_DATA && Array.isArray(window.parent.GUSTAVO_INTENTS_DATA.intents)) {
+    return window.parent.GUSTAVO_INTENTS_DATA.intents;
+  }
+  return [];
+}
 
 const BAD_WORDS_REGEX = /\\b(cazzo|cazzi|cazzata|cazzate|merda|merde|merdaccia|vaffanculo|fanculo|vaffanbagno|stronzo|stronzi|stronza|stronze|coglione|coglioni|coglioneria|puttana|puttane|troia|troie|bastardo|bastardi|bastarda|bastarde|porco\\s+dio|dio\\s+cane|madonna\\s+puttana|porca\\s+madonna|vaffan|idiota|deficiente|scemo|cretino|fancazzista)\\b/gi;
 
@@ -1152,7 +1166,7 @@ const STOP_WORDS_SET = new Set([
   "nel", "nello", "nella", "nei", "negli", "nelle",
   "sul", "sullo", "sulla", "sui", "sugli", "sulle",
   "dal", "dallo", "dalla", "dai", "dagli", "dalle",
-  "e", "ed", "sono", "sei", "e'", "ce", "c'e", "ce'", "ci",
+  "sono", "sei", "e'", "ce", "c'e", "ce'", "ci",
   "vorrei", "sapere", "dimmi", "puoi", "dirmi", "spiegarmi", "cosa", "come", "dove", "quando", "perche"
 ]);
 
@@ -1162,14 +1176,15 @@ function tokenizeQuery(text) {
 }
 
 function matchLocalIntent(query) {
-  if (!LOCAL_INTENTS_DATA || LOCAL_INTENTS_DATA.length === 0) return null;
+  const intentsList = getLocalIntents();
+  if (!intentsList || intentsList.length === 0) return null;
   const normQuery = normalizeNlpText(query);
   const qTokens = tokenizeQuery(query);
 
   let bestMatch = null;
   let bestScore = 0;
 
-  for (const item of LOCAL_INTENTS_DATA) {
+  for (const item of intentsList) {
     if (item.tag === "fallback") continue;
     if (!item.patterns || item.patterns.length === 0) continue;
 
@@ -1221,20 +1236,30 @@ function matchLocalIntent(query) {
 }
 
 async function sendMessage() {
+  const inp = document.getElementById("input");
+  const rawMsg = inp ? inp.value.trim() : "";
+
+  // Se GustAvo sta parlando e l'utente ha premuto Stop (input vuoto), fermiamo la voce
+  if (_isSpeaking && !rawMsg) {
+    stopSpeaking();
+    return;
+  }
+
+  // Se stava parlando ma l'utente ha scritto una nuova domanda, fermiamo subito la voce precedente
   if (_isSpeaking) {
     stopSpeaking();
   }
 
-  const inp = document.getElementById("input");
-  if (!inp) return;
-  const rawMsg = inp.value.trim();
   if (!rawMsg) return;
 
   const censoredMsg = filterProfanity(rawMsg);
   const containsBadWord = BAD_WORDS_REGEX.test(rawMsg);
   BAD_WORDS_REGEX.lastIndex = 0;
 
-  inp.value = "";
+  if (inp) {
+    inp.value = "";
+    inp.focus();
+  }
 
   const bubble = document.createElement("div");
   bubble.className = "msg user";
@@ -1277,12 +1302,14 @@ async function sendMessage() {
     const data = await res.json();
     let reply = data.answer;
     if (!reply || reply === "Non ho capito bene." || reply.trim().length === 0) {
-      const fallbackItem = LOCAL_INTENTS_DATA.find(i => i.tag === "fallback");
+      const intentsList = getLocalIntents();
+      const fallbackItem = intentsList.find(i => i.tag === "fallback");
       reply = (fallbackItem && fallbackItem.responses && fallbackItem.responses[0]) || "Non ho compreso la domanda. Prova a chiedermi informazioni su corsi, segreteria, orari o servizi dell'Avogadro!";
     }
     botSpeak(reply);
   } catch (err) {
-    const fallbackItem = LOCAL_INTENTS_DATA.find(i => i.tag === "fallback");
+    const intentsList = getLocalIntents();
+    const fallbackItem = intentsList.find(i => i.tag === "fallback");
     const reply = (fallbackItem && fallbackItem.responses && fallbackItem.responses[0]) || "Non ho compreso la domanda. Prova a chiedermi informazioni su corsi, segreteria, orari o servizi dell'Avogadro!";
     botSpeak(reply);
   }
@@ -1292,6 +1319,12 @@ async function sendMessage() {
       html = html.replace(
         /async function sendMessage\(\)\s*\{[\s\S]*?botSpeak\("Errore di connessione\."\);\s*\}\s*\}/i,
         () => robustSendLogic.trim()
+      );
+
+      // Sostituzione pulsante invio e pulizia attributi Cloudflare
+      html = html.replace(
+        /<button[^>]*onclick="[^"]*sendMessage\(\)[^"]*"[^>]*>[\s\S]*?<\/button>/i,
+        '<button id="btn-send" onclick="sendMessage()">Invia</button>'
       );
 
       // Protezione microfono e tasto invio
