@@ -20,12 +20,10 @@
     <meta name="twitter:title" content="GustAvo">
     <meta name="twitter:description" content="GustAvo, Il chatbot che ti orienta a scuola · IIS Avogadro">
 
-    <link rel="stylesheet" href="assets/css/style.css?v=4.10">
-    <script src="assets/js/main.js?v=4.6" defer></script>
+    <link rel="stylesheet" href="assets/css/style.css?v=4.19">
+    <script src="assets/js/main.js?v=4.11" defer></script>
 </head>
 <body>
-
-    <a href="#main" class="skip-link">Salta al contenuto principale</a>
 
     <!-- NAVBAR UFFICIALE GUSTAVO -->
     <header>
@@ -79,9 +77,10 @@
         <div class="container">
             
             <header class="page-header team-page-header">
-                <h1 class="titolo-pagina">Il Team</h1>
+                <span class="project-section-kicker">Chi c'è dietro GustAvo</span>
+                <h1 class="titolo-pagina">Il Team della 5CI</h1>
                 <p class="sottotitolo">
-                    La classe 5CI (ex 4CI) dell'Istituto Tecnico Amedeo Avogadro di Torino.
+                    Gli studenti dell'indirizzo Informatica e Telecomunicazioni dell'IIS Amedeo Avogadro, insieme ai docenti e ai tutor aziendali di CSI Piemonte.
                 </p>
             </header>
 
@@ -99,12 +98,12 @@
                         </figcaption>
                     </figure>
 
-                    <h2>Chi siamo e cosa abbiamo fatto</h2>
+                    <h2>Chi siamo e come abbiamo realizzato GustAvo</h2>
                     <p>
-                        Siamo gli studenti dell'indirizzo Informatica e Telecomunicazioni della classe <strong>5CI</strong> dell'IIS Amedeo Avogadro di Torino. Abbiamo sviluppato GustAvo lavorando in team come in una vera software house: abbiamo strutturato il dataset bilanciato <code>intents.json</code> raccogliendo e convalidando i quesiti di orientamento, testato gli algoritmi di Machine Learning e classificazione con Scikit-learn e programmato sia il backend in Flask che l'interfaccia web.
+                        Siamo gli studenti dell'indirizzo <strong>Informatica e Telecomunicazioni</strong> della classe <strong>5CI</strong> dell'IIS Amedeo Avogadro di Torino. All'interno del percorso <em>Storie di alternanza</em>, abbiamo trasformato l'esperienza scolastica in un progetto concreto, sviluppando <strong>GustAvo</strong> come vero strumento di orientamento digitale per studenti delle scuole medie e famiglie.
                     </p>
                     <p>
-                        L'intero percorso è stato svolto con il coordinamento dei nostri docenti di Informatica e con il supporto specialistico dei tutor aziendali di <strong>CSI Piemonte</strong>.
+                        A seguito di un incontro formativo con <strong>MSC</strong>, abbiamo utilizzato la <strong>metodologia Agile</strong> per lavorare in gruppo per 1 mese: ci siamo suddivisi in sprint e ruoli operativi come in una vera software house. Con il coordinamento dei nostri docenti di Informatica e il supporto dei tutor di <strong>CSI Piemonte</strong>, abbiamo strutturato il dataset bilanciato <code>intents.json</code>, testato gli algoritmi di machine learning e classificazione semantica con Scikit-learn, sviluppato il backend in Python Flask e progettato un'interfaccia web moderna, responsive e accessibile.
                     </p>
 
                     <div class="project-meta-grid">
@@ -113,21 +112,51 @@
                             <span class="meta-val">IIS Amedeo Avogadro · Torino</span>
                         </div>
                         <div class="meta-item">
-                            <span class="meta-label">Indirizzo</span>
-                            <span class="meta-val">Informatica e Telecomunicazioni</span>
+                            <span class="meta-label">Classe & Indirizzo</span>
+                            <span class="meta-val">5CI · Informatica e Telecomunicazioni</span>
                         </div>
                         <div class="meta-item">
                             <span class="meta-label">Partner Aziendale</span>
                             <span class="meta-val">CSI Piemonte</span>
                         </div>
                         <div class="meta-item">
-                            <span class="meta-label">Anno Scolastico</span>
-                            <span class="meta-val">2024 / 2025</span>
+                            <span class="meta-label">Metodo di Lavoro</span>
+                            <span class="meta-val">Metodologia Agile (1 mese di lavoro dopo incontro MSC)</span>
                         </div>
                     </div>
                 </article>
             </div>
 
+            <!-- I GRUPPI DI LAVORO E LE AREE DI SVILUPPO -->
+            <section class="content-section team-section" aria-labelledby="team-areas-title">
+                <header class="section-header">
+                    <span class="project-section-kicker">Organizzazione e Sviluppo</span>
+                    <h2 class="section-title" id="team-areas-title">I gruppi di lavoro</h2>
+                    <p class="section-subtitle">A seguito dell'incontro con MSC, abbiamo applicato la metodologia Agile per 1 mese: ecco le aree tecniche in cui ci siamo suddivisi per realizzare GustAvo.</p>
+                </header>
+
+                <div class="team-areas-grid">
+                    <article class="team-area-card">
+                        <h3>Dataset, Contenuti & Intent Design</h3>
+                        <p>Rilevazione e categorizzazione dei dubbi più frequenti su indirizzi, materie e laboratori. Costruzione del file strutturato <code>intents.json</code> con oltre 25 tag tematici e centinaia di formulazioni alternative reali.</p>
+                    </article>
+
+                    <article class="team-area-card">
+                        <h3>Machine Learning & NLP</h3>
+                        <p>Studio, test e confronto degli algoritmi di classificazione supervisionata in Python con Scikit-learn. Calcolo vettoriale TF-IDF e similarità coseno per garantire risposte immediate, veloci ed esenti da allucinazioni.</p>
+                    </article>
+
+                    <article class="team-area-card">
+                        <h3>Backend & Architettura Flask</h3>
+                        <p>Sviluppo dell'API REST in Python per la gestione delle risposte del chatbot, calibrazione delle soglie minime di confidenza e deployment autonomo sui server della scuola (<code>gustavo1.avoprogetti.it</code>).</p>
+                    </article>
+
+                    <article class="team-area-card">
+                        <h3>Frontend, UI/UX & Accessibilità</h3>
+                        <p>Progettazione del portale web moderno e responsive secondo gli standard WCAG AA: leggibilità ottimizzata per smartphone, controlli touch-friendly, contrasto elevato e assenza totale di tracker pubblicitari.</p>
+                    </article>
+                </div>
+            </section>
         </div>
     </main>
 

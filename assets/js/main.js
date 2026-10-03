@@ -1047,7 +1047,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     </div>
                     ${makeItem('gReadableFont', 'Carattere ad alta leggibilità', 'Font lineare (Arial) ottimizzato per dislessia')}
                     ${makeItem('gTextSpacing', 'Spaziatura testo conforme', 'Interlinea (1.8), spaziatura caratteri e parole')}
-                    ${makeItem('gAlignLeft', 'Allineamento a sinistra', 'Evita testo giustificato per facilitare la lettura')}
+                    <div class="g-a11y-item g-a11y-tts-item">
+                        <div class="g-a11y-item-info">
+                            <span class="g-a11y-item-label">Sintesi Vocale (Lettore Schermo)</span>
+                            <span class="g-a11y-item-desc">Ascolta la lettura vocale della pagina ad alta voce</span>
+                        </div>
+                        <div class="a11y-tts-controls">
+                            <button type="button" class="a11y-tts-btn" id="a11yTtsPage" title="Ascolta l'intera pagina">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                                <span>Leggi Pagina</span>
+                            </button>
+                            <button type="button" class="a11y-tts-btn a11y-tts-stop-btn" id="a11yTtsStop" style="display:none;" title="Interrompi lettura">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M6 6h12v12H6z"/></svg>
+                                <span>Interrompi</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- SEZIONE 2: Contrasto e Colori (WCAG 1.4.1 & 1.4.6) -->
@@ -1060,8 +1075,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 <!-- SEZIONE 3: Navigazione e Ausili (WCAG 2.4.7) -->
                 <div class="g-a11y-section">
                     <h3 class="g-a11y-section-title">${navIcon} Navigazione e Ausili</h3>
-                    ${makeItem('gFocusVisible', 'Focus tastiera evidente', 'Contorno ad alto contrasto per navigazione tastiera')}
+                    ${makeItem('gBigCursor', 'Cursore ingrandito', 'Migliora la visibilità del puntatore mouse')}
+                    ${makeItem('gHighlightLinks', 'Evidenzia collegamenti', 'Contorno evidente su tutti i link e pulsanti')}
                     ${makeItem('gReadingGuide', 'Guida alla lettura', 'Barra orizzontale di supporto visivo')}
+                    ${makeItem('gFocusVisible', 'Focus tastiera evidente', 'Contorno ad alto contrasto per navigazione')}
                 </div>
 
             </div>
@@ -1072,6 +1089,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 </button>
             </div>
         `;
+
+        // ── Floating Reading Status Box (barra essenziale con indicazione tasto ESC) ──
+        const readingBox = document.createElement('div');
+        readingBox.id = 'a11yTtsReadingBox';
+        readingBox.className = 'a11y-tts-reading-box';
+        readingBox.setAttribute('aria-live', 'polite');
+        readingBox.setAttribute('aria-atomic', 'true');
+        readingBox.innerHTML = `
+            <div class="tts-reading-header">
+                <div class="tts-reading-status">
+                    <span class="tts-pulse-dot" aria-hidden="true"></span>
+                    <span class="tts-reading-badge">LETTURA VOCALE ATTIVA</span>
+                </div>
+                <button type="button" class="tts-reading-stop-btn" id="ttsBoxStopBtn" aria-label="Interrompi lettura vocale (oppure premi ESC)">
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><path d="M6 6h12v12H6z"/></svg>
+                    <span>Interrompi</span>
+                </button>
+            </div>
+            <div class="tts-reading-body">
+                <p class="tts-reading-esc-hint">Premi <kbd class="tts-esc-kbd">ESC</kbd> per uscire dal TTS</p>
+            </div>
+        `;
+        const ttsBoxStopBtn = readingBox.querySelector('#ttsBoxStopBtn');
+
+        // ── Pulsante circolare "Torna in cima" (gemello di stile del pulsante accessibilità) ──
+        const backToTopBtn = document.createElement('button');
+        backToTopBtn.type = 'button';
+        backToTopBtn.id = 'backToTopBtn';
+        backToTopBtn.className = 'back-to-top-btn';
+        backToTopBtn.setAttribute('aria-label', 'Torna in cima alla pagina');
+        backToTopBtn.innerHTML = `
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true">
+                <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            </svg>
+            <span class="back-to-top-tooltip" role="tooltip">Torna in cima</span>
+        `;
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
 
         // ── Funzione di posizionamento sopra il footer (mai sovrapposto ai contenuti, zero salti) ──
         const adjustPositionForFooter = () => {
@@ -1087,9 +1143,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const newBottom = overlap + baseBottom;
                 btn.style.bottom = `${newBottom}px`;
                 panel.style.bottom = `${newBottom + (isMobile ? 70 : 72)}px`;
+                if (readingBox) readingBox.style.bottom = `${newBottom}px`;
+                if (backToTopBtn) backToTopBtn.style.bottom = `${newBottom}px`;
             } else {
                 btn.style.bottom = '';
                 panel.style.bottom = '';
+                if (readingBox) readingBox.style.bottom = '';
+                if (backToTopBtn) backToTopBtn.style.bottom = '';
             }
         };
 
@@ -1101,10 +1161,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(guideLine);
         document.body.appendChild(btn);
         document.body.appendChild(panel);
+        document.body.appendChild(readingBox);
+        document.body.appendChild(backToTopBtn);
 
         // ── Aggiornamento fluido allo scroll e ridimensionamento (senza transizioni lente sul bottom) ──
         let footerRaf = null;
         const onScrollOrResize = () => {
+            if (backToTopBtn) {
+                backToTopBtn.classList.toggle('is-visible', window.scrollY > 300);
+            }
             if (footerRaf) return;
             footerRaf = requestAnimationFrame(() => {
                 adjustPositionForFooter();
@@ -1114,7 +1179,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.addEventListener('scroll', onScrollOrResize, { passive: true });
         window.addEventListener('resize', onScrollOrResize, { passive: true });
-        window.addEventListener('load', adjustPositionForFooter, { passive: true });
+        window.addEventListener('load', () => {
+            adjustPositionForFooter();
+            if (backToTopBtn) backToTopBtn.classList.toggle('is-visible', window.scrollY > 300);
+        }, { passive: true });
 
         // ── Steps testo conformi WCAG 1.4.4 (fino a 200%) ──
         const fontSteps = [100, 125, 150, 175, 200];
@@ -1124,9 +1192,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const TOGGLES = {
             gReadableFont:   { cls: 'g-readable-font' },
             gTextSpacing:    { cls: 'g-text-spacing' },
-            gAlignLeft:      { cls: 'g-align-left' },
             gHighContrast:   { cls: 'g-high-contrast' },
             gGrayscale:      { cls: 'g-grayscale' },
+            gBigCursor:      { cls: 'g-big-cursor' },
+            gHighlightLinks: { cls: 'g-highlight-links' },
             gFocusVisible:   { cls: 'g-focus-visible' },
             gReadingGuide:   { cls: 'g-reading-guide' }
         };
@@ -1257,10 +1326,343 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
+        // ── Sintesi Vocale TTS (Text-To-Speech) con Voce Naturale Italiana e Box Dinamico ──
+        let utteranceId = 0;
+        let isSpeechReading = false;
+        let pageReading = false;
+        let currentSpeakingElement = null;
+
+        const showReadingBox = () => {
+            if (!readingBox) return;
+            readingBox.classList.add('is-visible');
+        };
+
+        const hideReadingBox = () => {
+            if (!readingBox) return;
+            readingBox.classList.remove('is-visible');
+        };
+
+        const updateSpeechButtons = () => {
+            const stopBtn = document.getElementById('a11yTtsStop');
+            const pageBtn = document.getElementById('a11yTtsPage');
+
+            if (stopBtn) stopBtn.style.display = isSpeechReading ? 'inline-flex' : 'none';
+            if (pageBtn) pageBtn.classList.toggle('is-playing', isSpeechReading);
+        };
+
+        // ── Selezione della migliore voce italiana naturale disponibile ──
+        let cachedItalianVoice = null;
+
+        const getBestItalianVoice = () => {
+            if (!('speechSynthesis' in window)) return null;
+            const voices = window.speechSynthesis.getVoices() || [];
+            if (!voices || voices.length === 0) return null;
+
+            // Filtra solo le voci autenticamente italiane (lingua it-IT, it, it_IT, it-CH)
+            // oppure con 'italian' / 'italiano' nel nome
+            const itVoices = voices.filter(v => {
+                const lang = (v.lang || '').replace('_', '-').toLowerCase();
+                const name = (v.name || '').toLowerCase();
+                return lang === 'it-it' ||
+                       lang === 'it' ||
+                       lang.startsWith('it-') ||
+                       name.includes('italian') ||
+                       name.includes('italiano');
+            });
+
+            if (itVoices.length === 0) {
+                // Fallback estremo per nomi tipici di voci italiane di sistema
+                const fallbackNames = ['elsa', 'isabella', 'cosimo', 'alice', 'federica', 'luca', 'paola', 'chiara'];
+                const fallback = voices.find(v => fallbackNames.some(fn => (v.name || '').toLowerCase().includes(fn)));
+                return fallback || null;
+            }
+
+            // Gerarchia di preferenza per voce umana naturale senza accento straniero:
+            // 1. Voci Microsoft Natural/Online italiane (Edge/Windows: Elsa, Isabella, Cosimo - qualità neurale eccellente)
+            const naturalVoice = itVoices.find(v => /natural|online/i.test(v.name));
+            if (naturalVoice) return naturalVoice;
+
+            // 2. Voce Google Italiano (Chrome)
+            const googleVoice = itVoices.find(v => /google/i.test(v.name));
+            if (googleVoice) return googleVoice;
+
+            // 3. Voci italiane native di sistema ad alta qualità
+            const knownHighQuality = ['elsa', 'isabella', 'cosimo', 'alice', 'federica', 'luca', 'paola'];
+            const topVoice = itVoices.find(v => knownHighQuality.some(k => (v.name || '').toLowerCase().includes(k)));
+            if (topVoice) return topVoice;
+
+            // 4. Prima voce con tag 'it-IT'
+            const exactIt = itVoices.find(v => (v.lang || '').replace('_', '-').toLowerCase() === 'it-it');
+            if (exactIt) return exactIt;
+
+            return itVoices[0];
+        };
+
+        const updateItalianVoice = () => {
+            const found = getBestItalianVoice();
+            if (found) cachedItalianVoice = found;
+        };
+
+        if ('speechSynthesis' in window) {
+            updateItalianVoice();
+            window.speechSynthesis.onvoiceschanged = () => {
+                updateItalianVoice();
+            };
+        }
+
+        // Assicura che le voci del browser siano caricate (Chromium carica getVoices() asincronamente)
+        const ensureVoicesReady = (callback) => {
+            if (!('speechSynthesis' in window)) {
+                if (callback) callback();
+                return;
+            }
+            updateItalianVoice();
+            if (cachedItalianVoice) {
+                if (callback) callback();
+                return;
+            }
+            const current = window.speechSynthesis.getVoices();
+            if (current && current.length > 0) {
+                updateItalianVoice();
+                if (callback) callback();
+                return;
+            }
+            let executed = false;
+            const onVoices = () => {
+                if (executed) return;
+                executed = true;
+                updateItalianVoice();
+                if (callback) callback();
+            };
+            window.speechSynthesis.onvoiceschanged = onVoices;
+            setTimeout(() => {
+                if (!executed) {
+                    executed = true;
+                    updateItalianVoice();
+                    if (callback) callback();
+                }
+            }, 250);
+        };
+
+        const splitText = (text, max = 180) => {
+            const sentences = text.replace(/\s+/g, ' ').match(/[^.!?;:]+[.!?;:]?/g) || [text];
+            const chunks = [];
+            let buf = '';
+            sentences.forEach(s => {
+                if ((buf + s).length > max && buf) { chunks.push(buf.trim()); buf = ''; }
+                buf += s + ' ';
+                while (buf.length > max * 1.5) {
+                    const cut = buf.lastIndexOf(' ', max) > 0 ? buf.lastIndexOf(' ', max) : max;
+                    chunks.push(buf.slice(0, cut).trim());
+                    buf = buf.slice(cut);
+                }
+            });
+            if (buf.trim()) chunks.push(buf.trim());
+            return chunks;
+        };
+
+        let currentAudio = null;
+
+        const stopSpeech = () => {
+            utteranceId++;
+            pageReading = false;
+            if (currentAudio) {
+                try {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                } catch (e) {}
+                currentAudio = null;
+            }
+            if ('speechSynthesis' in window) {
+                try { window.speechSynthesis.cancel(); } catch (e) {}
+            }
+            isSpeechReading = false;
+            if (currentSpeakingElement) {
+                currentSpeakingElement.classList.remove('a11y-speaking-element');
+                currentSpeakingElement = null;
+            }
+            hideReadingBox();
+            updateSpeechButtons();
+        };
+
+        const playWebSpeechFallback = (chunkText, onNext) => {
+            if (!('speechSynthesis' in window)) {
+                if (onNext) onNext();
+                return;
+            }
+            const u = new SpeechSynthesisUtterance(chunkText);
+            u.lang = 'it-IT';
+            u.rate = 1.0;
+            u.pitch = 1.0;
+
+            const voice = cachedItalianVoice || getBestItalianVoice();
+            if (voice) {
+                u.voice = voice;
+                u.lang = voice.lang || 'it-IT';
+            }
+
+            u.onend = onNext;
+            u.onerror = (e) => {
+                if (e.error === 'interrupted' || e.error === 'canceled') return;
+                console.warn('GustAvo fallback TTS errore:', e.error);
+                if (onNext) onNext();
+            };
+
+            window.speechSynthesis.speak(u);
+        };
+
+        const speakText = (text, onComplete) => {
+            text = (text || '').trim();
+            if (!text) return;
+
+            const myId = ++utteranceId;
+            const chunks = splitText(text, 140);
+            let i = 0;
+
+            if (currentAudio) {
+                try { currentAudio.pause(); } catch (e) {}
+                currentAudio = null;
+            }
+            if ('speechSynthesis' in window) {
+                try { window.speechSynthesis.cancel(); } catch (e) {}
+            }
+
+            isSpeechReading = true;
+            updateSpeechButtons();
+            showReadingBox();
+
+            const finish = () => {
+                if (myId !== utteranceId) return;
+                isSpeechReading = false;
+                updateSpeechButtons();
+                hideReadingBox();
+                if (onComplete) onComplete();
+            };
+
+            const speakNext = () => {
+                if (myId !== utteranceId) return;
+                if (i >= chunks.length) { finish(); return; }
+
+                const chunkText = chunks[i++];
+                showReadingBox();
+
+                // Riproduzione con l'endpoint TTS ufficiale del chatbot (la stessa identica voce di gustavo1.avoprogetti.it)
+                const ttsUrl = `https://gustavo1.avoprogetti.it/api/tts?text=${encodeURIComponent(chunkText)}`;
+                const audio = new Audio(ttsUrl);
+                currentAudio = audio;
+
+                audio.onended = () => {
+                    if (myId !== utteranceId) return;
+                    currentAudio = null;
+                    speakNext();
+                };
+
+                audio.onerror = (e) => {
+                    if (myId !== utteranceId) return;
+                    console.warn('GustAvo Server TTS offline o errore, fallback su Web Speech locale:', e);
+                    currentAudio = null;
+                    playWebSpeechFallback(chunkText, speakNext);
+                };
+
+                const playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(err => {
+                        if (myId !== utteranceId) return;
+                        console.warn('Riproduzione audio server non avviata, fallback:', err);
+                        currentAudio = null;
+                        playWebSpeechFallback(chunkText, speakNext);
+                    });
+                }
+            };
+
+            speakNext();
+        };
+
+        const readFullPage = () => {
+            if (isSpeechReading || pageReading) {
+                stopSpeech();
+                return;
+            }
+
+            setPanelOpen(false); // Chiude il pannello così l'utente vede l'evidenziazione e il box sulla pagina
+
+            ensureVoicesReady(() => {
+                const root = document.querySelector('main') || document.getElementById('main') || document.body;
+                let elements = Array.from(root.querySelectorAll('h1, h2, h3, h4, p, li'))
+                    .filter(el => !el.closest('.g-a11y-panel, .g-a11y-btn, #a11yTtsReadingBox, nav, footer, script, noscript, .modal, .encounter-modal, .lightbox-modal'));
+                elements = elements.filter(el => !elements.some(o => o !== el && el.contains(o)));
+
+                if (elements.length === 0) {
+                    speakText((root.innerText || '').substring(0, 1500));
+                    return;
+                }
+
+                pageReading = true;
+                let index = 0;
+
+                const readNext = () => {
+                    if (currentSpeakingElement) {
+                        currentSpeakingElement.classList.remove('a11y-speaking-element');
+                        currentSpeakingElement = null;
+                    }
+                    if (!pageReading || index >= elements.length) {
+                        stopSpeech();
+                        return;
+                    }
+                    const el = elements[index++];
+                    const text = (el.innerText || el.textContent || '').trim();
+                    if (text.length <= 2) { readNext(); return; }
+
+                    currentSpeakingElement = el;
+                    el.classList.add('a11y-speaking-element');
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    speakText(text, readNext);
+                };
+
+                readNext();
+            });
+        };
+
+        // Event listeners per controlli TTS
+        const ttsPageBtn = document.getElementById('a11yTtsPage');
+        const ttsStopBtn = document.getElementById('a11yTtsStop');
+
+        if (ttsPageBtn) {
+            ttsPageBtn.addEventListener('click', () => {
+                readFullPage();
+            });
+        }
+
+        if (ttsStopBtn) {
+            ttsStopBtn.addEventListener('click', () => {
+                stopSpeech();
+            });
+        }
+
+        if (ttsBoxStopBtn) {
+            ttsBoxStopBtn.addEventListener('click', () => {
+                stopSpeech();
+            });
+        }
+
+        // ── Gestione tasto ESC: interrompe immediatamente la lettura vocale TTS ovunque nella pagina ──
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' || e.key === 'Esc') {
+                if (isSpeechReading || pageReading || currentAudio) {
+                    e.preventDefault();
+                    stopSpeech();
+                }
+            }
+        });
+
+        window.addEventListener('beforeunload', stopSpeech);
+
         // ── Reset ──
         const resetBtn = document.getElementById('gustavoA11yReset');
         if (resetBtn) {
             resetBtn.addEventListener('click', () => {
+                stopSpeech();
+
                 // Reset font
                 fontIndex = 0;
                 updateFontUI();
