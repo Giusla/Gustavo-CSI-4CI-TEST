@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburgerBtn.classList.remove('aperto');
             hamburgerBtn.setAttribute('aria-expanded', 'false');
             if (navBackdrop) navBackdrop.classList.remove('visibile');
+            document.documentElement.classList.remove('nav-mobile-open');
             navMobileClosedTimestamp = Date.now();
         };
 
@@ -36,7 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburgerBtn.classList.toggle('aperto', isOpen);
             hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
             if (navBackdrop) navBackdrop.classList.toggle('visibile', isOpen);
-            if (!isOpen) {
+            document.documentElement.classList.toggle('nav-mobile-open', isOpen);
+            if (isOpen) {
+                // Chiudi il pannello accessibilità se aperto quando si apre il menu hamburger
+                const a11yPanelEl = document.getElementById('gustavoA11yPanel');
+                const a11yBtnEl = document.getElementById('gustavoA11yBtn');
+                if (a11yPanelEl && a11yPanelEl.classList.contains('is-open')) {
+                    if (a11yBtnEl) a11yBtnEl.click();
+                }
+            } else {
                 navMobileClosedTimestamp = Date.now();
             }
         });
@@ -1152,7 +1161,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const overlap = windowHeight - footerRect.top;
                 const newBottom = overlap + baseBottom;
                 btn.style.bottom = `${newBottom}px`;
-                panel.style.bottom = `${newBottom + (isMobile ? 70 : 72)}px`;
+                panel.style.bottom = `${newBottom + (isMobile ? 64 : 72)}px`;
                 if (readingBox) readingBox.style.bottom = `${newBottom}px`;
                 if (backToTopBtn) backToTopBtn.style.bottom = `${newBottom}px`;
             } else {
@@ -1247,8 +1256,18 @@ document.addEventListener('DOMContentLoaded', () => {
             panel.setAttribute('aria-hidden', String(!isOpen));
             btn.setAttribute('aria-expanded', String(isOpen));
             btn.classList.toggle('is-active', isOpen);
+            document.documentElement.classList.toggle('g-a11y-open', isOpen);
             if (a11yBackdrop) {
                 a11yBackdrop.classList.toggle('is-visible', isOpen);
+            }
+            if (backToTopBtn) {
+                if (isOpen) {
+                    backToTopBtn.style.opacity = '0';
+                    backToTopBtn.style.pointerEvents = 'none';
+                } else {
+                    backToTopBtn.style.opacity = '';
+                    backToTopBtn.style.pointerEvents = '';
+                }
             }
             const tooltip = btn.querySelector('.g-a11y-tooltip');
             if (tooltip) {

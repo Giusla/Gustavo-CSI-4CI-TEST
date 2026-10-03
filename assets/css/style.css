@@ -4721,11 +4721,12 @@ html.g-highlight-links [role="button"] {
         left: 16px !important;
         right: 16px !important;
         margin: 0 auto !important;
-        bottom: 84px !important;
+        bottom: 76px !important;
         width: calc(100vw - 32px) !important;
         max-width: 420px !important;
         max-height: 56vh !important;
         max-height: 56dvh !important;
+        z-index: 10006 !important;
         transform-origin: center bottom !important;
     }
 
@@ -4733,4 +4734,23 @@ html.g-highlight-links [role="button"] {
     .back-to-top-tooltip {
         display: none;
     }
+}
+
+/* ── Quando il menu hamburger è aperto: nascondi i pulsanti galleggianti sotto ── */
+html.nav-mobile-open .g-a11y-btn,
+html.nav-mobile-open .back-to-top-btn,
+html.nav-mobile-open .g-a11y-panel,
+html.nav-mobile-open .g-a11y-backdrop {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* ── Quando il pannello accessibilità è aperto: nascondi il pulsante torna in cima per non sovrapporsi ── */
+html.g-a11y-open .back-to-top-btn {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
 }
