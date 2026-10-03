@@ -665,6 +665,37 @@ button:disabled {
     box-shadow: 0 0 0 5px rgba(239, 68, 68, 0), 0 4px 14px rgba(239, 68, 68, 0.5);
   }
 }
+
+.msg.bot a {
+  color: var(--brand-blue) !important;
+  text-decoration: underline !important;
+  font-weight: 600 !important;
+}
+
+.chat-map-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  background: #eff6ff !important;
+  color: #0066ff !important;
+  border: 1px solid #bfdbfe !important;
+  padding: 6px 12px !important;
+  border-radius: 8px !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+  margin: 6px 4px 2px 0 !important;
+  transition: all 0.2s ease !important;
+  line-height: 1.3 !important;
+}
+
+.chat-map-btn:hover {
+  background: #0066ff !important;
+  color: #ffffff !important;
+  border-color: #0066ff !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.28) !important;
+}
 `;
 
   // Markup SVG per l'avatar umano (vecchietto saggio / professore con capelli, occhiali azzurrini e microfono interattivo)
@@ -1018,6 +1049,14 @@ function animateMouthStop() {
   if (rightP) rightP.style.transform = "translate(0,0)";
 }
 
+function formatBotMessage(text) {
+  if (!text) return "";
+  return text
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener" class="chat-map-btn">$1</a>')
+    .replace(/(^|[^"'])(https:\/\/openlevelup\.net[^\s<]+)/g, '$1<a href="$2" target="_blank" rel="noopener" class="chat-map-btn">Mappa OpenLevelUp ↗</a>')
+    .replace(/\n/g, '<br>');
+}
+
 function botSpeak(rawText) {
   stopSpeaking();
 
@@ -1026,9 +1065,15 @@ function botSpeak(rawText) {
     .replace(/[\\u{1F000}-\\u{1FAFF}\\u{2600}-\\u{27BF}\\u{FE00}-\\u{FE0F}]/gu, '')
     .trim();
 
+  const cleanForTts = cleanText
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/https?:\/\/\S+/g, '')
+    .replace(/↗/g, '')
+    .trim();
+
   const p = document.createElement("div");
   p.className = 'msg bot';
-  p.innerHTML = '<span class="strong">GustAvo:</span> ' + cleanText;
+  p.innerHTML = '<span class="strong">GustAvo:</span> ' + formatBotMessage(cleanText);
   messages.appendChild(p);
   messages.scrollTop = messages.scrollHeight;
 
@@ -1044,7 +1089,7 @@ function botSpeak(rawText) {
   setSpeakingState(true);
   animateMouthStart();
 
-  const ttsUrl = "https://gustavo1.avoprogetti.it/api/tts?text=" + encodeURIComponent(cleanText);
+  const ttsUrl = "https://gustavo1.avoprogetti.it/api/tts?text=" + encodeURIComponent(cleanForTts);
   const audio = new Audio(ttsUrl);
   _currentAudio = audio;
 
@@ -1190,6 +1235,101 @@ function matchLocalIntent(query) {
   return null;
 }
 
+function findAvogadroRoom(rawQuery) {
+  if (!rawQuery) return null;
+  const q = normalizeNlpText(rawQuery);
+
+  // 1. Mappa generale di tutti i piani
+  if (
+    q.includes("openlevelup") ||
+    (q.includes("mappa") && (q.includes("scuola") || q.includes("aule") || q.includes("piani") || q.includes("istituto") || q.includes("edificio") || q.includes("tutto") || q.includes("generale"))) ||
+    (q.includes("piantina") && (q.includes("scuola") || q.includes("aule") || q.includes("avogadro") || q.includes("piano"))) ||
+    q.includes("come mi oriento") || q.includes("orientarmi") || q.includes("orientamento aule") || q.includes("elenco aule")
+  ) {
+    return "Ecco la mappa interattiva dei piani dell'IIS Avogadro su OpenLevelUp:\n\n" +
+      "Piano Seminterrato (Officine meccaniche, CNC): [Apri Mappa Livello -1](https://openlevelup.net/?l=-1#19/45.07069/7.69253)\n\n" +
+      "Piano Terra (Segreteria, Presidenza, Aula Magna, Palestra): [Apri Mappa Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\n" +
+      "Primo Piano (Aule serie 100, Lab Informatica, Biblioteca): [Apri Mappa Livello 1](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\n" +
+      "Secondo Piano (Aule serie 200, Lab Elettronica, Fisica): [Apri Mappa Livello 2](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\n" +
+      "Terzo Piano (Aule serie 300, Lab Chimica, Scienze): [Apri Mappa Livello 3](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\n" +
+      "Puoi verificare le posizioni delle aule anche in segreteria o alla portineria.";
+  }
+
+  // 2. Controllo per Aule numeriche (es. 105, 214, 301, 12, S02)
+  const roomMatch = rawQuery.match(/\\b(?:aula|classe|stanza|lab(?:oratorio)?)\\s*(?:n[°\\.]?|numero)?\\s*([0-3]?[0-9]{2}|[0-9]{1,2}|s[0-9]{1,2})\\b/i) ||
+                    rawQuery.match(/\\b(?:dove|dov'e|dov e|trovo|trova|raggiungo|andare|andare a|cercare|cerco|a)\\s+(?:all['\\s]?|l['\\s]?)?(?:aula\\s+)?([1-3][0-2][0-9]|[0-9]{1,2})\\b/i);
+
+  if (roomMatch) {
+    const rawNum = roomMatch[1].toUpperCase();
+    if (rawNum.startsWith("S")) {
+      return `L'aula ${rawNum} si trova al Piano Seminterrato (Livello -1), nell'area dedicata a officine e laboratori tecnici.\n\nVisualizza la mappa su OpenLevelUp: [Vedi Aula ${rawNum} sul Livello -1](https://openlevelup.net/?l=-1#19/45.07069/7.69253)\n\nPuoi chiedere conferma anche alla portineria all'ingresso.`;
+    }
+
+    const num = parseInt(rawNum, 10);
+    if (!isNaN(num)) {
+      if (num >= 300 && num <= 399) {
+        return `L'aula ${num} si trova al Terzo Piano (Livello 3), nell'area aule e laboratori di chimica/scienze.\n\nVisualizza la mappa su OpenLevelUp: [Vedi Aula ${num} sul Livello 3](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi verificare le informazioni anche in segreteria o alla portineria.`;
+      }
+      if (num >= 200 && num <= 299) {
+        return `L'aula ${num} si trova al Secondo Piano (Livello 2), lungo i corridoi delle aule e dei laboratori di elettronica e fisica.\n\nVisualizza la mappa su OpenLevelUp: [Vedi Aula ${num} sul Livello 2](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nPuoi verificare le informazioni anche in segreteria o alla portineria.`;
+      }
+      if (num >= 100 && num <= 199) {
+        return `L'aula ${num} si trova al Primo Piano (Livello 1), dove si trovano anche i laboratori di informatica e la biblioteca storica.\n\nVisualizza la mappa su OpenLevelUp: [Vedi Aula ${num} sul Livello 1](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPuoi verificare le informazioni anche in segreteria o alla portineria.`;
+      }
+      if (num >= 1 && num <= 50) {
+        return `L'aula ${num} si trova al Piano Terra (Livello 0), accessibile dall'atrio principale di Corso San Maurizio 8/A.\n\nVisualizza la mappa su OpenLevelUp: [Vedi Aula ${num} sul Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi chiedere ulteriori indicazioni anche alla portineria.`;
+      }
+    }
+  }
+
+  // 3. Luoghi specifici per nome
+  if (q.includes("segreteria") || q.includes("presidenza") || q.includes("dirigente") || q.includes("direzione") || q.includes("uffici")) {
+    return "La Segreteria (Didattica, Personale, Amministrativa) e la Presidenza si trovano al Piano Terra (Livello 0), vicino all'atrio principale dell'ingresso di Corso San Maurizio 8/A.\n\nVisualizza la posizione su OpenLevelUp: [Vedi Segreteria e Uffici sul Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi verificare orari e sportelli anche su itisavogadro.it o direttamente in segreteria.";
+  }
+
+  if (q.includes("aula magna") || q.includes("rattazzi")) {
+    return "L'Aula Magna 'Urbano Rattazzi' si trova al Piano Terra (Livello 0), proseguendo dall'ingresso principale lungo il corridoio centrale.\n\nVisualizza la posizione su OpenLevelUp: [Vedi Aula Magna sul Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)";
+  }
+
+  if (q.includes("biblioteca") || q.includes("sala lettura") || q.includes("libri")) {
+    return "La Biblioteca Storica dell'IIS Avogadro si trova al Primo Piano (Livello 1).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Biblioteca sul Livello 1](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPuoi verificare le informazioni di prestito anche in segreteria o su itisavogadro.it.";
+  }
+
+  if (q.includes("lab informatica") || q.includes("laboratorio informatica") || q.includes("laboratori informatica") || q.includes("lab di informatica") || q.includes("laboratorio di informatica") || q.includes("cisco") || q.includes("lab computer")) {
+    return "I Laboratori di Informatica (Lab 1, Lab 2, Lab 3) e l'Academy Cisco si trovano al Primo Piano (Livello 1).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Laboratori Informatica sul Livello 1](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPer maggiori dettagli sui corsi puoi consultare il sito itisavogadro.it o la segreteria.";
+  }
+
+  if (q.includes("lab elettronica") || q.includes("laboratorio elettronica") || q.includes("elettrotecnica") || q.includes("sistemi automatici") || q.includes("lab fisica") || q.includes("laboratorio fisica") || q.includes("automazione") || q.includes("plc")) {
+    return "I Laboratori di Elettronica, Elettrotecnica, Sistemi Automatici e Fisica si trovano al Secondo Piano (Livello 2).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Laboratori Elettronica sul Livello 2](https://openlevelup.net/?l=2#19/45.07069/7.69253)";
+  }
+
+  if (q.includes("lab chimica") || q.includes("laboratorio chimica") || q.includes("lab scienze") || q.includes("laboratorio scienze") || q.includes("biologia") || q.includes("lab cad") || q.includes("disegno cad")) {
+    return "I Laboratori di Chimica, Scienze Naturali, Biologia e le Aule CAD si trovano al Terzo Piano (Livello 3).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Laboratori Chimica e Scienze sul Livello 3](https://openlevelup.net/?l=3#19/45.07069/7.69253)";
+  }
+
+  if (q.includes("officina") || q.includes("officine") || q.includes("lab meccanica") || q.includes("laboratorio meccanica") || q.includes("torni") || q.includes("cnc") || q.includes("saldatura") || q.includes("macchine utensili")) {
+    return "Le Officine Meccaniche, i reparti Macchine Utensili, Torni, CNC e Saldatura si trovano al Piano Seminterrato (Livello -1).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Officine sul Livello -1](https://openlevelup.net/?l=-1#19/45.07069/7.69253)";
+  }
+
+  if (q.includes("palestra") || q.includes("palestre") || q.includes("scienze motorie") || q.includes("ginnastica") || q.includes("spogliatoi")) {
+    return "La Palestra principale si trova al Piano Terra (Livello 0) con accesso agli spogliatoi al Piano Seminterrato (Livello -1).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Palestra sul Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)";
+  }
+
+  if (q.includes("bar") || q.includes("mensa") || q.includes("ristoro") || q.includes("macchinette") || q.includes("caffe") || q.includes("mangiare") || q.includes("panino")) {
+    return "Il servizio Bar/Mensa e i punti ristoro con distributori automatici si trovano al Piano Terra (Livello 0).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Area Ristoro sul Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)";
+  }
+
+  if (q.includes("portineria") || q.includes("ingresso") || q.includes("entrata") || q.includes("san maurizio")) {
+    return "La Portineria e l'Ingresso principale dell'Istituto si trovano al Piano Terra (Livello 0) in Corso San Maurizio 8/A a Torino.\n\nVisualizza la posizione su OpenLevelUp: [Vedi Ingresso sul Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)";
+  }
+
+  if (q.includes("sala docenti") || q.includes("sala professori") || q.includes("vicepresidenza") || q.includes("vicepreside")) {
+    return "La Sala Docenti e l'ufficio di Vicepresidenza si trovano al Primo Piano (Livello 1).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Sala Docenti sul Livello 1](https://openlevelup.net/?l=1#19/45.07069/7.69253)";
+  }
+
+  return null;
+}
+
 async function sendMessage() {
   if (_isSpeaking) {
     stopSpeaking();
@@ -1225,7 +1365,16 @@ async function sendMessage() {
     return;
   }
 
-  // 2. Classificazione locale con intents.json
+  // 2. Ricerca Aule, Spazi e Mappa OpenLevelUp
+  const roomResponse = findAvogadroRoom(rawMsg);
+  if (roomResponse) {
+    setTimeout(() => {
+      botSpeak(roomResponse);
+    }, 350);
+    return;
+  }
+
+  // 3. Classificazione locale con intents.json
   const localMatch = matchLocalIntent(rawMsg);
   if (localMatch && localMatch.intent && localMatch.intent.responses && localMatch.intent.responses.length > 0) {
     const responses = localMatch.intent.responses;
@@ -1236,7 +1385,7 @@ async function sendMessage() {
     return;
   }
 
-  // 3. Fallback con il server remoto o fallback locale
+  // 4. Fallback con il server remoto o fallback locale
   try {
     const res = await fetch("https://gustavo1.avoprogetti.it/chat", {
       method: "POST",

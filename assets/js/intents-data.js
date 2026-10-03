@@ -70,6 +70,24 @@ window.GUSTAVO_INTENTS_DATA = {
       ]
     },
     {
+      "tag": "mappa_openlevelup_aule",
+      "patterns": [
+        "Mappa della scuola",
+        "Mappa delle aule",
+        "OpenLevelUp",
+        "Piantina scuola",
+        "Come mi oriento",
+        "Dove sono le aule",
+        "Mappa piani",
+        "Mappa edificio",
+        "Come trovare le aule",
+        "Elenco aule e piani"
+      ],
+      "responses": [
+        "Tutte le aule e i laboratori dell'Avogadro sono mappati su OpenLevelUp!\n\nSeminterrato (Officine): [Apri Livello -1](https://openlevelup.net/?l=-1#19/45.07069/7.69253)\n\nPiano Terra (Segreteria, Presidenza, Aula Magna): [Apri Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPrimo Piano (Aule serie 100, Lab Informatica): [Apri Livello 1](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nSecondo Piano (Aule serie 200, Lab Elettronica): [Apri Livello 2](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nTerzo Piano (Aule serie 300, Lab Chimica): [Apri Livello 3](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi anche chiedermi direttamente un'aula specifica (es. 'Dov\\'è l\\'aula 105?')!"
+      ]
+    },
+    {
       "tag": "ringraziamenti",
       "patterns": [
         "Grazie",
