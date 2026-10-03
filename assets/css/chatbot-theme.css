@@ -1,0 +1,422 @@
+/* ==========================================================================
+   GustAvo Chatbot — Tema Ufficiale IIS Avogadro & CSI Piemonte
+   File: assets/css/chatbot-theme.css
+   Scopo: Iniezione CSS e allineamento visivo al design system del sito web
+   ========================================================================== */
+
+:root {
+  --brand-green: #00a86b;
+  --brand-green-hover: #008f5b;
+  --brand-blue: #0066ff;
+  --brand-blue-hover: #0052cc;
+  --brand-dark: #0f172a;
+  --brand-gradient: linear-gradient(135deg, #00a86b 0%, #0066ff 100%);
+  --brand-gradient-h: linear-gradient(90deg, #00a86b 0%, #0066ff 100%);
+  --bg-page: #f8fafc;
+  --bg-surface: #ffffff;
+  --border-subtle: #e2e8f0;
+  --border-card: #cbd5e1;
+  --text-heading: #0f172a;
+  --text-body: #334155;
+  --text-muted: #64748b;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 2px 6px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.07);
+  --shadow-card: 0 16px 40px rgba(15, 23, 42, 0.08), 0 2px 10px rgba(0, 102, 255, 0.04);
+  --shadow-glow-blue: 0 0 0 3.5px rgba(0, 102, 255, 0.16);
+  --shadow-glow-green: 0 4px 14px rgba(0, 168, 107, 0.28);
+}
+
+/* Reset Globale ed Eredità Tipografica */
+*, *::before, *::after {
+  box-sizing: border-box !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+}
+
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: 100% !important;
+  overflow: hidden !important;
+  background-color: var(--bg-page) !important;
+  background: radial-gradient(circle at 10% 10%, rgba(0, 168, 107, 0.05) 0%, transparent 45%),
+              radial-gradient(circle at 90% 90%, rgba(0, 102, 255, 0.05) 0%, transparent 45%),
+              var(--bg-page) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Struttura Chatbot Container */
+#chat-container {
+  width: 100% !important;
+  max-width: 520px !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  background: var(--bg-surface) !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+}
+
+@media (min-width: 600px) {
+  body {
+    padding: 12px 16px !important;
+  }
+  #chat-container {
+    height: calc(100% - 24px) !important;
+    max-height: calc(100vh - 24px) !important;
+    border-radius: var(--radius-lg) !important;
+    border: 1px solid var(--border-subtle) !important;
+    box-shadow: var(--shadow-card) !important;
+  }
+}
+
+/* Header Ufficiale Brand IIS Avogadro & CSI */
+.header {
+  background: var(--brand-gradient) !important;
+  color: #ffffff !important;
+  padding: 16px 20px 14px !important;
+  text-align: center !important;
+  position: relative !important;
+  box-shadow: 0 4px 16px rgba(0, 102, 255, 0.15) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
+  flex-shrink: 0 !important;
+}
+
+.header::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.16), transparent 70%) !important;
+  pointer-events: none !important;
+}
+
+/* Logo GustAvo (Icona Mole con robot dal footer) */
+.header .logo {
+  width: 74px !important;
+  height: 74px !important;
+  border-radius: var(--radius-md) !important;
+  object-fit: contain !important;
+  border: 2px solid rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16) !important;
+  transition: transform 0.25s ease !important;
+  background: #ffffff !important;
+  padding: 4px !important;
+}
+
+.header .logo:hover {
+  transform: scale(1.05) !important;
+}
+
+/* Titolo GustAvo senza stelline */
+.header h2 {
+  margin: 10px 0 0 !important;
+  font-size: 1.34rem !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.025em !important;
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Sezione Avatar Robotico SVG GustAvo */
+.avatar {
+  width: 120px !important;
+  height: 120px !important;
+  margin: 8px auto 4px !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  filter: drop-shadow(0 6px 16px rgba(0, 102, 255, 0.15)) !important;
+  flex-shrink: 0 !important;
+}
+
+.avatar-svg {
+  width: 120px !important;
+  height: 120px !important;
+  display: block !important;
+}
+
+/* Bocca animata interattiva (TTS) */
+#mouth {
+  transform-box: fill-box !important;
+  transform-origin: center !important;
+  transition: height 0.08s ease, y 0.08s ease !important;
+}
+
+/* Pupille animate interattive */
+.eye.left .pupil, 
+.eye.right .pupil {
+  transform-box: fill-box !important;
+  transform-origin: center !important;
+  transition: transform 0.1s ease !important;
+}
+
+/* Switch Voce con Icona Amplificatore SVG */
+.voice-toggle {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  margin: 6px auto 10px !important;
+  padding: 6px 15px !important;
+  background: #f1f5f9 !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: 30px !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  color: var(--text-body) !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  transition: all 0.2s ease !important;
+  box-shadow: var(--shadow-sm) !important;
+}
+
+.voice-toggle:hover {
+  background: #e2e8f0 !important;
+  border-color: #cbd5e1 !important;
+  color: var(--text-heading) !important;
+}
+
+.voice-toggle input[type="checkbox"] {
+  accent-color: var(--brand-green) !important;
+  cursor: pointer !important;
+  width: 15px !important;
+  height: 15px !important;
+  margin: 0 !important;
+}
+
+.voice-toggle label {
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+.voice-toggle .amp-svg {
+  width: 17px !important;
+  height: 17px !important;
+  display: block !important;
+  color: var(--brand-green) !important;
+  transition: transform 0.2s ease, opacity 0.2s ease !important;
+}
+
+.voice-toggle input[type="checkbox"]:not(:checked) + label .amp-svg {
+  opacity: 0.45 !important;
+  color: var(--text-muted) !important;
+}
+
+/* Area Conversazione & Messaggi */
+#messages {
+  flex: 1 1 0% !important;
+  overflow-y: auto !important;
+  padding: 16px 18px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 14px !important;
+  background: #f8fafc !important;
+  scroll-behavior: smooth !important;
+}
+
+#messages::-webkit-scrollbar {
+  width: 6px !important;
+}
+#messages::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important;
+  border-radius: 4px !important;
+}
+#messages::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8 !important;
+}
+
+/* Text Bubbles (Grafica a tema moderno) */
+.msg {
+  max-width: 82% !important;
+  padding: 13px 18px !important;
+  border-radius: 18px !important;
+  line-height: 1.55 !important;
+  font-size: 0.93rem !important;
+  position: relative !important;
+  word-break: break-word !important;
+  animation: gustavoFadeInMsg 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+@keyframes gustavoFadeInMsg {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Messaggio Utente (Brand Blue) */
+.msg.user {
+  align-self: flex-end !important;
+  background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%) !important;
+  color: #ffffff !important;
+  border-bottom-right-radius: 4px !important;
+  box-shadow: 0 4px 14px rgba(0, 102, 255, 0.22) !important;
+}
+
+.msg.user strong,
+.msg.user .strong {
+  color: rgba(255, 255, 255, 0.95) !important;
+  font-weight: 700 !important;
+  margin-right: 4px !important;
+}
+
+/* Messaggio GustAvo (Card bianca con bordo accent verde brand) */
+.msg.bot {
+  align-self: flex-start !important;
+  background: #ffffff !important;
+  color: var(--text-heading) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-left: 4px solid var(--brand-green) !important;
+  border-bottom-left-radius: 4px !important;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(0, 168, 107, 0.06) !important;
+}
+
+.msg.bot strong,
+.msg.bot .strong {
+  color: var(--brand-green) !important;
+  font-weight: 700 !important;
+  margin-right: 4px !important;
+}
+
+/* Barra di Input Inferiore */
+.input-container {
+  padding: 12px 16px !important;
+  background: #ffffff !important;
+  border-top: 1px solid var(--border-subtle) !important;
+  display: flex !important;
+  gap: 10px !important;
+  align-items: center !important;
+  flex-shrink: 0 !important;
+  box-shadow: 0 -2px 10px rgba(15, 23, 42, 0.02) !important;
+}
+
+/* Campo Testo Input */
+#input {
+  flex: 1 1 auto !important;
+  padding: 11px 18px !important;
+  border: 1.5px solid var(--border-card) !important;
+  border-radius: 25px !important;
+  font-size: 0.92rem !important;
+  color: var(--text-heading) !important;
+  background: #f8fafc !important;
+  transition: all 0.2s ease !important;
+}
+
+#input:focus {
+  background: #ffffff !important;
+  border-color: var(--brand-blue) !important;
+  box-shadow: var(--shadow-glow-blue) !important;
+  outline: none !important;
+}
+
+#input::placeholder {
+  color: var(--text-muted) !important;
+}
+
+/* Pulsanti Standard */
+button {
+  font-family: inherit !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Pulsante Invia (Brand Green) */
+button:not(.mic-btn) {
+  padding: 11px 22px !important;
+  background: linear-gradient(135deg, #00a86b 0%, #008f5b 100%) !important;
+  color: #ffffff !important;
+  border-radius: 25px !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.01em !important;
+  box-shadow: var(--shadow-glow-green) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+button:not(.mic-btn):hover {
+  transform: translateY(-1.5px) !important;
+  box-shadow: 0 6px 18px rgba(0, 168, 107, 0.38) !important;
+  filter: brightness(1.05) !important;
+}
+
+button:not(.mic-btn):active {
+  transform: translateY(0) !important;
+}
+
+/* Pulsante Microfono (Open / Closed Mic SVG) */
+.mic-btn {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, #0066ff 0%, #0052cc 100%) !important;
+  color: #ffffff !important;
+  border-radius: 50% !important;
+  box-shadow: 0 3px 10px rgba(0, 102, 255, 0.28) !important;
+  position: relative !important;
+}
+
+.mic-btn .mic-svg {
+  width: 22px !important;
+  height: 22px !important;
+  display: block !important;
+  pointer-events: none !important;
+}
+
+.mic-btn .mic-open {
+  display: none !important;
+}
+
+.mic-btn .mic-closed {
+  display: block !important;
+}
+
+.mic-btn:hover {
+  transform: scale(1.06) !important;
+  box-shadow: 0 5px 16px rgba(0, 102, 255, 0.38) !important;
+}
+
+.mic-btn:active {
+  transform: scale(0.96) !important;
+}
+
+/* Microfono in stato di registrazione (Listening: Open Mic con onde sonore) */
+.mic-btn.listening {
+  background: #ef4444 !important;
+  box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.28), 0 4px 14px rgba(239, 68, 68, 0.45) !important;
+  animation: gustavoPulseMic 1.2s infinite ease-in-out !important;
+}
+
+.mic-btn.listening .mic-closed {
+  display: none !important;
+}
+
+.mic-btn.listening .mic-open {
+  display: block !important;
+}
+
+@keyframes gustavoPulseMic {
+  0% { transform: scale(1.05); }
+  50% { transform: scale(1.15); box-shadow: 0 0 0 8px rgba(239, 68, 68, 0.2), 0 4px 16px rgba(239, 68, 68, 0.5); }
+  100% { transform: scale(1.05); }
+}

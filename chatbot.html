@@ -22,6 +22,7 @@
 
     <link rel="stylesheet" href="assets/css/style.css?v=4.21">
     <script src="assets/js/main.js?v=4.12" defer></script>
+    <script src="assets/js/chatbot-theme-inject.js?v=1.0" defer></script>
     <style>
         /* Regole di sicurezza viewport mobile e overlay menu hamburger */
         html.chatbot-page-html,
@@ -54,6 +55,12 @@
             display: inline-block !important;
             visibility: visible !important;
             opacity: 1 !important;
+        }
+        .chatbot-iframe[data-theme-injected="true"] {
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 100% !important;
+            transform: none !important;
         }
     </style>
 </head>

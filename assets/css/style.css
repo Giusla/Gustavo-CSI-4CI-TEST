@@ -3542,6 +3542,13 @@ body.modal-is-open {
         transform: scale(0.847);
         transform-origin: top left;
     }
+
+    .chatbot-iframe[data-theme-injected="true"] {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        transform: none !important;
+    }
 }
 
 @media (max-width: 390px) {
@@ -3563,6 +3570,13 @@ body.modal-is-open {
         max-width: none !important;
         transform: scale(0.806);
         transform-origin: top left;
+    }
+
+    .chatbot-iframe[data-theme-injected="true"] {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        transform: none !important;
     }
 }
 

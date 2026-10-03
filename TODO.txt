@@ -8,7 +8,7 @@ Migliorie sito Gustavo
 
 -Esempio del json del Gustavo
 
--Riprendere i colori del chatbot
+-[FATTO] Riprendere i colori del chatbot (creata iniezione CSS dinamica e assets/css/chatbot-theme.css)
 
 -Aggiungere responsive
 
