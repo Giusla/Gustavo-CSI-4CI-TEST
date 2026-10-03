@@ -91,7 +91,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Mostrami la mappa"
       ],
       "responses": [
-        "Ecco la mappa interattiva dei piani dell'IIS Avogadro su OpenLevelUp:\n\nPiano Seminterrato (Officine meccaniche, CNC): [Apri Mappa Piano Seminterrato](https://openlevelup.net/?l=-1#19/45.07069/7.69253)\n\nPiano Terra (Segreteria, Presidenza, Aula Magna, Biblioteca, Palestra): [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPrimo Piano (Aule serie 100, Lab Informatica): [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nSecondo Piano (Aule serie 200, Lab Elettronica, Fisica): [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nTerzo Piano (Aule serie 300, Lab Chimica, Scienze): [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi anche chiedermi un'aula o un laboratorio specifico, come 'Dov\\'è l\\'aula 105?' o 'Dov\\'è la segreteria?'!"
+        "Ecco la mappa interattiva dei piani dell'IIS Avogadro su OpenLevelUp:\n\nPiano Terra (Segreteria, Presidenza, Aula Magna, Biblioteca, Palestra, Officine Meccaniche, CNC): [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPrimo Piano (Aule serie 100, Lab Informatica): [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nSecondo Piano (Aule serie 200, Lab Elettronica, Fisica): [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nTerzo Piano (Aule serie 300, Lab Chimica, Scienze): [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi anche chiedermi un'aula o un laboratorio specifico, come 'Dov\\'è l\\'aula 223?' o 'Dov\\'è la segreteria?'!"
       ]
     },
     {
@@ -345,7 +345,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Aule piano 0"
       ],
       "responses": [
-        "All'IIS Avogadro le aule sono contrassegnate da numeri a tre cifre in base al piano:\n- Serie 100 (101-130): Primo Piano\n- Serie 200 (201-230): Secondo Piano\n- Serie 300 (301-330): Terzo Piano\n- Serie S (S01, S02...): Piano Seminterrato (Officine)\n\nAl Piano Terra non ci sono aule didattiche numerate (come 1-20), ma si trovano la Segreteria, la Presidenza, la Biblioteca Storica, l'Aula Magna, la Palestra e il Bar.\n\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "All'IIS Avogadro le aule sono contrassegnate da numeri a tre cifre in base al piano:\n- Serie 100 (101-130): Primo Piano\n- Serie 200 (201-230): Secondo Piano\n- Serie 300 (301-330): Terzo Piano\n\nAl Piano Terra si trovano la Segreteria, la Presidenza, la Biblioteca Storica, l'Aula Magna, la Palestra, le Officine Meccaniche e il Bar.\n\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ]
     },
     {
@@ -432,13 +432,12 @@ window.GUSTAVO_INTENTS_DATA = {
         "Reparto macchine utensili",
         "Torni e CNC",
         "Laboratorio saldatura",
-        "Dove si trova il piano seminterrato?",
         "Aule S01 S02",
         "Come vado alle officine?",
         "In che piano sono le officine meccaniche?"
       ],
       "responses": [
-        "Le Officine Meccaniche, i reparti Macchine Utensili, Torni, CNC e Saldatura si trovano al Piano Seminterrato.\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Officine](https://openlevelup.net/?l=-1#19/45.07069/7.69253)\n\nPuoi chiedere conferma anche alla portineria all'ingresso."
+        "Le Officine Meccaniche, i reparti Macchine Utensili, Torni, CNC e Saldatura si trovano al Piano Terra.\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Officine](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi chiedere conferma anche alla portineria all'ingresso."
       ]
     },
     {

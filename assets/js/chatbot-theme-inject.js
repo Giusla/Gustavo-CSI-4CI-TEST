@@ -104,58 +104,19 @@ html, body {
 }
 
 .header {
-  background: var(--brand-gradient) !important;
-  color: #ffffff !important;
-  padding: 16px 20px 14px !important;
-  text-align: center !important;
-  position: relative !important;
-  box-shadow: 0 4px 16px rgba(0, 102, 255, 0.15) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
-  flex: 0 0 auto !important;
-  width: 100% !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-}
-
-.header::before {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 !important;
-  background: radial-gradient(ellipse 80% 90% at 50% 50%, rgba(250, 204, 21, 0.16) 0%, rgba(250, 204, 21, 0.05) 55%, transparent 85%) !important;
-  pointer-events: none !important;
-}
-
-/* Logo GustAvo Completo — Senza angoli tondi (border-radius: 0) */
-.header, .header * {
-  border-radius: 0 !important;
-}
-
-.header .logo {
-  height: 128px !important;
-  width: auto !important;
-  max-width: 90% !important;
-  object-fit: contain !important;
-  border-radius: 0 !important;
-  border: none !important;
-  box-shadow: none !important;
-  background: transparent !important;
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
   padding: 0 !important;
-  display: block !important;
-  margin: 0 auto !important;
-  filter: drop-shadow(0 0 18px rgba(250, 204, 21, 0.28)) drop-shadow(0 0 45px rgba(250, 204, 21, 0.15)) drop-shadow(0 4px 14px rgba(0, 0, 0, 0.35)) !important;
-  transition: transform 0.25s ease !important;
-}
-
-.header .logo:hover {
-  transform: scale(1.04) !important;
+  margin: 0 !important;
+  overflow: hidden !important;
 }
 
 /* Avatar Vecchietto Saggio SVG */
 .avatar {
-  width: 125px !important;
-  height: 125px !important;
-  margin: 6px auto 2px !important;
+  width: 145px !important;
+  height: 145px !important;
+  margin: 10px auto 4px !important;
   position: relative !important;
   display: flex !important;
   align-items: center !important;
@@ -165,8 +126,8 @@ html, body {
 }
 
 .avatar-svg {
-  width: 125px !important;
-  height: 125px !important;
+  width: 145px !important;
+  height: 145px !important;
   display: block !important;
 }
 
@@ -907,12 +868,10 @@ button:disabled {
         html = fontTags + styleTag + html;
       }
 
-      // 2. Header: Logo GustAvo moderno
+      // 2. Rimozione banner superiore per dare massimo spazio all'output della chat su schermi piccoli
       html = html.replace(
         /<div class="header">[\s\S]*?<\/div>/i,
-        `<div class="header">
-          <img src="${gustavoLogoUrl}" class="logo" alt="Logo GustAvo">
-        </div>`
+        ''
       );
 
       // 3. Ripristino Avatar Professore SVG (con lookahead a .voice-toggle per preservare intatto #chat-container)
@@ -1233,7 +1192,7 @@ function matchLocalIntent(query) {
       return {
         intent: {
           responses: [
-            `Il laboratorio/aula ${code} si trova al Piano Seminterrato (l=-1 su OpenLevelUp), nell'area delle officine e macchine CNC.\n\nVisualizza la mappa: [Apri Mappa Piano Seminterrato](https://openlevelup.net/?l=-1#19/45.07069/7.69253)`
+            `Il laboratorio/officina ${code} si trova al Piano Terra (l=0 su OpenLevelUp), nell'area delle officine e macchine CNC.\n\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)`
           ]
         },
         score: 1.0
@@ -1246,7 +1205,7 @@ function matchLocalIntent(query) {
     return {
       intent: {
         responses: [
-          "All'IIS Avogadro le aule sono contrassegnate da numeri a tre cifre in base al piano:\n- Serie 100 (101-130): Primo Piano\n- Serie 200 (201-230): Secondo Piano\n- Serie 300 (301-330): Terzo Piano\n- Serie S (S01, S02...): Piano Seminterrato (Officine)\n\nAl Piano Terra non ci sono aule didattiche con numerazione 1-20, ma si trovano la Segreteria, la Presidenza, la Biblioteca Storica, l'Aula Magna, la Palestra e il Bar.\n\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+          "All'IIS Avogadro le aule sono contrassegnate da numeri a tre cifre in base al piano:\n- Serie 100 (101-130): Primo Piano\n- Serie 200 (201-230): Secondo Piano\n- Serie 300 (301-330): Terzo Piano\n\nAl Piano Terra si trovano la Segreteria, la Presidenza, la Biblioteca Storica, l'Aula Magna, la Palestra, le Officine Meccaniche e il Bar.\n\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
         ]
       },
       score: 1.0
