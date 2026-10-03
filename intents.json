@@ -633,6 +633,35 @@
       ]
     },
     {
+      "tag": "linguaggio_inappropriato",
+      "patterns": [
+        "Cazzo",
+        "Merda",
+        "Vaffanculo",
+        "Stronzo",
+        "Coglione",
+        "Puttana",
+        "Troia",
+        "Bastardo",
+        "Fanculo",
+        "Sei un coglione",
+        "Sei un cretino",
+        "Sei stupido",
+        "Fai schifo",
+        "Bot di merda",
+        "Testa di cazzo",
+        "Vaffanbagno",
+        "Porca miseria",
+        "Porco",
+        "Idiota",
+        "Deficiente"
+      ],
+      "responses": [
+        "Ti invito a mantenere un linguaggio consono, educato e rispettoso dell'ambiente scolastico. Come posso esserti utile per informazioni sull'IIS Avogadro?",
+        "Per favore, utilizza un tono rispettoso. Sono a tua disposizione per aiutarti con i corsi, la segreteria e i servizi dell'Avogadro."
+      ]
+    },
+    {
       "tag": "fallback",
       "patterns": [],
       "responses": [

@@ -969,8 +969,23 @@ function botSpeak(rawText) {
         mouthAndBotSpeakLogic.trim()
       );
 
-      // 8. Logica di Invio Robusta (Anti-concorrenza / Mutex totale, nessuna emoji)
+      // 8. Logica di Invio Robusta con Filtro Parolacce (Anti-concorrenza / Mutex totale, censura parole volgari)
       const robustSendLogic = `
+const BAD_WORDS_REGEX = /\\b(cazzo|cazzi|cazzata|cazzate|merda|merde|merdaccia|vaffanculo|fanculo|vaffanbagno|stronzo|stronzi|stronza|stronze|coglione|coglioni|coglioneria|puttana|puttane|troia|troie|bastardo|bastardi|bastarda|bastarde|porco\\s+dio|dio\\s+cane|madonna\\s+puttana|porca\\s+madonna|vaffan|idiota|deficiente|scemo|cretino|fancazzista)\\b/gi;
+
+function filterProfanity(text) {
+  if (!text) return "";
+  return text.replace(BAD_WORDS_REGEX, (match) => {
+    if (match.length <= 2) return "**";
+    return match[0] + "*".repeat(match.length - 2) + match[match.length - 1];
+  });
+}
+
+function isExclusivelyProfane(text) {
+  const stripped = text.replace(BAD_WORDS_REGEX, "").replace(/[^a-zA-Z0-9]/g, "").trim();
+  return stripped.length === 0;
+}
+
 async function sendMessage() {
   if (_isChatBusy) {
     return;
@@ -978,23 +993,34 @@ async function sendMessage() {
 
   const inp = document.getElementById("input");
   if (!inp) return;
-  const msg = inp.value.trim();
-  if (!msg) return;
+  const rawMsg = inp.value.trim();
+  if (!rawMsg) return;
+
+  const censoredMsg = filterProfanity(rawMsg);
+  const containsBadWord = BAD_WORDS_REGEX.test(rawMsg);
+  BAD_WORDS_REGEX.lastIndex = 0;
 
   setChatBusy(true, "GustAvo sta pensando...", "Invio...");
   inp.value = "";
 
   const bubble = document.createElement("div");
   bubble.className = "msg user";
-  bubble.innerHTML = '<span class="strong">Tu:</span> ' + msg;
+  bubble.innerHTML = '<span class="strong">Tu:</span> ' + censoredMsg;
   messages.appendChild(bubble);
   messages.scrollTop = messages.scrollHeight;
+
+  if (containsBadWord && isExclusivelyProfane(rawMsg)) {
+    setTimeout(() => {
+      botSpeak("Ti invito a mantenere un linguaggio consono ed educato nel rispetto dell'ambiente scolastico. Come posso aiutarti con le informazioni sull'IIS Avogadro?");
+    }, 400);
+    return;
+  }
 
   try {
     const res = await fetch("https://gustavo1.avoprogetti.it/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: msg })
+      body: JSON.stringify({ message: rawMsg })
     });
 
     if (!res.ok) throw new Error("HTTP " + res.status);
