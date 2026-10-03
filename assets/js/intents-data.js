@@ -326,7 +326,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Biblioteca Avogadro"
       ],
       "responses": [
-        "La Biblioteca Storica dell'IIS Avogadro si trova al Primo Piano.\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Biblioteca](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPuoi verificare le informazioni di prestito e orari anche in segreteria o su itisavogadro.it."
+        "La Biblioteca Storica dell'IIS Avogadro si trova al Primo Piano (l=1 su OpenLevelUp) ed è uno spazio dedicato a consultazione, studio e conservazione del patrimonio storico dell'istituto (non è attivo il prestito libri per l'esterno).\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Biblioteca](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPuoi chiedere ulteriori informazioni per orari o visite alla portineria o in segreteria."
       ]
     },
     {

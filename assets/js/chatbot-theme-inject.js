@@ -313,17 +313,19 @@ html, body {
   margin-right: 4px !important;
 }
 
-.msg.bot a {
+.msg.bot a:not(.chat-map-btn) {
   color: var(--brand-green) !important;
   text-decoration: underline !important;
   font-weight: 600 !important;
   transition: color 0.15s ease !important;
 }
 
-.msg.bot a:hover {
+.msg.bot a:not(.chat-map-btn):hover {
   color: var(--brand-green-hover) !important;
 }
 
+.msg.bot a.chat-map-btn,
+a.chat-map-btn,
 .chat-map-btn {
   display: inline-flex !important;
   align-items: center !important;
@@ -331,21 +333,28 @@ html, body {
   gap: 6px !important;
   background: linear-gradient(135deg, #00a86b 0%, #008f5b 100%) !important;
   color: #ffffff !important;
-  font-size: 0.82rem !important;
-  font-weight: 600 !important;
-  padding: 6px 14px !important;
-  border-radius: 18px !important;
+  -webkit-text-fill-color: #ffffff !important;
+  font-size: 0.88rem !important;
+  font-weight: 700 !important;
+  padding: 8px 18px !important;
+  border-radius: 22px !important;
   text-decoration: none !important;
-  margin: 6px 0 !important;
-  box-shadow: 0 3px 10px rgba(0, 168, 107, 0.25) !important;
+  margin: 8px 0 !important;
+  box-shadow: 0 4px 14px rgba(0, 168, 107, 0.35) !important;
   transition: all 0.2s ease !important;
+  letter-spacing: 0.01em !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
 }
 
+.msg.bot a.chat-map-btn:hover,
+a.chat-map-btn:hover,
 .chat-map-btn:hover {
   background: linear-gradient(135deg, #008f5b 0%, #007a4d 100%) !important;
   color: #ffffff !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 5px 14px rgba(0, 168, 107, 0.38) !important;
+  -webkit-text-fill-color: #ffffff !important;
+  text-decoration: none !important;
+  transform: translateY(-1.5px) !important;
+  box-shadow: 0 6px 20px rgba(0, 168, 107, 0.5) !important;
 }
 
 /* Avviso di Sistema / Stato (Badge centrato univoco senza emoji) */
