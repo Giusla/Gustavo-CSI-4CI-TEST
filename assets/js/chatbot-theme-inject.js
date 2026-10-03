@@ -103,13 +103,22 @@ html, body {
   }
 }
 
-.header {
+.header,
+.header *,
+.logo,
+img.logo,
+.header-banner {
   display: none !important;
   visibility: hidden !important;
   height: 0 !important;
+  max-height: 0 !important;
+  width: 0 !important;
   padding: 0 !important;
   margin: 0 !important;
+  border: none !important;
   overflow: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 /* Avatar Vecchietto Saggio SVG */
@@ -264,7 +273,7 @@ html, body {
   border: 1px solid var(--border-subtle) !important;
   border-left: 4px solid var(--brand-green) !important;
   border-bottom-left-radius: 4px !important;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(0, 168, 107, 0.06) !important;
+  box-shadow: 0 4px 166px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(0, 168, 107, 0.06) !important;
 }
 
 .msg.bot strong,
@@ -489,22 +498,14 @@ button:disabled {
 
 /* Ottimizzazione Responsive Mobile — Dimensioni fedeli e layout equilibrato */
 @media (max-width: 600px) {
-  .header {
-    padding: 12px 16px 8px !important;
-  }
-  .header .logo {
-    height: 120px !important;
-    max-height: 120px !important;
-    max-width: 92% !important;
-  }
   .avatar {
-    width: 120px !important;
-    height: 120px !important;
-    margin: 4px auto 2px !important;
+    width: 130px !important;
+    height: 130px !important;
+    margin: 6px auto 3px !important;
   }
   .avatar-svg {
-    width: 120px !important;
-    height: 120px !important;
+    width: 130px !important;
+    height: 130px !important;
   }
   .voice-toggle {
     margin: 4px auto 6px !important;
@@ -564,20 +565,14 @@ button:disabled {
 
 /* Ottimizzazione specifica schermi compatti (< 390px): previene qualsiasi taglio del tasto Invio */
 @media (max-width: 390px) {
-  .header {
-    padding: 8px 10px 6px !important;
-  }
-  .header .logo {
-    height: 100px !important;
-    max-height: 100px !important;
-  }
   .avatar {
-    width: 95px !important;
-    height: 95px !important;
+    width: 110px !important;
+    height: 110px !important;
+    margin: 4px auto 2px !important;
   }
   .avatar-svg {
-    width: 95px !important;
-    height: 95px !important;
+    width: 110px !important;
+    height: 110px !important;
   }
   .input-container {
     padding: 6px 8px !important;
@@ -609,21 +604,14 @@ button:disabled {
 }
 
 @media (max-height: 650px) {
-  .header {
-    padding: 8px 12px 6px !important;
-  }
-  .header .logo {
-    height: 100px !important;
-    max-height: 100px !important;
-  }
   .avatar {
-    width: 95px !important;
-    height: 95px !important;
-    margin: 2px auto 0 !important;
+    width: 105px !important;
+    height: 105px !important;
+    margin: 2px auto 2px !important;
   }
   .avatar-svg {
-    width: 95px !important;
-    height: 95px !important;
+    width: 105px !important;
+    height: 105px !important;
   }
   .voice-toggle {
     margin: 2px auto 4px !important;
@@ -869,10 +857,9 @@ button:disabled {
       }
 
       // 2. Rimozione banner superiore per dare massimo spazio all'output della chat su schermi piccoli
-      html = html.replace(
-        /<div class="header">[\s\S]*?<\/div>/i,
-        ''
-      );
+      html = html.replace(/<div\s+class=["'][^"']*header[^"']*["'][^>]*>[\s\S]*?<\/div>/gi, '');
+      html = html.replace(/<header[\s\S]*?<\/header>/gi, '');
+      html = html.replace(/<img[^>]*class=["'][^"']*logo[^"']*["'][^>]*>/gi, '');
 
       // 3. Ripristino Avatar Professore SVG (con lookahead a .voice-toggle per preservare intatto #chat-container)
       html = html.replace(
@@ -1393,6 +1380,7 @@ async function sendMessage() {
       console.warn('GustAvo: Fetch non riuscito dopo i tentativi, applico iniezione su iframe live:', err);
 
       const applyThemeDirectly = () => {
+        if (getUiMode() === 'legacy') return;
         try {
           const doc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);
           if (doc && !doc.getElementById('gustavo-injected-theme')) {
@@ -1409,7 +1397,7 @@ async function sendMessage() {
 
             const headerEl = doc.querySelector('.header');
             if (headerEl) {
-              headerEl.innerHTML = `<img src="${gustavoLogoUrl}" class="logo" alt="Logo GustAvo">`;
+              headerEl.remove();
             }
 
             iframe.setAttribute('data-theme-injected', 'true');
@@ -1425,6 +1413,10 @@ async function sendMessage() {
 
       // Tentativi ripetuti a intervalli ravvicinati se il caricamento ritarda
       const pollTimer = setInterval(() => {
+        if (getUiMode() === 'legacy') {
+          clearInterval(pollTimer);
+          return;
+        }
         applyThemeDirectly();
         if (iframe.getAttribute('data-theme-injected') === 'true') {
           clearInterval(pollTimer);
@@ -1451,15 +1443,32 @@ async function sendMessage() {
 
     updateUiSwitcherButtons(mode);
 
-    const iframe = document.querySelector('.chatbot-iframe');
-    if (!iframe) return;
+    const iframeBox = document.querySelector('.chatbot-iframe-box');
+    if (!iframeBox) return;
 
     if (mode === 'legacy') {
-      iframe.removeAttribute('srcdoc');
-      iframe.removeAttribute('data-theme-injected');
-      iframe.src = 'https://gustavo1.avoprogetti.it';
+      iframeBox.innerHTML = `
+        <iframe
+            src="https://gustavo1.avoprogetti.it"
+            class="chatbot-iframe"
+            title="Chatbot GustAvo — Server Ufficiale gustavo1.avoprogetti.it"
+            allow="microphone; autoplay"
+            scrolling="yes"
+            loading="eager">
+        </iframe>
+      `;
       console.info('GustAvo: Modalità Legacy pura attivata (gustavo1.avoprogetti.it).');
     } else {
+      iframeBox.innerHTML = `
+        <iframe
+            src="https://gustavo1.avoprogetti.it"
+            class="chatbot-iframe"
+            title="Chatbot GustAvo — Server Ufficiale gustavo1.avoprogetti.it"
+            allow="microphone; autoplay"
+            scrolling="no"
+            loading="eager">
+        </iframe>
+      `;
       injectChatbotTheme();
     }
   }
@@ -1498,11 +1507,18 @@ async function sendMessage() {
     const currentMode = getUiMode();
     updateUiSwitcherButtons(currentMode);
     if (currentMode === 'legacy') {
-      const iframe = document.querySelector('.chatbot-iframe');
-      if (iframe) {
-        iframe.removeAttribute('srcdoc');
-        iframe.removeAttribute('data-theme-injected');
-        iframe.src = 'https://gustavo1.avoprogetti.it';
+      const iframeBox = document.querySelector('.chatbot-iframe-box');
+      if (iframeBox) {
+        iframeBox.innerHTML = `
+          <iframe
+              src="https://gustavo1.avoprogetti.it"
+              class="chatbot-iframe"
+              title="Chatbot GustAvo — Server Ufficiale gustavo1.avoprogetti.it"
+              allow="microphone; autoplay"
+              scrolling="yes"
+              loading="eager">
+          </iframe>
+        `;
       }
     } else {
       injectChatbotTheme();
