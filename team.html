@@ -20,7 +20,7 @@
     <meta name="twitter:title" content="GustAvo">
     <meta name="twitter:description" content="GustAvo, Il chatbot che ti orienta a scuola · IIS Avogadro">
 
-    <link rel="stylesheet" href="assets/css/style.css?v=4.19">
+    <link rel="stylesheet" href="assets/css/style.css?v=4.20">
     <script src="assets/js/main.js?v=4.11" defer></script>
 </head>
 <body>
@@ -80,7 +80,7 @@
                 <span class="project-section-kicker">Chi c'è dietro GustAvo</span>
                 <h1 class="titolo-pagina">Il Team della 5CI</h1>
                 <p class="sottotitolo">
-                    Gli studenti dell'indirizzo Informatica e Telecomunicazioni dell'IIS Amedeo Avogadro, insieme ai docenti e ai tutor aziendali di CSI Piemonte.
+                    Gli studenti dell'indirizzo Informatica e Telecomunicazioni dell'IIS Amedeo Avogadro (A.S. 2025/2026), insieme ai docenti e ai tutor aziendali di CSI Piemonte.
                 </p>
             </header>
 
@@ -100,30 +100,11 @@
 
                     <h2>Chi siamo e come abbiamo realizzato GustAvo</h2>
                     <p>
-                        Siamo gli studenti dell'indirizzo di Informatica e Telecomunicazioni della classe 5CI dell'IIS Amedeo Avogadro di Torino. Abbiamo sviluppato GustAvo lavorando in team come in una vera software house: a seguito di un incontro formativo con MSC, abbiamo adottato per un mese la metodologia Agile, organizzando le attività in sprint e ruoli operativi ben definiti. Abbiamo creato e organizzato un archivio di domande e risposte sulle attività di orientamento della scuola, verificandone la correttezza. Abbiamo poi testato diversi metodi per permettere al sistema di riconoscere le richieste degli utenti e abbiamo sviluppato sia il funzionamento interno del chatbot sia la sua interfaccia web.
+                        Siamo gli studenti dell'indirizzo di Informatica e Telecomunicazioni della classe 5CI dell'IIS Amedeo Avogadro di Torino (A.S. 2025/2026). Abbiamo sviluppato GustAvo lavorando in team come in una vera software house: a seguito di un incontro formativo con MSC, abbiamo adottato per un mese la metodologia Agile, organizzando le attività in sprint e ruoli operativi ben definiti. Abbiamo creato e organizzato un archivio di domande e risposte sulle attività di orientamento della scuola, verificandone la correttezza. Abbiamo poi testato diversi metodi per permettere al sistema di riconoscere le richieste degli utenti e abbiamo sviluppato sia il funzionamento interno del chatbot sia la sua interfaccia web.
                     </p>
                     <p>
                         L'intero percorso è stato svolto con il coordinamento dei nostri docenti di Informatica e con il supporto specialistico dei tutor aziendali di CSI Piemonte.
                     </p>
-
-                    <div class="project-meta-grid">
-                        <div class="meta-item">
-                            <span class="meta-label">Istituto</span>
-                            <span class="meta-val">IIS Amedeo Avogadro · Torino</span>
-                        </div>
-                        <div class="meta-item">
-                            <span class="meta-label">Classe & Indirizzo</span>
-                            <span class="meta-val">5CI · Informatica e Telecomunicazioni</span>
-                        </div>
-                        <div class="meta-item">
-                            <span class="meta-label">Partner Aziendale</span>
-                            <span class="meta-val">CSI Piemonte</span>
-                        </div>
-                        <div class="meta-item">
-                            <span class="meta-label">Metodo di Lavoro</span>
-                            <span class="meta-val">Metodologia Agile (1 mese di lavoro dopo incontro MSC)</span>
-                        </div>
-                    </div>
                 </article>
             </div>
 
@@ -132,28 +113,38 @@
                 <header class="section-header">
                     <span class="project-section-kicker">Organizzazione e Sviluppo</span>
                     <h2 class="section-title" id="team-areas-title">I gruppi di lavoro</h2>
-                    <p class="section-subtitle">A seguito dell'incontro con MSC, abbiamo applicato la metodologia Agile per 1 mese: ecco le aree tecniche in cui ci siamo suddivisi per realizzare GustAvo.</p>
+                    <p class="section-subtitle">A seguito dell'incontro con MSC, abbiamo applicato la metodologia Agile per 1 mese: ecco i team in cui ci siamo suddivisi per realizzare GustAvo.</p>
                 </header>
 
                 <div class="team-areas-grid">
                     <article class="team-area-card">
-                        <h3>Dataset, Contenuti & Intent Design</h3>
-                        <p>Rilevazione e categorizzazione dei dubbi più frequenti su indirizzi, materie e laboratori. Costruzione del file strutturato <code>intents.json</code> con oltre 25 tag tematici e centinaia di formulazioni alternative reali.</p>
+                        <h3>Elettrotecnici</h3>
+                        <p>Raspberry Pi, configurazione del monitor e integrazione del bottone fisico per l'interazione.</p>
                     </article>
 
                     <article class="team-area-card">
-                        <h3>Machine Learning & NLP</h3>
-                        <p>Studio, test e confronto degli algoritmi di classificazione supervisionata in Python con Scikit-learn. Calcolo vettoriale TF-IDF e similarità coseno per garantire risposte immediate, veloci ed esenti da allucinazioni.</p>
+                        <h3>Front-end</h3>
+                        <p>Sito web e interfaccia interattiva del chatbot con avatar in stile Eviebot.</p>
                     </article>
 
                     <article class="team-area-card">
-                        <h3>Backend & Architettura Flask</h3>
-                        <p>Sviluppo dell'API REST in Python per la gestione delle risposte del chatbot, calibrazione delle soglie minime di confidenza e deployment autonomo sui server della scuola (<code>gustavo1.avoprogetti.it</code>).</p>
+                        <h3>Addestramento</h3>
+                        <p>Da dove prende i dati GustAvo: raccolta fonti istituzionali, dataset di domande e risposte e preparazione del modello.</p>
                     </article>
 
                     <article class="team-area-card">
-                        <h3>Frontend, UI/UX & Accessibilità</h3>
-                        <p>Progettazione del portale web moderno e responsive secondo gli standard WCAG AA: leggibilità ottimizzata per smartphone, controlli touch-friendly, contrasto elevato e assenza totale di tracker pubblicitari.</p>
+                        <h3>Software kiosk</h3>
+                        <p>Configurazione del sistema operativo dedicato e web app a schermo intero per il funzionamento del totem.</p>
+                    </article>
+
+                    <article class="team-area-card">
+                        <h3>Meccanici</h3>
+                        <p>Progettazione del case, assemblaggio della struttura fisica e vestizione del totem/kiosk.</p>
+                    </article>
+
+                    <article class="team-area-card">
+                        <h3>Pannello admin</h3>
+                        <p>Il “sotto al cofano” dell’addestramento di GustAvo: gestione contenuti, monitoraggio e calibrazione interna.</p>
                     </article>
                 </div>
             </section>
