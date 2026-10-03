@@ -84,7 +84,7 @@
         "Mostrami la mappa"
       ],
       "responses": [
-        "Ecco la mappa interattiva dei piani dell'IIS Avogadro su OpenLevelUp:\n\nPiano Seminterrato (Officine meccaniche, CNC): [Apri Mappa Piano Seminterrato](https://openlevelup.net/?l=-1#19/45.07069/7.69253)\n\nPiano Terra (Segreteria, Presidenza, Aula Magna, Palestra): [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPrimo Piano (Aule serie 100, Lab Informatica, Biblioteca): [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nSecondo Piano (Aule serie 200, Lab Elettronica, Fisica): [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nTerzo Piano (Aule serie 300, Lab Chimica, Scienze): [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi anche chiedermi un'aula o un laboratorio specifico, come 'Dov\\'è l\\'aula 105?' o 'Dov\\'è la segreteria?'!"
+        "Ecco la mappa interattiva dei piani dell'IIS Avogadro su OpenLevelUp:\n\nPiano Seminterrato (Officine meccaniche, CNC): [Apri Mappa Piano Seminterrato](https://openlevelup.net/?l=-1#19/45.07069/7.69253)\n\nPiano Terra (Segreteria, Presidenza, Aula Magna, Biblioteca, Palestra): [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPrimo Piano (Aule serie 100, Lab Informatica): [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nSecondo Piano (Aule serie 200, Lab Elettronica, Fisica): [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nTerzo Piano (Aule serie 300, Lab Chimica, Scienze): [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi anche chiedermi un'aula o un laboratorio specifico, come 'Dov\\'è l\\'aula 105?' o 'Dov\\'è la segreteria?'!"
       ]
     },
     {
@@ -141,7 +141,7 @@
         "Come raggiungere le aule al primo piano"
       ],
       "responses": [
-        "Le aule della serie 100 (da 101 a 125) si trovano al Primo Piano, dove sono presenti anche i laboratori di informatica e la biblioteca storica.\n\nVisualizza la piantina su OpenLevelUp: [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria."
+        "Le aule della serie 100 (da 101 a 125) si trovano al Primo Piano, dove sono presenti anche i laboratori di informatica.\n\nVisualizza la piantina su OpenLevelUp: [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria."
       ]
     },
     {
@@ -319,7 +319,7 @@
         "Biblioteca Avogadro"
       ],
       "responses": [
-        "La Biblioteca Storica dell'IIS Avogadro si trova al Primo Piano (l=1 su OpenLevelUp) ed è uno spazio dedicato a consultazione, studio e conservazione del patrimonio storico dell'istituto (non è attivo il prestito libri per l'esterno).\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Biblioteca](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPuoi chiedere ulteriori informazioni per orari o visite alla portineria o in segreteria."
+        "La Biblioteca Storica dell'IIS Avogadro si trova al Piano Terra ed è uno spazio dedicato a consultazione, studio e conservazione del patrimonio storico dell'istituto (non è attivo il prestito libri per l'esterno).\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Biblioteca](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi chiedere ulteriori informazioni per orari o visite alla portineria o in segreteria."
       ]
     },
     {
