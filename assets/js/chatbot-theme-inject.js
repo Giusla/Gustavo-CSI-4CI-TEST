@@ -5,12 +5,11 @@
  *        all'interno del chatbot ospitato su gustavo1.avoprogetti.it.
  * 
  * Aggiornamenti:
- * - Avatar interattivo con faccina SVG (pupille e bocca parlante animate).
- * - Logo ufficiale GustAvo nel header (dal footer del sito web).
- * - Rimozione stelline (🌟) dal titolo GustAvo.
- * - Icone SVG Closed/Open Mic sul pulsante microfono.
- * - Icona SVG Amplificatore/Altoparlante sullo switch vocale (TTS).
- * - Text bubbles allineate al design system del sito web.
+ * - Prevenzione Anti-Spam a prova di bomba: mutex di invio per impedire risposte multiple concorrenti.
+ * - Sblocco / Blocco coordinato dell'input e del pulsante durante la trasmissione e mentre GustAvo parla.
+ * - Rimozione totale di qualsiasi emoji da tutti i testi, messaggi di stato, placeholder e bot responses.
+ * - Logo GustAvo ingrandito, trasparente e con angoli NON arrotondati (border-radius: 0).
+ * - Robottino SVG ufficiale con occhi e bocca animate.
  */
 
 (function () {
@@ -45,7 +44,15 @@
 
 *, *::before, *::after {
   box-sizing: border-box !important;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+iframe {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 html, body {
@@ -61,6 +68,7 @@ html, body {
               radial-gradient(circle at 90% 90%, rgba(0, 102, 255, 0.05) 0%, transparent 45%),
               var(--bg-page) !important;
   display: flex !important;
+  flex-direction: column !important;
   justify-content: center !important;
   align-items: center !important;
   -webkit-font-smoothing: antialiased;
@@ -69,7 +77,7 @@ html, body {
 
 #chat-container {
   width: 100% !important;
-  max-width: 520px !important;
+  max-width: 500px !important;
   height: 100% !important;
   max-height: 100% !important;
   background: var(--bg-surface) !important;
@@ -95,7 +103,6 @@ html, body {
   }
 }
 
-/* Header Ufficiale Brand GustAvo */
 .header {
   background: var(--brand-gradient) !important;
   color: #ffffff !important;
@@ -104,7 +111,11 @@ html, body {
   position: relative !important;
   box-shadow: 0 4px 16px rgba(0, 102, 255, 0.15) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
-  flex-shrink: 0 !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
 .header::before {
@@ -115,44 +126,42 @@ html, body {
   pointer-events: none !important;
 }
 
-/* Logo GustAvo (Icona Mole con robot dal footer) */
+/* Logo GustAvo Completo — Senza angoli tondi (border-radius: 0) */
+.header, .header * {
+  border-radius: 0 !important;
+}
+
 .header .logo {
-  width: 74px !important;
-  height: 74px !important;
-  border-radius: var(--radius-md) !important;
+  height: 125px !important;
+  width: auto !important;
+  max-width: 90% !important;
   object-fit: contain !important;
-  border: 2px solid rgba(255, 255, 255, 0.95) !important;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16) !important;
+  border-radius: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  padding: 0 !important;
+  display: block !important;
+  margin: 0 auto !important;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.28)) !important;
   transition: transform 0.25s ease !important;
-  background: #ffffff !important;
-  padding: 4px !important;
 }
 
 .header .logo:hover {
-  transform: scale(1.05) !important;
+  transform: scale(1.04) !important;
 }
 
-/* Titolo GustAvo senza stelline */
-.header h2 {
-  margin: 10px 0 0 !important;
-  font-size: 1.34rem !important;
-  font-weight: 800 !important;
-  letter-spacing: -0.025em !important;
-  color: #ffffff !important;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
-}
-
-/* Sezione Avatar Robotico SVG GustAvo */
+/* Avatar Robottino SVG */
 .avatar {
   width: 120px !important;
   height: 120px !important;
-  margin: 8px auto 4px !important;
+  margin: 6px auto 2px !important;
   position: relative !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   filter: drop-shadow(0 6px 16px rgba(0, 102, 255, 0.15)) !important;
-  flex-shrink: 0 !important;
+  flex: 0 0 auto !important;
 }
 
 .avatar-svg {
@@ -161,14 +170,12 @@ html, body {
   display: block !important;
 }
 
-/* Bocca animata interattiva (TTS) */
 #mouth {
   transform-box: fill-box !important;
   transform-origin: center !important;
   transition: height 0.08s ease, y 0.08s ease !important;
 }
 
-/* Pupille animate interattive */
 .eye.left .pupil, 
 .eye.right .pupil {
   transform-box: fill-box !important;
@@ -182,18 +189,19 @@ html, body {
   align-items: center !important;
   justify-content: center !important;
   gap: 8px !important;
-  margin: 6px auto 10px !important;
-  padding: 6px 15px !important;
+  margin: 4px auto 8px !important;
+  padding: 5px 14px !important;
   background: #f1f5f9 !important;
   border: 1px solid var(--border-subtle) !important;
   border-radius: 30px !important;
-  font-size: 0.82rem !important;
+  font-size: 0.8rem !important;
   font-weight: 600 !important;
   color: var(--text-body) !important;
   cursor: pointer !important;
   user-select: none !important;
   transition: all 0.2s ease !important;
   box-shadow: var(--shadow-sm) !important;
+  flex: 0 0 auto !important;
 }
 
 .voice-toggle:hover {
@@ -218,8 +226,8 @@ html, body {
 }
 
 .voice-toggle .amp-svg {
-  width: 17px !important;
-  height: 17px !important;
+  width: 16px !important;
+  height: 16px !important;
   display: block !important;
   color: var(--brand-green) !important;
   transition: transform 0.2s ease, opacity 0.2s ease !important;
@@ -233,11 +241,12 @@ html, body {
 /* Area Conversazione & Messaggi */
 #messages {
   flex: 1 1 0% !important;
+  width: 100% !important;
   overflow-y: auto !important;
-  padding: 16px 18px !important;
+  padding: 14px 18px !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 14px !important;
+  gap: 12px !important;
   background: #f8fafc !important;
   scroll-behavior: smooth !important;
 }
@@ -253,13 +262,13 @@ html, body {
   background: #94a3b8 !important;
 }
 
-/* Text Bubbles (Grafica a tema moderno) */
+/* Text Bubbles */
 .msg {
   max-width: 82% !important;
-  padding: 13px 18px !important;
+  padding: 12px 16px !important;
   border-radius: 18px !important;
-  line-height: 1.55 !important;
-  font-size: 0.93rem !important;
+  line-height: 1.5 !important;
+  font-size: 0.92rem !important;
   position: relative !important;
   word-break: break-word !important;
   animation: gustavoFadeInMsg 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
@@ -304,6 +313,20 @@ html, body {
   margin-right: 4px !important;
 }
 
+/* Avviso di Sistema / Stato (Badge centrato univoco senza emoji) */
+.msg.anti-spam-tip {
+  align-self: center !important;
+  font-size: 0.78rem !important;
+  font-weight: 600 !important;
+  color: #b91c1c !important;
+  background: rgba(239, 68, 68, 0.09) !important;
+  border: 1px solid rgba(239, 68, 68, 0.25) !important;
+  border-radius: 20px !important;
+  padding: 5px 14px !important;
+  box-shadow: none !important;
+  animation: gustavoFadeInMsg 0.2s ease !important;
+}
+
 /* Barra di Input Inferiore */
 .input-container {
   padding: 12px 16px !important;
@@ -312,13 +335,14 @@ html, body {
   display: flex !important;
   gap: 10px !important;
   align-items: center !important;
-  flex-shrink: 0 !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
   box-shadow: 0 -2px 10px rgba(15, 23, 42, 0.02) !important;
 }
 
 #input {
   flex: 1 1 auto !important;
-  padding: 11px 18px !important;
+  padding: 10px 16px !important;
   border: 1.5px solid var(--border-card) !important;
   border-radius: 25px !important;
   font-size: 0.92rem !important;
@@ -334,6 +358,13 @@ html, body {
   outline: none !important;
 }
 
+#input:disabled {
+  background: #f1f5f9 !important;
+  color: var(--text-muted) !important;
+  cursor: not-allowed !important;
+  border-color: var(--border-subtle) !important;
+}
+
 #input::placeholder {
   color: var(--text-muted) !important;
 }
@@ -347,7 +378,7 @@ button {
 
 /* Pulsante Invia */
 button:not(.mic-btn) {
-  padding: 11px 22px !important;
+  padding: 10px 20px !important;
   background: linear-gradient(135deg, #00a86b 0%, #008f5b 100%) !important;
   color: #ffffff !important;
   border-radius: 25px !important;
@@ -358,23 +389,31 @@ button:not(.mic-btn) {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
+  min-width: 76px !important;
 }
 
-button:not(.mic-btn):hover {
+button:not(.mic-btn):hover:not(:disabled) {
   transform: translateY(-1.5px) !important;
   box-shadow: 0 6px 18px rgba(0, 168, 107, 0.38) !important;
   filter: brightness(1.05) !important;
 }
 
-button:not(.mic-btn):active {
+button:not(.mic-btn):active:not(:disabled) {
   transform: translateY(0) !important;
 }
 
-/* Pulsante Microfono (Open / Closed Mic SVG) */
+button:disabled {
+  opacity: 0.65 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  filter: none !important;
+}
+
+/* Pulsante Microfono */
 .mic-btn {
-  width: 44px !important;
-  height: 44px !important;
-  min-width: 44px !important;
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
   padding: 0 !important;
   display: inline-flex !important;
   align-items: center !important;
@@ -387,8 +426,8 @@ button:not(.mic-btn):active {
 }
 
 .mic-btn .mic-svg {
-  width: 22px !important;
-  height: 22px !important;
+  width: 20px !important;
+  height: 20px !important;
   display: block !important;
   pointer-events: none !important;
 }
@@ -401,15 +440,16 @@ button:not(.mic-btn):active {
   display: block !important;
 }
 
-.mic-btn:hover {
+.mic-btn:hover:not(:disabled) {
   transform: scale(1.06) !important;
   box-shadow: 0 5px 16px rgba(0, 102, 255, 0.38) !important;
 }
 
-.mic-btn:active {
+.mic-btn:active:not(:disabled) {
   transform: scale(0.96) !important;
 }
 
+/* Microfono in registrazione (Listening) */
 .mic-btn.listening {
   background: #ef4444 !important;
   box-shadow: 0 0 0 5px rgba(239, 68, 68, 0.28), 0 4px 14px rgba(239, 68, 68, 0.45) !important;
@@ -431,7 +471,7 @@ button:not(.mic-btn):active {
 }
 `;
 
-  // Markup SVG per la faccina del robot GustAvo
+  // Markup SVG per il robottino ufficiale GustAvo
   const AVATAR_SVG_HTML = `
     <div class="avatar">
       <svg class="avatar-svg" viewBox="0 0 120 120" width="120" height="120" xmlns="http://www.w3.org/2000/svg" aria-label="Avatar GustAvo">
@@ -453,14 +493,14 @@ button:not(.mic-btn):active {
         <rect x="8" y="44" width="11" height="30" rx="5.5" fill="#00a86b" />
         <rect x="101" y="44" width="11" height="30" rx="5.5" fill="#0066ff" />
 
-        <!-- Testa Robot -->
+        <!-- Testa Robot con gradiente brand -->
         <rect x="16" y="16" width="88" height="86" rx="28" fill="url(#headGrad)" filter="url(#avatarGlow)" />
 
         <!-- Visore scuro -->
         <rect x="23" y="24" width="74" height="70" rx="20" fill="#0f172a" />
         <rect x="25" y="26" width="70" height="66" rx="18" fill="#1e293b" />
 
-        <!-- Guance accento -->
+        <!-- Guance accento brand -->
         <ellipse cx="34" cy="67" rx="5" ry="3" fill="#00a86b" opacity="0.4" />
         <ellipse cx="86" cy="67" rx="5" ry="3" fill="#0066ff" opacity="0.4" />
 
@@ -482,7 +522,7 @@ button:not(.mic-btn):active {
           </g>
         </g>
 
-        <!-- Bocca animata interattiva -->
+        <!-- Bocca animata interattiva parlante -->
         <rect id="mouth" x="44" y="74" width="32" height="6" rx="3" fill="#38bdf8" />
       </svg>
     </div>
@@ -490,12 +530,12 @@ button:not(.mic-btn):active {
 
   // Markup SVG per il pulsante del microfono (Closed & Open Mic)
   const MIC_BUTTON_HTML = `
-    <button id="mic-btn" class="mic-btn" type="button" aria-label="Microfono vocale" title="Attiva/Disattiva dettatura vocale">
-      <svg class="mic-svg mic-closed" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+    <button id="mic-btn" class="mic-btn" type="button" aria-label="Microfono vocale" title="Attiva o disattiva dettatura vocale">
+      <svg class="mic-svg mic-closed" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
         <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
         <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
       </svg>
-      <svg class="mic-svg mic-open" viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true">
+      <svg class="mic-svg mic-open" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
         <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
         <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
         <path d="M19.5 8.5a6.5 6.5 0 0 1 0 7M21.5 6.5a9.5 9.5 0 0 1 0 11M4.5 8.5a6.5 6.5 0 0 0 0 7M2.5 6.5a9.5 9.5 0 0 0 0 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
@@ -506,7 +546,7 @@ button:not(.mic-btn):active {
   // Markup SVG per lo switch della voce (Amplificatore / Altoparlante)
   const VOICE_LABEL_HTML = `
     <label for="voiceToggle">
-      <svg class="amp-svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+      <svg class="amp-svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
         <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
       </svg>
       <span>Attiva voce</span>
@@ -519,7 +559,7 @@ button:not(.mic-btn):active {
 
     const SERVER_URL = 'https://gustavo1.avoprogetti.it';
 
-    // Risoluzione assoluta del logo GustAvo dal footer
+    // Risoluzione assoluta del logo GustAvo completo (Mole + Robot + scritta gialla GUSTAVO)
     const gustavoLogoUrl = new URL('assets/img/gustavo_icon.png', window.location.href).href;
 
     try {
@@ -552,61 +592,230 @@ button:not(.mic-btn):active {
         html = fontTags + styleTag + html;
       }
 
-      // 2. Sostituzione Foto con Logo GustAvo (quello del footer)
+      // 2. Sostituzione dell'header: Solo il logo completo GustAvo (senza angoli tondi, senza testo)
       html = html.replace(
-        /<img[^>]*src=["'][^"']*LogoAvogadro\.png["'][^>]*>/gi,
-        `<img src="${gustavoLogoUrl}" class="logo" alt="Logo GustAvo">`
+        /<div class="header">[\s\S]*?<\/div>/i,
+        `<div class="header">\n      <img src="${gustavoLogoUrl}" class="logo" alt="Logo GustAvo">\n    </div>`
       );
 
-      // 3. Rimozione stelline dal nome GustAvo nel titolo h2
-      html = html.replace(/<h2>[\s\S]*?GustAvo[\s\S]*?<\/h2>/gi, '<h2>GustAvo</h2>');
-      html = html.replace(/🌟/g, '');
-
-      // 4. Sostituzione faccina HTML con faccina SVG
+      // 3. Ripristino Robottino SVG (con lookahead a .voice-toggle per preservare intatto #chat-container)
       html = html.replace(
-        /<div class="avatar">[\s\S]*?<\/div>\s*<\/div>/i,
-        AVATAR_SVG_HTML.trim()
+        /<div class="avatar">[\s\S]*?(?=(?:<!--[\s\S]*?-->\s*)?<div class="voice-toggle">)/i,
+        AVATAR_SVG_HTML.trim() + '\n\n    '
       );
 
-      // 5. Sostituzione emoji amplificatore / altoparlante
+      // 4. Sostituzione emoji amplificatore / altoparlante
       html = html.replace(
         /<label for=["']voiceToggle["']>[\s\S]*?<\/label>/gi,
         VOICE_LABEL_HTML.trim()
       );
 
-      // 6. Sostituzione emoji microfono con Open & Closed Mic SVG
+      // 5. Sostituzione emoji microfono con Open & Closed Mic SVG
       html = html.replace(
         /<button id=["']mic-btn["'][^>]*>[\s\S]*?<\/button>/gi,
         MIC_BUTTON_HTML.trim()
       );
 
-      // 7. Miglioramento animazione della bocca SVG nello script
-      html = html.replace(
-        /function animateMouthStart\(\)\s*\{[\s\S]*?mouthInterval\s*=\s*setInterval\(\(\)\s*=>\s*\{[\s\S]*?\}\s*,\s*80\);/i,
-        `function animateMouthStart() {
+      // 6. RIMOZIONE TOTALE DI QUALSIASI EMOJI DALL'HTML
+      // Rimuove il cuore verde dal messaggio iniziale di benvenuto
+      html = html.replace(/💚/g, '.');
+      // Rimuove la faccina con la goccia di sudore
+      html = html.replace(/😅/g, '.');
+      // Rimuove le stelline
+      html = html.replace(/🌟/g, '');
+      // Rimuove il microfono emoji
+      html = html.replace(/🎤/g, '');
+      // Rimuove l'altoparlante emoji
+      html = html.replace(/🔊/g, '');
+
+      // 7. Sostituzione di animateMouthStart, animateMouthStop e botSpeak con gestione audio esclusiva
+      const mouthAndBotSpeakLogic = `
+let _isChatBusy = false;
+let _currentAudio = null;
+
+function setChatBusy(busy, placeholderText, btnText) {
+  _isChatBusy = !!busy;
+  const _inp = document.getElementById("input");
+  const _btn = document.querySelector('.input-container button:not(.mic-btn)');
+  const _mic = document.getElementById("mic-btn");
+
+  if (_inp) {
+    _inp.disabled = _isChatBusy;
+    _inp.placeholder = _isChatBusy ? (placeholderText || "GustAvo sta parlando...") : "Scrivi un messaggio...";
+    if (!_isChatBusy) {
+      setTimeout(() => _inp.focus(), 60);
+    }
+  }
+  if (_btn) {
+    _btn.disabled = _isChatBusy;
+    _btn.innerText = _isChatBusy ? (btnText || "Attendi...") : "Invia";
+  }
+  if (_mic) {
+    _mic.disabled = _isChatBusy;
+  }
+}
+
+function animateMouthStart() {
+  if (mouthInterval) clearInterval(mouthInterval);
+  if (eyeInterval) clearInterval(eyeInterval);
+
   mouthInterval = setInterval(() => {
     const h = Math.random() * 16 + 6;
-    if (mouth.setAttribute) {
+    if (mouth && mouth.setAttribute) {
       mouth.setAttribute("height", h);
       mouth.setAttribute("y", 77 - h/2);
       mouth.setAttribute("rx", Math.min(h/2, 4));
-    } else {
+    } else if (mouth) {
       mouth.style.height = h + "px";
     }
-  }, 80);`
-      );
+  }, 80);
 
-      html = html.replace(
-        /function animateMouthStop\(\)\s*\{[\s\S]*?mouth\.style\.height\s*=\s*"10px";/i,
-        `function animateMouthStop() {
-  clearInterval(mouthInterval);
-  clearInterval(eyeInterval);
-  if (mouth.setAttribute) {
+  eyeInterval = setInterval(() => {
+    const x = Math.random() * 6 - 3;
+    const y = Math.random() * 6 - 3;
+    if (leftP) leftP.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+    if (rightP) rightP.style.transform = 'translate(' + x + 'px,' + y + 'px)';
+  }, 80);
+}
+
+function animateMouthStop() {
+  if (mouthInterval) clearInterval(mouthInterval);
+  if (eyeInterval) clearInterval(eyeInterval);
+  mouthInterval = null;
+  eyeInterval = null;
+
+  if (mouth && mouth.setAttribute) {
     mouth.setAttribute("height", "6");
     mouth.setAttribute("y", "74");
     mouth.setAttribute("rx", "3");
+  } else if (mouth) {
+    mouth.style.height = "6px";
   }
-  mouth.style.height = "6px";`
+  if (leftP) leftP.style.transform = "translate(0,0)";
+  if (rightP) rightP.style.transform = "translate(0,0)";
+}
+
+function botSpeak(rawText) {
+  if (_currentAudio) {
+    try {
+      _currentAudio.pause();
+      _currentAudio.currentTime = 0;
+    } catch (e) {}
+    _currentAudio = null;
+  }
+
+  // Rimuove QUALSIASI emoji dal testo della risposta
+  const cleanText = (rawText || "")
+    .replace(/[\\u{1F000}-\\u{1FAFF}\\u{2600}-\\u{27BF}\\u{FE00}-\\u{FE0F}]/gu, '')
+    .trim();
+
+  const p = document.createElement("div");
+  p.className = 'msg bot';
+  p.innerHTML = '<span class="strong">GustAvo:</span> ' + cleanText;
+  messages.appendChild(p);
+  messages.scrollTop = messages.scrollHeight;
+
+  const voiceEnabled = voiceToggle && voiceToggle.checked;
+
+  if (!voiceEnabled) {
+    setTimeout(() => {
+      setChatBusy(false);
+    }, 600);
+    return;
+  }
+
+  setChatBusy(true, "GustAvo sta parlando...", "Parla...");
+  animateMouthStart();
+
+  const ttsUrl = "https://gustavo1.avoprogetti.it/api/tts?text=" + encodeURIComponent(cleanText);
+  const audio = new Audio(ttsUrl);
+  _currentAudio = audio;
+
+  const finishSpeaking = () => {
+    animateMouthStop();
+    setChatBusy(false);
+    _currentAudio = null;
+  };
+
+  audio.onplay = () => {
+    animateMouthStart();
+    setChatBusy(true, "GustAvo sta parlando...", "Parla...");
+  };
+
+  audio.onended = () => {
+    finishSpeaking();
+  };
+
+  audio.onerror = (e) => {
+    console.error("Errore TTS:", e);
+    finishSpeaking();
+  };
+
+  audio.play().catch(err => {
+    const readingTime = Math.min(Math.max(cleanText.length * 45, 1200), 5000);
+    setTimeout(() => {
+      finishSpeaking();
+    }, readingTime);
+  });
+}
+`;
+
+      html = html.replace(
+        /function animateMouthStart\(\)\s*\{[\s\S]*?animateMouthStop\(\);\s*\}\s*\);\s*\}/i,
+        mouthAndBotSpeakLogic.trim()
+      );
+
+      // 8. Logica di Invio Robusta (Anti-concorrenza / Mutex totale, nessuna emoji)
+      const robustSendLogic = `
+async function sendMessage() {
+  if (_isChatBusy) {
+    return;
+  }
+
+  const inp = document.getElementById("input");
+  if (!inp) return;
+  const msg = inp.value.trim();
+  if (!msg) return;
+
+  setChatBusy(true, "GustAvo sta pensando...", "Invio...");
+  inp.value = "";
+
+  const bubble = document.createElement("div");
+  bubble.className = "msg user";
+  bubble.innerHTML = '<span class="strong">Tu:</span> ' + msg;
+  messages.appendChild(bubble);
+  messages.scrollTop = messages.scrollHeight;
+
+  try {
+    const res = await fetch("https://gustavo1.avoprogetti.it/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: msg })
+    });
+
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    let reply = data.answer || "Non ho capito bene.";
+    botSpeak(reply);
+  } catch (err) {
+    botSpeak("Errore di connessione.");
+  }
+}
+`;
+
+      html = html.replace(
+        /async function sendMessage\(\)\s*\{[\s\S]*?botSpeak\("Errore di connessione\."\);\s*\}\s*\}/i,
+        robustSendLogic.trim()
+      );
+
+      // Protezione microfono e tasto invio
+      html = html.replace(
+        /input\.value\s*=\s*data\.text;\s*sendMessage\(\);/i,
+        'if (!_isChatBusy) { input.value = data.text; sendMessage(); }'
+      );
+      html = html.replace(
+        /if\s*\(\s*event\.key\s*===\s*"Enter"\s*\)\s*\{\s*event\.preventDefault\(\);\s*sendMessage\(\);\s*\}/i,
+        'if (event.key === "Enter") { event.preventDefault(); if (!_isChatBusy) sendMessage(); }'
       );
 
       // Normalizzazione script Cloudflare Rocket Loader
@@ -623,12 +832,11 @@ button:not(.mic-btn):active {
       // Carica l'HTML con il tema iniettato nell'iframe
       iframe.srcdoc = html;
       iframe.setAttribute('data-theme-injected', 'true');
-      console.info('GustAvo: Tema, logo footer, icone SVG e avatar iniettati con successo!');
+      console.info('GustAvo: Blocco anti-concorrenza, logo squadrato e rimozione totale emoji applicati!');
 
     } catch (err) {
       console.warn('GustAvo: Impossibile effettuare fetch per srcdoc (fallback ad iframe diretto):', err);
 
-      // Fallback: Tentativo di iniezione diretta tramite DOM se same-origin
       const tryDirectInjection = () => {
         try {
           const doc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);
@@ -643,19 +851,15 @@ button:not(.mic-btn):active {
             style.textContent = THEME_CSS;
             doc.head.appendChild(style);
 
-            // Sostituzione logo se presente
-            const logo = doc.querySelector('.header .logo');
-            if (logo) logo.src = gustavoLogoUrl;
-
-            // Rimozione stelline
-            const title = doc.querySelector('.header h2');
-            if (title) title.textContent = 'GustAvo';
+            const headerEl = doc.querySelector('.header');
+            if (headerEl) {
+              headerEl.innerHTML = `<img src="${gustavoLogoUrl}" class="logo" alt="Logo GustAvo">`;
+            }
 
             iframe.setAttribute('data-theme-injected', 'true');
-            console.info('GustAvo: Stile iniettato via contentDocument!');
           }
         } catch (e) {
-          // Cross-origin restriction standard
+          // Cross-origin fallback
         }
       };
 
