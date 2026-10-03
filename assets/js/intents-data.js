@@ -491,16 +491,39 @@ window.GUSTAVO_INTENTS_DATA = {
       "tag": "luogo_bar_mensa_macchinette",
       "patterns": [
         "Dove sono le macchinette?",
+        "dove sono le macchinette",
         "Dov'è il bar?",
+        "dov'è il bar",
+        "dov e il bar",
+        "dove si trova il bar",
+        "dove si trova il bar?",
         "Dov'è la mensa?",
+        "dov'è la mensa",
+        "dov e la mensa",
+        "dove e la mensa",
+        "dove si trova la mensa",
+        "dove si trova la mensa?",
+        "Mensa",
+        "Bar",
+        "Macchinette",
+        "Distributori",
+        "Distributori automatici",
         "Dove posso mangiare?",
+        "dove posso mangiare",
+        "dove si mangia",
+        "Dove mangiare a scuola",
+        "Pausa pranzo",
+        "Pranzo a scuola",
+        "Cibo e panini",
+        "Comprare la merenda",
+        "Prendere un caffè",
         "Distributori di snack e caffè",
         "Punto ristoro",
         "In che piano sono i distributori automatici?",
         "Come vado al bar della scuola?"
       ],
       "responses": [
-        "Il servizio Bar/Mensa e i distributori automatici di snack e bevande si trovano al Piano Terra.\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Area Ristoro](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "Il Bar/Punto Ristoro della scuola e i distributori automatici di snack, bevande e caffè si trovano al Piano Terra dell'Istituto.\n\nVisualizza la posizione su OpenLevelUp: [Apri Mappa Area Ristoro](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi chiedere conferma anche alla portineria all'ingresso."
       ]
     },
     {

@@ -1008,7 +1008,7 @@ function normalizeNlpText(str) {
 const STOP_WORDS_SET = new Set([
   "il", "lo", "la", "i", "gli", "le", "un", "uno", "una",
   "di", "a", "da", "in", "con", "su", "per", "tra", "fra",
-  "e", "ed", "o", "od", "che", "chi", "cui", "quale", "quali",
+  "e", "ed", "o", "od", "che", "chi", "cui", "quale", "quali", "quanto", "quanti",
   "mi", "ti", "si", "ci", "vi", "ne", "me", "te", "noi", "voi",
   "lui", "lei", "loro", "mio", "tuo", "suo", "nostro", "vostro",
   "del", "dello", "della", "dei", "degli", "delle",
@@ -1016,8 +1016,11 @@ const STOP_WORDS_SET = new Set([
   "nel", "nello", "nella", "nei", "negli", "nelle",
   "sul", "sullo", "sulla", "sui", "sugli", "sulle",
   "dal", "dallo", "dalla", "dai", "dagli", "dalle",
-  "sono", "sei", "e'", "ce", "c'e", "ce'", "ci",
-  "vorrei", "sapere", "dimmi", "puoi", "dirmi", "spiegarmi", "cosa", "come", "dove", "quando", "perche"
+  "sono", "sei", "e'", "ce", "c'e", "ce'", "ci", "sta", "stanno",
+  "trova", "trovano", "trovo", "trovare", "trovarsi", "situato", "situata", "situati", "situate",
+  "posizionato", "posizionata", "posizionati", "posizione", "ubicato", "ubicata",
+  "andare", "arrivare", "raggiungere", "vedere", "sapere", "dimmi", "puoi", "dirmi",
+  "spiegarmi", "mostrami", "cosa", "come", "dove", "dov", "quando", "perche"
 ]);
 
 function tokenizeQuery(text) {
@@ -1110,13 +1113,11 @@ function matchLocalIntent(query) {
       if (normQuery === normPattern) {
         return { intent: item, score: 1.0 };
       }
-      if (normQuery.length > 3 && normPattern.length > 3) {
-        if (normQuery.includes(normPattern) || normPattern.includes(normQuery)) {
-          const score = 0.95;
-          if (score > bestScore) {
-            bestScore = score;
-            bestMatch = item;
-          }
+      if (normPattern.length >= 3 && (normQuery === normPattern || normQuery.startsWith(normPattern + " ") || normQuery.endsWith(" " + normPattern) || normQuery.includes(" " + normPattern + " "))) {
+        const score = 0.95;
+        if (score > bestScore) {
+          bestScore = score;
+          bestMatch = item;
         }
       }
 
