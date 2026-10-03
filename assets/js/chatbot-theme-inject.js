@@ -795,6 +795,19 @@ button:disabled {
 let _isSpeaking = false;
 let _currentAudio = null;
 let _speechTimeout = null;
+let _ttsAbortController = null;
+const _ttsAudioCache = new Map();
+let _ttsNativeSpeaking = false;
+
+// Pre-riscaldamento e sblocco contesto audio su browser mobile
+function _unlockAudioContext() {
+  try {
+    const silent = new Audio("data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA");
+    silent.play().catch(() => {});
+  } catch (e) {}
+}
+window.addEventListener("click", _unlockAudioContext, { once: true, passive: true });
+window.addEventListener("touchstart", _unlockAudioContext, { once: true, passive: true });
 
 function setSpeakingState(speaking) {
   _isSpeaking = !!speaking;
@@ -835,6 +848,10 @@ function setSpeakingState(speaking) {
 }
 
 function stopSpeaking() {
+  if (_ttsAbortController) {
+    try { _ttsAbortController.abort(); } catch (e) {}
+    _ttsAbortController = null;
+  }
   if (_speechTimeout) {
     clearTimeout(_speechTimeout);
     _speechTimeout = null;
@@ -846,6 +863,10 @@ function stopSpeaking() {
     } catch (e) {}
     _currentAudio = null;
   }
+  if (window.speechSynthesis && window.speechSynthesis.speaking) {
+    try { window.speechSynthesis.cancel(); } catch (e) {}
+  }
+  _ttsNativeSpeaking = false;
   animateMouthStop();
   setSpeakingState(false);
 }
@@ -871,14 +892,14 @@ function animateMouthStart() {
     } else if (mouth) {
       mouth.style.height = h + "px";
     }
-  }, 80);
+  }, 75);
 
   eyeInterval = setInterval(() => {
     const x = Math.random() * 6 - 3;
     const y = Math.random() * 6 - 3;
     if (leftP) leftP.style.transform = 'translate(' + x + 'px,' + y + 'px)';
     if (rightP) rightP.style.transform = 'translate(' + x + 'px,' + y + 'px)';
-  }, 80);
+  }, 85);
 }
 
 function animateMouthStop() {
@@ -907,43 +928,38 @@ function formatBotMessage(text) {
     .replace(/\\n/g, '<br>');
 }
 
-function botSpeak(rawText) {
-  stopSpeaking();
-
-  // Rimuove QUALSIASI emoji dal testo della risposta
-  const cleanText = (rawText || "")
-    .replace(/[\\u{1F000}-\\u{1FAFF}\\u{2600}-\\u{27BF}\\u{FE00}-\\u{FE0F}]/gu, '')
-    .trim();
-
-  const cleanForTts = cleanText
-    .replace(/\\[([^\\]]+)\\]\\([^)]+\\)/g, '$1')
-    .replace(/https?:\\/\\/\\S+/g, '')
-    .replace(/↗/g, '')
-    .trim();
-
-  const p = document.createElement("div");
-  p.className = 'msg bot';
-  p.innerHTML = '<span class="strong">GustAvo:</span> ' + formatBotMessage(cleanText);
-  messages.appendChild(p);
-  messages.scrollTop = messages.scrollHeight;
-
-  const voiceEnabled = voiceToggle && voiceToggle.checked;
-
-  if (!voiceEnabled) {
-    setSpeakingState(false);
+function speakWithWebSpeechFallback(text) {
+  if (!window.speechSynthesis) {
+    stopSpeaking();
     return;
   }
-
-  setSpeakingState(true);
-  animateMouthStart();
-
-  const ttsUrl = "https://gustavo1.avoprogetti.it/api/tts?text=" + encodeURIComponent(cleanForTts);
-  const audio = new Audio(ttsUrl);
-  _currentAudio = audio;
-
-  const finishSpeaking = () => {
+  try {
+    window.speechSynthesis.cancel();
+    const utt = new SpeechSynthesisUtterance(text);
+    utt.lang = 'it-IT';
+    utt.rate = 1.05;
+    utt.pitch = 0.98;
+    utt.onstart = () => {
+      animateMouthStart();
+      setSpeakingState(true);
+    };
+    utt.onend = () => {
+      stopSpeaking();
+    };
+    utt.onerror = () => {
+      stopSpeaking();
+    };
+    _ttsNativeSpeaking = true;
+    window.speechSynthesis.speak(utt);
+  } catch (e) {
     stopSpeaking();
-  };
+  }
+}
+
+function playTtsAudioUrl(audioUrl, textForFallback) {
+  const audio = new Audio(audioUrl);
+  audio.preload = "auto";
+  _currentAudio = audio;
 
   audio.onplay = () => {
     animateMouthStart();
@@ -951,20 +967,114 @@ function botSpeak(rawText) {
   };
 
   audio.onended = () => {
-    finishSpeaking();
+    stopSpeaking();
   };
 
   audio.onerror = (e) => {
-    console.error("Errore TTS:", e);
-    finishSpeaking();
+    console.error("Errore playback audio:", e);
+    if (textForFallback) {
+      speakWithWebSpeechFallback(textForFallback);
+    } else {
+      stopSpeaking();
+    }
   };
 
   audio.play().catch(err => {
-    const readingTime = Math.min(Math.max(cleanText.length * 45, 1200), 5000);
-    _speechTimeout = setTimeout(() => {
-      finishSpeaking();
-    }, readingTime);
+    console.warn("Audio play bloccato o ritardato, fallback a Web Speech:", err);
+    if (textForFallback) {
+      speakWithWebSpeechFallback(textForFallback);
+    } else {
+      stopSpeaking();
+    }
   });
+}
+
+function botSpeak(rawText) {
+  stopSpeaking();
+
+  const cleanText = (rawText || "")
+    .replace(/[\\u{1F000}-\\u{1FAFF}\\u{2600}-\\u{27BF}\\u{FE00}-\\u{FE0F}]/gu, '')
+    .trim();
+
+  const cleanForTts = cleanText
+    .replace(/\\[([^\\]]+)\\]\\([^)]+\\)/g, '$1')
+    .replace(/https?:\\/\\/\\S+/g, '')
+    .replace(/[*_~`#>-]/g, ' ')
+    .replace(/↗/g, '')
+    .replace(/\\s+/g, ' ')
+    .trim();
+
+  const p = document.createElement("div");
+  p.className = 'msg bot';
+  p.innerHTML = '<span class="strong">GustAvo:</span> ' + formatBotMessage(cleanText);
+  messages.appendChild(p);
+  requestAnimationFrame(() => {
+    messages.scrollTop = messages.scrollHeight;
+  });
+
+  const voiceEnabled = voiceToggle && voiceToggle.checked;
+  if (!voiceEnabled || !cleanForTts) {
+    setSpeakingState(false);
+    return;
+  }
+
+  setSpeakingState(true);
+  animateMouthStart();
+
+  // 1. Verifica immediata nella Cache Audio Client (0ms latency per risposte già generate)
+  if (_ttsAudioCache.has(cleanForTts)) {
+    const cachedUrl = _ttsAudioCache.get(cleanForTts);
+    playTtsAudioUrl(cachedUrl, cleanForTts);
+    return;
+  }
+
+  // 2. Fetch asincrono ultra-ottimizzato con timeout rapido e fallback
+  _ttsAbortController = new AbortController();
+  const signal = _ttsAbortController.signal;
+  const ttsUrl = "https://gustavo1.avoprogetti.it/api/tts?text=" + encodeURIComponent(cleanForTts);
+
+  let hasResponded = false;
+  const ttsTimeoutId = setTimeout(() => {
+    if (!hasResponded && _isSpeaking) {
+      hasResponded = true;
+      console.warn("TTS API lenta o non responsiva, passaggio immediato a Web Speech");
+      if (_ttsAbortController) {
+        try { _ttsAbortController.abort(); } catch (e) {}
+      }
+      speakWithWebSpeechFallback(cleanForTts);
+    }
+  }, 3000);
+
+  fetch(ttsUrl, { signal, cache: "force-cache" })
+    .then(res => {
+      if (!res.ok) throw new Error("TTS status " + res.status);
+      return res.blob();
+    })
+    .then(blob => {
+      if (hasResponded) return;
+      hasResponded = true;
+      clearTimeout(ttsTimeoutId);
+
+      const blobUrl = URL.createObjectURL(blob);
+      if (_ttsAudioCache.size > 80) {
+        const oldestKey = _ttsAudioCache.keys().next().value;
+        try { URL.revokeObjectURL(_ttsAudioCache.get(oldestKey)); } catch (e) {}
+        _ttsAudioCache.delete(oldestKey);
+      }
+      _ttsAudioCache.set(cleanForTts, blobUrl);
+
+      if (_isSpeaking) {
+        playTtsAudioUrl(blobUrl, cleanForTts);
+      }
+    })
+    .catch(err => {
+      if (err.name === 'AbortError') return;
+      if (!hasResponded && _isSpeaking) {
+        hasResponded = true;
+        clearTimeout(ttsTimeoutId);
+        speakWithWebSpeechFallback(cleanForTts);
+      }
+    });
 }
 `;
 
@@ -1210,16 +1320,14 @@ async function sendMessage() {
   if (localMatch && localMatch.intent && localMatch.intent.responses && localMatch.intent.responses.length > 0) {
     const responses = localMatch.intent.responses;
     const pickedResponse = responses[Math.floor(Math.random() * responses.length)];
-    setTimeout(() => {
-      botSpeak(pickedResponse);
-    }, 200);
+    botSpeak(pickedResponse);
     return;
   }
 
   // 3. Fallback con il server remoto o fallback locale
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 4000);
+    const timeoutId = setTimeout(() => controller.abort(), 3500);
     const res = await fetch("https://gustavo1.avoprogetti.it/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -1253,6 +1361,8 @@ async function sendMessage() {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <base href="https://gustavo1.avoprogetti.it/">
+  <link rel="preconnect" href="https://gustavo1.avoprogetti.it" crossorigin>
+  <link rel="dns-prefetch" href="https://gustavo1.avoprogetti.it">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
