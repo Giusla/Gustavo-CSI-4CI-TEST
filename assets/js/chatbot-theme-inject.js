@@ -313,6 +313,41 @@ html, body {
   margin-right: 4px !important;
 }
 
+.msg.bot a {
+  color: var(--brand-green) !important;
+  text-decoration: underline !important;
+  font-weight: 600 !important;
+  transition: color 0.15s ease !important;
+}
+
+.msg.bot a:hover {
+  color: var(--brand-green-hover) !important;
+}
+
+.chat-map-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  background: linear-gradient(135deg, #00a86b 0%, #008f5b 100%) !important;
+  color: #ffffff !important;
+  font-size: 0.82rem !important;
+  font-weight: 600 !important;
+  padding: 6px 14px !important;
+  border-radius: 18px !important;
+  text-decoration: none !important;
+  margin: 6px 0 !important;
+  box-shadow: 0 3px 10px rgba(0, 168, 107, 0.25) !important;
+  transition: all 0.2s ease !important;
+}
+
+.chat-map-btn:hover {
+  background: linear-gradient(135deg, #008f5b 0%, #007a4d 100%) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 5px 14px rgba(0, 168, 107, 0.38) !important;
+}
+
 /* Avviso di Sistema / Stato (Badge centrato univoco senza emoji) */
 .msg.anti-spam-tip {
   align-self: center !important;
@@ -664,37 +699,6 @@ button:disabled {
   50% {
     box-shadow: 0 0 0 5px rgba(239, 68, 68, 0), 0 4px 14px rgba(239, 68, 68, 0.5);
   }
-}
-
-.msg.bot a {
-  color: var(--brand-blue) !important;
-  text-decoration: underline !important;
-  font-weight: 600 !important;
-}
-
-.chat-map-btn {
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 6px !important;
-  background: #eff6ff !important;
-  color: #0066ff !important;
-  border: 1px solid #bfdbfe !important;
-  padding: 6px 12px !important;
-  border-radius: 8px !important;
-  font-size: 0.82rem !important;
-  font-weight: 600 !important;
-  text-decoration: none !important;
-  margin: 6px 4px 2px 0 !important;
-  transition: all 0.2s ease !important;
-  line-height: 1.3 !important;
-}
-
-.chat-map-btn:hover {
-  background: #0066ff !important;
-  color: #ffffff !important;
-  border-color: #0066ff !important;
-  transform: translateY(-1px) !important;
-  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.28) !important;
 }
 `;
 
@@ -1235,120 +1239,6 @@ function matchLocalIntent(query) {
   return null;
 }
 
-function findAvogadroRoom(rawQuery) {
-  if (!rawQuery) return null;
-  const q = normalizeNlpText(rawQuery);
-
-  // 1. Mappa generale di tutti i piani
-  if (
-    q.includes("openlevelup") ||
-    (q.includes("mappa") && (q.includes("scuola") || q.includes("aule") || q.includes("piani") || q.includes("istituto") || q.includes("edificio") || q.includes("tutto") || q.includes("generale"))) ||
-    (q.includes("piantina") && (q.includes("scuola") || q.includes("aule") || q.includes("avogadro") || q.includes("piano"))) ||
-    q.includes("come mi oriento") || q.includes("orientarmi") || q.includes("orientamento aule") || q.includes("elenco aule") || q.includes("dove sono le aule") || q.includes("trovare le aule")
-  ) {
-    return "Ecco la mappa interattiva dei piani dell'IIS Avogadro su OpenLevelUp:\n\n" +
-      "Piano Seminterrato (Officine meccaniche, CNC): [Apri Mappa Livello -1](https://openlevelup.net/?l=-1#19/45.07069/7.69253)\n\n" +
-      "Piano Terra (Segreteria, Presidenza, Aula Magna, Palestra): [Apri Mappa Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\n" +
-      "Primo Piano (Aule serie 100, Lab Informatica, Biblioteca): [Apri Mappa Livello 1](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\n" +
-      "Secondo Piano (Aule serie 200, Lab Elettronica, Fisica): [Apri Mappa Livello 2](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\n" +
-      "Terzo Piano (Aule serie 300, Lab Chimica, Scienze): [Apri Mappa Livello 3](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\n" +
-      "Puoi verificare le posizioni delle aule anche in segreteria o alla portineria.";
-  }
-
-  // 2. Controllo per Aule numeriche (es. 105, la 214, 301, 12, S02)
-  const roomMatch = rawQuery.match(/\\b(?:aula|classe|stanza|lab(?:oratorio)?)\\s*(?:n[°\\.]?|numero)?\\s*([0-3]?[0-9]{2}|[0-9]{1,2}|s[0-9]{1,2})\\b/i) ||
-                    rawQuery.match(/\\b(?:dove|dov'e|dov e|trovo|trova|raggiungo|andare|andare a|cercare|cerco|a)\\s+(?:all['\\s]?|l['\\s]?|la\s+|il\s+)?(?:aula\s+)?([1-3][0-2][0-9]|[0-9]{1,2})\\b/i) ||
-                    rawQuery.match(/\\b([1-3][0-2][0-9])\\b/);
-
-  if (roomMatch) {
-    const rawNum = roomMatch[1].toUpperCase();
-    if (rawNum.startsWith("S")) {
-      return `L'aula ${rawNum} si trova al Piano Seminterrato (Livello -1), nell'area dedicata a officine e laboratori tecnici.\n\nVisualizza la mappa su OpenLevelUp: [Vedi Aula ${rawNum} sul Livello -1](https://openlevelup.net/?l=-1#19/45.07069/7.69253)\n\nPuoi chiedere conferma anche alla portineria all'ingresso.`;
-    }
-
-    const num = parseInt(rawNum, 10);
-    if (!isNaN(num)) {
-      if (num >= 300 && num <= 399) {
-        return `L'aula ${num} si trova al Terzo Piano (Livello 3), nell'area aule e laboratori di chimica e scienze.\n\nVisualizza la mappa su OpenLevelUp: [Vedi Aula ${num} sul Livello 3](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi verificare le informazioni anche in segreteria o alla portineria.`;
-      }
-      if (num >= 200 && num <= 299) {
-        return `L'aula ${num} si trova al Secondo Piano (Livello 2), lungo i corridoi delle aule e dei laboratori di elettronica e fisica.\n\nVisualizza la mappa su OpenLevelUp: [Vedi Aula ${num} sul Livello 2](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nPuoi verificare le informazioni anche in segreteria o alla portineria.`;
-      }
-      if (num >= 100 && num <= 199) {
-        return `L'aula ${num} si trova al Primo Piano (Livello 1), dove si trovano anche i laboratori di informatica e la biblioteca storica.\n\nVisualizza la mappa su OpenLevelUp: [Vedi Aula ${num} sul Livello 1](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPuoi verificare le informazioni anche in segreteria o alla portineria.`;
-      }
-      if (num >= 1 && num <= 50) {
-        return `L'aula ${num} si trova al Piano Terra (Livello 0), accessibile dall'atrio principale di Corso San Maurizio 8/A.\n\nVisualizza la mappa su OpenLevelUp: [Vedi Aula ${num} sul Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi chiedere ulteriori indicazioni anche alla portineria.`;
-      }
-    }
-  }
-
-  // 3. Biblioteca
-  if (q.includes("biblioteca") || q.includes("sala lettura")) {
-    return "La Biblioteca Storica dell'IIS Avogadro si trova al Primo Piano (Livello 1).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Biblioteca sul Livello 1](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPuoi verificare le informazioni di prestito e orari anche in segreteria o su itisavogadro.it.";
-  }
-
-  // 4. Laboratori di Informatica
-  if (q.includes("informatica") || q.includes("cisco") || q.includes("computer")) {
-    if (q.includes("dove") || q.includes("trova") || q.includes("trovo") || q.includes("andare") || q.includes("raggiungere") || q.includes("lab") || q.includes("laborator") || q.includes("aula") || q.includes("piani") || q.includes("piano") || q.includes("mappa") || q.includes("sono")) {
-      return "I Laboratori di Informatica (Lab 1, Lab 2, Lab 3) e l'Academy Cisco si trovano al Primo Piano (Livello 1).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Laboratori Informatica sul Livello 1](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPer maggiori dettagli puoi consultare anche il sito itisavogadro.it o la segreteria.";
-    }
-  }
-
-  // 5. Laboratori di Elettronica / Elettrotecnica / Sistemi / Fisica / Automazione / PLC
-  if (q.includes("elettronica") || q.includes("elettrotecnica") || q.includes("sistemi") || q.includes("fisica") || q.includes("robotica") || q.includes("plc")) {
-    if (q.includes("dove") || q.includes("trova") || q.includes("trovo") || q.includes("andare") || q.includes("raggiungere") || q.includes("lab") || q.includes("laborator") || q.includes("aula") || q.includes("piani") || q.includes("piano") || q.includes("mappa") || q.includes("sono")) {
-      return "I Laboratori di Elettronica, Elettrotecnica, Sistemi Automatici e Fisica si trovano al Secondo Piano (Livello 2).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Laboratori Elettronica sul Livello 2](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nPuoi verificare ulteriori informazioni anche in segreteria.";
-    }
-  }
-
-  // 6. Laboratori di Chimica / Scienze / Biologia / CAD
-  if (q.includes("chimica") || q.includes("scienze") || q.includes("biologia") || q.includes("cad")) {
-    if (q.includes("dove") || q.includes("trova") || q.includes("trovo") || q.includes("andare") || q.includes("raggiungere") || q.includes("lab") || q.includes("laborator") || q.includes("aula") || q.includes("piani") || q.includes("piano") || q.includes("mappa") || q.includes("sono")) {
-      return "I Laboratori di Chimica, Scienze Naturali, Biologia e le Aule CAD si trovano al Terzo Piano (Livello 3).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Laboratori Chimica e Scienze sul Livello 3](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi chiedere informazioni anche in segreteria.";
-    }
-  }
-
-  // 7. Officine Meccaniche / CNC / Torni / Saldatura
-  if (q.includes("officina") || q.includes("officine") || q.includes("meccanica") || q.includes("torni") || q.includes("cnc") || q.includes("saldatura") || q.includes("macchine utensili")) {
-    if (q.includes("dove") || q.includes("trova") || q.includes("trovo") || q.includes("andare") || q.includes("raggiungere") || q.includes("lab") || q.includes("laborator") || q.includes("officin") || q.includes("piani") || q.includes("piano") || q.includes("mappa") || q.includes("sono")) {
-      return "Le Officine Meccaniche, i reparti Macchine Utensili, Torni, CNC e Saldatura si trovano al Piano Seminterrato (Livello -1).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Officine sul Livello -1](https://openlevelup.net/?l=-1#19/45.07069/7.69253)\n\nPuoi chiedere assistenza al personale tecnico all'ingresso.";
-    }
-  }
-
-  // 8. Segreteria / Presidenza / Uffici
-  if (q.includes("segreteria") || q.includes("presidenza") || q.includes("dirigente") || q.includes("direzione") || q.includes("uffici") || q.includes("didattica")) {
-    return "La Segreteria (Didattica, Personale, Amministrativa) e la Presidenza si trovano al Piano Terra (Livello 0), vicino all'atrio principale dell'ingresso di Corso San Maurizio 8/A.\n\nVisualizza la posizione su OpenLevelUp: [Vedi Segreteria e Uffici sul Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi verificare orari e sportelli anche su itisavogadro.it o direttamente in segreteria.";
-  }
-
-  // 9. Aula Magna / Rattazzi
-  if (q.includes("aula magna") || q.includes("rattazzi")) {
-    return "L'Aula Magna 'Urbano Rattazzi' si trova al Piano Terra (Livello 0), proseguendo dall'ingresso principale lungo il corridoio centrale.\n\nVisualizza la posizione su OpenLevelUp: [Vedi Aula Magna sul Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)";
-  }
-
-  // 10. Palestra
-  if (q.includes("palestra") || q.includes("palestre") || q.includes("scienze motorie") || q.includes("ginnastica") || q.includes("spogliatoi")) {
-    return "La Palestra principale si trova al Piano Terra (Livello 0) con accesso agli spogliatoi al Piano Seminterrato (Livello -1).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Palestra sul Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)";
-  }
-
-  // 11. Bar / Mensa / Macchinette
-  if (q.includes("bar") || q.includes("mensa") || q.includes("ristoro") || q.includes("macchinette") || q.includes("caffe") || q.includes("mangiare") || q.includes("panino")) {
-    return "Il servizio Bar/Mensa e i punti ristoro con distributori automatici si trovano al Piano Terra (Livello 0).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Area Ristoro sul Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)";
-  }
-
-  // 12. Portineria / Ingresso
-  if (q.includes("portineria") || q.includes("ingresso") || q.includes("entrata") || q.includes("san maurizio")) {
-    return "La Portineria e l'Ingresso principale dell'Istituto si trovano al Piano Terra (Livello 0) in Corso San Maurizio 8/A a Torino.\n\nVisualizza la posizione su OpenLevelUp: [Vedi Ingresso sul Livello 0](https://openlevelup.net/?l=0#19/45.07069/7.69253)";
-  }
-
-  // 13. Sala Docenti / Vicepresidenza
-  if (q.includes("sala docenti") || q.includes("sala professori") || q.includes("vicepresidenza") || q.includes("vicepreside")) {
-    return "La Sala Docenti e l'ufficio di Vicepresidenza si trovano al Primo Piano (Livello 1).\n\nVisualizza la posizione su OpenLevelUp: [Vedi Sala Docenti sul Livello 1](https://openlevelup.net/?l=1#19/45.07069/7.69253)";
-  }
-
-  return null;
-}
-
 async function sendMessage() {
   if (_isSpeaking) {
     stopSpeaking();
@@ -1384,16 +1274,7 @@ async function sendMessage() {
     return;
   }
 
-  // 2. Ricerca Aule, Spazi e Mappa OpenLevelUp
-  const roomResponse = findAvogadroRoom(rawMsg);
-  if (roomResponse) {
-    setTimeout(() => {
-      botSpeak(roomResponse);
-    }, 350);
-    return;
-  }
-
-  // 3. Classificazione locale con intents.json
+  // 2. Classificazione locale con intents.json
   const localMatch = matchLocalIntent(rawMsg);
   if (localMatch && localMatch.intent && localMatch.intent.responses && localMatch.intent.responses.length > 0) {
     const responses = localMatch.intent.responses;
@@ -1404,7 +1285,7 @@ async function sendMessage() {
     return;
   }
 
-  // 4. Fallback con il server remoto o fallback locale
+  // 3. Fallback con il server remoto o fallback locale
   try {
     const res = await fetch("https://gustavo1.avoprogetti.it/chat", {
       method: "POST",
@@ -1458,127 +1339,50 @@ async function sendMessage() {
       iframe.srcdoc = html;
       iframe.setAttribute('data-theme-injected', 'true');
 
-      console.info('GustAvo: Modern UI con dataset integrato e piantina OpenLevelUp caricata con successo!');
+      console.info('GustAvo: Blocco anti-concorrenza, logo squadrato, dataset locale e rimozione totale emoji applicati!');
 
     } catch (err) {
-      console.warn('GustAvo: Fetch server bloccato o offline, genero layout Modern UI autonomo:', err);
+      console.warn('GustAvo: Fetch non riuscito dopo i tentativi, applico iniezione su iframe live:', err);
 
-      const standaloneHtml = `<!DOCTYPE html>
-<html lang="it">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <base href="https://gustavo1.avoprogetti.it/">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style id="gustavo-injected-theme">
-${THEME_CSS}
-  </style>
-</head>
-<body>
-  <div id="chat-container">
-    <div class="header">
-      <img src="${gustavoLogoUrl}" class="logo" alt="Logo GustAvo">
-    </div>
-    ${AVATAR_SVG_HTML.trim()}
-    <div class="voice-toggle">
-      <input type="checkbox" id="voiceToggle">
-      ${VOICE_LABEL_HTML.trim()}
-    </div>
-    <div id="messages">
-      <div class="msg bot">
-        <span class="strong">GustAvo:</span> Ciao! Sono GustAvo, l'assistente virtuale dell'IIS Avogadro. Chiedimi informazioni su corsi, aule, laboratori, orari o segreteria!
-      </div>
-    </div>
-    <div class="input-container">
-      <input type="text" id="input" placeholder="Scrivi un messaggio..." autocomplete="off">
-      <button onclick="sendMessage()">Invia</button>
-      ${MIC_BUTTON_HTML.trim()}
-    </div>
-    <div class="chat-disclaimer-note">GustAvo è un assistente virtuale e può commettere errori. Verifica le informazioni in segreteria o su <a href="https://www.itisavogadro.it" target="_blank" rel="noopener">itisavogadro.it</a></div>
-  </div>
-  <script>
-    const SERVER_URL = "https://gustavo1.avoprogetti.it";
-    const messages = document.getElementById("messages");
-    const input = document.getElementById("input");
-    const voiceToggle = document.getElementById("voiceToggle");
-    const mouth = document.getElementById("mouth");
-    const leftP = document.getElementById("left-pupil");
-    const rightP = document.getElementById("right-pupil");
-    let mouthInterval = null;
-    let eyeInterval = null;
-
-    ${mouthAndBotSpeakLogic}
-
-    ${robustSendLogic}
-
-    let mediaRecorder;
-    let audioChunks = [];
-    const micBtn = document.getElementById("mic-btn");
-
-    if (micBtn) {
-      micBtn.addEventListener("click", async () => {
-        if (_isSpeaking) { stopSpeaking(); return; }
-        if (_isChatBusy) return;
-        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-          alert("Registrazione audio non supportata in questo browser.");
-          return;
-        }
-        if (mediaRecorder && mediaRecorder.state === "recording") {
-          mediaRecorder.stop();
-          micBtn.classList.remove("listening");
-          return;
-        }
+      const applyThemeDirectly = () => {
         try {
-          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-          mediaRecorder = new MediaRecorder(stream);
-          audioChunks = [];
-          mediaRecorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
-          mediaRecorder.onstop = async () => {
-            const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
-            const formData = new FormData();
-            formData.append("file", audioBlob, "audio.webm");
-            setChatBusy(true, "Trascrizione vocale in corso...", "Trascrivo...");
-            try {
-              const res = await fetch(SERVER_URL + "/api/transcribe", { method: "POST", body: formData });
-              if (res.ok) {
-                const data = await res.json();
-                if (data.text) {
-                  input.value = data.text;
-                  setChatBusy(false);
-                  sendMessage();
-                  return;
-                }
-              }
-            } catch (e) {
-              console.warn("Trascrizione vocale non riuscita:", e);
+          const doc = iframe.contentDocument || (iframe.contentWindow && iframe.contentWindow.document);
+          if (doc && !doc.getElementById('gustavo-injected-theme')) {
+            if (!doc.head) return;
+            const fontLink = doc.createElement('link');
+            fontLink.rel = 'stylesheet';
+            fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap';
+            doc.head.appendChild(fontLink);
+
+            const style = doc.createElement('style');
+            style.id = 'gustavo-injected-theme';
+            style.textContent = THEME_CSS;
+            doc.head.appendChild(style);
+
+            const headerEl = doc.querySelector('.header');
+            if (headerEl) {
+              headerEl.innerHTML = `<img src="${gustavoLogoUrl}" class="logo" alt="Logo GustAvo">`;
             }
-            setChatBusy(false);
-          };
-          mediaRecorder.start();
-          micBtn.classList.add("listening");
-        } catch (err) {
-          console.warn("Permesso microfono non concesso:", err);
-        }
-      });
-    }
 
-    if (input) {
-      input.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          if (_isSpeaking) stopSpeaking();
-          else if (!_isChatBusy) sendMessage();
+            iframe.setAttribute('data-theme-injected', 'true');
+            console.info('GustAvo: Iniezione diretta eseguita con successo su iframe live.');
+          }
+        } catch (e) {
+          // Cross-origin fallback
         }
-      });
-    }
-  </script>
-</body>
-</html>`;
+      };
 
-      iframe.srcdoc = standaloneHtml;
-      iframe.setAttribute('data-theme-injected', 'true');
+      iframe.addEventListener('load', applyThemeDirectly);
+      applyThemeDirectly();
+
+      // Tentativi ripetuti a intervalli ravvicinati se il caricamento ritarda
+      const pollTimer = setInterval(() => {
+        applyThemeDirectly();
+        if (iframe.getAttribute('data-theme-injected') === 'true') {
+          clearInterval(pollTimer);
+        }
+      }, 500);
+      setTimeout(() => clearInterval(pollTimer), 8000);
     }
   }
 
