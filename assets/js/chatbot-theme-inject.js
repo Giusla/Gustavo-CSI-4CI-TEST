@@ -621,10 +621,22 @@ button:disabled {
   text-align: center !important;
   padding: 2px 10px 6px !important;
   line-height: 1.2 !important;
-  opacity: 0.8 !important;
+  opacity: 0.85 !important;
   user-select: none !important;
   flex: 0 0 auto !important;
   background: var(--bg-surface) !important;
+}
+
+.chat-disclaimer-note a {
+  color: var(--brand-blue) !important;
+  text-decoration: underline !important;
+  text-decoration-color: var(--brand-blue) !important;
+  text-underline-offset: 2px !important;
+  font-weight: 600 !important;
+}
+
+.chat-disclaimer-note a:hover {
+  color: var(--brand-blue-hover) !important;
 }
 `;
 
@@ -841,7 +853,7 @@ button:disabled {
       // 5b. Inserimento Disclaimer discreto sotto la casella di input
       html = html.replace(
         /(<div class="input-container">[\s\S]*?<\/div>)/i,
-        '$1\n    <div class="chat-disclaimer-note">GustAvo è un assistente virtuale e può commettere errori. Verifica sempre le informazioni su itisavogadro.it</div>'
+        '$1\n    <div class="chat-disclaimer-note">GustAvo è un assistente virtuale e può commettere errori. Verifica le informazioni in segreteria o su <a href="https://www.itisavogadro.it" target="_blank" rel="noopener">itisavogadro.it</a></div>'
       );
 
       // 6. RIMOZIONE TOTALE DI QUALSIASI EMOJI DALL'HTML
