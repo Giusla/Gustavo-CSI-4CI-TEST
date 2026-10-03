@@ -2,7 +2,7 @@
  * GustAvo — Knowledge Base Dataset (IIS Amedeo Avogadro)
  * File: assets/js/intents-data.js
  * Descrizione: Knowledge Base completa unificata derivata dallo scraping di itisavogadro.it
- *              e dal dataset legacy di vita scolastica e orientamento.
+ *              con risposte concise, naturali e immediate per gli studenti.
  */
 
 window.GUSTAVO_INTENTS_DATA = {
@@ -26,8 +26,8 @@ window.GUSTAVO_INTENTS_DATA = {
         "We ciao"
       ],
       "responses": [
-        "Ciao! Sono GustAvo, l'assistente virtuale dell'IIS Amedeo Avogadro di Torino. Come posso esserti utile oggi?",
-        "Buongiorno! Sono GustAvo, il chatbot dell'Avogadro. Dimmi pure cosa vorresti sapere su indirizzi di studio, segreteria, orari, vita scolastica o servizi della scuola!"
+        "Ciao! Sono GustAvo. Come posso aiutarti con l'Avogadro?",
+        "Ciao! Chiedimi pure quello che vuoi su corsi, orari, segreteria o vita scolastica!"
       ]
     },
     {
@@ -46,8 +46,8 @@ window.GUSTAVO_INTENTS_DATA = {
         "Ci sentiamo"
       ],
       "responses": [
-        "Arrivederci! Per qualsiasi altra informazione sull'IIS Avogadro sono sempre qui pronto ad aiutarti.",
-        "A presto! Ti auguro una buona giornata e un ottimo percorso di studio all'Avogadro!"
+        "Ciao, alla prossima! Se hai altri dubbi sono sempre qui.",
+        "A presto e in bocca al lupo per il tuo percorso all'Avogadro!"
       ]
     },
     {
@@ -66,7 +66,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "A cosa servi?"
       ],
       "responses": [
-        "Sono GustAvo, il chatbot ufficiale per l'orientamento dell'IIS Amedeo Avogadro di Torino! Sono nato dalla collaborazione tra gli studenti della classe 4CI / 5CI Informatica e CSI Piemonte nell'ambito dei percorsi PCTO (Storie di alternanza). Posso fornirti informazioni dettagliate su tutti i corsi di studio, orari, segreteria, laboratori, vita scolastica, progetti, docenti e servizi dell'istituto."
+        "Sono GustAvo, il chatbot dell'IIS Avogadro di Torino! Sono stato creato dagli studenti dell'indirizzo Informatica insieme a CSI Piemonte per aiutarti a scoprire corsi, orari, laboratori e servizi della scuola."
       ]
     },
     {
@@ -83,8 +83,8 @@ window.GUSTAVO_INTENTS_DATA = {
         "Grazie Gustavo"
       ],
       "responses": [
-        "Di nulla! È un piacere esserti utile. Se hai altre domande, chiedi pure!",
-        "Figurati! Per qualsiasi altra curiosità sulla nostra scuola sono a tua completa disposizione."
+        "Figurati, di nulla! Se hai altre domande chiedi pure.",
+        "Piacere mio! Fammi sapere se ti serve altro."
       ]
     },
     {
@@ -103,7 +103,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Telefono presidenza"
       ],
       "responses": [
-        "I recapiti ufficiali dell'IIS Amedeo Avogadro sono:\n• Sede: Corso San Maurizio 8/A, 10124 Torino (TO)\n• Telefono Centralino: +39 011 8153611\n• Email PEO: tois05100c@istruzione.it\n• Email PEC: tois05100c@pec.istruzione.it\n• Codice Fiscale: 97550230011\n• Codice Univoco Ufficio (Fatturazione Elettronica): UFEEBL\n• IBAN Banca Intesa: IT05K0306909208100000046188\n• IBAN Banca d'Italia: IT51C0100003245114300317144"
+        "Ecco i recapiti dell'Avogadro:\n• Sede: Corso San Maurizio 8/A, Torino\n• Tel: 011 8153611\n• Email: tois05100c@istruzione.it\n• PEC: tois05100c@pec.istruzione.it\n• Codice Fiscale: 97550230011\n• Codice Univoco Ufficio: UFEEBL\n• IBAN: IT05K0306909208100000046188"
       ]
     },
     {
@@ -119,7 +119,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Dov'è l'entrata principale?"
       ],
       "responses": [
-        "L'IIS Amedeo Avogadro si trova nel centro storico di Torino, all'indirizzo Corso San Maurizio 8/A (CAP 10124), all'angolo con via Rossini. L'edificio Liberty affaccia su un punto strategico con vista suggestiva sulla Mole Antonelliana ed è a due passi da Palazzo Nuovo, dai Giardini Reali e dall'Auditorium Rai."
+        "L'IIS Avogadro si trova in Corso San Maurizio 8/A (angolo via Rossini), in pieno centro a Torino, a due passi dalla Mole Antonelliana e da Palazzo Nuovo."
       ]
     },
     {
@@ -135,7 +135,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Mezzi per andare all'Avogadro"
       ],
       "responses": [
-        "L'istituto è ottimamente collegato con la rete di trasporti pubblici GTT di Torino:\n• Linee Tram e Bus: 3, 13, 15, 16, 18, 30, 55, 57, 57/, 61, 68\n• Autolinee Extraurbane SATTI (capolinea / fermata di via Fiocchetto)\n• Dalle stazioni ferroviarie Porta Nuova e Porta Susa la scuola è comodamente raggiungibile in pochi minuti di tram o autobus (linee 15, 61, 68)."
+        "Ci arrivi comodamente con i mezzi GTT: tram e bus 3, 13, 15, 16, 18, 30, 55, 56, 61, 68. Da Porta Nuova o Porta Susa bastano 10-15 minuti di tram (linea 15 o bus 68)."
       ]
     },
     {
@@ -150,7 +150,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Quale codice inserire per l'iscrizione?"
       ],
       "responses": [
-        "I codici meccanografici dell'Istituto sono indispensabili per le iscrizioni ministeriali:\n• Istituto Principale: TOIS05100C\n• Istituto Tecnico Diurno (Informatica, Elettronica, Meccanica): TOTF051011\n• Sezione Serale (Corsi per studenti lavoratori e adulti): TOTF05151A\n• Liceo Scientifico - Opzione Scienze Applicate: TOPS05101V"
+        "I codici per le iscrizioni sono:\n• Tecnico diurno: TOTF051011\n• Liceo Scienze Applicate: TOPS05101V\n• Corso Serale: TOTF05151A\n• Istituto Principale: TOIS05100C"
       ]
     },
     {
@@ -165,7 +165,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Quando riceve la segreteria?"
       ],
       "responses": [
-        "La Segreteria Didattica dell'IIS Avogadro riceve il pubblico nei seguenti giorni e fasce orarie:\n• Martedì: dalle 11:30 alle 13:30\n• Giovedì: dalle 11:30 alle 13:30\n• Sabato: dalle 10:00 alle 12:00\nPer richieste formali o invio documentazione digitale è sempre attiva la casella tois05100c@istruzione.it."
+        "Lo sportello della Segreteria Didattica è aperto:\n• Martedì e Giovedì: 11:30 - 13:30\n• Sabato: 10:00 - 12:00\nPer pratiche via email puoi scrivere a tois05100c@istruzione.it."
       ]
     },
     {
@@ -182,7 +182,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Nome della preside"
       ],
       "responses": [
-        "La dirigenza e i referenti principali dell'istituto sono:\n• Dirigente Scolastico: Dott.ssa Anna Luisa Chiappetta\n• Collaboratrice Vicaria (Vicepresidenza): Prof.ssa Laura Panaro\n• Responsabile Sezione Serale: Prof.ssa Serena Galati\n• Direttore dei Servizi Generali e Amministrativi (DSGA): Dott. Paolo Astuti"
+        "La Dirigente Scolastica è la Dott.ssa Anna Luisa Chiappetta, la vicaria è la Prof.ssa Laura Panaro, la referente del serale è la Prof.ssa Serena Galati e il DSGA è il Dott. Paolo Astuti."
       ]
     },
     {
@@ -196,7 +196,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Popolazione scolastica"
       ],
       "responses": [
-        "I dati dimensionali ufficiali dell'IIS Avogadro (da Scuola in Chiaro):\n• Istituto Tecnico: 1.017 alunni distribuiti su 44 classi (media di 23.11 alunni per classe)\n• Liceo Scientifico Scienze Applicate: 308 alunni distribuiti su 13 classi (media di 23.69 alunni per classe)\n• Complessivamente l'istituto accoglie oltre 1.300 studenti con circa 60 classi attive tra corsi diurni e serali."
+        "L'Avogadro conta oltre 1.300 studenti distribuiti su circa 60 classi tra Tecnico diurno, Liceo Scienze Applicate e corso Serale, con una media di circa 23 allievi per classe."
       ]
     },
     {
@@ -212,7 +212,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Che scuole ci sono all'Avogadro?"
       ],
       "responses": [
-        "L'offerta formativa dell'IIS Amedeo Avogadro comprende:\n1. Istituto Tecnico Tecnologico (Biennio Comune + Trienni):\n   • Informatica e Telecomunicazioni (articolazioni Informatica / Telecomunicazioni)\n   • Elettronica ed Elettrotecnica (articolazioni Elettronica / Elettrotecnica / Automazione)\n   • Meccanica, Meccatronica ed Energia (articolazione Meccanica e Meccatronica / Energia)\n2. Liceo Scientifico - Opzione Scienze Applicate\n3. Sezioni Internazionali Cambridge (Liceo e Tecnico con certificazioni IGCSE)\n4. Sezione Serale (percorso per adulti e studenti lavoratori nel settore industriale)"
+        "I percorsi attivi all'Avogadro sono:\n• Tecnico: Informatica e Telecomunicazioni, Elettronica ed Elettrotecnica, Meccanica e Meccatronica\n• Liceo: Scientifico opzione Scienze Applicate\n• Sezioni Cambridge IGCSE (con lezioni in lingua inglese)\n• Corso Serale per studenti lavoratori e adulti"
       ]
     },
     {
@@ -228,7 +228,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Linguaggi di programmazione studiati"
       ],
       "responses": [
-        "L'indirizzo 'Informatica e Telecomunicazioni' prepara periti altamente qualificati nello sviluppo software (Python, C/C++, Java, JavaScript, web & app), gestione database SQL/NoSQL, sicurezza informatica, intelligenza artificiale, architetture cloud, reti locali/geografiche e apparati di trasmissione. Le materie del triennio includono: Informatica, Sistemi e Reti, Tecnologie e Progettazione di Sistemi Informatici e di Telecomunicazioni (TPSIT), Telecomunicazioni e Gestione Progetto."
+        "A Informatica si studia programmazione (Python, C/C++, Java, Web/App), basi di dati SQL, reti, intelligenza artificiale e sicurezza. Materie chiave: Informatica, Sistemi e Reti, TPSIT e Telecomunicazioni."
       ]
     },
     {
@@ -243,7 +243,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Robotica all'Avogadro"
       ],
       "responses": [
-        "L'indirizzo 'Elettronica ed Elettrotecnica' forma figure specializzate nella progettazione di circuiti elettronici analogici e digitali, programmazione di microcontrollori e PLC industriali, robotica, sistemi di controllo automatico e impianti di generazione/distribuzione elettrica. Le materie caratterizzanti sono: Elettronica ed Elettrotecnica, Sistemi Automatici, Tecnologie e Progettazione di Sistemi Elettrici ed Elettronici (TPSEE)."
+        "A Elettronica ed Elettrotecnica si progettano circuiti, si programmano microcontrollori e PLC industriali e si studiano robotica e automazione. Materie principali: TPSEE, Sistemi Automatici ed Elettronica."
       ]
     },
     {
@@ -258,7 +258,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Officina meccanica della scuola"
       ],
       "responses": [
-        "L'indirizzo 'Meccanica, Meccatronica ed Energia' è incentrato sulla progettazione tridimensionale computerizzata (CAD 3D, SolidWorks, CATIA), lavorazioni avanzate su macchine utensili a controllo numerico (CNC), robotica industriale, termodinamica, impiantistica energetica e sostenibilità ambientale. Materie chiave: Meccanica Macchine ed Energia, Sistemi e Automazione, Disegno Progettazione e Organizzazione Industriale (DPOI), Tecnologie Meccaniche di Processo e Prodotto."
+        "A Meccanica e Meccatronica si impara la progettazione 3D CAD (SolidWorks), la lavorazione su macchine a controllo numerico (CNC), la robotica e gli impianti energetici. Materie chiave: DPOI, Meccanica e Sistemi."
       ]
     },
     {
@@ -273,7 +273,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Sbocchi liceo scienze applicate"
       ],
       "responses": [
-        "Il Liceo Scientifico - Opzione Scienze Applicate dell'Avogadro unisce la solida formazione culturale dei licei con un forte orientamento scientifico e tecnologico. Invece del latino, il piano di studi prevede l'Informatica per tutti i 5 anni, un robusto monte ore di Scienze Naturali (Chimica, Biologia, Scienze della Terra), Matematica e Fisica (affidate a docenti distinti per garantire il massimo approfondimento teorico e di laboratorio)."
+        "Il Liceo Scienze Applicate dell'Avogadro approfondisce matematica, fisica, chimica, biologia e informatica per tutti i 5 anni: al posto del latino ci sono tanta informatica e ore di laboratorio pratico."
       ]
     },
     {
@@ -288,7 +288,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Corsi IGCSE"
       ],
       "responses": [
-        "L'Avogadro è centro accreditato 'Cambridge International School'. Nelle sezioni Cambridge (disponibili sia per il Liceo Scienze Applicate che per l'Istituto Tecnico Informatica), alcune discipline curricolari vengono impartite in lingua inglese con la presenza di docenti madrelingua (metodologia CLIL). Gli studenti preparano e sostengono gli esami IGCSE (International General Certificate of Secondary Education), aprendo le porte alle università internazionali."
+        "Nelle sezioni Cambridge International alcune materie si svolgono in lingua inglese con docenti madrelingua (metodologia CLIL) e si preparano gli esami internazionali IGCSE."
       ]
     },
     {
@@ -304,7 +304,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Diploma serale Avogadro"
       ],
       "responses": [
-        "L'IIS Avogadro ospita il corso serale nel settore industriale più grande d'Italia (percorsi di istruzione di secondo livello per adulti e studenti lavoratori). Caratteristiche:\n• Orari serali compatti (dal tardo pomeriggio)\n• Flessibilità didattica e riconoscimento dei crediti formativi (lavorativi o scolastici pregressi)\n• Servizio di supporto e consulenza psicologica dedicato\n• Specializzazioni tecniche per il conseguimento del Diploma di Stato di Perito Industriale."
+        "Il corso serale dell'Avogadro è il più grande del settore industriale in Italia: orari dal tardo pomeriggio, riconoscimento di crediti formativi per chi lavora e diploma di Perito Industriale."
       ]
     },
     {
@@ -317,7 +317,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Scelta del triennio tecnico"
       ],
       "responses": [
-        "Il primo biennio del settore tecnologico è comune a tutti gli indirizzi tecnici: getta le basi culturali in Italiano, Storia, Inglese, Matematica, Diritto ed Economia, Scienze Integrate (Fisica, Chimica, Scienze della Terra) e include discipline propedeutiche come Tecnologie Informatiche (TIC) e Scienze e Tecnologie Applicate (STA). Al termine del 2° anno lo studente sceglie l'indirizzo definitivo per il triennio."
+        "I primi due anni del Tecnico sono uguali per tutti e danno una base generale e scientifica. La specializzazione (Informatica, Elettronica o Meccanica) si sceglie alla fine del 2° anno."
       ]
     },
     {
@@ -332,7 +332,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Iscrizioni online prima superiore"
       ],
       "responses": [
-        "Le iscrizioni alle classi prime si effettuano esclusivamente online a gennaio di ogni anno tramite la piattaforma ministeriale UNICA (www.istruzione.it/iscrizionionline/). Nella domanda occorre indicare il codice meccanografico corrispondente:\n• Tecnico Diurno: TOTF051011\n• Liceo Scienze Applicate: TOPS05101V"
+        "Le iscrizioni alla prima superiore si fanno online a gennaio sulla piattaforma UNICA del Ministero (istruzione.gov.it), indicando il codice meccanografico della scuola."
       ]
     },
     {
@@ -346,7 +346,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Cambiare da liceo a tecnico o viceversa"
       ],
       "responses": [
-        "Gli studenti che intendono cambiare indirizzo di studi nel corso del triennio o trasferirsi da un'altra scuola devono sostenere esami integrativi sulle materie non presenti nel piano di studi di provenienza. La richiesta va inoltrata alla Segreteria Didattica entro il mese di Giugno durante gli orari di apertura dello sportello."
+        "Se vuoi cambiare indirizzo o trasferirti da un'altra scuola devi fare domanda in segreteria entro giugno e sostenere gli esami integrativi sulle materie non presenti nel tuo piano precedente."
       ]
     },
     {
@@ -362,7 +362,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Ritiro pergamena maturità"
       ],
       "responses": [
-        "Procedura per certificati e pergamena di diploma:\n1. Effettua il versamento della tassa erariale di 15,13 € tramite modello F24 (sezione Erario, codice tributo TSC4, a nome dello studente diplomato).\n2. Invia la scansione della quietanza di pagamento e di un documento di identità valido a tois05100c@istruzione.it per richiedere il certificato digitale.\n3. Per il ritiro della pergamena originale (quando disponibile), presentati di persona allo sportello della segreteria con la quietanza F24 e un documento di riconoscimento in corso di validità."
+        "Per ritirare il diploma versa la tassa di 15,13 € con modello F24 (codice tributo TSC4). Poi presenta la quietanza e un documento d'identità allo sportello della segreteria."
       ]
     },
     {
@@ -375,7 +375,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Documenti dopo la maturità"
       ],
       "responses": [
-        "Ogni studente diplomato può scaricare in autonomia il proprio Curriculum dello Studente definitivo e il Supplemento Europass al Certificato accedendo all'E-Portfolio sulla piattaforma ministeriale UNICA (unica.istruzione.gov.it), all'interno della sezione 'Documenti'."
+        "Puoi scaricare il tuo Curriculum dello Studente e il supplemento Europass dal tuo E-Portfolio sulla piattaforma UNICA (unica.istruzione.gov.it)."
       ]
     },
     {
@@ -390,7 +390,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "App registro elettronico"
       ],
       "responses": [
-        "L'istituto si affida al Registro Elettronico ClasseViva di Spaggiari (web.spaggiari.eu). Per il recupero delle credenziali smarrite puoi cliccare su 'Password dimenticata?' nella pagina di login inserendo la tua email registrata. In caso di mancata ricezione dell'email o problemi con l'account, contatta la segreteria didattica."
+        "L'Avogadro usa ClasseViva Spaggiari. Se hai dimenticato la password usa la funzione 'Password dimenticata?' nella pagina di login o rivolgiti alla segreteria."
       ]
     },
     {
@@ -404,7 +404,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Bollettini scolastici telematici"
       ],
       "responses": [
-        "Tutti i versamenti a favore della scuola (contributo volontario, assicurazione, viaggi di istruzione, esami linguistici/informatici) avvengono tramite il portale ministeriale Pago in Rete (PagoPA), accessibile con SPID o CIE, garantendo ricevute telematiche immediate e detraibilità fiscale."
+        "Tutti i pagamenti scolastici (contributi, gite, assicurazione) si fanno online sul portale Pago in Rete / PagoPA tramite SPID o CIE."
       ]
     },
     {
@@ -420,7 +420,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Quanti laboratori ci sono?"
       ],
       "responses": [
-        "L'Avogadro dispone di un complesso strutturale e laboratoriale d'eccellenza:\n• Decine di laboratori specialistici (Informatica, Reti Cisco, Elettronica, Automazione industriale con PLC, Meccanica con macchine CNC e postazioni CAD 3D)\n• Aula Magna 'Giulio Cesare Rattazzi' multimediale da centinaia di posti (con accesso autonomo da via Rossini)\n• Storica Biblioteca con un patrimonio di oltre 20.000 volumi\n• Nuova grande palestra polifunzionale e campi sportivi\n• Mensa interna per studenti e personale"
+        "La scuola dispone di laboratori specializzati (Informatica, Cisco, PLC, Elettronica, CNC), della storica Biblioteca da 20.000 volumi, dell'Aula Magna Rattazzi, di palestre e della mensa interna."
       ]
     },
     {
@@ -435,7 +435,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Mappa interna scuola"
       ],
       "responses": [
-        "AvoFinder è l'applicazione di navigazione interna e mappa interattiva dell'Avogadro, sviluppata per orientarsi tra i piani, corridoi e padiglioni dell'istituto storico e trovare immediatamente aule, laboratori, uffici e palestre."
+        "AvoFinder è l'app con la mappa interattiva dell'Avogadro per orientarsi tra i piani e trovare al volo aule, laboratori e uffici."
       ]
     },
     {
@@ -449,7 +449,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Certificazione informatica ECDL"
       ],
       "responses": [
-        "Sì, l'IIS Avogadro è Test Center accreditato AICA per il conseguimento della Patente Europea del Computer (ICDL / ECDL). La scuola organizza corsi di preparazione (Full Standard e moduli specialistici) e regolari sessioni d'esame per studenti e personale."
+        "Sì, l'Avogadro è Test Center ufficiale ICDL/ECDL: organizza corsi di preparazione ed esami per la patente europea del computer."
       ]
     },
     {
@@ -462,7 +462,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Certificato B2 inglese a scuola"
       ],
       "responses": [
-        "L'IIS Avogadro promuove corsi extracurricolari di lingua inglese per il conseguimento delle certificazioni internazionali Cambridge English: B1 Preliminary (PET), B2 First (FCE) e C1 Advanced (CAE), con docenti madrelingua e sessioni d'esame in sede."
+        "L'Avogadro organizza corsi pomeridiani con docenti madrelingua per preparare le certificazioni Cambridge: B1 Preliminary (PET), B2 First (FCE) e C1 Advanced (CAE)."
       ]
     },
     {
@@ -476,7 +476,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Quante ore di PCTO bisogna fare?"
       ],
       "responses": [
-        "Il PCTO (Percorsi per le Competenze Trasversali e l'Orientamento) all'Avogadro comprende:\n• 150 ore obbligatorie per gli istituti tecnici e 90 ore per i licei nell'arco del triennio.\n• Tirocini estivi e curricolari in grandi aziende e partner storici (CSI Piemonte, realtà IT, automotive, ingegneria, enti di ricerca).\n• Progetti applicativi reali come il chatbot GustAvo e laboratori di sicurezza sul lavoro."
+        "Il PCTO prevede 150 ore per i tecnici e 90 ore per i licei: include stage estivi in aziende convenzionate (CSI Piemonte, realtà IT, automotive) e progetti pratici come GustAvo."
       ]
     },
     {
@@ -491,7 +491,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Origini dell'Avogadro"
       ],
       "responses": [
-        "L'IIS Avogadro è tra le più antiche e prestigiose istituzioni tecniche d'Italia:\n• Origini: 11 gennaio 1805 come scuola serale municipale di disegno.\n• 1878: Apertura della scuola di chimica grazie a un lascito del marchese Ainardo Benso di Cavour.\n• 1900: Creazione dell'Istituto Professionale Operaio nella sede di Corso San Maurizio, diretto dall'Ing. Ignazio Verrotti.\n• 1923: Regio Istituto Industriale di Torino con la Riforma Gentile.\n• 1946: Intitolazione ufficiale al fisico e chimico Amedeo Avogadro.\n• Dal suo tronco storico sono nati i principali istituti tecnici torinesi: Peano, Pininfarina, Grassi, Casale, Guarrella, Levi e Fermi."
+        "Fondata nel 1805 come scuola serale di disegno, l'Avogadro è tra i più antichi e celebri istituti tecnici d'Italia. Dal suo ceppo storico sono nate le altre scuole tecniche di Torino."
       ]
     },
     {
@@ -505,7 +505,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Consulenza psicologica gratuita"
       ],
       "responses": [
-        "L'istituto mette a disposizione di tutti gli studenti (corsi diurni e serale) uno Sportello di Ascolto Psicologico gratuito e confidenziale, tenuto da specialisti per supportare i ragazzi nel benessere emotivo, relazionale e nel superamento delle difficoltà di studio."
+        "Sì, a scuola c'è uno sportello di ascolto psicologico gratuito e confidenziale, a disposizione di tutti gli studenti del diurno e del serale."
       ]
     },
     {
@@ -519,7 +519,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Preparazione università scientifiche"
       ],
       "responses": [
-        "L'Avogadro offre un percorso d'eccellenza per la prosecuzione universitaria: per gli studenti dell'ultimo anno è attivo il Progetto Orientamento al Politecnico di Torino, che permette di prepararsi con docenti universitari e accedere a una sessione riservata del test di ammissione (TIL). Inoltre vengono organizzati stage estivi di fisica e matematica presso l'Università degli Studi di Torino e il PoliTO."
+        "Per gli studenti di 5ª è attivo il percorso con docenti del Politecnico di Torino e una sessione riservata per il test di ammissione (TIL), oltre a stage estivi con UniTO e PoliTO."
       ]
     },
     {
@@ -533,7 +533,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Gare di robotica"
       ],
       "responses": [
-        "L'istituto partecipa regolarmente a gare scientifiche di rilievo nazionale: Olimpiadi di Matematica, Fisica, Chimica, Astronomia, Neuroscienze, OliCyber (campionato di sicurezza informatica, con medaglie nazionali conquistate dai nostri allievi) e la Gara Nazionale di Informatica promossa dal Ministero."
+        "Gli studenti partecipano alle Olimpiadi di Informatica, Matematica, Fisica, Chimica e ai campionati di sicurezza informatica OliCyber, spesso salendo sul podio nazionale!"
       ]
     },
     {
@@ -548,7 +548,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Scambi linguistici all'estero"
       ],
       "responses": [
-        "Con il programma 'Avo International' (Erasmus+ e scambi internazionali), gli studenti partecipano a progetti di mobilità e scambi con partner europei a Pontevedra (Spagna), Nyborg (Danimarca), Madrid, Dublino (Irlanda), oltre a ospitare studenti stranieri in mobilità in ingresso e accogliere volontari del progetto AIESEC."
+        "Con il programma Avo International ed Erasmus+ ci sono scambi culturali e tirocini all'estero in Spagna, Danimarca, Irlanda e collaborazioni con AIESEC."
       ]
     },
     {
@@ -563,7 +563,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Attività innovative delle classi"
       ],
       "responses": [
-        "Tra i progetti interdisciplinari realizzati dalle classi spiccano:\n• CanSat (team 'AvoVoyagers'): progettazione e lancio di minisatelliti in lattina con l'ESA\n• Avo Mappers & Avo Finder: mappatura digitale degli spazi scolastici\n• A scuola di OpenCoesione (ASOC): monitoraggio civico dei finanziamenti pubblici\n• Progetto Telmotor: automazione e sensoristica avanzata\n• Laboratorio di Filmmaking: cortometraggi di sensibilizzazione sulla sicurezza sul lavoro (es. 'La Lista')."
+        "Tra i progetti delle classi spiccano CanSat (lancio di minisatelliti con l'ESA), AvoFinder per mappare la scuola, ASOC sulla trasparenza pubblica e laboratori di cortometraggi."
       ]
     },
     {
@@ -576,7 +576,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Tessera sconti cinema studenti"
       ],
       "responses": [
-        "La Carta dello Studente 'IoStudio' è il badge ufficiale del Ministero dell'Istruzione che attesta lo status di studente e consente di accedere a convenzioni e agevolazioni per musei, cinema, teatri, viaggi e acquisti tecnologici. Viene distribuita gratuitamente alle classi prime o richiesta tramite la segreteria."
+        "La tessera IoStudio è il badge del Ministero che attesta lo status di studente e dà sconti per musei, cinema, teatri e acquisti hi-tech. Viene consegnata al 1° anno."
       ]
     },
     {
@@ -590,7 +590,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Regolamento di disciplina"
       ],
       "responses": [
-        "I documenti normativi e i regolamenti (Regolamento d'Istituto, Statuto degli Studenti, Patto Educativo di Corresponsabilità, Regolamento Laboratori e Disciplina) sono liberamente consultabili sul sito istituzionale www.itisavogadro.it nella sezione 'Scuola' > 'Le carte della scuola'."
+        "Tutti i regolamenti (disciplina, laboratori, patto educativo) sono consultabili su itisavogadro.it nella sezione 'Le carte della scuola'."
       ]
     },
     {
@@ -603,7 +603,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Quali libri comprare?"
       ],
       "responses": [
-        "L'elenco ufficiale dei libri di testo adottati per tutte le classi e indirizzi (tecnico, liceo e serale) è pubblicato sul sito web www.itisavogadro.it nella sezione Didattica > Libri di testo."
+        "L'elenco dei libri di testo adottati per tutte le classi è pubblicato sul sito itisavogadro.it nella sezione Didattica > Libri di testo."
       ]
     },
     {
@@ -617,7 +617,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Esami di debito fine estate"
       ],
       "responses": [
-        "Le verifiche per il saldo del giudizio sospeso (debiti formativi) e i corsi di recupero estivi si tengono solitamente tra la fine di agosto e i primi giorni di settembre. I calendari dettagliati con aule e commissioni vengono pubblicati nelle circolari e nelle news del sito www.itisavogadro.it."
+        "I corsi di recupero estivi e gli esami per il debito (giudizio sospeso) si tengono a fine agosto / inizio settembre. Il calendario viene pubblicato nelle circolari del sito."
       ]
     },
     {
@@ -631,7 +631,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "A che ora suona la campanella?"
       ],
       "responses": [
-        "L'orario delle lezioni del diurno ha inizio alle 8:00 e si articola su moduli orari da 60 minuti in base all'indirizzo e all'orario settimanale. Il calendario delle festività e delle sospensioni didattiche segue le delibere regionali del Piemonte ed è consultabile nell'area 'Servizi' del sito www.itisavogadro.it."
+        "Le lezioni del diurno iniziano alle 8:00 con moduli orari da 60 minuti. Il calendario delle vacanze e delle festività segue le delibere regionali del Piemonte."
       ]
     },
     {
@@ -645,7 +645,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Orari intervallo scuola"
       ],
       "responses": [
-        "Durante la mattinata è prevista la consueta pausa di ricreazione (intervallo) tra la terza e la quarta ora (indicativamente dalle 10:55 alle 11:10), durante la quale gli studenti possono consumare la merenda e usufruire dei distributori automatici nei corridoi."
+        "L'intervallo è tra la terza e la quarta ora (dalle 10:55 alle 11:10), perfetto per fare merenda e staccare un attimo!"
       ]
     },
     {
@@ -658,7 +658,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Dove comprare cibo o bevande all'Avogadro?"
       ],
       "responses": [
-        "All'interno dell'edificio sono dislocati diversi distributori automatici (macchinette) di bevande calde, acqua, bibite e snack nei punti di passaggio e vicino ai corridoi principali. La scuola dispone inoltre di una mensa interna per gli studenti con orario pomeridiano o attività prolungate."
+        "Nei corridoi ci sono distributori automatici di snack, caffè e bibite. La scuola ha anche una mensa interna per chi fa orario pomeridiano."
       ]
     },
     {
@@ -671,7 +671,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Accesso internet per studenti e docenti"
       ],
       "responses": [
-        "L'istituto è interamente coperto da rete Wi-Fi didattica protetta. Gli studenti e i docenti possono accedere alla rete wireless utilizzando le proprie credenziali istituzionali Google Workspace (@itisavogadro.it) fornite all'inizio dell'anno scolastico."
+        "C'è il Wi-Fi didattico in tutto l'istituto: basta effettuare l'accesso con la tua email scolastica Google Workspace (@itisavogadro.it)."
       ]
     },
     {
@@ -683,7 +683,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Regolamento assemblee studentesche"
       ],
       "responses": [
-        "Gli studenti hanno diritto a un'assemblea di istituto al mese (fino a un giorno di durata) e a due ore mensili di assemblea di classe, previa richiesta formale firmata dai rappresentanti di classe/istituto e autorizzata dalla Dirigenza Scolastica nei termini previsti dal Regolamento."
+        "Gli studenti hanno diritto a un'assemblea d'istituto al mese e a due ore mensili di assemblea di classe, previa richiesta formale autorizzata dalla presidenza."
       ]
     },
     {
@@ -696,7 +696,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Come candidarsi a rappresentante?"
       ],
       "responses": [
-        "Ogni anno a inizio autunno si tengono le elezioni per eleggere:\n• 2 rappresentanti per ogni classe\n• 4 rappresentanti degli studenti nel Consiglio d'Istituto\n• I delegati alla Consulta Provinciale degli Studenti (CPS).\nI rappresentanti portano le proposte e le istanze degli studenti agli organi direttivi della scuola."
+        "Ogni autunno si eleggono 2 rappresentanti per classe, 4 nel Consiglio di Istituto e i delegati alla Consulta Provinciale degli Studenti (CPS)."
       ]
     },
     {
@@ -709,7 +709,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Regolamento fumo"
       ],
       "responses": [
-        "In conformità alla legge italiana e al Regolamento d'Istituto, è severamente vietato fumare (inclusi i dispositivi elettronici / svapo) in tutti i locali interni, cortili, ingressi e pertinenze dell'Istituto. La violazione comporta sanzioni amministrative pecuniarie e provvedimenti disciplinari."
+        "È severamente vietato fumare (anche sigarette elettroniche e svapo) in tutti i locali, cortili e pertinenze della scuola, con multe e sanzioni previste per legge."
       ]
     },
     {
@@ -721,7 +721,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Rastrelliere per biciclette scuola"
       ],
       "responses": [
-        "All'interno dei cortili dell'istituto sono presenti apposite rastrelliere e spazi delimitati per il parcheggio sicuro di biciclette, monopattini e scooter durante l'orario delle lezioni, a cui si accede dai cancelli dedicati."
+        "Nei cortili interni ci sono rastrelliere e spazi riservati dove parcheggiare bici, monopattini e scooter durante l'orario scolastico."
       ]
     },
     {
@@ -733,7 +733,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Abbigliamento per scienze motorie"
       ],
       "responses": [
-        "Per accedere alla palestra è obbligatorio indossare una tuta/abbigliamento sportivo adeguato e scarpe da ginnastica pulite con suola in gomma utilizzate esclusivamente per la palestra (da cambiare nello spogliatoio per preservare il parquet)."
+        "In palestra servono tuta/abbigliamento sportivo e scarpe da ginnastica pulite da usare esclusivamente sul parquet, da cambiare negli spogliatoi."
       ]
     },
     {
@@ -745,7 +745,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Camice per il laboratorio"
       ],
       "responses": [
-        "Nei laboratori didattici è vietato introdurre cibi o bevande e modificare le configurazioni hardware/software. Nei laboratori di chimica, meccanica ed elettrotecnica è obbligatorio indossare i DPI previsti (camice protettivo, scarpe antinfortunistiche o occhiali di protezione dove richiesto dai docenti)."
+        "Nei laboratori è vietato consumare cibo o bevande. Nei laboratori tecnici (chimica, meccanica, elettronica) è obbligatorio indossare i DPI (camice e scarpe adatte)."
       ]
     },
     {
@@ -757,7 +757,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Quanti punti di credito si possono avere?"
       ],
       "responses": [
-        "I voti sono espressi in decimi (da 1 a 10, con la sufficienza fissata al 6). Nel corso del triennio (classi 3ª, 4ª e 5ª) ogni studente accumula il 'credito scolastico' in base alla media dei voti finali, fino a un massimo di 40 punti complessivi che concorrono al voto finale dell'Esame di Stato (su 100)."
+        "I voti vanno da 1 a 10 (sufficienza al 6). Nel triennio si accumulano fino a 40 punti di credito scolastico che concorrono al voto finale della maturità (su 100)."
       ]
     },
     {
@@ -770,7 +770,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Deroghe al limite delle assenze"
       ],
       "responses": [
-        "Per la validità dell'anno scolastico è richiesta la frequenza di almeno tre quarti (75%) del monte ore annuale personalizzato. Il Collegio dei Docenti stabilisce motivate deroghe per gravi motivi di salute documentati da certificato medico, terapie continuative o partecipazione ad attività sportive agonistiche certificate."
+        "Per la validità dell'anno serve aver frequentato almeno il 75% del monte ore annuale. Motivati motivi di salute documentati possono consentire deroghe."
       ]
     },
     {
@@ -782,7 +782,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Sconti GTT Under 26"
       ],
       "responses": [
-        "Gli studenti residenti a Torino o nella Città Metropolitana possono richiedere l'abbonamento GTT Under 26 / studenti a tariffa agevolata ISEE direttamente sul portale GTT o tramite e-commerce. Se necessario, il certificato di frequenza scolastica può essere richiesto in segreteria o scaricato online."
+        "L'abbonamento studenti Under 26 si richiede online sul portale GTT a tariffa agevolata ISEE. Il certificato di frequenza si può richiedere in segreteria."
       ]
     },
     {
@@ -795,7 +795,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Giustificare assenza genitore"
       ],
       "responses": [
-        "Le assenze, le entrate in ritardo e le uscite anticipate si giustificano online tramite le credenziali genitore sul Registro Elettronico ClasseViva Spaggiari. Per ingressi dopo la prima ora o uscite anticipate prima del termine dell'orario, gli studenti minorenni devono essere ritirati da un genitore o presentare autorizzazione telematica registrata sul portale."
+        "Assenze, ingressi in ritardo e uscite anticipate si giustificano online tramite l'account genitore sul Registro Elettronico ClasseViva."
       ]
     },
     {
@@ -808,7 +808,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Comitato studentesco"
       ],
       "responses": [
-        "L'Istituto è governato dagli Organi Collegiali: il Consiglio d'Istituto (composto dal Dirigente Scolastico e da rappresentanti eletti di docenti, personale ATA, genitori e studenti), il Collegio dei Docenti, i Consigli di Classe e il Comitato di Valutazione."
+        "La scuola è guidata dagli Organi Collegiali: Consiglio d'Istituto (preside, docenti, genitori, ATA e studenti), Collegio Docenti e Consigli di Classe."
       ]
     },
     {
@@ -821,7 +821,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Ultime circolari della preside"
       ],
       "responses": [
-        "Tutte le circolari ufficiali, i comunicati del Dirigente e gli avvisi di selezione pubblica sono consultabili in tempo reale sul sito www.itisavogadro.it nelle sezioni 'Le circolari' e 'Albo Online'."
+        "Tutte le circolari e le comunicazioni ufficiali della scuola sono pubblicate su itisavogadro.it nelle sezioni Circolari e Albo Online."
       ]
     },
     {
@@ -834,7 +834,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Piattaforma Avonlife"
       ],
       "responses": [
-        "AvOnLife (avoonlife.itisavogadro.org) è il polo formativo dell'IIS Avogadro per la transizione digitale e l'innovazione didattica (Piano Scuola 4.0 / PNRR Futura), dedicato alla formazione continua del personale docente e scolastico."
+        "AvOnLife (avoonlife.itisavogadro.org) è il polo formativo dell'Avogadro dedicato alla didattica digitale e all'innovazione per i docenti."
       ]
     },
     {
@@ -863,16 +863,16 @@ window.GUSTAVO_INTENTS_DATA = {
         "Sei inutile"
       ],
       "responses": [
-        "Ti invito a mantenere un linguaggio consono, educato e rispettoso dell'ambiente scolastico. Come posso esserti utile per informazioni sull'IIS Avogadro?",
-        "Per favore, utilizza un tono rispettoso. Sono a tua disposizione per aiutarti con i corsi, la segreteria e i servizi dell'Avogadro."
+        "Ti invito a mantenere un linguaggio educato e rispettoso. Come posso aiutarti con le info sull'Avogadro?",
+        "Cerchiamo di esprimerci con rispetto. Se hai domande sulla scuola, sui corsi o sulla segreteria chiedi pure!"
       ]
     },
     {
       "tag": "fallback",
       "patterns": [],
       "responses": [
-        "Mi dispiace, non ho compreso appieno la tua domanda. Puoi provare a chiedermi informazioni su indirizzi di studio (Informatica, Elettronica, Meccanica, Liceo Scienze Applicate, Cambridge, Serale), orari della segreteria, contatti, sede, iscrizioni, vita scolastica o registro elettronico?",
-        "Non ho trovato una risposta specifica per questo quesito. Prova a riformulare la richiesta indicando un argomento della scuola (ad es. corsi, diploma, esami integrativi, orari, ricreazione, PCTO o progetti)!"
+        "Non sono sicuro di aver capito. Prova a chiedermi info su indirizzi di studio, orari, segreteria, iscrizioni o progetti dell'Avogadro!",
+        "Non ho trovato una risposta precisa. Prova a riformulare la domanda indicando l'argomento scolastico di tuo interesse!"
       ]
     }
   ]
