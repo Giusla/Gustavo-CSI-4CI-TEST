@@ -762,15 +762,17 @@ button:disabled {
     }
 
     try {
-      // 0. Caricamento del dataset locale intents.json
-      let localIntents = null;
-      try {
-        const intentsRes = await fetch('intents.json?v=' + Date.now());
-        if (intentsRes.ok) {
-          localIntents = await intentsRes.json();
+      // 0. Caricamento del dataset locale intents (da window.GUSTAVO_INTENTS_DATA o fetch intents.json)
+      let localIntents = (typeof window !== 'undefined' && window.GUSTAVO_INTENTS_DATA) ? window.GUSTAVO_INTENTS_DATA : null;
+      if (!localIntents) {
+        try {
+          const intentsRes = await fetch('intents.json?v=' + Date.now());
+          if (intentsRes.ok) {
+            localIntents = await intentsRes.json();
+          }
+        } catch (e) {
+          console.warn('Impossibile caricare intents.json dinamicamente:', e);
         }
-      } catch (e) {
-        console.warn('Impossibile caricare intents.json dinamicamente:', e);
       }
 
       // 1. Recupero dell'HTML del chatbot dal server ufficiale con retry garantito
@@ -1184,18 +1186,7 @@ async function sendMessage() {
       iframe.srcdoc = html;
       iframe.setAttribute('data-theme-injected', 'true');
 
-      // All'avvio dell'iframe applica la modalita corrente (modern o legacy) senza ricaricare
-      const onIframeReady = () => {
-        try {
-          const doc = iframe.contentDocument || iframe.contentWindow?.document;
-          if (doc) {
-            applyUiModeToDocument(doc, getUiMode());
-          }
-        } catch (e) {}
-      };
-      iframe.addEventListener('load', onIframeReady);
-
-      console.info('GustAvo: Blocco anti-concorrenza, logo squadrato, persistenza chat e rimozione totale emoji applicati!');
+      console.info('GustAvo: Blocco anti-concorrenza, logo squadrato, dataset locale e rimozione totale emoji applicati!');
 
     } catch (err) {
       console.warn('GustAvo: Fetch non riuscito dopo i tentativi, applico iniezione su iframe live:', err);
@@ -1252,44 +1243,6 @@ async function sendMessage() {
     }
   }
 
-  function applyUiModeToDocument(doc, mode) {
-    if (!doc) return;
-    const isLegacy = mode === 'legacy';
-    
-    // Toggle classe su html/body
-    if (doc.documentElement) {
-      doc.documentElement.classList.toggle('gustavo-legacy-mode', isLegacy);
-    }
-    if (doc.body) {
-      doc.body.classList.toggle('gustavo-legacy-mode', isLegacy);
-    }
-
-    // Abilita o disabilita il tema CSS iniettato
-    const styleEl = doc.getElementById('gustavo-injected-theme');
-    if (styleEl) {
-      styleEl.disabled = isLegacy;
-    }
-
-    // Toggle visibilità elementi Modern / Legacy
-    const modernAvatar = doc.getElementById('gustavo-modern-avatar');
-    if (modernAvatar) {
-      modernAvatar.style.display = isLegacy ? 'none' : '';
-    }
-    const legacyAvatar = doc.getElementById('gustavo-legacy-avatar');
-    if (legacyAvatar) {
-      legacyAvatar.style.display = isLegacy ? '' : 'none';
-    }
-
-    const modernLogo = doc.getElementById('gustavo-modern-logo');
-    if (modernLogo) {
-      modernLogo.style.display = isLegacy ? 'none' : '';
-    }
-    const legacyLogo = doc.getElementById('gustavo-legacy-logo');
-    if (legacyLogo) {
-      legacyLogo.style.display = isLegacy ? '' : 'none';
-    }
-  }
-
   function setUiMode(mode) {
     try {
       localStorage.setItem(UI_STORAGE_KEY, mode);
@@ -1300,17 +1253,14 @@ async function sendMessage() {
     const iframe = document.querySelector('.chatbot-iframe');
     if (!iframe) return;
 
-    try {
-      const doc = iframe.contentDocument || iframe.contentWindow?.document;
-      if (doc) {
-        applyUiModeToDocument(doc, mode);
-        console.info('GustAvo: Switch interfaccia eseguito istantaneamente senza reload. Modalita:', mode);
-        return;
-      }
-    } catch (e) {}
-
-    // Fallback se l'iframe non e ancora pronto
-    injectChatbotTheme();
+    if (mode === 'legacy') {
+      iframe.removeAttribute('srcdoc');
+      iframe.removeAttribute('data-theme-injected');
+      iframe.src = 'https://gustavo1.avoprogetti.it';
+      console.info('GustAvo: Modalità Legacy pura attivata (gustavo1.avoprogetti.it).');
+    } else {
+      injectChatbotTheme();
+    }
   }
 
   function updateUiSwitcherButtons(activeMode) {
@@ -1346,7 +1296,16 @@ async function sendMessage() {
 
     const currentMode = getUiMode();
     updateUiSwitcherButtons(currentMode);
-    injectChatbotTheme();
+    if (currentMode === 'legacy') {
+      const iframe = document.querySelector('.chatbot-iframe');
+      if (iframe) {
+        iframe.removeAttribute('srcdoc');
+        iframe.removeAttribute('data-theme-injected');
+        iframe.src = 'https://gustavo1.avoprogetti.it';
+      }
+    } else {
+      injectChatbotTheme();
+    }
   }
 
   // Esecuzione al caricamento del DOM
