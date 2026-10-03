@@ -21,7 +21,7 @@
     <meta name="twitter:description" content="GustAvo, Il chatbot che ti orienta a scuola · IIS Avogadro">
 
     <link rel="stylesheet" href="assets/css/style.css?v=4.28">
-    <script src="assets/js/main.js?v=4.19" defer></script>
+    <script src="assets/js/main.js?v=4.20" defer></script>
     <script src="assets/js/intents-data.js?v=6.1" defer></script>
     <script src="assets/js/chatbot-theme-inject.js?v=6.1" defer></script>
     <style>
@@ -132,7 +132,12 @@
             flex-wrap: wrap;
         }
 
-        /* Risoluzione conflitti chatbot: accessibilità sempre libera e mai sopra il tasto invio */
+        /* Disattivazione completa del widget accessibilità nella scheda del chatbot */
+        .chatbot-page .g-a11y-btn,
+        .chatbot-page .g-a11y-panel,
+        .chatbot-page .g-a11y-backdrop,
+        .chatbot-page #a11yTtsReadingBox,
+        .chatbot-page .g-guide-line,
         .chatbot-page .back-to-top-btn {
             display: none !important;
             visibility: hidden !important;
@@ -140,60 +145,7 @@
             pointer-events: none !important;
         }
 
-        /* Posizionamento accessibilità chatbot: centrato in verticale con l'avatar di Gustavo, vicino al bordo laterale */
-        .chatbot-page .g-a11y-btn {
-            top: 242px !important;
-            bottom: auto !important;
-            right: 20px !important;
-            width: 52px !important;
-            height: 52px !important;
-            z-index: 10005 !important;
-            box-shadow: 0 4px 16px rgba(0, 102, 255, 0.32), 0 2px 6px rgba(0, 0, 0, 0.12) !important;
-            -webkit-backdrop-filter: none !important;
-            backdrop-filter: none !important;
-        }
-
-        .chatbot-page .g-a11y-btn.is-active,
-        .chatbot-page .g-a11y-btn[aria-expanded="true"] {
-            box-shadow: 0 0 0 3px #ffffff, 0 0 0 6px #005ce6, 0 8px 24px rgba(0, 50, 150, 0.45) !important;
-        }
-
-        .chatbot-page .g-a11y-panel {
-            top: auto !important;
-            bottom: 48px !important;
-            right: 20px !important;
-            max-height: 55vh !important;
-            max-height: 55dvh !important;
-            z-index: 10000 !important;
-            transform-origin: center bottom !important;
-        }
-
-        .chatbot-page .g-a11y-backdrop {
-            z-index: 9998 !important;
-        }
-
         @media (max-width: 768px) {
-            .chatbot-page .g-a11y-btn {
-                top: 232px !important;
-                bottom: auto !important;
-                right: 14px !important;
-                width: 48px !important;
-                height: 48px !important;
-                z-index: 10005 !important;
-            }
-            .chatbot-page .g-a11y-panel {
-                top: auto !important;
-                bottom: 44px !important;
-                left: 12px !important;
-                right: 12px !important;
-                margin: 0 auto !important;
-                width: calc(100vw - 24px) !important;
-                max-width: 420px !important;
-                max-height: 55vh !important;
-                max-height: 55dvh !important;
-                z-index: 10000 !important;
-                transform-origin: center bottom !important;
-            }
             .chatbot-direct-bar {
                 padding: 6px 12px !important;
                 flex-direction: row !important;
@@ -216,13 +168,6 @@
 
         /* Layout ordinato e pulito per schermi stretti (< 390px) */
         @media (max-width: 390px) {
-            .chatbot-page .g-a11y-btn {
-                top: 228px !important;
-                right: 10px !important;
-                width: 46px !important;
-                height: 46px !important;
-                z-index: 10005 !important;
-            }
             .chatbot-direct-bar {
                 padding: 6px 10px !important;
                 flex-direction: column !important;

@@ -975,6 +975,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // 7. Sistema di Accessibilità GustAvo (Conforme Standard WCAG 2.1)
     // ----------------------------------------------------
     const initGustavoAccessibility = () => {
+        // Disattiva il widget di accessibilità esclusivamente nella scheda del chatbot
+        if (document.body.classList.contains('chatbot-page') ||
+            document.documentElement.classList.contains('chatbot-page-html') ||
+            window.location.pathname.endsWith('chatbot.html') ||
+            window.location.href.includes('chatbot.html')) {
+            return;
+        }
+
         // Evita duplicazioni nel DOM
         if (document.getElementById('gustavoA11yBtn')) return;
 
