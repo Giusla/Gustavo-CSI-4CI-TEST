@@ -1160,13 +1160,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (footerRect.top < windowHeight) {
                 const overlap = windowHeight - footerRect.top;
                 const newBottom = overlap + baseBottom;
+                const btnHeight = btn.offsetHeight || (isMobile ? 52 : 56);
+                const buttonClearance = 12; // distanza di sicurezza sopra al bottone sull'asse Y
                 btn.style.bottom = `${newBottom}px`;
-                panel.style.bottom = `${newBottom + (isMobile ? 64 : 72)}px`;
+                panel.style.bottom = `${newBottom + btnHeight + buttonClearance}px`;
                 if (readingBox) readingBox.style.bottom = `${newBottom}px`;
                 if (backToTopBtn) backToTopBtn.style.bottom = `${newBottom}px`;
             } else {
+                const btnHeight = btn.offsetHeight || (isMobile ? 52 : 56);
+                const buttonClearance = 12;
                 btn.style.bottom = '';
-                panel.style.bottom = '';
+                panel.style.bottom = `${baseBottom + btnHeight + buttonClearance}px`;
                 if (readingBox) readingBox.style.bottom = '';
                 if (backToTopBtn) backToTopBtn.style.bottom = '';
             }

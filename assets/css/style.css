@@ -4718,16 +4718,16 @@ html.g-highlight-links [role="button"] {
     }
 
     .g-a11y-panel {
-        left: 16px !important;
-        right: 16px !important;
-        margin: 0 auto !important;
-        bottom: 76px !important;
-        width: calc(100vw - 32px) !important;
-        max-width: 420px !important;
-        max-height: 56vh !important;
-        max-height: 56dvh !important;
-        z-index: 10006 !important;
-        transform-origin: center bottom !important;
+        left: 16px;
+        right: 16px;
+        margin: 0 auto;
+        bottom: 80px;
+        width: calc(100vw - 32px);
+        max-width: 420px;
+        max-height: 56vh;
+        max-height: 56dvh;
+        z-index: 10006;
+        transform-origin: center bottom;
     }
 
     .g-a11y-tooltip,
