@@ -1134,7 +1134,7 @@
         "Dove aula laboratorio tecnologico?"
       ],
       "responses": [
-        "L'aula laboratorio tecnologico si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Corridoio Piano Terra ↓ Zona del Laboratorio tecnologico ↓ Aula Laboratorio Tecnologico."
+        "L'aula laboratorio tecnologico si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Corridoio Piano Terra ↓ Zona del Laboratorio tecnologico ↓ Aula laboratorio tecnologico."
       ]
     },
     {
@@ -1661,7 +1661,7 @@
         "Dove aula disegno 1?"
       ],
       "responses": [
-        "L'aula disegno 1 si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Prosegui fino alla zona Ascensore scale 2 ↓ Corridoio delle aule 2/16 e 2/15 ↓ Prosegui verso il fondo dell'ala ↓ Aula disegno 1 (porta finale da verificare)."
+        "L'aula disegno 1 si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Prosegui fino alla zona Ascensore scale 2 ↓ Corridoio delle aule 2/16 e 2/15 ↓ Prosegui verso il fondo dell'ala ↓ Aula disegno 1."
       ]
     },
     {
@@ -2003,7 +2003,7 @@
         "Dove si trova l'aula 2/22?"
       ],
       "responses": [
-        "Non ho una posizione verificata per l'aula 222 nella mappa disponibile. Chiedi conferma al banco accoglienza: INGRESSO PRINCIPALE ↓ Atrio ↓ Banco accoglienza e informazioni."
+        "Non ho una posizione verificata per l'aula 222 (o 2/22) nella mappa disponibile. Chiedi conferma al banco accoglienza: INGRESSO PRINCIPALE ↓ Atrio ↓ Banco accoglienza e informazioni."
       ]
     },
     {
@@ -2022,7 +2022,7 @@
         "Dove si trova l'aula 2/23?"
       ],
       "responses": [
-        "Non ho una posizione verificata per l'aula 223 nella mappa disponibile. Chiedi conferma al banco accoglienza: INGRESSO PRINCIPALE ↓ Atrio ↓ Banco accoglienza e informazioni."
+        "Non ho una posizione verificata per l'aula 223 (o 2/23) nella mappa disponibile. Chiedi conferma al banco accoglienza: INGRESSO PRINCIPALE ↓ Atrio ↓ Banco accoglienza e informazioni."
       ]
     },
     {
@@ -2067,7 +2067,7 @@
         "Dove si trova il lab di informatica?"
       ],
       "responses": [
-        "Laboratorio informatica si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio del blocco affacciato su Corso San Maurizio ↓ Zona Saletta informatica progettazione docenti ↓ Laboratorio informatica."
+        "Il laboratorio informatica si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio del blocco affacciato su Corso San Maurizio ↓ Zona Saletta informatica progettazione docenti ↓ Laboratorio informatica."
       ]
     },
     {
@@ -2084,7 +2084,7 @@
         "Dov'è il laboratorio di informatica 2?"
       ],
       "responses": [
-        "Laboratorio informatica 2 si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Diramazione verso Laboratorio elettronica di base ↓ Laboratorio informatica 2 (accesso finale da verificare)."
+        "Il laboratorio informatica 2 si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Diramazione verso Laboratorio elettronica di base ↓ Laboratorio informatica 2 (accesso finale da verificare)."
       ]
     },
     {
@@ -2101,7 +2101,7 @@
         "Come raggiungo il laboratorio di elettronica?"
       ],
       "responses": [
-        "Laboratorio elettronica di base si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Diramazione verso Laboratorio informatica 2 ↓ Laboratorio elettronica di base (accesso finale da verificare)."
+        "Il laboratorio elettronica di base si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Diramazione verso Laboratorio informatica 2 ↓ Laboratorio elettronica di base (accesso finale da verificare)."
       ]
     },
     {
@@ -2116,7 +2116,7 @@
         "laboratorio fisica 1"
       ],
       "responses": [
-        "Laboratorio fisica 1 si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio del blocco di fisica e chimica ↓ Laboratorio fisica 1 (porta finale da verificare)."
+        "Il laboratorio fisica 1 si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio del blocco di fisica e chimica ↓ Laboratorio fisica 1 (porta finale da verificare)."
       ]
     },
     {
@@ -2131,7 +2131,7 @@
         "laboratorio fisica 2"
       ],
       "responses": [
-        "Laboratorio fisica 2 si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio del blocco di fisica e chimica ↓ Ramo verso Preparazione fisica ↓ Laboratorio fisica 2 (porta finale da verificare)."
+        "Il laboratorio fisica 2 si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio del blocco di fisica e chimica ↓ Ramo verso Preparazione fisica ↓ Laboratorio fisica 2 (porta finale da verificare)."
       ]
     },
     {
@@ -2146,7 +2146,7 @@
         "laboratorio automazione robotica domotica"
       ],
       "responses": [
-        "Laboratorio automazione robotica domotica si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Zona Laboratorio informatica 2 ↓ Laboratorio automazione robotica domotica (porta finale da verificare)."
+        "Il laboratorio automazione robotica domotica si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Zona Laboratorio informatica 2 ↓ Laboratorio automazione robotica domotica (porta finale da verificare)."
       ]
     },
     {
@@ -2161,7 +2161,7 @@
         "laboratorio sistemi elettrici"
       ],
       "responses": [
-        "Laboratorio sistemi elettrici si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Corridoio 2 ↓ Corridoio 3 ↓ Laboratorio sistemi elettrici (porta finale da verificare)."
+        "Il laboratorio sistemi elettrici si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Corridoio 2 ↓ Corridoio 3 ↓ Laboratorio sistemi elettrici (porta finale da verificare)."
       ]
     },
     {
@@ -2176,7 +2176,7 @@
         "sala sperimentazione elettrotecnica"
       ],
       "responses": [
-        "Sala sperimentazione elettrotecnica si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Corridoio 2 ↓ Corridoio 3 ↓ Corridoio 4 ↓ Sala sperimentazione elettrotecnica (porta finale da verificare)."
+        "La sala sperimentazione elettrotecnica si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Corridoio 2 ↓ Corridoio 3 ↓ Corridoio 4 ↓ Sala sperimentazione elettrotecnica (porta finale da verificare)."
       ]
     },
     {
@@ -2193,7 +2193,7 @@
         "Come vado al laboratorio di chimica?"
       ],
       "responses": [
-        "Laboratorio chimica si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio del blocco di fisica e chimica ↓ Ramo verso Preparazione chimica ↓ Laboratorio chimica (porta finale da verificare)."
+        "Il laboratorio chimica si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio del blocco di fisica e chimica ↓ Ramo verso Preparazione chimica ↓ Laboratorio chimica (porta finale da verificare)."
       ]
     },
     {
@@ -2209,7 +2209,7 @@
         "Dove si trova il laboratorio di scienze naturali?"
       ],
       "responses": [
-        "Laboratorio di Scienze si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Corridoio 2 ↓ Corridoio 3 ↓ Laboratorio di Scienze."
+        "Il laboratorio di scienze si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Corridoio 2 ↓ Corridoio 3 ↓ Laboratorio di Scienze."
       ]
     },
     {
@@ -2224,7 +2224,7 @@
         "laboratorio cad-cam"
       ],
       "responses": [
-        "Laboratorio cad-cam si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Corridoio Piano Terra ↓ Corridoio officine ↓ Zona Controllo numerico ↓ Laboratorio cad-cam (accesso finale da verificare)."
+        "Il laboratorio cad-cam si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Corridoio Piano Terra ↓ Corridoio officine ↓ Zona Controllo numerico ↓ Laboratorio cad-cam (accesso finale da verificare)."
       ]
     },
     {
@@ -2242,7 +2242,7 @@
         "Come vado in segreteria?"
       ],
       "responses": [
-        "Segreteria didattica si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Banco accoglienza ↓ Zona uffici ↓ Segreteria didattica."
+        "La segreteria didattica si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Banco accoglienza ↓ Zona uffici ↓ Segreteria didattica."
       ]
     },
     {
@@ -2258,7 +2258,7 @@
         "Dove si trova l'ufficio del dirigente scolastico?"
       ],
       "responses": [
-        "Presidenza si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Banco accoglienza ↓ Zona uffici ↓ Presidenza."
+        "La presidenza si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Banco accoglienza ↓ Zona uffici ↓ Presidenza."
       ]
     },
     {
@@ -2274,7 +2274,7 @@
         "Palestra principale"
       ],
       "responses": [
-        "Palestra grande si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Corridoio Piano Terra ↓ Zona Biblioteca ↓ Prosegui verso lʼarea sportiva ↓ Palestra grande (accesso finale da verificare)."
+        "La palestra grande si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Corridoio Piano Terra ↓ Zona Biblioteca ↓ Prosegui verso lʼarea sportiva ↓ Palestra grande (accesso finale da verificare)."
       ]
     },
     {
@@ -2290,7 +2290,7 @@
         "Palestrina"
       ],
       "responses": [
-        "Palestra piccola si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Corridoio Piano Terra ↓ Area sportiva ↓ Prosegui verso la zona spogliatoi e officine ↓ Palestra piccola (accesso finale da verificare)."
+        "La palestra piccola si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Corridoio Piano Terra ↓ Area sportiva ↓ Prosegui verso la zona spogliatoi e officine ↓ Palestra piccola (accesso finale da verificare)."
       ]
     },
     {
@@ -2307,7 +2307,7 @@
         "Come vado al bar della scuola?"
       ],
       "responses": [
-        "Bar si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Diramazione Corridoio bar ↓ Bar (porta finale da verificare)."
+        "Il bar si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Diramazione Corridoio bar ↓ Bar (porta finale da verificare)."
       ]
     },
     {
@@ -2324,7 +2324,7 @@
         "Come vado in mensa?"
       ],
       "responses": [
-        "Mensa si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Diramazione Corridoio bar ↓ Zona Bar ↓ Mensa (accesso finale da verificare)."
+        "La mensa si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Diramazione Corridoio bar ↓ Zona Bar ↓ Mensa (accesso finale da verificare)."
       ]
     },
     {

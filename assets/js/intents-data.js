@@ -5,6 +5,8 @@
  *              con risposte pulite, naturali e concise senza simboli speciali.
  */
 
+
+
 window.GUSTAVO_INTENTS_DATA = {
   "intents": [
     {
@@ -17,7 +19,6 @@ window.GUSTAVO_INTENTS_DATA = {
         "Hey",
         "Ciao Gustavo",
         "Come va?",
-        "C'è qualcuno?",
         "Ehi ciao",
         "Ciao bot",
         "Buondì",
@@ -41,7 +42,6 @@ window.GUSTAVO_INTENTS_DATA = {
         "Ciao grazie di tutto",
         "Alla prossima",
         "Devo andare",
-        "Chiudi chat",
         "Buona notte",
         "Ci sentiamo"
       ],
@@ -82,350 +82,216 @@ window.GUSTAVO_INTENTS_DATA = {
         "Mappa edificio",
         "Come trovare le aule",
         "Elenco aule e piani",
-        "Piantina dell'istituto",
-        "Piantina delle aule",
-        "Come orientarsi all'Avogadro",
+        "Piantina dellʼistituto",
         "Mappa interattiva",
         "Planimetria scuola",
-        "Come sono distribuiti i piani",
-        "Mostrami la mappa"
+        "Mostrami la mappa",
+        "Mappa interna scuola",
+        "Come trovo unʼaula allʼAvogadro?"
       ],
       "responses": [
-        "Ecco la mappa interattiva dei piani dell'IIS Avogadro:\n\nPiano Terra (Segreteria, Presidenza, Aula Magna, Biblioteca, Palestre, Officine Meccaniche, CNC): [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPrimo Piano (Aule serie 100, Lab Informatica): [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nSecondo Piano (Aule serie 200, Lab Elettronica, Fisica): [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nTerzo Piano (Aule serie 300, Lab Chimica, Scienze): [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nQuarto Piano (Aule serie 400): [Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)\n\nPuoi anche chiedermi un'aula o un laboratorio specifico, come 'Dov\\'è l\\'aula 223?' o 'Dov\\'è la segreteria?'!"
+        "Puoi consultare la mappa qui: https://openlevelup.net/?l=0#19/45.07069/7.69253. Scrivimi il nome o il codice completo dellʼaula per ricevere il suo percorso."
       ]
     },
     {
       "tag": "aule_serie_100_primo_piano",
       "patterns": [
-        "Dove sono le aule serie 100?",
-        "dove sono le aule serie 100",
         "Dove sono le aule del primo piano?",
-        "dove si trovano le aule del primo piano",
-        "Aule primo piano",
-        "aule primo piano",
-        "Aule serie 100",
-        "aule serie 100",
-        "Aule al primo piano",
-        "Come raggiungere le aule al primo piano",
-        "Primo piano aule",
-        "Aule 100"
+        "Come raggiungo il primo piano?",
+        "Aule del primo piano",
+        "Come arrivo al piano 1?"
       ],
       "responses": [
-        "Le aule della serie 100 (da 101 a 130) si trovano al Primo Piano, dove sono presenti anche i laboratori di informatica.\n\nVisualizza la mappa: [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria."
+        "Per raggiungere il primo piano: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1. Per il percorso fino alla porta, indicami il numero completo o il nome dell'aula."
       ]
     },
     {
       "tag": "aule_serie_200_secondo_piano",
       "patterns": [
-        "Dove sono le aule serie 200?",
-        "dove sono le aule serie 200",
         "Dove sono le aule del secondo piano?",
-        "dove si trovano le aule del secondo piano",
-        "Aule secondo piano",
-        "aule secondo piano",
-        "Aule serie 200",
-        "aule serie 200",
-        "Aule al secondo piano",
-        "Come raggiungere le aule al secondo piano",
-        "Secondo piano aule",
-        "Aule 200"
+        "Come raggiungo il secondo piano?",
+        "Aule del secondo piano",
+        "Come arrivo al piano 2?"
       ],
       "responses": [
-        "Le aule della serie 200 (da 201 a 230) si trovano al Secondo Piano, lungo i corridoi dove sono situati anche i laboratori di elettronica, fisica e sistemi automatici.\n\nVisualizza la mappa: [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nPuoi verificare le informazioni anche in segreteria o alla portineria."
+        "Per raggiungere il secondo piano: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2. Per il percorso fino alla porta, indicami il numero completo o il nome dell'aula."
       ]
     },
     {
       "tag": "aule_serie_300_terzo_piano",
       "patterns": [
-        "Dove sono le aule serie 300?",
-        "dove sono le aule serie 300",
         "Dove sono le aule del terzo piano?",
-        "dove si trovano le aule del terzo piano",
-        "Aule terzo piano",
-        "aule terzo piano",
-        "Aule serie 300",
-        "aule serie 300",
-        "Aule al terzo piano",
-        "Come raggiungere le aule al terzo piano",
-        "Terzo piano aule",
-        "Aule 300"
+        "Come raggiungo il terzo piano?",
+        "Aule del terzo piano",
+        "Come arrivo al piano 3?"
       ],
       "responses": [
-        "Le aule della serie 300 (da 301 a 330) si trovano al Terzo Piano, nell'area dedicata alle aule e ai laboratori di chimica, biologia, scienze naturali e CAD.\n\nVisualizza la mappa: [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi chiedere conferma anche alla portineria o in segreteria."
+        "Per raggiungere il terzo piano: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 3. Per il percorso fino alla porta, indicami il numero completo o il nome dell'aula."
       ]
     },
     {
       "tag": "aule_serie_400_quarto_piano",
       "patterns": [
-        "Dove sono le aule serie 400?",
-        "dove sono le aule serie 400",
         "Dove sono le aule del quarto piano?",
-        "dove si trovano le aule del quarto piano",
-        "Aule quarto piano",
-        "aule quarto piano",
-        "Aule serie 400",
-        "aule serie 400",
-        "Aule al quarto piano",
-        "Come raggiungere le aule al quarto piano",
-        "Quarto piano aule",
-        "Aule 400"
+        "Come raggiungo il quarto piano?",
+        "Aule del quarto piano",
+        "Come arrivo al piano 4?"
       ],
       "responses": [
-        "Le aule della serie 400 (da 401 a 430) si trovano al Quarto Piano dell'Istituto.\n\nVisualizza la mappa: [Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)\n\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria."
+        "Per raggiungere il quarto piano: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 4. Per il percorso fino alla porta, indicami il numero completo o il nome dell'aula."
       ]
     },
     {
       "tag": "struttura_piani_numerazione_aule",
       "patterns": [
-        "Ci sono aule al piano terra?",
-        "Dove sono le aule 1 2 3?",
-        "Aula 1",
-        "Aula 2",
-        "Aula 10",
-        "Aula 12",
-        "Aula 20",
-        "Aule piano terra",
         "Come sono numerate le aule?",
-        "Numerazione delle aule",
-        "Aule piano 0"
+        "Cosa significa 2/15?",
+        "Come leggo il numero di unʼaula?"
       ],
       "responses": [
-        "All'IIS Avogadro le aule sono contrassegnate da numeri a tre cifre in base al piano:\n- Serie 100 (101-130): Primo Piano\n- Serie 200 (201-230): Secondo Piano\n- Serie 300 (301-330): Terzo Piano\n- Serie 400 (401-430): Quarto Piano\n- Serie S / Officine: Piano Terra e Seminterrato\n\nAl Piano Terra si trovano la Segreteria, la Presidenza, la Biblioteca Storica, l'Aula Magna, le Palestre, le Officine Meccaniche e il Bar.\n\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "Nella mappa, il numero prima della barra indica il piano: per esempio 2/15 è al piano 2. Aula 3.0 è invece il nome di un laboratorio al piano terra. Per i codici senza barra, come 215, la corrispondenza va confermata."
       ]
     },
     {
       "tag": "luogo_seminterrato",
       "patterns": [
-        "Dov'è il seminterrato?",
-        "dove il seminterrato",
-        "dov'è il seminterrato",
-        "dove e il seminterrato",
-        "Dove si trova il seminterrato?",
-        "Cosa c'è al seminterrato?",
-        "Piano seminterrato",
-        "Seminterrato",
-        "Piano -1",
-        "Spogliatoi seminterrato",
-        "Come andare al seminterrato"
+        "Dovʼè il seminterrato?",
+        "Come vado al seminterrato?"
       ],
       "responses": [
-        "Il Piano Seminterrato dell'IIS Avogadro ospita gli spogliatoi delle palestre e alcuni locali tecnici/laboratori. Vi si accede dalle scale interne vicino all'area sportiva e al piano terra.\n\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "Non ho verificato il percorso completo verso il seminterrato. Chiedi la scala corretta al banco accoglienza: INGRESSO PRINCIPALE ↓ Atrio ↓ Banco accoglienza e informazioni."
       ]
     },
     {
       "tag": "luogo_biblioteca",
       "patterns": [
-        "Dov'è la biblioteca?",
-        "dove e la biblioteca",
+        "Dovʼè la biblioteca?",
         "Dove si trova la biblioteca?",
         "Come vado in biblioteca?",
         "Biblioteca storica",
-        "Dove sono i libri?",
-        "Sala lettura biblioteca",
-        "In che piano è la biblioteca?",
-        "Dove trovo la biblioteca?",
-        "Posizione biblioteca",
-        "Biblioteca Avogadro"
+        "Sala lettura biblioteca"
       ],
       "responses": [
-        "La Biblioteca Storica dell'IIS Avogadro si trova al Piano Terra ed è uno spazio dedicato a consultazione, studio e conservazione del patrimonio storico dell'istituto (non è attivo il prestito libri per l'esterno).\n\nVisualizza la mappa: [Apri Mappa Biblioteca](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi chiedere ulteriori informazioni per orari o visite alla portineria o in segreteria."
+        "La Biblioteca è al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Corridoio Piano Terra ↓ Zona Aula studenti e Infermeria ↓ Biblioteca. La porta finale va verificata."
       ]
     },
     {
       "tag": "luogo_lab_informatica",
       "patterns": [
         "Dove sono i laboratori di informatica?",
-        "dove sono i laboratori di informatica",
-        "Dov'è il laboratorio di informatica?",
-        "Dove si trova il lab di informatica?",
-        "Laboratori di informatica",
-        "Lab 1 informatica",
-        "Lab 2 informatica",
-        "Lab 3 informatica",
-        "Dove sono i computer?",
-        "Laboratorio Cisco Academy",
-        "In che piano sono i laboratori di informatica?",
-        "Come vado ai laboratori di informatica?",
-        "Dove trovo i laboratori di informatica?"
+        "Quali laboratori di informatica ci sono?",
+        "Dove sono i computer?"
       ],
       "responses": [
-        "I Laboratori di Informatica (Lab 1, Lab 2, Lab 3) e l'Academy Cisco si trovano al Primo Piano.\n\nVisualizza la mappa: [Apri Mappa Lab Informatica](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nPer maggiori dettagli sui corsi puoi consultare il sito itisavogadro.it o la segreteria."
+        "Cerchi il Laboratorio informatica al piano 2 oppure il Laboratorio informatica 2 al piano 1? Indicami quale per avere il percorso corretto."
       ]
     },
     {
       "tag": "luogo_lab_elettronica",
       "patterns": [
-        "Dove sono i laboratori di elettronica?",
-        "Dov'è il laboratorio di elettronica?",
-        "Laboratori di elettrotecnica",
-        "Laboratorio di sistemi automatici",
-        "Laboratorio di fisica",
-        "Dove si trova il lab di fisica?",
-        "Laboratorio PLC e robotica",
-        "In che piano è il laboratorio di elettronica?",
-        "Come raggiungere i laboratori di elettronica",
-        "Dove trovo i laboratori di elettronica e sistemi?"
+        "Dove sono i laboratori di elettronica e sistemi?",
+        "Dove sono i laboratori di elettrotecnica?"
       ],
       "responses": [
-        "I Laboratori di Elettronica, Elettrotecnica, Sistemi Automatici e Fisica si trovano al Secondo Piano.\n\nVisualizza la mappa: [Apri Mappa Lab Elettronica](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nPuoi chiedere indicazioni anche in segreteria o alla portineria."
+        "I laboratori di elettronica ed elettrotecnica mappati sono al piano 1. Quale cerchi: Elettronica di base, Sistemi elettrici o Sala sperimentazione elettrotecnica?"
       ]
     },
     {
       "tag": "luogo_lab_chimica_scienze",
       "patterns": [
-        "Dove sono i laboratori di chimica?",
-        "Dov'è il laboratorio di chimica?",
-        "Laboratorio di scienze naturali",
-        "Laboratorio di biologia",
-        "Aule disegno CAD",
-        "Dove si trova il laboratorio di scienze?",
-        "In che piano sono i laboratori di chimica?",
-        "Come vado al laboratorio di chimica?",
-        "Dove trovo i laboratori di scienze e chimica?"
+        "Dove sono i laboratori di chimica e scienze?"
       ],
       "responses": [
-        "I Laboratori di Chimica, Scienze Naturali, Biologia e le Aule CAD si trovano al Terzo Piano.\n\nVisualizza la mappa: [Apri Mappa Lab Chimica e Scienze](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nPuoi verificare le informazioni anche in segreteria o alla portineria."
+        "Chimica e Scienze sono due laboratori distinti al piano 1. Quale vuoi raggiungere?"
       ]
     },
     {
       "tag": "luogo_officine_meccanica",
       "patterns": [
         "Dove sono le officine?",
-        "Dov'è l'officina meccanica?",
-        "Laboratorio di meccanica",
-        "Reparto macchine utensili",
-        "Torni e CNC",
-        "Laboratorio saldatura",
-        "Aule S01 S02",
-        "Come vado alle officine?",
-        "In che piano sono le officine meccaniche?"
+        "Dovʼè lʼofficina meccanica?",
+        "Come vado alle officine?"
       ],
       "responses": [
-        "Le Officine Meccaniche, i reparti Macchine Utensili, Torni, CNC e Saldatura si trovano al Piano Terra.\n\nVisualizza la mappa: [Apri Mappa Officine](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi chiedere conferma anche alla portineria all'ingresso."
+        "Le officine sono al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Corridoio Piano Terra ↓ Prosegui verso le officine ↓ Corridoio officine. Indicami il reparto per il tratto finale."
       ]
     },
     {
       "tag": "luogo_segreteria_presidenza",
       "patterns": [
-        "Dov'è la segreteria?",
-        "Dove si trova la segreteria didattica?",
-        "Dov'è la presidenza?",
-        "Dove trovo la segreteria?",
-        "Uffici di segreteria",
-        "Ufficio del dirigente scolastico",
-        "In che piano è la segreteria?",
-        "Come vado in segreteria?",
-        "Posizione presidenza",
-        "Dove sono gli uffici?"
+        "Dove sono gli uffici?",
+        "Uffici della scuola",
+        "Dove sono segreteria e presidenza?"
       ],
       "responses": [
-        "La Segreteria (Didattica, Personale, Amministrativa) e la Presidenza si trovano al Piano Terra, vicino all'atrio principale dell'ingresso di Corso San Maurizio 8/A.\n\nVisualizza la mappa: [Apri Mappa Segreteria](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi verificare orari e sportelli anche su itisavogadro.it o direttamente in segreteria."
+        "Segreteria didattica e Presidenza sono al piano terra, nella zona dellʼingresso. Quale ufficio vuoi raggiungere?"
       ]
     },
     {
       "tag": "luogo_aula_magna",
       "patterns": [
         "Dov'è l'aula magna?",
+        "Dove si trova l'aula magna?",
+        "Come raggiungo l'aula magna?",
+        "Qual è il percorso per raggiungere l'aula magna?",
+        "Mi indichi il percorso per l'aula magna?",
+        "dove l'aula magna",
+        "l'aula magna",
+        "Aula magna",
+        "Dove aula magna?",
         "Dove si trova l'Aula Magna Rattazzi?",
-        "Aula Magna Urbano Rattazzi",
-        "In che piano è l'aula magna?",
-        "Come vado all'aula magna?",
-        "Dove si tengono le conferenze?"
+        "Aula Magna Urbano Rattazzi"
       ],
       "responses": [
-        "L'Aula Magna 'Urbano Rattazzi' si trova al Piano Terra, proseguendo dall'ingresso principale lungo il corridoio centrale.\n\nVisualizza la mappa: [Apri Mappa Aula Magna](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "L'aula magna si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Corridoio 2 ↓ Entrata aula magna ↓ Aula magna."
       ]
     },
     {
       "tag": "luogo_palestra",
       "patterns": [
-        "Dov'è la palestra?",
-        "dove la palestra",
-        "dove si trova la palestra",
+        "Dovʼè la palestra?",
         "Dove sono le palestre?",
-        "dove la palestra piccola",
-        "dov'è la palestra piccola",
-        "dove e la palestra piccola",
-        "palestra piccola",
-        "palestrina",
-        "palestra grande",
-        "palestra principale",
-        "palestre",
         "Dove si fa educazione fisica?",
-        "Scienze motorie palestra",
-        "Spogliatoi palestra",
-        "In che piano è la palestra?",
         "Come vado in palestra?"
       ],
       "responses": [
-        "All'IIS Avogadro sono presenti due palestre al Piano Terra:\n- **Palestra Grande (Principale)**: adibita a scienze motorie e sport di squadra, con accesso agli spogliatoi al Piano Seminterrato.\n- **Palestra Piccola (Palestrina)**: situata nell'area sportiva al Piano Terra, utilizzata per ginnastica e potenziamento.\n\nVisualizza la mappa: [Apri Mappa Palestra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "Ci sono due palestre al piano terra. Cerchi la palestra grande o la palestra piccola?"
       ]
     },
     {
       "tag": "luogo_bar_mensa_macchinette",
       "patterns": [
-        "Dove sono le macchinette?",
-        "dove sono le macchinette",
-        "Dov'è il bar?",
-        "dov'è il bar",
-        "dov e il bar",
-        "dove si trova il bar",
-        "dove si trova il bar?",
-        "Dov'è la mensa?",
-        "dov'è la mensa",
-        "dov e la mensa",
-        "dove e la mensa",
-        "dove si trova la mensa",
-        "dove si trova la mensa?",
-        "Mensa",
-        "Bar",
-        "Macchinette",
-        "Distributori",
-        "Distributori automatici",
         "Dove posso mangiare?",
-        "dove posso mangiare",
-        "dove si mangia",
-        "Dove mangiare a scuola",
-        "Pausa pranzo",
-        "Pranzo a scuola",
-        "Cibo e panini",
-        "Comprare la merenda",
-        "Prendere un caffè",
-        "Distributori di snack e caffè",
+        "Dove si mangia a scuola?",
         "Punto ristoro",
-        "In che piano sono i distributori automatici?",
-        "Come vado al bar della scuola?"
+        "Comprare la merenda"
       ],
       "responses": [
-        "Il Bar/Punto Ristoro della scuola e i distributori automatici di snack, bevande e caffè si trovano al Piano Terra dell'Istituto.\n\nVisualizza la mappa: [Apri Mappa Area Ristoro](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPuoi chiedere conferma anche alla portineria all'ingresso."
+        "Bar e Mensa sono al piano 1. Cerchi il Bar o la Mensa?"
       ]
     },
     {
       "tag": "luogo_portineria_ingresso",
       "patterns": [
-        "Dov'è la portineria?",
-        "Dove si trova l'ingresso principale?",
-        "Entrata Corso San Maurizio",
-        "Portineria scuola",
-        "Ingresso istituto",
-        "Accoglienza visitatori"
+        "Dovʼè la portineria?",
+        "Dove si trova lʼingresso principale?",
+        "Dovʼè lʼentrata principale?",
+        "Dove chiedo informazioni allʼingresso?"
       ],
       "responses": [
-        "La Portineria e l'Ingresso principale dell'Istituto si trovano al Piano Terra in Corso San Maurizio 8/A a Torino.\n\nVisualizza la mappa: [Apri Mappa Ingresso](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "Il banco accoglienza è al piano terra, nella zona dellʼingresso principale. Percorso: INGRESSO PRINCIPALE ↓ Atrio ↓ Banco accoglienza e informazioni."
       ]
     },
     {
       "tag": "luogo_sala_docenti",
       "patterns": [
-        "Dov'è la sala docenti?",
+        "Dovʼè la sala docenti?",
         "Dove si trova la sala professori?",
-        "Ufficio vicepresidenza",
-        "Dov'è il vicepreside?",
-        "In che piano è la sala docenti?",
-        "Come vado in sala professori?"
+        "Come vado in sala professori?",
+        "Dove si trova la Sala Insegnanti?"
       ],
       "responses": [
-        "La Sala Docenti e l'ufficio di Vicepresidenza si trovano al Primo Piano.\n\nVisualizza la mappa: [Apri Mappa Sala Docenti](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "La Sala Insegnanti è al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Banco accoglienza ↓ Zona Centro stampa ↓ Sala Insegnanti. La porta finale va verificata."
       ]
     },
     {
@@ -474,8 +340,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "In che via si trova l'Avogadro?",
         "Posizione della scuola",
         "CAP e indirizzo dell'Avogadro",
-        "In quale zona di Torino si trova?",
-        "Dov'è l'entrata principale?"
+        "In quale zona di Torino si trova?"
       ],
       "responses": [
         "L'IIS Avogadro si trova in Corso San Maurizio 8/A (all'angolo con via Rossini), in pieno centro a Torino, a due passi dalla Mole Antonelliana e da Palazzo Nuovo."
@@ -580,7 +445,6 @@ window.GUSTAVO_INTENTS_DATA = {
         "Cosa si studia a Informatica?",
         "Parlami dell'indirizzo Informatica e Telecomunicazioni",
         "Che materie si fanno a informatica?",
-        "Sbocchi perito informatico",
         "Corso di informatica Avogadro",
         "Cosa si fa nell'articolazione telecomunicazioni?",
         "Programmazione informatica all'Avogadro",
@@ -612,9 +476,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Parlami dell'indirizzo Meccanica",
         "Indirizzo meccatronica Avogadro",
         "Disegno CAD e macchine CNC a scuola",
-        "Sbocchi perito meccanico",
-        "Termotecnica e fonti rinnovabili",
-        "Officina meccanica della scuola"
+        "Termotecnica e fonti rinnovabili"
       ],
       "responses": [
         "A Meccanica e Meccatronica si impara la progettazione 3D CAD (SolidWorks), la lavorazione su macchine a controllo numerico (CNC), la robotica e gli impianti energetici. Materie chiave: DPOI, Meccanica e Sistemi."
@@ -628,8 +490,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Differenza tra liceo scientifico tradizionale e scienze applicate",
         "C'è il latino al liceo scienze applicate?",
         "Materie del liceo scientifico scienze applicate",
-        "Laboratori del liceo scientifico",
-        "Sbocchi liceo scienze applicate"
+        "Laboratori del liceo scientifico"
       ],
       "responses": [
         "Il Liceo Scienze Applicate dell'Avogadro approfondisce matematica, fisica, chimica, biologia e informatica per tutti i 5 anni: al posto del latino ci sono informatica e tante ore di laboratorio pratico."
@@ -658,7 +519,6 @@ window.GUSTAVO_INTENTS_DATA = {
         "Corsi serali per studenti lavoratori e adulti",
         "Orari del serale Avogadro",
         "Progetto Sirio serale",
-        "Iscrizione al corso serale",
         "Come recuperare gli anni di scuola la sera?",
         "Diploma serale Avogadro"
       ],
@@ -769,14 +629,10 @@ window.GUSTAVO_INTENTS_DATA = {
     {
       "tag": "strutture_laboratori",
       "patterns": [
-        "Quali strutture e laboratori ci sono all'Avogadro?",
-        "Com'è attrezzata la scuola?",
-        "C'è la palestra all'Avogadro?",
-        "C'è la biblioteca?",
-        "Aula Magna Rattazzi",
-        "La scuola ha la mensa?",
-        "Dotazione tecnologica della scuola",
-        "Quanti laboratori ci sono?"
+        "Quali strutture e laboratori ci sono allʼAvogadro?",
+        "Comʼè attrezzata la scuola?",
+        "Quali servizi e spazi ha la scuola?",
+        "Dotazione tecnologica della scuola"
       ],
       "responses": [
         "La scuola dispone di laboratori dedicati per ogni specializzazione (Informatica, Reti Cisco, PLC, Elettronica, CNC), della storica Biblioteca con oltre 20.000 volumi, dell'Aula Magna Rattazzi, di palestre e della mensa interna."
@@ -785,13 +641,9 @@ window.GUSTAVO_INTENTS_DATA = {
     {
       "tag": "avofinder",
       "patterns": [
-        "Cos'è AvoFinder?",
-        "Come trovo un'aula all'Avogadro?",
-        "Mappa delle aule della scuola",
-        "Dov'è il laboratorio o l'aula?",
-        "Come orientarsi all'interno della scuola",
-        "Piantina dell'edificio scolastico",
-        "Mappa interna scuola"
+        "Cosʼè AvoFinder?",
+        "A cosa serve AvoFinder?",
+        "Come funziona AvoFinder?"
       ],
       "responses": [
         "AvoFinder è l'applicazione con mappa interattiva sviluppata per orientarsi facilmente tra i piani dell'Avogadro e trovare subito aule, laboratori e uffici."
@@ -804,7 +656,6 @@ window.GUSTAVO_INTENTS_DATA = {
         "Patente europea del computer ECDL ICDL Avogadro",
         "Esami ICDL a scuola",
         "Corsi ECDL Avogadro",
-        "Test Center ECDL Torino",
         "Certificazione informatica ECDL"
       ],
       "responses": [
@@ -846,7 +697,6 @@ window.GUSTAVO_INTENTS_DATA = {
         "Storia dell'istituto Amedeo Avogadro",
         "Perché l'Avogadro è famoso a Torino?",
         "Da dove nasce l'Istituto Avogadro?",
-        "Chi era il fondatore dell'Avogadro?",
         "Origini dell'Avogadro"
       ],
       "responses": [
@@ -917,7 +767,6 @@ window.GUSTAVO_INTENTS_DATA = {
         "Progetto CanSat AvoVoyagers",
         "Avo Mappers",
         "A scuola di OpenCoesione",
-        "Progetto Telmotor",
         "Progetto cortometraggi e filmmaking",
         "Attività innovative delle classi"
       ],
@@ -982,12 +831,11 @@ window.GUSTAVO_INTENTS_DATA = {
     {
       "tag": "orario_e_calendario_scolastico",
       "patterns": [
-        "A che ora iniziano e finiscono le lezioni?",
         "Qual è l'orario scolastico?",
         "Calendario scolastico Avogadro",
-        "Quando iniziano le vacanze scolastiche?",
         "Scansione oraria lezioni",
-        "A che ora suona la campanella?"
+        "A che ora suona la campanella?",
+        "A che ora iniziano le lezioni del diurno?"
       ],
       "responses": [
         "Le lezioni del diurno iniziano alle 8:00 con ore da 60 minuti. Il calendario delle vacanze e delle festività segue le delibere della Regione Piemonte."
@@ -998,7 +846,6 @@ window.GUSTAVO_INTENTS_DATA = {
       "patterns": [
         "A che ora è l'intervallo?",
         "Quando c'è la ricreazione?",
-        "Quanti intervalli ci sono?",
         "Durata della ricreazione",
         "A che ora è la pausa?",
         "Orari intervallo scuola"
@@ -1010,14 +857,13 @@ window.GUSTAVO_INTENTS_DATA = {
     {
       "tag": "bar_macchinette",
       "patterns": [
-        "C'è il bar a scuola?",
         "Dove sono le macchinette?",
-        "Distributori automatici snack e caffè",
-        "C'è un punto ristoro?",
-        "Dove comprare cibo o bevande all'Avogadro?"
+        "Distributori automatici",
+        "Dove trovo un distributore di snack?",
+        "Dove sono i distributori di caffè?"
       ],
       "responses": [
-        "Nei corridoi ci sono distributori automatici di snack, caffè e bibite. La scuola dispone anche di una mensa interna per chi frequenta i rientri pomeridiani."
+        "Non ho verificato la posizione dei distributori automatici. Chiedi al banco accoglienza: INGRESSO PRINCIPALE ↓ Atrio ↓ Banco accoglienza e informazioni."
       ]
     },
     {
@@ -1025,7 +871,6 @@ window.GUSTAVO_INTENTS_DATA = {
       "patterns": [
         "C'è il Wi-Fi a scuola?",
         "Come connettersi al WiFi dell'Avogadro?",
-        "Password del Wi-Fi scolastico",
         "Rete wireless studenti",
         "Accesso internet per studenti e docenti"
       ],
@@ -1162,7 +1007,6 @@ window.GUSTAVO_INTENTS_DATA = {
       "patterns": [
         "Chi fa parte del Consiglio di Istituto?",
         "Organi collegiali Avogadro",
-        "Rappresentanti di classe e di istituto",
         "Collegio docenti",
         "Comitato studentesco"
       ],
@@ -1232,6 +1076,1299 @@ window.GUSTAVO_INTENTS_DATA = {
       "responses": [
         "Non sono sicuro di aver capito. Prova a chiedermi info su indirizzi di studio, orari, segreteria, iscrizioni o progetti dell'Avogadro!",
         "Non ho trovato una risposta precisa. Prova a riformulare la domanda indicando l'argomento scolastico di tuo interesse!"
+      ]
+    },
+    {
+      "tag": "luogo_aula_3_0",
+      "patterns": [
+        "Dov'è l'aula 3.0?",
+        "Dove si trova l'aula 3.0?",
+        "Come raggiungo l'aula 3.0?",
+        "Qual è il percorso per raggiungere l'aula 3.0?",
+        "Mi indichi il percorso per l'aula 3.0?",
+        "dove l'aula 3.0",
+        "l'aula 3.0",
+        "Aula 3.0",
+        "Dove aula 3.0?"
+      ],
+      "responses": [
+        "L'aula 3.0 si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Banco accoglienza ↓ Zona Sala Insegnanti ↓ Aula 3.0 (collegamento finale da verificare)."
+      ]
+    },
+    {
+      "tag": "luogo_aula_studenti",
+      "patterns": [
+        "Dov'è l'aula studenti?",
+        "Dove si trova l'aula studenti?",
+        "Come raggiungo l'aula studenti?",
+        "Qual è il percorso per raggiungere l'aula studenti?",
+        "Mi indichi il percorso per l'aula studenti?",
+        "dove l'aula studenti",
+        "l'aula studenti",
+        "Aula studenti",
+        "Dove aula studenti?"
+      ],
+      "responses": [
+        "L'aula studenti si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Corridoio Piano Terra ↓ Zona Biblioteca e Infermeria ↓ Aula studenti."
+      ]
+    },
+    {
+      "tag": "luogo_aula_omu",
+      "patterns": [
+        "Dov'è l'aula omu?",
+        "Dove si trova l'aula omu?",
+        "Come raggiungo l'aula omu?",
+        "Qual è il percorso per raggiungere l'aula omu?",
+        "Mi indichi il percorso per l'aula omu?",
+        "dove l'aula omu",
+        "l'aula omu",
+        "Aula omu",
+        "Dove aula omu?"
+      ],
+      "responses": [
+        "L'aula omu si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Corridoio Piano Terra ↓ Prosegui verso le officine ↓ Corridoio officine ↓ Zona Omu e saldatura ↓ Aula omu."
+      ]
+    },
+    {
+      "tag": "luogo_aula_laboratorio_tecnologico",
+      "patterns": [
+        "Dov'è l'aula laboratorio tecnologico?",
+        "Dove si trova l'aula laboratorio tecnologico?",
+        "Come raggiungo l'aula laboratorio tecnologico?",
+        "Qual è il percorso per raggiungere l'aula laboratorio tecnologico?",
+        "Mi indichi il percorso per l'aula laboratorio tecnologico?",
+        "dove l'aula laboratorio tecnologico",
+        "l'aula laboratorio tecnologico",
+        "Aula Laboratorio Tecnologico",
+        "Dove aula laboratorio tecnologico?"
+      ],
+      "responses": [
+        "L'aula laboratorio tecnologico si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Corridoio Piano Terra ↓ Zona del Laboratorio tecnologico ↓ Aula laboratorio tecnologico."
+      ]
+    },
+    {
+      "tag": "luogo_aula_1_1",
+      "patterns": [
+        "Dov'è l'aula 1/1?",
+        "Dove si trova l'aula 1/1?",
+        "Come raggiungo l'aula 1/1?",
+        "Qual è il percorso per raggiungere l'aula 1/1?",
+        "Mi indichi il percorso per l'aula 1/1?",
+        "dove l'aula 1/1",
+        "l'aula 1/1",
+        "Aula 1/1",
+        "Dove aula 1/1?"
+      ],
+      "responses": [
+        "L'aula 1/1 si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Corridoio 2, zona Aula magna ↓ Corridoio 3 ↓ Aula 1/1."
+      ]
+    },
+    {
+      "tag": "aula_codice_101",
+      "patterns": [
+        "Dov'è l'aula 101?",
+        "Dove si trova l'aula 101?",
+        "Come raggiungo l'aula 101?",
+        "Qual è il percorso per raggiungere l'aula 101?",
+        "Mi indichi il percorso per l'aula 101?",
+        "dove l'aula 101",
+        "l'aula 101",
+        "aula 101",
+        "dove aula 101"
+      ],
+      "responses": [
+        "Se con aula 101 intendi l'aula 1/1 indicata sulla mappa, si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Corridoio 2, zona Aula magna ↓ Corridoio 3 ↓ Aula 1/1. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_2_15",
+      "patterns": [
+        "Dov'è l'aula 2/15?",
+        "Dove si trova l'aula 2/15?",
+        "Come raggiungo l'aula 2/15?",
+        "Qual è il percorso per raggiungere l'aula 2/15?",
+        "Mi indichi il percorso per l'aula 2/15?",
+        "dove l'aula 2/15",
+        "l'aula 2/15",
+        "Aula 2/15",
+        "Dove aula 2/15?"
+      ],
+      "responses": [
+        "L'aula 2/15 si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Supera la zona aule 2/24–2/30 ↓ Prosegui oltre la zona aule 2/18 e 2/21 ↓ Zona Ascensore scale 2 ↓ Corridoio verso Aula disegno 1 ↓ Aula 2/15."
+      ]
+    },
+    {
+      "tag": "aula_codice_215",
+      "patterns": [
+        "Dov'è l'aula 215?",
+        "Dove si trova l'aula 215?",
+        "Come raggiungo l'aula 215?",
+        "Qual è il percorso per raggiungere l'aula 215?",
+        "Mi indichi il percorso per l'aula 215?",
+        "dove l'aula 215",
+        "l'aula 215",
+        "aula 215",
+        "dove aula 215"
+      ],
+      "responses": [
+        "Se con aula 215 intendi l'aula 2/15 indicata sulla mappa, si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Supera la zona aule 2/24–2/30 ↓ Prosegui oltre la zona aule 2/18 e 2/21 ↓ Zona Ascensore scale 2 ↓ Corridoio verso Aula disegno 1 ↓ Aula 2/15. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_2_16",
+      "patterns": [
+        "Dov'è l'aula 2/16?",
+        "Dove si trova l'aula 2/16?",
+        "Come raggiungo l'aula 2/16?",
+        "Qual è il percorso per raggiungere l'aula 2/16?",
+        "Mi indichi il percorso per l'aula 2/16?",
+        "dove l'aula 2/16",
+        "l'aula 2/16",
+        "Aula 2/16",
+        "Dove aula 2/16?"
+      ],
+      "responses": [
+        "L'aula 2/16 si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Supera la zona aule 2/24–2/30 ↓ Prosegui oltre la zona aule 2/18 e 2/21 ↓ Zona Ascensore scale 2 ↓ Corridoio verso Aula disegno 1 ↓ Aula 2/16."
+      ]
+    },
+    {
+      "tag": "aula_codice_216",
+      "patterns": [
+        "Dov'è l'aula 216?",
+        "Dove si trova l'aula 216?",
+        "Come raggiungo l'aula 216?",
+        "Qual è il percorso per raggiungere l'aula 216?",
+        "Mi indichi il percorso per l'aula 216?",
+        "dove l'aula 216",
+        "l'aula 216",
+        "aula 216",
+        "dove aula 216"
+      ],
+      "responses": [
+        "Se con aula 216 intendi l'aula 2/16 indicata sulla mappa, si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Supera la zona aule 2/24–2/30 ↓ Prosegui oltre la zona aule 2/18 e 2/21 ↓ Zona Ascensore scale 2 ↓ Corridoio verso Aula disegno 1 ↓ Aula 2/16. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_2_17",
+      "patterns": [
+        "Dov'è l'aula 2/17?",
+        "Dove si trova l'aula 2/17?",
+        "Come raggiungo l'aula 2/17?",
+        "Qual è il percorso per raggiungere l'aula 2/17?",
+        "Mi indichi il percorso per l'aula 2/17?",
+        "dove l'aula 2/17",
+        "l'aula 2/17",
+        "Aula 2/17",
+        "Dove aula 2/17?"
+      ],
+      "responses": [
+        "L'aula 2/17 si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Supera la zona aule 2/24–2/30 ↓ Prosegui verso Ascensore scale 2 ↓ Aula 2/17, nella zona dell'Aula disegno 2."
+      ]
+    },
+    {
+      "tag": "aula_codice_217",
+      "patterns": [
+        "Dov'è l'aula 217?",
+        "Dove si trova l'aula 217?",
+        "Come raggiungo l'aula 217?",
+        "Qual è il percorso per raggiungere l'aula 217?",
+        "Mi indichi il percorso per l'aula 217?",
+        "dove l'aula 217",
+        "l'aula 217",
+        "aula 217",
+        "dove aula 217"
+      ],
+      "responses": [
+        "Se con aula 217 intendi l'aula 2/17 indicata sulla mappa, si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Supera la zona aule 2/24–2/30 ↓ Prosegui verso Ascensore scale 2 ↓ Aula 2/17, nella zona dell'Aula disegno 2. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_2_18",
+      "patterns": [
+        "Dov'è l'aula 2/18?",
+        "Dove si trova l'aula 2/18?",
+        "Come raggiungo l'aula 2/18?",
+        "Qual è il percorso per raggiungere l'aula 2/18?",
+        "Mi indichi il percorso per l'aula 2/18?",
+        "dove l'aula 2/18",
+        "l'aula 2/18",
+        "Aula 2/18",
+        "Dove aula 2/18?"
+      ],
+      "responses": [
+        "L'aula 2/18 si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Supera la zona aule 2/24–2/30 ↓ Zona laboratori linguistici e Aula 2/21 ↓ Prosegui verso Aula 2/17 ↓ Aula 2/18."
+      ]
+    },
+    {
+      "tag": "aula_codice_218",
+      "patterns": [
+        "Dov'è l'aula 218?",
+        "Dove si trova l'aula 218?",
+        "Come raggiungo l'aula 218?",
+        "Qual è il percorso per raggiungere l'aula 218?",
+        "Mi indichi il percorso per l'aula 218?",
+        "dove l'aula 218",
+        "l'aula 218",
+        "aula 218",
+        "dove aula 218"
+      ],
+      "responses": [
+        "Se con aula 218 intendi l'aula 2/18 indicata sulla mappa, si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Supera la zona aule 2/24–2/30 ↓ Zona laboratori linguistici e Aula 2/21 ↓ Prosegui verso Aula 2/17 ↓ Aula 2/18. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_2_19",
+      "patterns": [
+        "Dov'è l'aula 2/19?",
+        "Dove si trova l'aula 2/19?",
+        "Come raggiungo l'aula 2/19?",
+        "Qual è il percorso per raggiungere l'aula 2/19?",
+        "Mi indichi il percorso per l'aula 2/19?",
+        "dove l'aula 2/19",
+        "l'aula 2/19",
+        "Aula 2/19",
+        "Dove aula 2/19?"
+      ],
+      "responses": [
+        "L'aula 2/19 si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Supera la zona aule 2/24–2/30 ↓ Diramazione verso i laboratori linguistici ↓ Prosegui verso Laboratorio linguistico 1 ↓ Aula 2/19."
+      ]
+    },
+    {
+      "tag": "aula_codice_219",
+      "patterns": [
+        "Dov'è l'aula 219?",
+        "Dove si trova l'aula 219?",
+        "Come raggiungo l'aula 219?",
+        "Qual è il percorso per raggiungere l'aula 219?",
+        "Mi indichi il percorso per l'aula 219?",
+        "dove l'aula 219",
+        "l'aula 219",
+        "aula 219",
+        "dove aula 219"
+      ],
+      "responses": [
+        "Se con aula 219 intendi l'aula 2/19 indicata sulla mappa, si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Supera la zona aule 2/24–2/30 ↓ Diramazione verso i laboratori linguistici ↓ Prosegui verso Laboratorio linguistico 1 ↓ Aula 2/19. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_2_20",
+      "patterns": [
+        "Dov'è l'aula 2/20?",
+        "Dove si trova l'aula 2/20?",
+        "Come raggiungo l'aula 2/20?",
+        "Qual è il percorso per raggiungere l'aula 2/20?",
+        "Mi indichi il percorso per l'aula 2/20?",
+        "dove l'aula 2/20",
+        "l'aula 2/20",
+        "Aula 2/20",
+        "Dove aula 2/20?"
+      ],
+      "responses": [
+        "L'aula 2/20 si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Supera la zona aule 2/24–2/30 ↓ Zona Aula 2/21 ↓ Diramazione verso Aula 2/20 (accesso finale da verificare)."
+      ]
+    },
+    {
+      "tag": "aula_codice_220",
+      "patterns": [
+        "Dov'è l'aula 220?",
+        "Dove si trova l'aula 220?",
+        "Come raggiungo l'aula 220?",
+        "Qual è il percorso per raggiungere l'aula 220?",
+        "Mi indichi il percorso per l'aula 220?",
+        "dove l'aula 220",
+        "l'aula 220",
+        "aula 220",
+        "dove aula 220"
+      ],
+      "responses": [
+        "Se con aula 220 intendi l'aula 2/20 indicata sulla mappa, si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Supera la zona aule 2/24–2/30 ↓ Zona Aula 2/21 ↓ Diramazione verso Aula 2/20 (accesso finale da verificare). La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_2_21",
+      "patterns": [
+        "Dov'è l'aula 2/21?",
+        "Dove si trova l'aula 2/21?",
+        "Come raggiungo l'aula 2/21?",
+        "Qual è il percorso per raggiungere l'aula 2/21?",
+        "Mi indichi il percorso per l'aula 2/21?",
+        "dove l'aula 2/21",
+        "l'aula 2/21",
+        "Aula 2/21",
+        "Dove aula 2/21?"
+      ],
+      "responses": [
+        "L'aula 2/21 si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Supera la zona aule 2/24–2/30 ↓ Incrocio nella zona dei laboratori linguistici ↓ Aula 2/21."
+      ]
+    },
+    {
+      "tag": "aula_codice_221",
+      "patterns": [
+        "Dov'è l'aula 221?",
+        "Dove si trova l'aula 221?",
+        "Come raggiungo l'aula 221?",
+        "Qual è il percorso per raggiungere l'aula 221?",
+        "Mi indichi il percorso per l'aula 221?",
+        "dove l'aula 221",
+        "l'aula 221",
+        "aula 221",
+        "dove aula 221"
+      ],
+      "responses": [
+        "Se con aula 221 intendi l'aula 2/21 indicata sulla mappa, si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Supera la zona aule 2/24–2/30 ↓ Incrocio nella zona dei laboratori linguistici ↓ Aula 2/21. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_2_24",
+      "patterns": [
+        "Dov'è l'aula 2/24?",
+        "Dove si trova l'aula 2/24?",
+        "Come raggiungo l'aula 2/24?",
+        "Qual è il percorso per raggiungere l'aula 2/24?",
+        "Mi indichi il percorso per l'aula 2/24?",
+        "dove l'aula 2/24",
+        "l'aula 2/24",
+        "Aula 2/24",
+        "Dove aula 2/24?"
+      ],
+      "responses": [
+        "L'aula 2/24 si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Diramazione verso le aule 2/24–2/26 ↓ Aula 2/24."
+      ]
+    },
+    {
+      "tag": "aula_codice_224",
+      "patterns": [
+        "Dov'è l'aula 224?",
+        "Dove si trova l'aula 224?",
+        "Come raggiungo l'aula 224?",
+        "Qual è il percorso per raggiungere l'aula 224?",
+        "Mi indichi il percorso per l'aula 224?",
+        "dove l'aula 224",
+        "l'aula 224",
+        "aula 224",
+        "dove aula 224"
+      ],
+      "responses": [
+        "Se con aula 224 intendi l'aula 2/24 indicata sulla mappa, si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Diramazione verso le aule 2/24–2/26 ↓ Aula 2/24. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_2_25",
+      "patterns": [
+        "Dov'è l'aula 2/25?",
+        "Dove si trova l'aula 2/25?",
+        "Come raggiungo l'aula 2/25?",
+        "Qual è il percorso per raggiungere l'aula 2/25?",
+        "Mi indichi il percorso per l'aula 2/25?",
+        "dove l'aula 2/25",
+        "l'aula 2/25",
+        "Aula 2/25",
+        "Dove aula 2/25?"
+      ],
+      "responses": [
+        "L'aula 2/25 si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Diramazione verso le aule 2/24–2/26 ↓ Prosegui oltre Aula 2/24 ↓ Aula 2/25."
+      ]
+    },
+    {
+      "tag": "aula_codice_225",
+      "patterns": [
+        "Dov'è l'aula 225?",
+        "Dove si trova l'aula 225?",
+        "Come raggiungo l'aula 225?",
+        "Qual è il percorso per raggiungere l'aula 225?",
+        "Mi indichi il percorso per l'aula 225?",
+        "dove l'aula 225",
+        "l'aula 225",
+        "aula 225",
+        "dove aula 225"
+      ],
+      "responses": [
+        "Se con aula 225 intendi l'aula 2/25 indicata sulla mappa, si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Diramazione verso le aule 2/24–2/26 ↓ Prosegui oltre Aula 2/24 ↓ Aula 2/25. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_2_26",
+      "patterns": [
+        "Dov'è l'aula 2/26?",
+        "Dove si trova l'aula 2/26?",
+        "Come raggiungo l'aula 2/26?",
+        "Qual è il percorso per raggiungere l'aula 2/26?",
+        "Mi indichi il percorso per l'aula 2/26?",
+        "dove l'aula 2/26",
+        "l'aula 2/26",
+        "Aula 2/26",
+        "Dove aula 2/26?"
+      ],
+      "responses": [
+        "L'aula 2/26 si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Diramazione verso le aule 2/24–2/26 ↓ Prosegui oltre Aula 2/25 ↓ Aula 2/26."
+      ]
+    },
+    {
+      "tag": "aula_codice_226",
+      "patterns": [
+        "Dov'è l'aula 226?",
+        "Dove si trova l'aula 226?",
+        "Come raggiungo l'aula 226?",
+        "Qual è il percorso per raggiungere l'aula 226?",
+        "Mi indichi il percorso per l'aula 226?",
+        "dove l'aula 226",
+        "l'aula 226",
+        "aula 226",
+        "dove aula 226"
+      ],
+      "responses": [
+        "Se con aula 226 intendi l'aula 2/26 indicata sulla mappa, si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Diramazione verso le aule 2/24–2/26 ↓ Prosegui oltre Aula 2/25 ↓ Aula 2/26. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_2_27",
+      "patterns": [
+        "Dov'è l'aula 2/27?",
+        "Dove si trova l'aula 2/27?",
+        "Come raggiungo l'aula 2/27?",
+        "Qual è il percorso per raggiungere l'aula 2/27?",
+        "Mi indichi il percorso per l'aula 2/27?",
+        "dove l'aula 2/27",
+        "l'aula 2/27",
+        "Aula 2/27",
+        "Dove aula 2/27?"
+      ],
+      "responses": [
+        "L'aula 2/27 si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Diramazione verso le aule 2/27–2/30 ↓ Aula 2/27."
+      ]
+    },
+    {
+      "tag": "aula_codice_227",
+      "patterns": [
+        "Dov'è l'aula 227?",
+        "Dove si trova l'aula 227?",
+        "Come raggiungo l'aula 227?",
+        "Qual è il percorso per raggiungere l'aula 227?",
+        "Mi indichi il percorso per l'aula 227?",
+        "dove l'aula 227",
+        "l'aula 227",
+        "aula 227",
+        "dove aula 227"
+      ],
+      "responses": [
+        "Se con aula 227 intendi l'aula 2/27 indicata sulla mappa, si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Diramazione verso le aule 2/27–2/30 ↓ Aula 2/27. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_2_28",
+      "patterns": [
+        "Dov'è l'aula 2/28?",
+        "Dove si trova l'aula 2/28?",
+        "Come raggiungo l'aula 2/28?",
+        "Qual è il percorso per raggiungere l'aula 2/28?",
+        "Mi indichi il percorso per l'aula 2/28?",
+        "dove l'aula 2/28",
+        "l'aula 2/28",
+        "Aula 2/28",
+        "Dove aula 2/28?"
+      ],
+      "responses": [
+        "L'aula 2/28 si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Diramazione verso le aule 2/27–2/30 ↓ Prosegui oltre Aula 2/27 ↓ Aula 2/28."
+      ]
+    },
+    {
+      "tag": "aula_codice_228",
+      "patterns": [
+        "Dov'è l'aula 228?",
+        "Dove si trova l'aula 228?",
+        "Come raggiungo l'aula 228?",
+        "Qual è il percorso per raggiungere l'aula 228?",
+        "Mi indichi il percorso per l'aula 228?",
+        "dove l'aula 228",
+        "l'aula 228",
+        "aula 228",
+        "dove aula 228"
+      ],
+      "responses": [
+        "Se con aula 228 intendi l'aula 2/28 indicata sulla mappa, si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Diramazione verso le aule 2/27–2/30 ↓ Prosegui oltre Aula 2/27 ↓ Aula 2/28. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_2_29",
+      "patterns": [
+        "Dov'è l'aula 2/29?",
+        "Dove si trova l'aula 2/29?",
+        "Come raggiungo l'aula 2/29?",
+        "Qual è il percorso per raggiungere l'aula 2/29?",
+        "Mi indichi il percorso per l'aula 2/29?",
+        "dove l'aula 2/29",
+        "l'aula 2/29",
+        "Aula 2/29",
+        "Dove aula 2/29?"
+      ],
+      "responses": [
+        "L'aula 2/29 si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Diramazione verso le aule 2/27–2/30 ↓ Prosegui oltre Aula 2/28 ↓ Aula 2/29."
+      ]
+    },
+    {
+      "tag": "aula_codice_229",
+      "patterns": [
+        "Dov'è l'aula 229?",
+        "Dove si trova l'aula 229?",
+        "Come raggiungo l'aula 229?",
+        "Qual è il percorso per raggiungere l'aula 229?",
+        "Mi indichi il percorso per l'aula 229?",
+        "dove l'aula 229",
+        "l'aula 229",
+        "aula 229",
+        "dove aula 229"
+      ],
+      "responses": [
+        "Se con aula 229 intendi l'aula 2/29 indicata sulla mappa, si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Diramazione verso le aule 2/27–2/30 ↓ Prosegui oltre Aula 2/28 ↓ Aula 2/29. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_2_30",
+      "patterns": [
+        "Dov'è l'aula 2/30?",
+        "Dove si trova l'aula 2/30?",
+        "Come raggiungo l'aula 2/30?",
+        "Qual è il percorso per raggiungere l'aula 2/30?",
+        "Mi indichi il percorso per l'aula 2/30?",
+        "dove l'aula 2/30",
+        "l'aula 2/30",
+        "Aula 2/30",
+        "Dove aula 2/30?"
+      ],
+      "responses": [
+        "L'aula 2/30 si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Diramazione verso le aule 2/27–2/30 ↓ Prosegui oltre Aula 2/29 ↓ Aula 2/30."
+      ]
+    },
+    {
+      "tag": "aula_codice_230",
+      "patterns": [
+        "Dov'è l'aula 230?",
+        "Dove si trova l'aula 230?",
+        "Come raggiungo l'aula 230?",
+        "Qual è il percorso per raggiungere l'aula 230?",
+        "Mi indichi il percorso per l'aula 230?",
+        "dove l'aula 230",
+        "l'aula 230",
+        "aula 230",
+        "dove aula 230"
+      ],
+      "responses": [
+        "Se con aula 230 intendi l'aula 2/30 indicata sulla mappa, si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Diramazione verso le aule 2/27–2/30 ↓ Prosegui oltre Aula 2/29 ↓ Aula 2/30. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_disegno_1",
+      "patterns": [
+        "Dov'è l'aula disegno 1?",
+        "Dove si trova l'aula disegno 1?",
+        "Come raggiungo l'aula disegno 1?",
+        "Qual è il percorso per raggiungere l'aula disegno 1?",
+        "Mi indichi il percorso per l'aula disegno 1?",
+        "dove l'aula disegno 1",
+        "l'aula disegno 1",
+        "Aula disegno 1",
+        "Dove aula disegno 1?"
+      ],
+      "responses": [
+        "L'aula disegno 1 si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Prosegui fino alla zona Ascensore scale 2 ↓ Corridoio delle aule 2/16 e 2/15 ↓ Prosegui verso il fondo dell'ala ↓ Aula disegno 1."
+      ]
+    },
+    {
+      "tag": "luogo_aula_disegno_2",
+      "patterns": [
+        "Dov'è l'aula disegno 2?",
+        "Dove si trova l'aula disegno 2?",
+        "Come raggiungo l'aula disegno 2?",
+        "Qual è il percorso per raggiungere l'aula disegno 2?",
+        "Mi indichi il percorso per l'aula disegno 2?",
+        "dove l'aula disegno 2",
+        "l'aula disegno 2",
+        "Aula disegno 2",
+        "Dove aula disegno 2?"
+      ],
+      "responses": [
+        "L'aula disegno 2 si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio lungo, allontanandosi dal blocco dei laboratori informatici ↓ Prosegui verso Aula 2/17 e Ascensore scale 2 ↓ Diramazione verso Laboratorio coworking ↓ Aula disegno 2."
+      ]
+    },
+    {
+      "tag": "luogo_aula_3_5",
+      "patterns": [
+        "Dov'è l'aula 3/5?",
+        "Dove si trova l'aula 3/5?",
+        "Come raggiungo l'aula 3/5?",
+        "Qual è il percorso per raggiungere l'aula 3/5?",
+        "Mi indichi il percorso per l'aula 3/5?",
+        "dove l'aula 3/5",
+        "l'aula 3/5",
+        "Aula 3/5",
+        "Dove aula 3/5?"
+      ],
+      "responses": [
+        "L'aula 3/5 si trova al piano 3. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 3 ↓ Corridoio del piano ↓ Ramo verso il Laboratorio di tecnologia e disegno biennio ↓ Aula 3/5."
+      ]
+    },
+    {
+      "tag": "aula_codice_305",
+      "patterns": [
+        "Dov'è l'aula 305?",
+        "Dove si trova l'aula 305?",
+        "Come raggiungo l'aula 305?",
+        "Qual è il percorso per raggiungere l'aula 305?",
+        "Mi indichi il percorso per l'aula 305?",
+        "dove l'aula 305",
+        "l'aula 305",
+        "aula 305",
+        "dove aula 305"
+      ],
+      "responses": [
+        "Se con aula 305 intendi l'aula 3/5 indicata sulla mappa, si trova al piano 3. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 3 ↓ Corridoio del piano ↓ Ramo verso il Laboratorio di tecnologia e disegno biennio ↓ Aula 3/5. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_3_7",
+      "patterns": [
+        "Dov'è l'aula 3/7?",
+        "Dove si trova l'aula 3/7?",
+        "Come raggiungo l'aula 3/7?",
+        "Qual è il percorso per raggiungere l'aula 3/7?",
+        "Mi indichi il percorso per l'aula 3/7?",
+        "dove l'aula 3/7",
+        "l'aula 3/7",
+        "Aula 3/7",
+        "Dove aula 3/7?"
+      ],
+      "responses": [
+        "L'aula 3/7 si trova al piano 3. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 3 ↓ Corridoio del piano ↓ Ramo verso Laboratorio Matematica Biennio ↓ Prosegui oltre il laboratorio ↓ Aula 3/7."
+      ]
+    },
+    {
+      "tag": "aula_codice_307",
+      "patterns": [
+        "Dov'è l'aula 307?",
+        "Dove si trova l'aula 307?",
+        "Come raggiungo l'aula 307?",
+        "Qual è il percorso per raggiungere l'aula 307?",
+        "Mi indichi il percorso per l'aula 307?",
+        "dove l'aula 307",
+        "l'aula 307",
+        "aula 307",
+        "dove aula 307"
+      ],
+      "responses": [
+        "Se con aula 307 intendi l'aula 3/7 indicata sulla mappa, si trova al piano 3. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 3 ↓ Corridoio del piano ↓ Ramo verso Laboratorio Matematica Biennio ↓ Prosegui oltre il laboratorio ↓ Aula 3/7. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_3_8",
+      "patterns": [
+        "Dov'è l'aula 3/8?",
+        "Dove si trova l'aula 3/8?",
+        "Come raggiungo l'aula 3/8?",
+        "Qual è il percorso per raggiungere l'aula 3/8?",
+        "Mi indichi il percorso per l'aula 3/8?",
+        "dove l'aula 3/8",
+        "l'aula 3/8",
+        "Aula 3/8",
+        "Dove aula 3/8?"
+      ],
+      "responses": [
+        "L'aula 3/8 si trova al piano 3. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 3 ↓ Corridoio del piano ↓ Ramo verso Laboratorio Matematica Biennio ↓ Prosegui oltre Aula 3/7 ↓ Aula 3/8."
+      ]
+    },
+    {
+      "tag": "aula_codice_308",
+      "patterns": [
+        "Dov'è l'aula 308?",
+        "Dove si trova l'aula 308?",
+        "Come raggiungo l'aula 308?",
+        "Qual è il percorso per raggiungere l'aula 308?",
+        "Mi indichi il percorso per l'aula 308?",
+        "dove l'aula 308",
+        "l'aula 308",
+        "aula 308",
+        "dove aula 308"
+      ],
+      "responses": [
+        "Se con aula 308 intendi l'aula 3/8 indicata sulla mappa, si trova al piano 3. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 3 ↓ Corridoio del piano ↓ Ramo verso Laboratorio Matematica Biennio ↓ Prosegui oltre Aula 3/7 ↓ Aula 3/8. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_4_9",
+      "patterns": [
+        "Dov'è l'aula 4/9?",
+        "Dove si trova l'aula 4/9?",
+        "Come raggiungo l'aula 4/9?",
+        "Qual è il percorso per raggiungere l'aula 4/9?",
+        "Mi indichi il percorso per l'aula 4/9?",
+        "dove l'aula 4/9",
+        "l'aula 4/9",
+        "Aula 4/9",
+        "Dove aula 4/9?"
+      ],
+      "responses": [
+        "L'aula 4/9 si trova al piano 4. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 4 ↓ Corridoio del piano ↓ Ramo delle aule 4/11–4/9 ↓ Supera Aula 4/11 e Aula 4/10 ↓ Aula 4/9."
+      ]
+    },
+    {
+      "tag": "aula_codice_409",
+      "patterns": [
+        "Dov'è l'aula 409?",
+        "Dove si trova l'aula 409?",
+        "Come raggiungo l'aula 409?",
+        "Qual è il percorso per raggiungere l'aula 409?",
+        "Mi indichi il percorso per l'aula 409?",
+        "dove l'aula 409",
+        "l'aula 409",
+        "aula 409",
+        "dove aula 409"
+      ],
+      "responses": [
+        "Se con aula 409 intendi l'aula 4/9 indicata sulla mappa, si trova al piano 4. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 4 ↓ Corridoio del piano ↓ Ramo delle aule 4/11–4/9 ↓ Supera Aula 4/11 e Aula 4/10 ↓ Aula 4/9. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_4_10",
+      "patterns": [
+        "Dov'è l'aula 4/10?",
+        "Dove si trova l'aula 4/10?",
+        "Come raggiungo l'aula 4/10?",
+        "Qual è il percorso per raggiungere l'aula 4/10?",
+        "Mi indichi il percorso per l'aula 4/10?",
+        "dove l'aula 4/10",
+        "l'aula 4/10",
+        "Aula 4/10",
+        "Dove aula 4/10?"
+      ],
+      "responses": [
+        "L'aula 4/10 si trova al piano 4. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 4 ↓ Corridoio del piano ↓ Ramo delle aule 4/11–4/9 ↓ Supera Aula 4/11 ↓ Aula 4/10."
+      ]
+    },
+    {
+      "tag": "aula_codice_410",
+      "patterns": [
+        "Dov'è l'aula 410?",
+        "Dove si trova l'aula 410?",
+        "Come raggiungo l'aula 410?",
+        "Qual è il percorso per raggiungere l'aula 410?",
+        "Mi indichi il percorso per l'aula 410?",
+        "dove l'aula 410",
+        "l'aula 410",
+        "aula 410",
+        "dove aula 410"
+      ],
+      "responses": [
+        "Se con aula 410 intendi l'aula 4/10 indicata sulla mappa, si trova al piano 4. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 4 ↓ Corridoio del piano ↓ Ramo delle aule 4/11–4/9 ↓ Supera Aula 4/11 ↓ Aula 4/10. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_4_11",
+      "patterns": [
+        "Dov'è l'aula 4/11?",
+        "Dove si trova l'aula 4/11?",
+        "Come raggiungo l'aula 4/11?",
+        "Qual è il percorso per raggiungere l'aula 4/11?",
+        "Mi indichi il percorso per l'aula 4/11?",
+        "dove l'aula 4/11",
+        "l'aula 4/11",
+        "Aula 4/11",
+        "Dove aula 4/11?"
+      ],
+      "responses": [
+        "L'aula 4/11 si trova al piano 4. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 4 ↓ Corridoio del piano ↓ Ramo verso Aula 4/10 ↓ Aula 4/11."
+      ]
+    },
+    {
+      "tag": "aula_codice_411",
+      "patterns": [
+        "Dov'è l'aula 411?",
+        "Dove si trova l'aula 411?",
+        "Come raggiungo l'aula 411?",
+        "Qual è il percorso per raggiungere l'aula 411?",
+        "Mi indichi il percorso per l'aula 411?",
+        "dove l'aula 411",
+        "l'aula 411",
+        "aula 411",
+        "dove aula 411"
+      ],
+      "responses": [
+        "Se con aula 411 intendi l'aula 4/11 indicata sulla mappa, si trova al piano 4. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 4 ↓ Corridoio del piano ↓ Ramo verso Aula 4/10 ↓ Aula 4/11. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_4_12",
+      "patterns": [
+        "Dov'è l'aula 4/12?",
+        "Dove si trova l'aula 4/12?",
+        "Come raggiungo l'aula 4/12?",
+        "Qual è il percorso per raggiungere l'aula 4/12?",
+        "Mi indichi il percorso per l'aula 4/12?",
+        "dove l'aula 4/12",
+        "l'aula 4/12",
+        "Aula 4/12",
+        "Dove aula 4/12?"
+      ],
+      "responses": [
+        "L'aula 4/12 si trova al piano 4. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 4 ↓ Corridoio del piano ↓ Ramo delle aule 4/12–4/14 ↓ Aula 4/12."
+      ]
+    },
+    {
+      "tag": "aula_codice_412",
+      "patterns": [
+        "Dov'è l'aula 412?",
+        "Dove si trova l'aula 412?",
+        "Come raggiungo l'aula 412?",
+        "Qual è il percorso per raggiungere l'aula 412?",
+        "Mi indichi il percorso per l'aula 412?",
+        "dove l'aula 412",
+        "l'aula 412",
+        "aula 412",
+        "dove aula 412"
+      ],
+      "responses": [
+        "Se con aula 412 intendi l'aula 4/12 indicata sulla mappa, si trova al piano 4. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 4 ↓ Corridoio del piano ↓ Ramo delle aule 4/12–4/14 ↓ Aula 4/12. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_4_13",
+      "patterns": [
+        "Dov'è l'aula 4/13?",
+        "Dove si trova l'aula 4/13?",
+        "Come raggiungo l'aula 4/13?",
+        "Qual è il percorso per raggiungere l'aula 4/13?",
+        "Mi indichi il percorso per l'aula 4/13?",
+        "dove l'aula 4/13",
+        "l'aula 4/13",
+        "Aula 4/13",
+        "Dove aula 4/13?"
+      ],
+      "responses": [
+        "L'aula 4/13 si trova al piano 4. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 4 ↓ Corridoio del piano ↓ Ramo delle aule 4/12–4/14 ↓ Supera Aula 4/12 ↓ Aula 4/13."
+      ]
+    },
+    {
+      "tag": "aula_codice_413",
+      "patterns": [
+        "Dov'è l'aula 413?",
+        "Dove si trova l'aula 413?",
+        "Come raggiungo l'aula 413?",
+        "Qual è il percorso per raggiungere l'aula 413?",
+        "Mi indichi il percorso per l'aula 413?",
+        "dove l'aula 413",
+        "l'aula 413",
+        "aula 413",
+        "dove aula 413"
+      ],
+      "responses": [
+        "Se con aula 413 intendi l'aula 4/13 indicata sulla mappa, si trova al piano 4. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 4 ↓ Corridoio del piano ↓ Ramo delle aule 4/12–4/14 ↓ Supera Aula 4/12 ↓ Aula 4/13. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "luogo_aula_4_14",
+      "patterns": [
+        "Dov'è l'aula 4/14?",
+        "Dove si trova l'aula 4/14?",
+        "Come raggiungo l'aula 4/14?",
+        "Qual è il percorso per raggiungere l'aula 4/14?",
+        "Mi indichi il percorso per l'aula 4/14?",
+        "dove l'aula 4/14",
+        "l'aula 4/14",
+        "Aula 4/14",
+        "Dove aula 4/14?"
+      ],
+      "responses": [
+        "L'aula 4/14 si trova al piano 4. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 4 ↓ Corridoio del piano ↓ Ramo delle aule 4/12–4/14 ↓ Supera Aula 4/12 e Aula 4/13 ↓ Aula 4/14."
+      ]
+    },
+    {
+      "tag": "aula_codice_414",
+      "patterns": [
+        "Dov'è l'aula 414?",
+        "Dove si trova l'aula 414?",
+        "Come raggiungo l'aula 414?",
+        "Qual è il percorso per raggiungere l'aula 414?",
+        "Mi indichi il percorso per l'aula 414?",
+        "dove l'aula 414",
+        "l'aula 414",
+        "aula 414",
+        "dove aula 414"
+      ],
+      "responses": [
+        "Se con aula 414 intendi l'aula 4/14 indicata sulla mappa, si trova al piano 4. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 4 ↓ Corridoio del piano ↓ Ramo delle aule 4/12–4/14 ↓ Supera Aula 4/12 e Aula 4/13 ↓ Aula 4/14. La corrispondenza tra i due codici va confermata in portineria."
+      ]
+    },
+    {
+      "tag": "aula_222_non_verificata",
+      "patterns": [
+        "Dov'è l'aula 222?",
+        "Dove si trova l'aula 222?",
+        "Come raggiungo l'aula 222?",
+        "Qual è il percorso per raggiungere l'aula 222?",
+        "Mi indichi il percorso per l'aula 222?",
+        "dove l'aula 222",
+        "l'aula 222",
+        "aula 222",
+        "dove aula 222",
+        "Aula 2/22",
+        "Dove si trova l'aula 2/22?"
+      ],
+      "responses": [
+        "Non ho una posizione verificata per l'aula 222 (o 2/22) nella mappa disponibile. Chiedi conferma al banco accoglienza: INGRESSO PRINCIPALE ↓ Atrio ↓ Banco accoglienza e informazioni."
+      ]
+    },
+    {
+      "tag": "aula_223_non_verificata",
+      "patterns": [
+        "Dov'è l'aula 223?",
+        "Dove si trova l'aula 223?",
+        "Come raggiungo l'aula 223?",
+        "Qual è il percorso per raggiungere l'aula 223?",
+        "Mi indichi il percorso per l'aula 223?",
+        "dove l'aula 223",
+        "l'aula 223",
+        "aula 223",
+        "dove aula 223",
+        "Aula 2/23",
+        "Dove si trova l'aula 2/23?"
+      ],
+      "responses": [
+        "Non ho una posizione verificata per l'aula 223 (o 2/23) nella mappa disponibile. Chiedi conferma al banco accoglienza: INGRESSO PRINCIPALE ↓ Atrio ↓ Banco accoglienza e informazioni."
+      ]
+    },
+    {
+      "tag": "aule_piano_terra",
+      "patterns": [
+        "Ci sono aule al piano terra?",
+        "Quali aule ci sono al piano terra?",
+        "Aule piano terra",
+        "Aule piano 0"
+      ],
+      "responses": [
+        "Al piano terra sono indicate Aula 3.0, Aula studenti, Aula omu e Aula Laboratorio Tecnologico. Quale vuoi raggiungere?"
+      ]
+    },
+    {
+      "tag": "aula_numero_incompleto",
+      "patterns": [
+        "Dove sono le aule 1 2 3?",
+        "Aula 1",
+        "Aula 2",
+        "Aula 10",
+        "Aula 12",
+        "Aula 20",
+        "Dovʼè la mia aula?",
+        "Come arrivo in aula?"
+      ],
+      "responses": [
+        "Indicami il codice completo dellʼaula, per esempio 2/15, oppure il suo nome. Il solo numero senza piano non mi permette di identificarla con certezza."
+      ]
+    },
+    {
+      "tag": "destinazione_laboratorio_informatica",
+      "patterns": [
+        "Dov'è il laboratorio informatica?",
+        "Dove si trova il laboratorio informatica?",
+        "Come raggiungo il laboratorio informatica?",
+        "Qual è il percorso per raggiungere il laboratorio informatica?",
+        "Mi indichi il percorso per il laboratorio informatica?",
+        "dove il laboratorio informatica",
+        "laboratorio informatica",
+        "Dov'è il laboratorio di informatica?",
+        "Dove si trova il lab di informatica?"
+      ],
+      "responses": [
+        "Il laboratorio informatica si trova al piano 2. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 2 ↓ Corridoio del blocco affacciato su Corso San Maurizio ↓ Zona Saletta informatica progettazione docenti ↓ Laboratorio informatica."
+      ]
+    },
+    {
+      "tag": "destinazione_laboratorio_informatica_2",
+      "patterns": [
+        "Dov'è il laboratorio informatica 2?",
+        "Dove si trova il laboratorio informatica 2?",
+        "Come raggiungo il laboratorio informatica 2?",
+        "Qual è il percorso per raggiungere il laboratorio informatica 2?",
+        "Mi indichi il percorso per il laboratorio informatica 2?",
+        "dove il laboratorio informatica 2",
+        "laboratorio informatica 2",
+        "Lab 2 informatica",
+        "Dov'è il laboratorio di informatica 2?"
+      ],
+      "responses": [
+        "Il laboratorio informatica 2 si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Diramazione verso Laboratorio elettronica di base ↓ Laboratorio informatica 2 (accesso finale da verificare)."
+      ]
+    },
+    {
+      "tag": "destinazione_laboratorio_elettronica_di_base",
+      "patterns": [
+        "Dov'è il laboratorio elettronica di base?",
+        "Dove si trova il laboratorio elettronica di base?",
+        "Come raggiungo il laboratorio elettronica di base?",
+        "Qual è il percorso per raggiungere il laboratorio elettronica di base?",
+        "Mi indichi il percorso per il laboratorio elettronica di base?",
+        "dove il laboratorio elettronica di base",
+        "laboratorio elettronica di base",
+        "Dov'è il laboratorio di elettronica?",
+        "Come raggiungo il laboratorio di elettronica?"
+      ],
+      "responses": [
+        "Il laboratorio elettronica di base si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Diramazione verso Laboratorio informatica 2 ↓ Laboratorio elettronica di base (accesso finale da verificare)."
+      ]
+    },
+    {
+      "tag": "destinazione_laboratorio_fisica_1",
+      "patterns": [
+        "Dov'è il laboratorio fisica 1?",
+        "Dove si trova il laboratorio fisica 1?",
+        "Come raggiungo il laboratorio fisica 1?",
+        "Qual è il percorso per raggiungere il laboratorio fisica 1?",
+        "Mi indichi il percorso per il laboratorio fisica 1?",
+        "dove il laboratorio fisica 1",
+        "laboratorio fisica 1"
+      ],
+      "responses": [
+        "Il laboratorio fisica 1 si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio del blocco di fisica e chimica ↓ Laboratorio fisica 1 (porta finale da verificare)."
+      ]
+    },
+    {
+      "tag": "destinazione_laboratorio_fisica_2",
+      "patterns": [
+        "Dov'è il laboratorio fisica 2?",
+        "Dove si trova il laboratorio fisica 2?",
+        "Come raggiungo il laboratorio fisica 2?",
+        "Qual è il percorso per raggiungere il laboratorio fisica 2?",
+        "Mi indichi il percorso per il laboratorio fisica 2?",
+        "dove il laboratorio fisica 2",
+        "laboratorio fisica 2"
+      ],
+      "responses": [
+        "Il laboratorio fisica 2 si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio del blocco di fisica e chimica ↓ Ramo verso Preparazione fisica ↓ Laboratorio fisica 2 (porta finale da verificare)."
+      ]
+    },
+    {
+      "tag": "destinazione_laboratorio_automazione_robotica_domotica",
+      "patterns": [
+        "Dov'è il laboratorio automazione robotica domotica?",
+        "Dove si trova il laboratorio automazione robotica domotica?",
+        "Come raggiungo il laboratorio automazione robotica domotica?",
+        "Qual è il percorso per raggiungere il laboratorio automazione robotica domotica?",
+        "Mi indichi il percorso per il laboratorio automazione robotica domotica?",
+        "dove il laboratorio automazione robotica domotica",
+        "laboratorio automazione robotica domotica"
+      ],
+      "responses": [
+        "Il laboratorio automazione robotica domotica si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Zona Laboratorio informatica 2 ↓ Laboratorio automazione robotica domotica (porta finale da verificare)."
+      ]
+    },
+    {
+      "tag": "destinazione_laboratorio_sistemi_elettrici",
+      "patterns": [
+        "Dov'è il laboratorio sistemi elettrici?",
+        "Dove si trova il laboratorio sistemi elettrici?",
+        "Come raggiungo il laboratorio sistemi elettrici?",
+        "Qual è il percorso per raggiungere il laboratorio sistemi elettrici?",
+        "Mi indichi il percorso per il laboratorio sistemi elettrici?",
+        "dove il laboratorio sistemi elettrici",
+        "laboratorio sistemi elettrici"
+      ],
+      "responses": [
+        "Il laboratorio sistemi elettrici si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Corridoio 2 ↓ Corridoio 3 ↓ Laboratorio sistemi elettrici (porta finale da verificare)."
+      ]
+    },
+    {
+      "tag": "destinazione_sala_sperimentazione_elettrotecnica",
+      "patterns": [
+        "Dov'è la sala sperimentazione elettrotecnica?",
+        "Dove si trova la sala sperimentazione elettrotecnica?",
+        "Come raggiungo la sala sperimentazione elettrotecnica?",
+        "Qual è il percorso per raggiungere la sala sperimentazione elettrotecnica?",
+        "Mi indichi il percorso per la sala sperimentazione elettrotecnica?",
+        "dove la sala sperimentazione elettrotecnica",
+        "sala sperimentazione elettrotecnica"
+      ],
+      "responses": [
+        "La sala sperimentazione elettrotecnica si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Corridoio 2 ↓ Corridoio 3 ↓ Corridoio 4 ↓ Sala sperimentazione elettrotecnica (porta finale da verificare)."
+      ]
+    },
+    {
+      "tag": "destinazione_laboratorio_chimica",
+      "patterns": [
+        "Dov'è il laboratorio chimica?",
+        "Dove si trova il laboratorio chimica?",
+        "Come raggiungo il laboratorio chimica?",
+        "Qual è il percorso per raggiungere il laboratorio chimica?",
+        "Mi indichi il percorso per il laboratorio chimica?",
+        "dove il laboratorio chimica",
+        "laboratorio chimica",
+        "Dov'è il laboratorio di chimica?",
+        "Come vado al laboratorio di chimica?"
+      ],
+      "responses": [
+        "Il laboratorio chimica si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio del blocco di fisica e chimica ↓ Ramo verso Preparazione chimica ↓ Laboratorio chimica (porta finale da verificare)."
+      ]
+    },
+    {
+      "tag": "destinazione_laboratorio_di_scienze",
+      "patterns": [
+        "Dov'è il laboratorio di scienze?",
+        "Dove si trova il laboratorio di scienze?",
+        "Come raggiungo il laboratorio di scienze?",
+        "Qual è il percorso per raggiungere il laboratorio di scienze?",
+        "Mi indichi il percorso per il laboratorio di scienze?",
+        "dove il laboratorio di scienze",
+        "laboratorio di scienze",
+        "Dove si trova il laboratorio di scienze naturali?"
+      ],
+      "responses": [
+        "Il laboratorio di scienze si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Corridoio 2 ↓ Corridoio 3 ↓ Laboratorio di Scienze."
+      ]
+    },
+    {
+      "tag": "destinazione_laboratorio_cad_cam",
+      "patterns": [
+        "Dov'è il laboratorio cad-cam?",
+        "Dove si trova il laboratorio cad-cam?",
+        "Come raggiungo il laboratorio cad-cam?",
+        "Qual è il percorso per raggiungere il laboratorio cad-cam?",
+        "Mi indichi il percorso per il laboratorio cad-cam?",
+        "dove il laboratorio cad-cam",
+        "laboratorio cad-cam"
+      ],
+      "responses": [
+        "Il laboratorio cad-cam si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Corridoio Piano Terra ↓ Corridoio officine ↓ Zona Controllo numerico ↓ Laboratorio cad-cam (accesso finale da verificare)."
+      ]
+    },
+    {
+      "tag": "destinazione_segreteria_didattica",
+      "patterns": [
+        "Dov'è la segreteria didattica?",
+        "Dove si trova la segreteria didattica?",
+        "Come raggiungo la segreteria didattica?",
+        "Qual è il percorso per raggiungere la segreteria didattica?",
+        "Mi indichi il percorso per la segreteria didattica?",
+        "dove la segreteria didattica",
+        "segreteria didattica",
+        "Dov'è la segreteria?",
+        "Dove trovo la segreteria?",
+        "Come vado in segreteria?"
+      ],
+      "responses": [
+        "La segreteria didattica si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Banco accoglienza ↓ Zona uffici ↓ Segreteria didattica."
+      ]
+    },
+    {
+      "tag": "destinazione_presidenza",
+      "patterns": [
+        "Dov'è la presidenza?",
+        "Dove si trova la presidenza?",
+        "Come raggiungo la presidenza?",
+        "Qual è il percorso per raggiungere la presidenza?",
+        "Mi indichi il percorso per la presidenza?",
+        "dove la presidenza",
+        "presidenza",
+        "Dove si trova l'ufficio del dirigente scolastico?"
+      ],
+      "responses": [
+        "La presidenza si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Banco accoglienza ↓ Zona uffici ↓ Presidenza."
+      ]
+    },
+    {
+      "tag": "destinazione_palestra_grande",
+      "patterns": [
+        "Dov'è la palestra grande?",
+        "Dove si trova la palestra grande?",
+        "Come raggiungo la palestra grande?",
+        "Qual è il percorso per raggiungere la palestra grande?",
+        "Mi indichi il percorso per la palestra grande?",
+        "dove la palestra grande",
+        "palestra grande",
+        "Palestra principale"
+      ],
+      "responses": [
+        "La palestra grande si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Corridoio Piano Terra ↓ Zona Biblioteca ↓ Prosegui verso lʼarea sportiva ↓ Palestra grande (accesso finale da verificare)."
+      ]
+    },
+    {
+      "tag": "destinazione_palestra_piccola",
+      "patterns": [
+        "Dov'è la palestra piccola?",
+        "Dove si trova la palestra piccola?",
+        "Come raggiungo la palestra piccola?",
+        "Qual è il percorso per raggiungere la palestra piccola?",
+        "Mi indichi il percorso per la palestra piccola?",
+        "dove la palestra piccola",
+        "palestra piccola",
+        "Palestrina"
+      ],
+      "responses": [
+        "La palestra piccola si trova al piano terra. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Corridoio Piano Terra ↓ Area sportiva ↓ Prosegui verso la zona spogliatoi e officine ↓ Palestra piccola (accesso finale da verificare)."
+      ]
+    },
+    {
+      "tag": "destinazione_bar",
+      "patterns": [
+        "Dov'è il bar?",
+        "Dove si trova il bar?",
+        "Come raggiungo il bar?",
+        "Qual è il percorso per raggiungere il bar?",
+        "Mi indichi il percorso per il bar?",
+        "dove il bar",
+        "bar",
+        "C'è il bar a scuola?",
+        "Come vado al bar della scuola?"
+      ],
+      "responses": [
+        "Il bar si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Diramazione Corridoio bar ↓ Bar (porta finale da verificare)."
+      ]
+    },
+    {
+      "tag": "destinazione_mensa",
+      "patterns": [
+        "Dov'è la mensa?",
+        "Dove si trova la mensa?",
+        "Come raggiungo la mensa?",
+        "Qual è il percorso per raggiungere la mensa?",
+        "Mi indichi il percorso per la mensa?",
+        "dove la mensa",
+        "mensa",
+        "La scuola ha la mensa?",
+        "Come vado in mensa?"
+      ],
+      "responses": [
+        "La mensa si trova al piano 1. Percorso orientativo: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 1 ↓ Corridoio scala A ↓ Corridoio principale ↓ Diramazione Corridoio bar ↓ Zona Bar ↓ Mensa (accesso finale da verificare)."
+      ]
+    },
+    {
+      "tag": "luogo_vicepresidenza",
+      "patterns": [
+        "Dovʼè la vicepresidenza?",
+        "Dovʼè il vicepreside?",
+        "Ufficio vicepresidenza",
+        "Come vado in vicepresidenza?"
+      ],
+      "responses": [
+        "Gli uffici di Vicepresidenza sono mappati al piano terra. Cerchi la Vicepresidenza Diurno, quella Serale o lʼUfficio Vicepreside? Il banco accoglienza può indicarti lo sportello corretto."
+      ]
+    },
+    {
+      "tag": "luogo_lab_fisica_generico",
+      "patterns": [
+        "Dovʼè il laboratorio di fisica?",
+        "Dove sono i laboratori di fisica?",
+        "Come vado al laboratorio di fisica?"
+      ],
+      "responses": [
+        "I laboratori di fisica 1 e 2 sono al piano 1. Quale dei due cerchi?"
+      ]
+    },
+    {
+      "tag": "luogo_non_identificato",
+      "patterns": [
+        "Dovʼè il laboratorio Cisco Academy?",
+        "Dovʼè il Lab 3 informatica?",
+        "Dovʼè il laboratorio di biologia?",
+        "Dove sono le aule S01 e S02?"
+      ],
+      "responses": [
+        "Non riesco a identificare con certezza questo locale nella mappa disponibile. Hai il nome riportato sulla porta o un altro codice?"
       ]
     }
   ]
