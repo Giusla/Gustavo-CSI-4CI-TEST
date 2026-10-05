@@ -4978,3 +4978,5 @@ button, input, select, textarea { font-family: inherit; }
     .site-page .team-photo-caption { font-size: 0.82rem; padding: 10px 12px; align-items: flex-start; }
     .site-page .team-photo-caption svg { margin-top: 3px; }
 }
+
+.site-page .team-photo-caption { display: block; background: #ffffff; color: var(--text-body); font-size: 0.82rem; font-weight: 400; line-height: 1.5; padding: 10px 14px; }
