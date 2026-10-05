@@ -4748,13 +4748,8 @@ html.nav-mobile-open .g-a11y-backdrop {
     pointer-events: none !important;
 }
 
-/* ── Quando il pannello accessibilità è aperto: nascondi il pulsante torna in cima per non sovrapporsi ── */
-html.g-a11y-open .back-to-top-btn {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-}
+/* Keep the return-to-top button available while accessibility is open. */
+html.g-a11y-open .back-to-top-btn { z-index: 10006; }
 
 /* Shared presentation for the five information pages. Chatbot layout stays independent. */
 body.site-page {

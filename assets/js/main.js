@@ -1300,15 +1300,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (a11yBackdrop) {
                 a11yBackdrop.classList.toggle('is-visible', isOpen);
             }
-            if (backToTopBtn) {
-                if (isOpen) {
-                    backToTopBtn.style.opacity = '0';
-                    backToTopBtn.style.pointerEvents = 'none';
-                } else {
-                    backToTopBtn.style.opacity = '';
-                    backToTopBtn.style.pointerEvents = '';
-                }
-            }
+
             const tooltip = btn.querySelector('.g-a11y-tooltip');
             if (tooltip) {
                 tooltip.textContent = isOpen ? 'Chiudi' : 'Accessibilità';
