@@ -60,8 +60,8 @@
   --brand-gradient-h: linear-gradient(90deg, #00a86b 0%, #0066ff 100%);
   --bg-page: #f8fafc;
   --bg-surface: #ffffff;
-  --border-subtle: #cbd5e1;
-  --border-card: #b6c5d6;
+  --border-subtle: #dce4ed;
+  --border-card: #c5d0de;
   --text-heading: #0f172a;
   --text-body: #334155;
   --text-muted: #64748b;
@@ -131,7 +131,7 @@ html, body {
     height: calc(100% - 24px) !important;
     max-height: calc(100% - 24px) !important;
     border-radius: var(--radius-lg) !important;
-    border: 1px solid #b6c5d6 !important;
+    border: 1px solid var(--border-subtle) !important;
     box-shadow: var(--shadow-card) !important;
   }
 }
@@ -712,8 +712,7 @@ button:disabled {
   flex-direction: column !important;
   align-items: center !important;
   padding: 14px 0 8px !important;
-  background: radial-gradient(ellipse at 25% 35%, rgba(0, 168, 107, 0.17), transparent 85%),
-              radial-gradient(ellipse at 75% 30%, rgba(0, 102, 255, 0.17), transparent 85%), #fff !important;
+  background: linear-gradient(115deg, rgba(0, 168, 107, 0.18) 0%, rgba(0, 168, 107, 0.07) 45%, rgba(0, 102, 255, 0.08) 60%, rgba(0, 102, 255, 0.18) 100%), #fff !important;
 }
 #chat-container, #messages { min-height: 0 !important; }
 #input { min-width: 0 !important; }
