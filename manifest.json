@@ -1,23 +1,20 @@
 {
+  "id": "./",
   "name": "GustAvo — Il chatbot che ti orienta a scuola",
   "short_name": "GustAvo",
-  "description": "Progetto GustAvo: l'assistente virtuale di orientamento scolastico dell'IIS Avogadro di Torino con CSI Piemonte.",
+  "description": "GustAvo aiuta ragazzi e famiglie a conoscere l'IIS Amedeo Avogadro di Torino: indirizzi di studio, iscrizioni, servizi e percorsi per aule e laboratori.",
+  "lang": "it",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0066ff",
+  "background_color": "#f8fafc",
+  "theme_color": "#0066ee",
   "icons": [
-    {
-      "src": "assets/img/gustavo_square.png",
-      "sizes": "600x600",
-      "type": "image/png",
-      "purpose": "any"
-    },
     {
       "src": "assets/img/favicon.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ]
 }
