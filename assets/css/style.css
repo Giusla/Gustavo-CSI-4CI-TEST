@@ -80,6 +80,7 @@ textarea {
 }
 
 html {
+    --font-main: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
@@ -88,7 +89,7 @@ html {
 }
 
 body {
-    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: var(--font-main);
     background-color: #f6f9fc;
     color: #1e293b;
     line-height: 1.6;
@@ -2104,7 +2105,7 @@ body.chatbot-page>header {
     gap: 20px;
     overflow-x: auto;
     overflow-y: hidden;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x proximity;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     padding: 10px 4px 14px;
@@ -2674,7 +2675,7 @@ body.modal-is-open {
     width: auto;
     flex-shrink: 0;
     z-index: 10;
-    font-family: var(--font-main, 'Plus Jakarta Sans', system-ui, sans-serif);
+    font-family: var(--font-main);
     animation: lightboxMetaIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -4244,7 +4245,7 @@ html.g-readable-font textarea {
 .g-a11y-panel *,
 .g-a11y-btn,
 .g-a11y-btn * {
-    font-family: var(--font-main, 'Plus Jakarta Sans', system-ui, sans-serif) !important;
+    font-family: var(--font-main) !important;
 }
 
 html.g-text-spacing p,
@@ -4754,3 +4755,183 @@ html.g-a11y-open .back-to-top-btn {
     opacity: 0 !important;
     pointer-events: none !important;
 }
+
+/* Shared presentation for the five information pages. Chatbot layout stays independent. */
+body.site-page {
+    --border-subtle: #dce4ed;
+    --border-card: #c5d0de;
+    --radius-md: 12px;
+    --surface-shadow: 0 4px 16px rgba(15, 23, 42, 0.035);
+    background-color: var(--bg-page);
+    color: var(--text-body);
+}
+.site-page .page-wrapper { padding: 40px 0 64px; }
+.site-page .page-header { margin-bottom: 32px; }
+.site-page .titolo-pagina {
+    font-size: clamp(1.8rem, 3vw, 2.3rem);
+    line-height: 1.2;
+    letter-spacing: -0.035em;
+    color: var(--text-heading);
+}
+.site-page :is(.sottotitolo, .section-subtitle, .encounter-desc) {
+    max-width: 720px;
+    font-size: 0.98rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+}
+.site-page .project-section-kicker {
+    font-size: 0.75rem;
+    letter-spacing: 0.09em;
+    margin-bottom: 10px;
+}
+.site-page :is(.section-title, .story-chapter h2, .doc-section h2, .encounter-title) {
+    font-size: clamp(1.3rem, 2.2vw, 1.65rem);
+    line-height: 1.35;
+    letter-spacing: -0.025em;
+    color: var(--text-heading);
+}
+.site-page :is(.content-section, .team-section) { margin-top: 48px; }
+.site-page .section-header { margin-bottom: 24px; }
+.site-page :is(.card-panel, .doc-section, .team-area-card, .gallery-card) {
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    box-shadow: var(--surface-shadow);
+}
+.site-page :is(.card-panel, .doc-section) { padding: 28px 32px; }
+.site-page .doc-section { margin-bottom: 24px; }
+.site-page :is(.story-chapter p, .doc-section p, .journey-desc, .team-area-card p, .solution-card p) {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--text-body);
+}
+.site-page :is(.team-area-card h3, .solution-card h3, .journey-title, .pipeline-title) {
+    font-size: 1.1rem;
+    line-height: 1.4;
+    letter-spacing: -0.02em;
+}
+.site-page .team-area-card { padding: 24px; }
+.site-page :is(.team-area-card:hover, .gallery-card:hover) {
+    transform: none;
+    border-color: var(--border-card);
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.065);
+}
+.site-page :is(.btn, .solution-card) { border-radius: 10px; }
+.site-page .btn { min-height: 44px; }
+.site-page .btn-primario { box-shadow: 0 4px 12px rgba(0, 102, 255, 0.16); }
+.site-page .btn-primario:hover { box-shadow: 0 6px 18px rgba(0, 102, 255, 0.22); }
+.site-page .btn-bordo { border-width: 1px; }
+.site-page .btn-bordo:hover { border-color: var(--brand-blue); box-shadow: var(--surface-shadow); }
+.site-page .hero-title { color: var(--brand-blue); }
+.site-page .hero-subtitle { margin-bottom: 8px; line-height: 1.5; }
+.site-page .hero-subtitle + .hero-lead { margin-top: 18px; }
+.site-page .encounter-section { margin-bottom: 48px; }
+.site-page .gallery-card img { border-radius: 11px 11px 0 0; }
+.site-page .gallery-caption { min-height: 58px; height: auto; flex-basis: 58px; line-height: 1.5; }
+@media (max-width: 768px) {
+    .site-page .container { padding-inline: 20px; }
+    .site-page .page-wrapper { padding: 28px 0 44px; }
+    .site-page .hero-editorial { padding: 32px 0 44px; }
+    .site-page .page-header { margin-bottom: 24px; }
+    .site-page :is(.content-section, .team-section) { margin-top: 36px; }
+    .site-page :is(.card-panel, .doc-section, .team-area-card) { padding: 22px; }
+    .site-page .encounter-section { margin-bottom: 36px; }
+    .site-page .btn-group { gap: 10px; }
+}
+@media (max-width: 380px) {
+    .site-page .container { padding-inline: 16px; }
+    .site-page :is(.card-panel, .doc-section, .team-area-card) { padding: 18px; }
+    .site-page .btn-group .btn { width: 100%; }
+}
+/* Consistent logo sizing on every page, with space preserved before loading. */
+.nav-logo-gustavo-full {
+    height: 40px;
+    width: auto;
+    max-width: 44px;
+    object-fit: contain;
+    flex: 0 0 auto;
+    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.18));
+}
+.site-page .logo-link { gap: 10px; }
+.footer-logo-avoprogetti { height: 32px; border-radius: 0; }
+@media (max-width: 768px) {
+    .site-page .nav-logo-gustavo-full { height: 34px; max-width: 38px; }
+    .site-page .logo-link { gap: 8px; }
+}
+@media (max-width: 480px) {
+    .site-page .logo-testo { display: none; }
+}
+
+/* One header identity across the portal and chatbot. */
+.navbar {
+    padding-inline: clamp(16px, 3vw, 36px);
+    background: linear-gradient(110deg, #00a578 0%, #008dbe 52%, #0066ee 100%);
+    box-shadow: 0 3px 14px rgba(15, 23, 42, 0.1);
+}
+.navbar .nav-brand-group { gap: 12px; min-width: 0; }
+.navbar .logo-link { gap: 10px; }
+.navbar .nav-logo-gustavo-full { height: 40px !important; max-width: 44px; border-radius: 0; }
+.navbar .logo-testo { display: flex; flex-direction: column; gap: 3px; }
+.navbar .logo-nome { font-size: 1.3rem; line-height: 1.15; letter-spacing: -0.035em; }
+.navbar .logo-motto { font-size: 0.59rem; line-height: 1.35; letter-spacing: 0.08em; color: rgba(255,255,255,0.78); }
+.navbar .nav-links a { border-radius: 6px; }
+.site-page .hero-title { margin-bottom: 14px; letter-spacing: -0.045em; }
+.site-page .hero-content .project-section-kicker { margin-bottom: 12px; }
+.site-page .hero-subtitle { color: var(--text-body); font-size: clamp(1.15rem, 2vw, 1.4rem); font-weight: 600; line-height: 1.45; }
+.site-page .hero-subtitle + .hero-lead { margin-top: 20px; }
+.footer { padding: 24px 20px 20px; }
+.footer-container { gap: 16px; }
+.footer-logos { gap: 30px; }
+.footer-logo-link { opacity: 1; }
+.footer .footer-logo-avo { height: 54px; }
+.footer .footer-logo-avoprogetti { height: 68px; width: auto; filter: drop-shadow(0 0 4px rgba(255,255,255,0.5)); }
+.footer .footer-logo-gustavo { height: 60px; }
+@media (max-width: 900px) {
+    .navbar .logo-motto { display: none; }
+}
+@media (max-width: 480px) {
+    .navbar .logo-testo { display: flex !important; }
+    .navbar .logo-nome { font-size: 1.15rem; }
+    .navbar .nav-brand-group { gap: 8px; }
+    .navbar .logo-link { gap: 6px; }
+    .navbar .nav-logo-gustavo-full { height: 34px !important; max-width: 36px; }
+    .navbar .nav-logo-avo { height: 30px; }
+    .navbar .nav-logo-csi { width: 52px; height: auto; }
+    .footer-logos { gap: 22px; }
+    .footer .footer-logo-avo { height: 46px; }
+    .footer .footer-logo-avoprogetti { height: 60px; }
+    .footer .footer-logo-gustavo { height: 52px; }
+}
+.navbar { height: 64px !important; min-height: 64px !important; }
+@media (max-width: 768px) {
+    .navbar { height: 60px !important; min-height: 60px !important; }
+}
+
+/* A simpler home introduction and a compact footer. */
+.site-page .hero-title { font-size: clamp(2.4rem, 4.2vw, 3.2rem); margin-bottom: 8px; }
+.site-page .hero-subtitle { font-size: clamp(1.05rem, 1.6vw, 1.2rem); font-weight: 500; color: var(--text-heading); line-height: 1.5; }
+.site-page .hero-subtitle + .hero-lead { margin-top: 18px; }
+.site-page .hero-lead { max-width: 520px; font-size: 0.98rem; line-height: 1.75; color: var(--text-muted); }
+.site-page .hero-lead .link-scuola { font-weight: 500; color: var(--text-body); text-decoration: underline; text-underline-offset: 3px; }
+.footer { padding: 14px 20px 12px; }
+.footer-container { gap: 8px; }
+.footer-logos { gap: 24px; }
+.footer .footer-logo-avo { height: 40px; }
+.footer .footer-logo-avoprogetti { height: 48px; }
+.footer .footer-logo-gustavo { height: 44px; }
+@media (max-width: 480px) {
+    .footer { padding: 12px 16px; }
+    .footer .footer-container { padding-inline: 0; }
+    .footer-logos { gap: 20px; }
+    .footer .footer-logo-avo { height: 36px; }
+    .footer .footer-logo-avoprogetti { height: 44px; }
+    .footer .footer-logo-gustavo { height: 40px; }
+}
+
+/* Shared typography, including native form controls. */
+button, input, select, textarea { font-family: inherit; }
+
+/* Direct, frame-synchronized scrollbar dragging on mouse and touch. */
+.gallery-slider-track.is-scrollbar-dragging { scroll-behavior: auto; scroll-snap-type: none; }
+.gallery-custom-scrollbar-thumb { touch-action: none; cursor: grab; }
+.gallery-custom-scrollbar-thumb:active { cursor: grabbing; }
+.gallery-custom-scrollbar-thumb::before { content: ""; position: absolute; inset: -12px 0; }

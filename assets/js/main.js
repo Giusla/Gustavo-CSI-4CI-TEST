@@ -359,6 +359,12 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const togglePlay = () => {
+            const deferredSource = video.querySelector("source[data-src]");
+            if (deferredSource) {
+                deferredSource.src = deferredSource.dataset.src;
+                deferredSource.removeAttribute("data-src");
+                video.load();
+            }
             if (video.paused || video.ended) {
                 video.play();
             } else {
@@ -651,14 +657,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: "1° Incontro: Formazione e Laboratori al CSI Piemonte",
                 desc: "Kickoff del percorso formativo presso la sede di CSI Piemonte: analisi dei bisogni di orientamento, requisiti architetturali e studio del chatbot GustAvo con i tutor aziendali.",
                 photos: [
-                    { src: "assets/img/galleria/incontro_csi/foto_galleria_1.png", alt: "Sessione di lavoro del team GustAvo presso la sede di CSI Piemonte", caption: "Presentazione e avvio delle attività presso la sede di CSI Piemonte" },
-                    { src: "assets/img/galleria/incontro_csi/foto_galleria_2.jpg", alt: "Brainstorming e definizione dei requisiti essenziali del chatbot", caption: "Brainstorming e definizione dei requisiti essenziali del chatbot" },
-                    { src: "assets/img/galleria/incontro_csi/foto_galleria_3.jpg", alt: "Confronto con i tutor aziendali sulla struttura del servizio", caption: "Confronto con i tutor aziendali sulla struttura del servizio" },
-                    { src: "assets/img/galleria/incontro_csi/foto_galleria_4.jpg", alt: "La classe 5CI con i tutor aziendali di CSI Piemonte", caption: "La classe 5CI insieme ai tutor aziendali di CSI Piemonte" },
-                    { src: "assets/img/galleria/incontro_csi/foto_galleria_5.jpg", alt: "Studio dell'architettura privacy-first senza profilazione", caption: "Studio dell'architettura software e politiche privacy-first" },
-                    { src: "assets/img/galleria/incontro_csi/foto_galleria_6.jpg", alt: "Studio dei meccanismi di risposta e gestione fallback", caption: "Studio dei meccanismi di classificazione e gestione fallback" },
-                    { src: "assets/img/galleria/incontro_csi/foto_galleria_7.jpg", alt: "Approfondimento tecnico sulle API e integrazione con il modello", caption: "Approfondimento tecnico sull'integrazione del modello NLP" },
-                    { src: "assets/img/galleria/incontro_csi/foto_galleria_8.png", alt: "Momento di confronto e sintesi della sessione al CSI", caption: "Sintesi della sessione di lavoro e pianificazione sprint" }
+                    { src: "assets/img/optimized/galleria/incontro_csi/foto_galleria_1.webp", alt: "Sessione di lavoro del team GustAvo presso la sede di CSI Piemonte", caption: "Presentazione e avvio delle attività presso la sede di CSI Piemonte" },
+                    { src: "assets/img/optimized/galleria/incontro_csi/foto_galleria_2.webp", alt: "Brainstorming e definizione dei requisiti essenziali del chatbot", caption: "Brainstorming e definizione dei requisiti essenziali del chatbot" },
+                    { src: "assets/img/optimized/galleria/incontro_csi/foto_galleria_3.webp", alt: "Confronto con i tutor aziendali sulla struttura del servizio", caption: "Confronto con i tutor aziendali sulla struttura del servizio" },
+                    { src: "assets/img/optimized/galleria/incontro_csi/foto_galleria_4.webp", alt: "La classe 5CI con i tutor aziendali di CSI Piemonte", caption: "La classe 5CI insieme ai tutor aziendali di CSI Piemonte" },
+                    { src: "assets/img/optimized/galleria/incontro_csi/foto_galleria_5.webp", alt: "Studio dell'architettura privacy-first senza profilazione", caption: "Studio dell'architettura software e politiche privacy-first" },
+                    { src: "assets/img/optimized/galleria/incontro_csi/foto_galleria_6.webp", alt: "Studio dei meccanismi di risposta e gestione fallback", caption: "Studio dei meccanismi di classificazione e gestione fallback" },
+                    { src: "assets/img/optimized/galleria/incontro_csi/foto_galleria_7.webp", alt: "Approfondimento tecnico sulle API e integrazione con il modello", caption: "Approfondimento tecnico sull'integrazione del modello NLP" },
+                    { src: "assets/img/optimized/galleria/incontro_csi/foto_galleria_8.webp", alt: "Momento di confronto e sintesi della sessione al CSI", caption: "Sintesi della sessione di lavoro e pianificazione sprint" }
                 ]
             },
             {
@@ -667,12 +673,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: "2° Incontro: Sviluppo, Addestramento e Test in Classe",
                 desc: "Attività di programmazione e collaudo nei laboratori dell'IIS Amedeo Avogadro: strutturazione del dataset intents.json, addestramento del modello Scikit-learn e test del frontend.",
                 photos: [
-                    { src: "assets/img/galleria/in_classe/foto_classe_1.jpg", alt: "Sessione di programmazione e sviluppo in laboratorio all'IIS Avogadro", caption: "Sessione di sviluppo del codice e analisi dei requisiti in classe" },
-                    { src: "assets/img/galleria/in_classe/foto_classe_2.png", alt: "Lavoro di gruppo sulla strutturazione dei dati delle intenzioni", caption: "Lavoro di gruppo sulla categorizzazione e raffinamento del dataset" },
-                    { src: "assets/img/galleria/in_classe/foto_classe_3.png", alt: "Test interattivo delle risposte del chatbot GustAvo tra studenti", caption: "Collaudo interattivo delle risposte conversazionali" },
-                    { src: "assets/img/galleria/in_classe/foto_classe_4.png", alt: "Ottimizzazione del backend Flask e configurazione delle rotte", caption: "Ottimizzazione del backend e calibrazione della confidenza semantica" },
-                    { src: "assets/img/galleria/in_classe/foto_classe_5.png", alt: "Revisione del design dell'interfaccia utente", caption: "Revisione dell'interfaccia utente e accessibilità visiva" },
-                    { src: "assets/img/galleria/in_classe/foto_classe_6.png", alt: "Conclusione dei test in classe e validazione della versione finale", caption: "Validazione dei flussi e collaudo finale con i docenti" }
+                    { src: "assets/img/optimized/galleria/in_classe/foto_classe_1.webp", alt: "Sessione di programmazione e sviluppo in laboratorio all'IIS Avogadro", caption: "Sessione di sviluppo del codice e analisi dei requisiti in classe" },
+                    { src: "assets/img/optimized/galleria/in_classe/foto_classe_2.webp", alt: "Lavoro di gruppo sulla strutturazione dei dati delle intenzioni", caption: "Lavoro di gruppo sulla categorizzazione e raffinamento del dataset" },
+                    { src: "assets/img/optimized/galleria/in_classe/foto_classe_3.webp", alt: "Test interattivo delle risposte del chatbot GustAvo tra studenti", caption: "Collaudo interattivo delle risposte conversazionali" },
+                    { src: "assets/img/optimized/galleria/in_classe/foto_classe_4.webp", alt: "Ottimizzazione del backend Flask e configurazione delle rotte", caption: "Ottimizzazione del backend e calibrazione della confidenza semantica" },
+                    { src: "assets/img/optimized/galleria/in_classe/foto_classe_5.webp", alt: "Revisione del design dell'interfaccia utente", caption: "Revisione dell'interfaccia utente e accessibilità visiva" },
+                    { src: "assets/img/optimized/galleria/in_classe/foto_classe_6.webp", alt: "Conclusione dei test in classe e validazione della versione finale", caption: "Validazione dei flussi e collaudo finale con i docenti" }
                 ]
             },
             {
@@ -681,11 +687,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: "3° Incontro: Incontro sull'AI con la Polizia di Stato",
                 desc: "Incontro formativo sui temi dell'Intelligenza Artificiale con la Polizia di Stato, con dibattito e sessione di interviste condotte dagli studenti.",
                 photos: [
-                    { src: "assets/img/galleria/incontro_cesedi/foto_cesedi_1.png", alt: "Incontro sull'Intelligenza Artificiale con la Polizia di Stato", caption: "Incontro formativo sull'AI con la Polizia di Stato" },
-                    { src: "assets/img/galleria/incontro_cesedi/foto_cesedi_2.png", alt: "Sessione di interviste condotte dagli studenti durante l'incontro sull'AI", caption: "Interviste e approfondimento condotti dagli studenti" },
-                    { src: "assets/img/galleria/incontro_cesedi/foto_cesedi_3.png", alt: "Confronto e conclusioni dell'incontro sull'Intelligenza Artificiale", caption: "Confronto, interviste e conclusioni della giornata sull'AI" }
+                    { src: "assets/img/optimized/galleria/incontro_cesedi/foto_cesedi_1.webp", alt: "Incontro sull'Intelligenza Artificiale con la Polizia di Stato", caption: "Incontro formativo sull'AI con la Polizia di Stato" },
+                    { src: "assets/img/optimized/galleria/incontro_cesedi/foto_cesedi_2.webp", alt: "Sessione di interviste condotte dagli studenti durante l'incontro sull'AI", caption: "Interviste e approfondimento condotti dagli studenti" },
+                    { src: "assets/img/optimized/galleria/incontro_cesedi/foto_cesedi_3.webp", alt: "Confronto e conclusioni dell'incontro sull'Intelligenza Artificiale", caption: "Confronto, interviste e conclusioni della giornata sull'AI" }
                 ]
-            }
+            },
+            {id: "incontro-4", badge: "4° Incontro · MSC", title: "Incontro con MSC", desc: "Le foto dell'incontro degli studenti con MSC.", photos: [{"src":"assets/img/optimized/galleria/incontro_msc/foto_msc_1.webp","alt":"Incontro degli studenti con MSC — foto 1","caption":"Incontro degli studenti con MSC"},{"src":"assets/img/optimized/galleria/incontro_msc/foto_msc_2.webp","alt":"Incontro degli studenti con MSC — foto 2","caption":"Incontro degli studenti con MSC"},{"src":"assets/img/optimized/galleria/incontro_msc/foto_msc_3.webp","alt":"Incontro degli studenti con MSC — foto 3","caption":"Incontro degli studenti con MSC"}]}
         ];
 
         // ------------------------------------------------
@@ -855,48 +862,64 @@ document.addEventListener('DOMContentLoaded', () => {
                 customThumb.style.transform = `translateX(${ratio * maxTravel}px)`;
             };
 
-            if (customTrack) {
+            if (customTrack && customThumb) {
+                let pointerId = null;
+                let startX = 0;
+                let startScroll = 0;
+                let targetScroll = 0;
+                let dragFrame = 0;
+                let moved = false;
+                let suppressClick = false;
+
                 customTrack.addEventListener('click', (e) => {
+                    if (suppressClick) { suppressClick = false; return; }
+                    if (e.target === customThumb) return;
                     const rect = customTrack.getBoundingClientRect();
-                    const clickX = e.clientX - rect.left;
-                    const ratio = Math.max(0, Math.min(1, clickX / rect.width));
-                    const maxScroll = track.scrollWidth - track.clientWidth;
-                    track.scrollTo({ left: ratio * maxScroll, behavior: 'smooth' });
+                    const travel = rect.width - customThumb.clientWidth;
+                    const ratio = travel > 0 ? (e.clientX - rect.left - customThumb.clientWidth / 2) / travel : 0;
+                    track.scrollTo({ left: Math.max(0, Math.min(1, ratio)) * (track.scrollWidth - track.clientWidth), behavior: 'smooth' });
                 });
-            }
 
-            if (customThumb && customTrack) {
-                let thumbDragging = false;
-                let thumbStartX = 0;
-                let thumbStartScroll = 0;
-
-                customThumb.addEventListener('mousedown', (e) => {
+                customThumb.addEventListener('pointerdown', (e) => {
+                    if (!e.isPrimary || e.button !== 0) return;
                     e.preventDefault();
-                    e.stopPropagation();
-                    thumbDragging = true;
-                    thumbStartX = e.clientX;
-                    thumbStartScroll = track.scrollLeft;
-                    document.body.style.userSelect = 'none';
+                    pointerId = e.pointerId;
+                    startX = e.clientX;
+                    startScroll = targetScroll = track.scrollLeft;
+                    moved = false;
+                    suppressClick = false;
+                    track.classList.add('is-scrollbar-dragging');
+                    customThumb.setPointerCapture(pointerId);
                 });
 
-                window.addEventListener('mousemove', (e) => {
-                    if (!thumbDragging) return;
-                    const deltaX = e.clientX - thumbStartX;
-                    const trackWidth = customTrack.clientWidth;
-                    const thumbWidth = customThumb.clientWidth;
-                    const maxTravel = trackWidth - thumbWidth;
+                customThumb.addEventListener('pointermove', (e) => {
+                    if (e.pointerId !== pointerId) return;
+                    const delta = e.clientX - startX;
+                    moved = moved || Math.abs(delta) > 3;
+                    const travel = customTrack.clientWidth - customThumb.clientWidth;
                     const maxScroll = track.scrollWidth - track.clientWidth;
-                    if (maxTravel > 0) {
-                        track.scrollLeft = thumbStartScroll + (deltaX / maxTravel) * maxScroll;
-                    }
+                    if (travel <= 0) return;
+                    targetScroll = Math.max(0, Math.min(maxScroll, startScroll + delta / travel * maxScroll));
+                    if (!dragFrame) dragFrame = requestAnimationFrame(() => {
+                        track.scrollLeft = targetScroll;
+                        updateCustomScrollbar();
+                        dragFrame = 0;
+                    });
                 });
 
-                window.addEventListener('mouseup', () => {
-                    if (thumbDragging) {
-                        thumbDragging = false;
-                        document.body.style.userSelect = '';
-                    }
-                });
+                const finishDrag = (e) => {
+                    if (e.pointerId !== pointerId) return;
+                    if (dragFrame) { cancelAnimationFrame(dragFrame); dragFrame = 0; }
+                    track.scrollLeft = targetScroll;
+                    pointerId = null;
+                    suppressClick = moved;
+                    track.classList.remove('is-scrollbar-dragging');
+                    updateCustomScrollbar();
+                    updateButtonStates();
+                };
+                customThumb.addEventListener('pointerup', finishDrag);
+                customThumb.addEventListener('pointercancel', finishDrag);
+                customThumb.addEventListener('lostpointercapture', finishDrag);
             }
 
             if (prevBtn) {
@@ -913,9 +936,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
+            let scrollFrame = 0;
             track.addEventListener('scroll', () => {
-                updateButtonStates();
-                updateCustomScrollbar();
+                if (scrollFrame) return;
+                scrollFrame = requestAnimationFrame(() => {
+                    updateButtonStates();
+                    updateCustomScrollbar();
+                    scrollFrame = 0;
+                });
             }, { passive: true });
 
             // Registra callback per il resize condiviso (vedi sotto)
