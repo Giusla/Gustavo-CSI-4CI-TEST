@@ -15,6 +15,31 @@
 (function () {
   'use strict';
 
+  // Create and start recognition in the top-level page rather than the srcdoc frame.
+  window.GUSTAVO_CREATE_RECOGNITION = function () {
+    const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!Recognition) return null;
+    const engine = new Recognition();
+    const bridge = {
+      start() { engine.start(); },
+      stop() { engine.stop(); },
+      abort() { engine.abort(); }
+    };
+    for (const property of ['lang', 'continuous', 'interimResults']) {
+      Object.defineProperty(bridge, property, {
+        get() { return engine[property]; },
+        set(value) { engine[property] = value; }
+      });
+    }
+    for (const event of ['start', 'audiostart', 'speechstart', 'result', 'error', 'end']) {
+      engine['on' + event] = function (detail) {
+        const callback = bridge['on' + event];
+        if (callback) callback(detail);
+      };
+    }
+    return bridge;
+  };
+
   // Tema CSS completo e ottimizzato per l'iniezione
   const THEME_CSS = `
 :root {
@@ -774,9 +799,7 @@ button:disabled {
         <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
       </svg>
       <svg class="mic-svg mic-open" viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true">
-        <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
-        <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
-        <path d="M19.5 8.5a6.5 6.5 0 0 1 0 7M21.5 6.5a9.5 9.5 0 0 1 0 11M4.5 8.5a6.5 6.5 0 0 0 0 7M2.5 6.5a9.5 9.5 0 0 0 0 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <rect x="6" y="6" width="12" height="12" rx="2"/>
       </svg>
     </button>
   `;
@@ -791,7 +814,7 @@ button:disabled {
     </label>
   `;
 
-  const mouthAndBotSpeakLogic = `
+  const mouthAndBotSpeakLogic = String.raw`
 let _isSpeaking = false;
 let _currentAudio = null;
 let _speechTimeout = null;
@@ -817,8 +840,9 @@ function setSpeakingState(speaking) {
 
   if (_isSpeaking) {
     if (_inp) {
-      _inp.disabled = false;
-      _inp.placeholder = "GustAvo sta parlando...";
+      _inp.value = "";
+      _inp.disabled = true;
+      _inp.placeholder = "Gustavo sta parlando...";
     }
     if (_btn) {
       _btn.disabled = false;
@@ -923,9 +947,10 @@ function animateMouthStop() {
 function formatBotMessage(text) {
   if (!text) return "";
   return text
-    .replace(/\\[([^\\]]+)\\]\\((https?:\\/\\/[^\\s)]+)\\)/g, '<a href="$2" target="_blank" rel="noopener" class="chat-map-btn">$1</a>')
-    .replace(/(^|[^"'])(https:\\/\\/openlevelup\\.net[^\\s<]+)/g, '$1<a href="$2" target="_blank" rel="noopener" class="chat-map-btn">Mappa OpenLevelUp ↗</a>')
-    .replace(/\\n/g, '<br>');
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener" class="chat-map-btn">$1</a>')
+    .replace(/(^|[^"'])(https:\/\/openlevelup\.net[^\s<]+)/g, '$1<a href="$2" target="_blank" rel="noopener" class="chat-map-btn">Mappa OpenLevelUp ↗</a>')
+    .replace(/\n/g, '<br>');
 }
 
 function speakWithWebSpeechFallback(text) {
@@ -993,15 +1018,16 @@ function botSpeak(rawText) {
   stopSpeaking();
 
   const cleanText = (rawText || "")
-    .replace(/[\\u{1F000}-\\u{1FAFF}\\u{2600}-\\u{27BF}\\u{FE00}-\\u{FE0F}]/gu, '')
+    .replace(/[\u{1F000}-\u{1FAFF}\u{2600}-\u{27BF}\u{FE00}-\u{FE0F}]/gu, '')
     .trim();
 
   const cleanForTts = cleanText
-    .replace(/\\[([^\\]]+)\\]\\([^)]+\\)/g, '$1')
-    .replace(/https?:\\/\\/\\S+/g, '')
-    .replace(/[*_~\\x60#>-]/g, ' ')
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+    .replace(/https?:\/\/\S+/g, '')
+    .replace(/[*_~\x60#]/g, ' ')
     .replace(/↗/g, '')
-    .replace(/\\s+/g, ' ')
+    .replace(/[➔→↓]/g, ' poi ')
+    .replace(/\s+/g, ' ')
     .trim();
 
   const p = document.createElement("div");
@@ -1078,7 +1104,7 @@ function botSpeak(rawText) {
 }
 `;
 
-  const robustSendLogic = `
+  const robustSendLogic = String.raw`
 function getLocalIntents() {
   if (typeof window !== "undefined" && window.GUSTAVO_INTENTS_DATA && Array.isArray(window.GUSTAVO_INTENTS_DATA.intents)) {
     return window.GUSTAVO_INTENTS_DATA.intents;
@@ -1089,7 +1115,7 @@ function getLocalIntents() {
   return [];
 }
 
-const BAD_WORDS_REGEX = /\\b(cazzo|cazzi|cazzata|cazzate|merda|merde|merdaccia|vaffanculo|fanculo|vaffanbagno|stronzo|stronzi|stronza|stronze|coglione|coglioni|coglioneria|puttana|puttane|troia|troie|bastardo|bastardi|bastarda|bastarde|porco\\s+dio|dio\\s+cane|madonna\\s+puttana|porca\\s+madonna|vaffan|idiota|deficiente|scemo|cretino|fancazzista)\\b/gi;
+const BAD_WORDS_REGEX = /\b(cazzo|cazzi|cazzata|cazzate|merda|merde|merdaccia|vaffanculo|fanculo|vaffanbagno|stronzo|stronzi|stronza|stronze|coglione|coglioni|coglioneria|puttana|puttane|troia|troie|bastardo|bastardi|bastarda|bastarde|porco\s+dio|dio\s+cane|madonna\s+puttana|porca\s+madonna|vaffan|idiota|deficiente|scemo|cretino|fancazzista)\b/gi;
 
 function filterProfanity(text) {
   if (!text) return "";
@@ -1109,9 +1135,9 @@ function normalizeNlpText(str) {
   return str
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[\\u0300-\\u036f]/g, "")
-    .replace(/[^a-z0-9\\s]/g, " ")
-    .replace(/\\s+/g, " ")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s]/g, " ")
+    .replace(/\s+/g, " ")
     .trim();
 }
 
@@ -1135,163 +1161,79 @@ const STOP_WORDS_SET = new Set([
 
 function tokenizeQuery(text) {
   const words = normalizeNlpText(text).split(" ").filter(w => w.length > 0);
-  return words.filter(w => !STOP_WORDS_SET.has(w) && w.length > 1);
+  return words.filter(w => !STOP_WORDS_SET.has(w) && (w.length > 1 || /^\d+$/.test(w)));
 }
 
 function matchLocalIntent(query) {
   if (!query) return null;
-  const normQuery = normalizeNlpText(query);
-
-  // 1. Riconoscimento intelligente e prioritario per qualsiasi aula scolastica (es. "aula 223", "dove e la 223", "223")
-  const aulaRegex = /(?:aula\\s*|^|\\b)(s0?[1-9]|[1-4]\\d{2})\\b/i;
-  const aulaMatch = query.match(aulaRegex);
-  if (aulaMatch) {
-    const code = aulaMatch[1].toUpperCase();
-    if (code.startsWith("1")) {
-      return {
-        intent: {
-          responses: [
-            "L'Aula " + code + " si trova al Primo Piano.\\n\\nVisualizza la mappa: [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria."
-          ]
-        },
-        score: 1.0
-      };
-    } else if (code.startsWith("2")) {
-      return {
-        intent: {
-          responses: [
-            "L'Aula " + code + " si trova al Secondo Piano.\\n\\nVisualizza la mappa: [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria."
-          ]
-        },
-        score: 1.0
-      };
-    } else if (code.startsWith("3")) {
-      return {
-        intent: {
-          responses: [
-            "L'Aula " + code + " si trova al Terzo Piano.\\n\\nVisualizza la mappa: [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria."
-          ]
-        },
-        score: 1.0
-      };
-    } else if (code.startsWith("4")) {
-      return {
-        intent: {
-          responses: [
-            "L'Aula " + code + " si trova al Quarto Piano.\\n\\nVisualizza la mappa: [Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)\\n\\nPuoi verificare le indicazioni anche alla portineria all'ingresso o in segreteria."
-          ]
-        },
-        score: 1.0
-      };
-    } else if (code.startsWith("S")) {
-      return {
-        intent: {
-          responses: [
-            "Il laboratorio/officina " + code + " si trova al Piano Terra, nell'area delle officine e macchine CNC.\\n\\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
-          ]
-        },
-        score: 1.0
-      };
+  const intents = getLocalIntents();
+  const norm = normalizeNlpText(query.replace(/(\d)\s*\/\s*(\d)/g, '$1/$2'));
+  const tokens = tokenizeQuery(query);
+  const rooms = intents.filter(i => i.room);
+  const reply = text => ({intent:{responses:[text]},score:1});
+  const numbers = norm.match(/\b\d+\b/g) || [];
+  if (/^(fisica|misure|laboratorio linguistico|linguistico|disegno|matematica|informatica)$/.test(norm)) return reply('Specifica il laboratorio: per esempio fisica 1 o 2, misure 1 o 2, linguistico 1 o 2, matematica biennio o triennio.');
+  const candidates = rooms.map(intent => {
+    let score = 0;
+    for (const pattern of intent.patterns) {
+      const p = normalizeNlpText(pattern);
+      if (norm === p) { score = 10000; break; }
+      const pn = p.match(/\b\d+\b/g) || [];
+      if (numbers.join(',') !== pn.join(',')) continue;
+      if ((' ' + norm + ' ').includes(' ' + p + ' ')) score = Math.max(score, 100 + p.length);
+      const pt = tokenizeQuery(pattern);
+      if (pt.length && pt.every(t => tokens.includes(t)) && tokens.every(t => pt.includes(t) || ['arrivo','raggiungo','vorrei','cerco','indicazioni','percorso','portami','andare','avogadro'].includes(t))) {
+        score = Math.max(score, 50 + pt.length);
+      }
     }
+    return {intent,score};
+  }).filter(i => i.score > 0).sort((a,b) => b.score-a.score);
+  if (candidates.length && (!candidates[1] || candidates[0].score > candidates[1].score)) return candidates[0];
+  if (candidates.length) return reply('Quale aula intendi? Specifica il nome completo o il numero: ' + candidates.filter(i=>i.score===candidates[0].score).map(i=>i.intent.room.name).join(', ') + '.');
+  if (numbers.length && (/\b(aula|laboratorio|lab|stanza)\b/.test(norm) || /^\d+( \d+)?$/.test(norm))) return reply('Non ho un percorso verificato per questa aula. Controlla il numero completo (per esempio 224 oppure 2/24) o chiedi conferma in portineria.');
+  // Ask for a distinguishing name instead of guessing among related laboratories.
+  if (/\b(aula|laboratorio|lab|fisica|misure|linguistico|disegno|matematica|informatica|automazione)\b/.test(norm)) {
+    const key = tokens.filter(t=>!['aula','laboratorio','lab','arrivo','cerco','indicazioni','percorso'].includes(t));
+    const options = rooms.filter(i=>i.room.aliases.some(a=>key.length && key.every(t=>tokenizeQuery(a).includes(t))));
+    if (options.length) return reply('Puoi specificare quale aula cerchi? ' + options.map(i=>i.room.name).join(', ') + '.');
+    return reply('Quale aula cerchi? Scrivi il nome completo del laboratorio oppure il numero dell’aula.');
   }
-
-  // Chiarimento su aule a numero basso (es. "aula 12", "aula 5")
-  if (/\\b(?:aula|aule)\\s*([1-9]|1[0-9]|20)\\b/i.test(query)) {
-    return {
-      intent: {
-        responses: [
-          "All'IIS Avogadro le aule sono contrassegnate da numeri a tre cifre in base al piano:\\n- Serie 100 (101-130): Primo Piano\\n- Serie 200 (201-230): Secondo Piano\\n- Serie 300 (301-330): Terzo Piano\\n- Serie 400 (401-430): Quarto Piano\\n- Serie S / Officine: Piano Terra e Seminterrato\\n\\nAl Piano Terra si trovano la Segreteria, la Presidenza, la Biblioteca Storica, l'Aula Magna, le Palestre, le Officine Meccaniche e il Bar.\\n\\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
-        ]
-      },
-      score: 1.0
-    };
-  }
-
-  // Riconoscimento esplicito seminterrato
-  if (/\\b(?:seminterrat[oi]|interrat[oi]|spogliatoi?)\\b/i.test(normQuery)) {
-    return {
-      intent: {
-        responses: [
-          "Il Piano Seminterrato dell'IIS Avogadro ospita gli spogliatoi delle palestre e alcuni locali tecnici/laboratori. Vi si accede dalle scale interne vicino all'area sportiva e al piano terra.\\n\\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
-        ]
-      },
-      score: 1.0
-    };
-  }
-
-  const intentsList = getLocalIntents();
-  if (!intentsList || intentsList.length === 0) return null;
-  const qTokens = tokenizeQuery(query);
-
-  let bestMatch = null;
+  let best = null;
   let bestScore = 0;
-
-  for (const item of intentsList) {
-    if (item.tag === "fallback") continue;
-    if (!item.patterns || item.patterns.length === 0) continue;
-
-    for (const pattern of item.patterns) {
-      const normPattern = normalizeNlpText(pattern);
-      if (normQuery === normPattern) {
-        return { intent: item, score: 1.0 };
-      }
-      if (normPattern.length >= 3 && (normQuery === normPattern || normQuery.startsWith(normPattern + " ") || normQuery.endsWith(" " + normPattern) || normQuery.includes(" " + normPattern + " "))) {
-        const score = 0.95;
-        if (score > bestScore) {
-          bestScore = score;
-          bestMatch = item;
-        }
-      }
-
-      const pTokens = tokenizeQuery(pattern);
-      if (pTokens.length === 0) continue;
-
-      let matchWeight = 0;
-      for (const qt of qTokens) {
-        if (pTokens.includes(qt)) {
-          matchWeight += 1.5;
-        } else {
-          for (const pt of pTokens) {
-            if ((qt.length >= 4 && pt.includes(qt)) || (pt.length >= 4 && qt.includes(pt))) {
-              matchWeight += 1.0;
-              break;
-            }
-          }
-        }
-      }
-
-      const unionSize = new Set([...qTokens, ...pTokens]).size || 1;
-      const score = matchWeight / unionSize;
-      if (score > bestScore) {
-        bestScore = score;
-        bestMatch = item;
-      }
+  let secondScore = 0;
+  for (const intent of intents.filter(i=>!i.room && i.tag!=='fallback')) {
+    let score = 0;
+    for (const pattern of intent.patterns || []) {
+      const p = normalizeNlpText(pattern);
+      if (norm === p) return {intent,score:1};
+      const pt = tokenizeQuery(pattern);
+      const overlap = tokens.filter(t=>pt.includes(t)).length;
+      score = Math.max(score, overlap / (new Set([...tokens,...pt]).size || 1));
     }
+    if (score > bestScore) {secondScore=bestScore;bestScore=score;best=intent;} else secondScore=Math.max(secondScore,score);
   }
-
-  if (bestScore >= 0.20 && bestMatch) {
-    return { intent: bestMatch, score: bestScore };
-  }
-  return null;
+  return best && bestScore >= 0.65 && bestScore-secondScore >= 0.1 ? {intent:best,score:bestScore} : null;
 }
+
+let _lastUserMessageAt = -Infinity;
+let _sendInFlight = false;
 
 async function sendMessage() {
   const inp = document.getElementById("input");
   const rawMsg = inp ? inp.value.trim() : "";
 
-  // Se GustAvo sta parlando e l'utente ha premuto Stop (input vuoto), fermiamo la voce
-  if (_isSpeaking && !rawMsg) {
-    stopSpeaking();
+  if (_isSpeaking) {
+    if (rawMsg) {
+      setSpeakingState(true);
+    } else {
+      stopSpeaking();
+    }
     return;
   }
-
-  // Se stava parlando ma l'utente ha scritto una nuova domanda, fermiamo subito la voce precedente
-  if (_isSpeaking) {
-    stopSpeaking();
-  }
-
-  if (!rawMsg) return;
-
+  if (!rawMsg || _sendInFlight || Date.now() - _lastUserMessageAt < 1000) return;
+  _lastUserMessageAt = Date.now();
+  _sendInFlight = true;
+  try {
   const censoredMsg = filterProfanity(rawMsg);
   const containsBadWord = BAD_WORDS_REGEX.test(rawMsg);
   BAD_WORDS_REGEX.lastIndex = 0;
@@ -1309,9 +1251,8 @@ async function sendMessage() {
 
   // 1. Controllo linguaggio inappropriato / insulti
   if (containsBadWord && isExclusivelyProfane(rawMsg)) {
-    setTimeout(() => {
-      botSpeak("Ti invito a mantenere un linguaggio consono ed educato nel rispetto dell'ambiente scolastico. Come posso aiutarti con le informazioni sull'IIS Avogadro?");
-    }, 250);
+    await new Promise(resolve => setTimeout(resolve, 250));
+    botSpeak("Ti invito a mantenere un linguaggio consono ed educato nel rispetto dell'ambiente scolastico. Come posso aiutarti con le informazioni sull'IIS Avogadro?");
     return;
   }
 
@@ -1351,7 +1292,186 @@ async function sendMessage() {
     const reply = (fallbackItem && fallbackItem.responses && fallbackItem.responses[0]) || "Non ho compreso la domanda. Prova a chiedermi informazioni su corsi, segreteria, orari o servizi dell'Avogadro!";
     botSpeak(reply);
   }
+  } finally {
+    _sendInFlight = false;
+  }
 }
+`;
+
+  const microphoneLogic = String.raw`
+    const micBtn = document.getElementById('mic-btn');
+    const preferRecording = /(?:OPR|Opera)\//i.test(navigator.userAgent || '');
+    const Recognition = preferRecording ? null : window.SpeechRecognition || window.webkitSpeechRecognition;
+    const createRecognition = window.parent && window.parent.GUSTAVO_CREATE_RECOGNITION;
+    let recognition = null;
+    let stopRequested = false;
+    let recorder = null;
+    let micStream = null;
+    let micBusy = false;
+    let micTimer = null;
+    let micStatus = null;
+
+    function showMicStatus(text) {
+      if (!micStatus) {
+        micStatus = document.createElement('div');
+        micStatus.className = 'msg anti-spam-tip';
+        micStatus.setAttribute('role', 'status');
+        messages.appendChild(micStatus);
+      }
+      micStatus.textContent = text;
+      messages.scrollTop = messages.scrollHeight;
+    }
+    function resetMic() {
+      clearTimeout(micTimer);
+      micTimer = null;
+      if (micStream) micStream.getTracks().forEach(track => track.stop());
+      micStream = null;
+      micBusy = false;
+      micBtn.classList.remove('listening');
+      micBtn.setAttribute('aria-pressed', 'false');
+      micBtn.title = 'Parla con Gustavo';
+      micBtn.setAttribute('aria-label', 'Parla con Gustavo');
+      micBtn.disabled = _isSpeaking;
+    }
+    function acceptTranscript(text) {
+      const transcript = String(text || '').trim();
+      if (!transcript) { showMicStatus('Non ho sentito parole. Premi il microfono e riprova.'); return; }
+      if (_isSpeaking || _sendInFlight) { showMicStatus('Gustavo sta rispondendo. Riprova quando ha finito.'); return; }
+      input.value = transcript;
+      showMicStatus('Trascrizione completata.');
+      // During the one-second cooldown keep the transcript available for manual sending.
+      if (Date.now() - _lastUserMessageAt >= 1000) sendMessage();
+    }
+    async function startRecording() {
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder) {
+        throw new Error('Questo browser non supporta la registrazione. Prova con Chrome o Edge.');
+      }
+      micStream = await navigator.mediaDevices.getUserMedia({audio:true});
+      const mime = ['audio/webm;codecs=opus','audio/mp4','audio/ogg;codecs=opus'].find(type => MediaRecorder.isTypeSupported(type));
+      recorder = new MediaRecorder(micStream, mime ? {mimeType:mime} : {});
+      const chunks = [];
+      recorder.ondataavailable = event => { if (event.data.size) chunks.push(event.data); };
+      recorder.onerror = () => { resetMic(); showMicStatus('Registrazione non riuscita. Riprova.'); };
+      recorder.onstop = async () => {
+        if (micStream) micStream.getTracks().forEach(track => track.stop());
+        micStream = null;
+        clearTimeout(micTimer);
+        micBtn.classList.remove('listening');
+        micBtn.disabled = true;
+        showMicStatus('Trascrizione in corso...');
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 15000);
+        try {
+          const type = recorder.mimeType || mime || 'audio/webm';
+          const blob = new Blob(chunks, {type});
+          if (!blob.size) throw new Error('Registrazione vuota. Premi il microfono e riprova.');
+          const form = new FormData();
+          const extension = type.includes('mp4') ? 'mp4' : type.includes('ogg') ? 'ogg' : 'webm';
+          form.append('audio', blob, 'voice.' + extension);
+          const response = await fetch(SERVER_URL + '/api/transcribe', {method:'POST',body:form,signal:controller.signal});
+          if (!response.ok) throw new Error('Il servizio di trascrizione non è disponibile. Prova con Chrome o Edge.');
+          const data = await response.json();
+          acceptTranscript(data.text || data.transcript || data.transcription);
+        } catch (error) {
+          showMicStatus(error.name === 'AbortError' ? 'La trascrizione ha impiegato troppo tempo. Riprova.' : error.message || 'Trascrizione non riuscita. Riprova.');
+        } finally { clearTimeout(timeout); resetMic(); }
+      };
+      recorder.start();
+      micBtn.classList.add('listening');
+      micBtn.setAttribute('aria-pressed','true');
+      micBtn.title = 'Termina registrazione';
+      showMicStatus('Sto ascoltando. Premi di nuovo il microfono quando hai finito.');
+      micTimer = setTimeout(() => { if (recorder.state === 'recording') recorder.stop(); }, 30000);
+    }
+    if (micBtn) {
+      micBtn.setAttribute('aria-pressed', 'false');
+      micBtn.addEventListener('click', async () => {
+        if (_isSpeaking || _sendInFlight) return;
+        if (recognition) { stopRequested = true; recognition.stop(); return; }
+        if (recorder && recorder.state === 'recording') { recorder.stop(); return; }
+        if (micBusy) return;
+        micBusy = true;
+        stopRequested = false;
+        micBtn.classList.add('listening');
+        micBtn.setAttribute('aria-pressed', 'true');
+        micBtn.setAttribute('aria-label', 'Termina ascolto');
+        micBtn.title = 'Termina ascolto';
+        showMicStatus('Attivazione microfono...');
+        try {
+          recognition = preferRecording ? null : createRecognition ? createRecognition() : Recognition ? new Recognition() : null;
+          if (recognition) {
+            recognition.lang = 'it-IT';
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            let transcript = '';
+            let interimTranscript = '';
+            let emptyRestarts = 0;
+            let failed = false;
+            let useRecording = false;
+            recognition.onstart = () => {
+              micBtn.classList.add('listening');
+              micBtn.setAttribute('aria-pressed','true');
+              micBtn.title = 'Termina ascolto';
+              showMicStatus('Sto ascoltando. Parla ora.');
+            };
+            recognition.onaudiostart = () => showMicStatus('Microfono attivo. Parla ora, poi premi Stop.');
+            recognition.onspeechstart = () => showMicStatus('Voce rilevata. Sto trascrivendo...');
+            recognition.onresult = event => {
+              transcript = '';
+              interimTranscript = '';
+              for (let i = 0; i < event.results.length; i++) {
+                const text = event.results[i][0].transcript;
+                if (event.results[i].isFinal) transcript += text + ' ';
+                else interimTranscript += text + ' ';
+              }
+              const heard = (transcript + interimTranscript).trim();
+              if (heard) showMicStatus('Ho sentito: ' + heard + '. Premi il pulsante rosso per inviare.');
+            };
+            recognition.onerror = event => {
+              failed = true;
+              useRecording = ['network', 'no-speech', 'service-not-allowed'].includes(event.error);
+              const errors = {'not-allowed':'Consenti l’accesso al microfono nelle impostazioni del browser.', 'service-not-allowed':'Il browser non consente il riconoscimento vocale.', 'audio-capture':'Microfono non disponibile. Controlla che sia collegato.', 'no-speech':'Non ho sentito parole. Premi il microfono e riprova.', 'network':'Il riconoscimento vocale non riesce a connettersi. Controlla la connessione.'};
+              showMicStatus(errors[event.error] || 'Riconoscimento vocale non riuscito. Riprova.');
+            };
+            recognition.onend = async () => {
+              const heard = (transcript + interimTranscript).trim();
+              // Some browsers end their first session before audio arrives.
+              if (!failed && !stopRequested && !heard && emptyRestarts < 2) {
+                emptyRestarts++;
+                try { recognition.start(); return; } catch (error) {
+                  failed = true;
+                  showMicStatus('Il browser non riesce ad avviare l’ascolto. Controlla il permesso microfono e riprova.');
+                }
+              }
+              recognition = null;
+              resetMic();
+              if (!heard && (useRecording || !failed)) {
+                micBusy = true;
+                showMicStatus('Passo alla registrazione audio. Parla di nuovo e premi Stop quando hai finito.');
+                try { await startRecording(); } catch (error) {
+                  resetMic();
+                  showMicStatus(error.name === 'NotAllowedError' ? 'Consenti l’accesso al microfono nelle impostazioni del browser.' : error.message || 'Impossibile avviare la registrazione audio.');
+                }
+                return;
+              }
+              if (heard) acceptTranscript(heard);
+            };
+            recognition.start();
+            micTimer = setTimeout(() => { if (recognition) { stopRequested = true; recognition.stop(); } }, 30000);
+          } else await startRecording();
+        } catch (error) {
+          recognition = null;
+          resetMic();
+          showMicStatus(error.name === 'NotAllowedError' ? 'Consenti l’accesso al microfono nelle impostazioni del browser.' : error.message || 'Impossibile avviare il microfono.');
+        }
+      });
+      window.addEventListener('pagehide', () => {
+        if (recognition) { stopRequested = true; recognition.onend = null; recognition.abort(); }
+        if (recorder && recorder.state === 'recording') { recorder.onstop = null; recorder.stop(); }
+        resetMic();
+      });
+    }
+
 `;
 
   function buildModernHtml() {
@@ -1412,62 +1532,17 @@ ${THEME_CSS}
 
     ${robustSendLogic}
 
-    let mediaRecorder;
-    let audioChunks = [];
-    const micBtn = document.getElementById("mic-btn");
-
-    if (micBtn) {
-      micBtn.addEventListener("click", async () => {
-        if (_isSpeaking) { stopSpeaking(); return; }
-        if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-          alert("Registrazione audio non supportata in questo browser.");
-          return;
-        }
-        if (mediaRecorder && mediaRecorder.state === "recording") {
-          mediaRecorder.stop();
-          micBtn.classList.remove("listening");
-          return;
-        }
-        try {
-          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-          mediaRecorder = new MediaRecorder(stream);
-          audioChunks = [];
-          mediaRecorder.ondataavailable = e => { if (e.data.size > 0) audioChunks.push(e.data); };
-          mediaRecorder.onstop = async () => {
-            const audioBlob = new Blob(audioChunks, { type: "audio/webm" });
-            const formData = new FormData();
-            formData.append("file", audioBlob, "audio.webm");
-            try {
-              const res = await fetch(SERVER_URL + "/api/transcribe", { method: "POST", body: formData });
-              if (res.ok) {
-                const data = await res.json();
-                if (data.text) {
-                  input.value = data.text;
-                  sendMessage();
-                  return;
-                }
-              }
-            } catch (e) {
-              console.warn("Trascrizione vocale non riuscita:", e);
-            }
-          };
-          mediaRecorder.start();
-          micBtn.classList.add("listening");
-        } catch (err) {
-          console.warn("Permesso microfono non concesso:", err);
-        }
-      });
-    }
+    ${microphoneLogic}
 
     if (input) {
       input.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
           e.preventDefault();
-          if (_isSpeaking && !input.value.trim()) {
-            stopSpeaking();
-          } else {
-            sendMessage();
+          if (_isSpeaking) {
+            setSpeakingState(true);
+            return;
           }
+          sendMessage();
         }
       });
     }
