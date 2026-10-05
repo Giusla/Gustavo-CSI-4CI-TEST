@@ -15,6 +15,14 @@
 (function () {
   'use strict';
 
+  // Request capture from the main document so mobile permission prompts belong to the site.
+  window.GUSTAVO_REQUEST_MICROPHONE = function () {
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      return Promise.reject(new Error('Il microfono richiede HTTPS e un browser compatibile.'));
+    }
+    return navigator.mediaDevices.getUserMedia({audio:true});
+  };
+
   // Create and start recognition in the top-level page rather than the srcdoc frame.
   window.GUSTAVO_CREATE_RECOGNITION = function () {
     const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -1379,11 +1387,28 @@ async function sendMessage() {
       // During the one-second cooldown keep the transcript available for manual sending.
       if (Date.now() - _lastUserMessageAt >= 1000) sendMessage();
     }
+    function requestMicrophone() {
+      if (window.parent && typeof window.parent.GUSTAVO_REQUEST_MICROPHONE === 'function') {
+        return window.parent.GUSTAVO_REQUEST_MICROPHONE();
+      }
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        return Promise.reject(new Error('Il microfono richiede HTTPS e un browser compatibile.'));
+      }
+      return navigator.mediaDevices.getUserMedia({audio:true});
+    }
+    function microphoneError(error) {
+      if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {
+        return 'Accesso al microfono bloccato. In Chrome: Impostazioni → Impostazioni sito → Microfono → consenti questo sito. Controlla anche Impostazioni Android → App → Chrome → Autorizzazioni → Microfono.';
+      }
+      if (error.name === 'NotFoundError') return 'Nessun microfono disponibile sul dispositivo.';
+      if (error.name === 'NotReadableError') return 'Microfono occupato o bloccato dal telefono. Chiudi le altre app che lo utilizzano e riprova.';
+      return error.message || 'Impossibile avviare il microfono.';
+    }
     async function startRecording() {
-      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder) {
+      if (!window.MediaRecorder) {
         throw new Error('Questo browser non supporta la registrazione. Prova con Chrome o Edge.');
       }
-      micStream = await navigator.mediaDevices.getUserMedia({audio:true});
+      micStream = await requestMicrophone();
       const mime = ['audio/webm;codecs=opus','audio/mp4','audio/ogg;codecs=opus'].find(type => MediaRecorder.isTypeSupported(type));
       recorder = new MediaRecorder(micStream, mime ? {mimeType:mime} : {});
       const chunks = [];
@@ -1487,24 +1512,13 @@ async function sendMessage() {
                 showMicStatus('Passo alla registrazione audio. Parla di nuovo e premi Stop quando hai finito.');
                 try { await startRecording(); } catch (error) {
                   resetMic();
-                  showMicStatus(error.name === 'NotAllowedError' ? 'Consenti l’accesso al microfono nelle impostazioni del browser.' : error.message || 'Impossibile avviare la registrazione audio.');
+                  showMicStatus(microphoneError(error));
                 }
                 return;
               }
               if (heard) acceptTranscript(heard);
             };
-            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-              throw new Error('Il microfono richiede una pagina HTTPS e un browser compatibile.');
-            }
-            // Request permission from the click, including browsers with native recognition.
-            micStream = await navigator.mediaDevices.getUserMedia({audio:true});
-            micStream.getTracks().forEach(track => track.stop());
-            micStream = null;
-            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-              throw new Error('Il microfono richiede una pagina HTTPS e un browser compatibile.');
-            }
-            // Request permission from the click, including browsers with native recognition.
-            micStream = await navigator.mediaDevices.getUserMedia({audio:true});
+            micStream = await requestMicrophone();
             micStream.getTracks().forEach(track => track.stop());
             micStream = null;
             recognition.start();
@@ -1513,7 +1527,7 @@ async function sendMessage() {
         } catch (error) {
           recognition = null;
           resetMic();
-          showMicStatus(error.name === 'NotAllowedError' ? 'Consenti l’accesso al microfono nelle impostazioni del browser.' : error.message || 'Impossibile avviare il microfono.');
+          showMicStatus(microphoneError(error));
         }
       });
       window.addEventListener('pagehide', () => {
@@ -1611,7 +1625,7 @@ ${THEME_CSS}
       const freshIframe = document.createElement('iframe');
       freshIframe.className = 'chatbot-iframe';
       freshIframe.title = 'Chatbot GustAvo — Interfaccia Moderna';
-      freshIframe.allow = 'microphone; autoplay';
+      freshIframe.allow = "microphone 'self'; autoplay 'self' https://gustavo1.avoprogetti.it";
       freshIframe.setAttribute('scrolling', 'no');
       freshIframe.setAttribute('data-theme-injected', 'true');
       freshIframe.srcdoc = modernHtml;
