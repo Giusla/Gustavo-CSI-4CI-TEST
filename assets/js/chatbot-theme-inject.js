@@ -129,7 +129,7 @@ html, body {
   }
   #chat-container {
     height: calc(100% - 24px) !important;
-    max-height: calc(100vh - 24px) !important;
+    max-height: calc(100% - 24px) !important;
     border-radius: var(--radius-lg) !important;
     border: 1px solid var(--border-subtle) !important;
     box-shadow: var(--shadow-card) !important;
@@ -703,6 +703,38 @@ button:disabled {
     box-shadow: 0 0 0 5px rgba(239, 68, 68, 0), 0 4px 14px rgba(239, 68, 68, 0.5);
   }
 }
+
+/* A nearly transparent brand glow behind the avatar only. */
+.avatar-stage {
+  flex: 0 0 auto !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  padding: 14px 0 8px !important;
+  background: radial-gradient(ellipse at 25% 35%, rgba(0, 168, 107, 0.045), transparent 70%),
+              radial-gradient(ellipse at 75% 30%, rgba(0, 102, 255, 0.045), transparent 70%), #fff !important;
+}
+#chat-container, #messages { min-height: 0 !important; }
+#input { min-width: 0 !important; }
+.input-container { flex-wrap: nowrap !important; }
+@media (max-width: 600px) {
+  .avatar-stage { padding: 6px 0 4px !important; }
+  .input-container { padding-left: max(10px, env(safe-area-inset-left)) !important; padding-right: max(10px, env(safe-area-inset-right)) !important; }
+  .input-container #input { font-size: 16px !important; height: 44px !important; }
+  .input-container #btn-send { min-width: 62px !important; height: 44px !important; padding: 9px 12px !important; }
+  .input-container .mic-btn { width: 44px !important; min-width: 44px !important; height: 44px !important; }
+  .voice-toggle { min-height: 36px !important; }
+  #chat-container { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+}
+@media (max-height: 480px) {
+  .avatar-stage { padding: 2px 0 !important; }
+  .avatar, .avatar-svg { width: 76px !important; height: 76px !important; }
+  .avatar { margin: 2px auto !important; }
+  .voice-toggle { margin: 2px auto !important; }
+}
+html.keyboard-open .avatar, html.keyboard-open .avatar-svg { width: 64px !important; height: 64px !important; }
+html.keyboard-open .avatar-stage { padding: 0 !important; }
 `;
 
   // Markup SVG per l'avatar umano (vecchietto saggio / professore con capelli, occhiali azzurrini e microfono interattivo)
@@ -1564,10 +1596,12 @@ ${THEME_CSS}
 <body>
   <div id="chat-container">
     <div class="header"></div>
+    <div class="avatar-stage">
     ${AVATAR_SVG_HTML.trim()}
     <div class="voice-toggle">
       <input type="checkbox" id="voiceToggle" checked>
       ${VOICE_LABEL_HTML.trim()}
+    </div>
     </div>
     <div id="messages">
       <div class="msg bot">
@@ -1616,6 +1650,34 @@ ${THEME_CSS}
 </html>`;
   }
 
+  let viewportFrame = 0;
+  let viewportBaseline = window.innerHeight;
+  function updateChatViewport() {
+    cancelAnimationFrame(viewportFrame);
+    viewportFrame = requestAnimationFrame(function () {
+      const viewport = window.visualViewport;
+      if (viewport && Math.abs(viewport.scale - 1) > 0.05) return;
+      const height = viewport ? viewport.height : window.innerHeight;
+      viewportBaseline = Math.max(viewportBaseline, window.innerHeight);
+      document.documentElement.style.setProperty('--chatbot-viewport-height', height + 'px');
+      let keyboardOpen = false;
+      const iframe = document.querySelector('.chatbot-iframe[data-theme-injected="true"]');
+      try {
+        const child = iframe && iframe.contentDocument;
+        const focused = child && child.activeElement && child.activeElement.id === 'input';
+        keyboardOpen = !!focused && viewportBaseline - height > 140;
+        if (child) child.documentElement.classList.toggle('keyboard-open', keyboardOpen);
+      } catch (error) {}
+      document.documentElement.classList.toggle('keyboard-open', keyboardOpen);
+    });
+  }
+  window.addEventListener('resize', updateChatViewport, {passive:true});
+  window.addEventListener('orientationchange', function () { viewportBaseline = 0; updateChatViewport(); });
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', updateChatViewport, {passive:true});
+    window.visualViewport.addEventListener('scroll', updateChatViewport, {passive:true});
+  }
+
   function injectChatbotTheme() {
     const container = document.querySelector('.chatbot-iframe-box');
     if (!container) return;
@@ -1628,6 +1690,7 @@ ${THEME_CSS}
       freshIframe.allow = "microphone 'self'; autoplay 'self' https://gustavo1.avoprogetti.it";
       freshIframe.setAttribute('scrolling', 'no');
       freshIframe.setAttribute('data-theme-injected', 'true');
+      freshIframe.addEventListener('load', updateChatViewport);
       freshIframe.srcdoc = modernHtml;
       
       container.replaceChildren(freshIframe);
@@ -1707,6 +1770,7 @@ ${THEME_CSS}
       };
     }
 
+    updateChatViewport();
     const currentMode = getUiMode();
     setUiMode(currentMode);
   }
