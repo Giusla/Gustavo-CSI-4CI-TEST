@@ -1168,9 +1168,6 @@ body>header {
     background: var(--brand-blue);
 }
 
-.pipeline-step:last-child::before {
-    background: var(--brand-green);
-}
 
 .pipeline-num {
     display: block;
@@ -4946,3 +4943,38 @@ button, input, select, textarea { font-family: inherit; }
 .doc-fields-title { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-top: 12px; margin-bottom: 6px; }
 
 .doc-fields-list { margin-left: 20px; font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; }
+
+/* Balance the short home introduction against the photos on larger screens. */
+@media (min-width: 993px) {
+    .home-page main { display: flex; align-items: center; }
+    .home-page .hero-editorial { width: 100%; padding: 52px 0; }
+    .home-page .hero-grid { max-width: 1200px; grid-template-columns: 1fr 1fr; gap: 64px; }
+    .home-page .hero-composition { min-height: clamp(390px, 27vw, 470px); margin: 0; }
+    .home-page .hero-title { font-size: clamp(2.8rem, 3.6vw, 3.6rem); margin-bottom: 12px; }
+    .home-page .hero-subtitle { font-size: 1.2rem; }
+    .home-page .hero-lead { font-size: 1.05rem; line-height: 1.7; max-width: 540px; }
+}
+
+/* Home slogan follows the title color and scales gently with the screen. */
+.home-page .hero-subtitle {
+    color: var(--brand-blue);
+    font-size: clamp(1.15rem, 1.7vw, 1.4rem);
+    font-weight: 600;
+    line-height: 1.45;
+}
+
+/* A quiet editorial caption consistent with the rest of the site. */
+.site-page .team-photo-caption {
+    background: #f8fafc;
+    border-top: 1px solid var(--border-subtle);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.6;
+    padding: 12px 16px;
+}
+.site-page .team-photo-caption svg { color: currentColor; }
+@media (max-width: 480px) {
+    .site-page .team-photo-caption { font-size: 0.82rem; padding: 10px 12px; align-items: flex-start; }
+    .site-page .team-photo-caption svg { margin-top: 3px; }
+}
