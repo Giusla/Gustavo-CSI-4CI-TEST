@@ -60,8 +60,8 @@
   --brand-gradient-h: linear-gradient(90deg, #00a86b 0%, #0066ff 100%);
   --bg-page: #f8fafc;
   --bg-surface: #ffffff;
-  --border-subtle: #e2e8f0;
-  --border-card: #cbd5e1;
+  --border-subtle: #cbd5e1;
+  --border-card: #b6c5d6;
   --text-heading: #0f172a;
   --text-body: #334155;
   --text-muted: #64748b;
@@ -131,7 +131,7 @@ html, body {
     height: calc(100% - 24px) !important;
     max-height: calc(100% - 24px) !important;
     border-radius: var(--radius-lg) !important;
-    border: 1px solid var(--border-subtle) !important;
+    border: 1px solid #b6c5d6 !important;
     box-shadow: var(--shadow-card) !important;
   }
 }
