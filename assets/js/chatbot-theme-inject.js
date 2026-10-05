@@ -1164,9 +1164,46 @@ function tokenizeQuery(text) {
   return words.filter(w => !STOP_WORDS_SET.has(w) && (w.length > 1 || /^\d+$/.test(w)));
 }
 
+
+function normalizeSpokenRoomQuery(query, intents) {
+  const units = ['zero','uno','due','tre','quattro','cinque','sei','sette','otto','nove'];
+  const teens = ['dieci','undici','dodici','tredici','quattordici','quindici','sedici','diciassette','diciotto','diciannove'];
+  function numberWord(n) {
+    if (n < 10) return units[n];
+    if (n < 20) return teens[n - 10];
+    if (n < 100) {
+      const tens = ['','','venti','trenta','quaranta','cinquanta','sessanta','settanta','ottanta','novanta'];
+      const unit = n % 10;
+      let prefix = tens[Math.floor(n / 10)];
+      if (unit === 1 || unit === 8) prefix = prefix.slice(0, -1);
+      return prefix + (unit ? units[unit] : '');
+    }
+    return (n < 200 ? '' : units[Math.floor(n / 100)]) + 'cento' + (n % 100 ? numberWord(n % 100) : '');
+  }
+  const normalized = normalizeNlpText(query);
+  const matches = [];
+  for (const intent of intents) {
+    if (!intent.room) continue;
+    const code = intent.room.name.match(/\b(\d+)\s*\(o\s*(\d+)\/(\d+)\)/);
+    if (!code) continue;
+    const floor = numberWord(Number(code[2]));
+    const room = numberWord(Number(code[3]));
+    const variants = [...(intent.room.spokenAliases || []), floor + ' ' + room, floor + ' barra ' + room, floor + ' slash ' + room, numberWord(Number(code[1]))];
+    for (const variant of variants) {
+      const alias = normalizeNlpText(variant);
+      if ((' ' + normalized + ' ').includes(' ' + alias + ' ')) matches.push({alias, code:code[1]});
+    }
+  }
+  matches.sort((a,b) => b.alias.length - a.alias.length);
+  if (!matches.length) return query;
+  const best = matches[0];
+  return (' ' + normalized + ' ').replace(' ' + best.alias + ' ', ' ' + best.code + ' ').trim();
+}
+
 function matchLocalIntent(query) {
   if (!query) return null;
   const intents = getLocalIntents();
+  query = normalizeSpokenRoomQuery(query, intents);
   const norm = normalizeNlpText(query.replace(/(\d)\s*\/\s*(\d)/g, '$1/$2'));
   const tokens = tokenizeQuery(query);
   const rooms = intents.filter(i => i.room);
