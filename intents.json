@@ -3704,7 +3704,19 @@
         "Come raggiungo L'Aula 3.0?",
         "Indicazioni per L'Aula 3.0",
         "Mi indichi il percorso per l'aula 3.0?",
-        "Qual è il percorso per raggiungere l'aula 3.0?"
+        "Qual è il percorso per raggiungere l'aula 3.0?",
+        "Aula tre punto zero",
+        "Dove si trova Aula tre punto zero?",
+        "Dov'è Aula tre punto zero?",
+        "Come arrivo a Aula tre punto zero?",
+        "tre punto zero",
+        "Dove si trova tre punto zero?",
+        "Dov'è tre punto zero?",
+        "Come arrivo a tre punto zero?",
+        "aula tre punto zero",
+        "Dove si trova aula tre punto zero?",
+        "Dov'è aula tre punto zero?",
+        "Come arrivo a aula tre punto zero?"
       ],
       "responses": [
         "**L'Aula 3.0**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Inizio corridoio principale\n3. Sulla destra dietro le colonne\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
@@ -3721,6 +3733,11 @@
           "3 0",
           "aula 3.0 avogadro",
           "aula multimediale 3.0"
+        ],
+        "spokenAliases": [
+          "Aula tre punto zero",
+          "tre punto zero",
+          "aula tre punto zero"
         ]
       }
     },
@@ -4286,7 +4303,15 @@
         "Come raggiungo il laboratorio fisica 1?",
         "Indicazioni per Laboratorio di Fisica 1",
         "Mi indichi il percorso per il laboratorio fisica 1?",
-        "Qual è il percorso per raggiungere il laboratorio fisica 1?"
+        "Qual è il percorso per raggiungere il laboratorio fisica 1?",
+        "Laboratorio di Fisica uno",
+        "Dove si trova Laboratorio di Fisica uno?",
+        "Dov'è Laboratorio di Fisica uno?",
+        "Come arrivo a Laboratorio di Fisica uno?",
+        "Fisica uno",
+        "Dove si trova Fisica uno?",
+        "Dov'è Fisica uno?",
+        "Come arrivo a Fisica uno?"
       ],
       "responses": [
         "**Il Laboratorio di Fisica 1**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a sinistra\n4. Aula dritta davanti a te\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
@@ -4301,6 +4326,10 @@
           "aula fisica 1",
           "fisica uno",
           "laboratorio di fisica 1"
+        ],
+        "spokenAliases": [
+          "Laboratorio di Fisica uno",
+          "Fisica uno"
         ]
       }
     },
@@ -4328,7 +4357,15 @@
         "Come raggiungo il laboratorio fisica 2?",
         "Indicazioni per Laboratorio di Fisica 2",
         "Mi indichi il percorso per il laboratorio fisica 2?",
-        "Qual è il percorso per raggiungere il laboratorio fisica 2?"
+        "Qual è il percorso per raggiungere il laboratorio fisica 2?",
+        "Laboratorio di Fisica due",
+        "Dove si trova Laboratorio di Fisica due?",
+        "Dov'è Laboratorio di Fisica due?",
+        "Come arrivo a Laboratorio di Fisica due?",
+        "Fisica due",
+        "Dove si trova Fisica due?",
+        "Dov'è Fisica due?",
+        "Come arrivo a Fisica due?"
       ],
       "responses": [
         "**Il Laboratorio di Fisica 2**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a sinistra\n4. A destra in fondo\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
@@ -4343,6 +4380,10 @@
           "aula fisica 2",
           "fisica due",
           "laboratorio di fisica 2"
+        ],
+        "spokenAliases": [
+          "Laboratorio di Fisica due",
+          "Fisica due"
         ]
       }
     },
@@ -4499,7 +4540,15 @@
         "Indicazioni per Laboratorio Informatica 2",
         "Come raggiungo il laboratorio informatica 2?",
         "Mi indichi il percorso per il laboratorio informatica 2?",
-        "Qual è il percorso per raggiungere il laboratorio informatica 2?"
+        "Qual è il percorso per raggiungere il laboratorio informatica 2?",
+        "Laboratorio Informatica due",
+        "Dove si trova Laboratorio Informatica due?",
+        "Dov'è Laboratorio Informatica due?",
+        "Come arrivo a Laboratorio Informatica due?",
+        "Informatica due",
+        "Dove si trova Informatica due?",
+        "Dov'è Informatica due?",
+        "Come arrivo a Informatica due?"
       ],
       "responses": [
         "**Il Laboratorio Informatica 2**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a destra\n4. Subito dopo i bagni a sinistra\n5. Seconda aula del corridoio secondario\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
@@ -4514,6 +4563,10 @@
           "lab info 2",
           "aula informatica 2",
           "informatica due"
+        ],
+        "spokenAliases": [
+          "Laboratorio Informatica due",
+          "Informatica due"
         ]
       }
     },
@@ -4647,7 +4700,15 @@
         "Come arrivo a Laboratorio Misure 1?",
         "Dove si trova Laboratorio Misure 1?",
         "Come raggiungo Laboratorio Misure 1?",
-        "Indicazioni per Laboratorio Misure 1"
+        "Indicazioni per Laboratorio Misure 1",
+        "Laboratorio Misure uno",
+        "Dove si trova Laboratorio Misure uno?",
+        "Dov'è Laboratorio Misure uno?",
+        "Come arrivo a Laboratorio Misure uno?",
+        "Misure uno",
+        "Dove si trova Misure uno?",
+        "Dov'è Misure uno?",
+        "Come arrivo a Misure uno?"
       ],
       "responses": [
         "**Il Laboratorio Misure 1**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a destra\n4. Oltre il bar\n5. Corridoio a sinistra delle scale piccole interne\n6. Prima aula del corridoio secondario\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
@@ -4662,6 +4723,10 @@
           "aula misure 1",
           "misure elettriche 1",
           "misure uno"
+        ],
+        "spokenAliases": [
+          "Laboratorio Misure uno",
+          "Misure uno"
         ]
       }
     },
@@ -4684,7 +4749,15 @@
         "Come arrivo a Laboratorio Misure 2?",
         "Dove si trova Laboratorio Misure 2?",
         "Come raggiungo Laboratorio Misure 2?",
-        "Indicazioni per Laboratorio Misure 2"
+        "Indicazioni per Laboratorio Misure 2",
+        "Laboratorio Misure due",
+        "Dove si trova Laboratorio Misure due?",
+        "Dov'è Laboratorio Misure due?",
+        "Come arrivo a Laboratorio Misure due?",
+        "Misure due",
+        "Dove si trova Misure due?",
+        "Dov'è Misure due?",
+        "Come arrivo a Misure due?"
       ],
       "responses": [
         "**Il Laboratorio Misure 2**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a destra\n4. Oltre il bar\n5. Corridoio a sinistra delle scale piccole interne\n6. Seconda aula del corridoio secondario\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
@@ -4699,6 +4772,10 @@
           "aula misure 2",
           "misure elettriche 2",
           "misure due"
+        ],
+        "spokenAliases": [
+          "Laboratorio Misure due",
+          "Misure due"
         ]
       }
     },
@@ -6112,7 +6189,15 @@
         "Come arrivo a Laboratorio Linguistico 2?",
         "Dove si trova Laboratorio Linguistico 2?",
         "Come raggiungo Laboratorio Linguistico 2?",
-        "Indicazioni per Laboratorio Linguistico 2"
+        "Indicazioni per Laboratorio Linguistico 2",
+        "Laboratorio Linguistico due",
+        "Dove si trova Laboratorio Linguistico due?",
+        "Dov'è Laboratorio Linguistico due?",
+        "Come arrivo a Laboratorio Linguistico due?",
+        "Linguistico due",
+        "Dove si trova Linguistico due?",
+        "Dov'è Linguistico due?",
+        "Come arrivo a Linguistico due?"
       ],
       "responses": [
         "**Il Laboratorio Linguistico 2**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Dopo le macchinette\n6. Corridoio a destra\n7. Prima aula alla tua destra\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
@@ -6128,6 +6213,10 @@
           "aula linguistico 2",
           "laboratorio di lingue 2",
           "linguistico due"
+        ],
+        "spokenAliases": [
+          "Laboratorio Linguistico due",
+          "Linguistico due"
         ]
       }
     },
@@ -6151,7 +6240,15 @@
         "Come arrivo a Laboratorio Linguistico 1?",
         "Dove si trova Laboratorio Linguistico 1?",
         "Come raggiungo Laboratorio Linguistico 1?",
-        "Indicazioni per Laboratorio Linguistico 1"
+        "Indicazioni per Laboratorio Linguistico 1",
+        "Laboratorio Linguistico uno",
+        "Dove si trova Laboratorio Linguistico uno?",
+        "Dov'è Laboratorio Linguistico uno?",
+        "Come arrivo a Laboratorio Linguistico uno?",
+        "Linguistico uno",
+        "Dove si trova Linguistico uno?",
+        "Dov'è Linguistico uno?",
+        "Come arrivo a Linguistico uno?"
       ],
       "responses": [
         "**Il Laboratorio Linguistico 1**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Dopo le macchinette\n6. Corridoio a destra\n7. Seconda aula alla tua destra\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
@@ -6167,6 +6264,10 @@
           "aula linguistico 1",
           "laboratorio di lingue 1",
           "linguistico uno"
+        ],
+        "spokenAliases": [
+          "Laboratorio Linguistico uno",
+          "Linguistico uno"
         ]
       }
     },
@@ -6778,7 +6879,15 @@
         "Come raggiungo l'aula disegno 2?",
         "Indicazioni per L'Aula Disegno 2",
         "Mi indichi il percorso per l'aula disegno 2?",
-        "Qual è il percorso per raggiungere l'aula disegno 2?"
+        "Qual è il percorso per raggiungere l'aula disegno 2?",
+        "Aula Disegno due",
+        "Dove si trova Aula Disegno due?",
+        "Dov'è Aula Disegno due?",
+        "Come arrivo a Aula Disegno due?",
+        "Disegno due",
+        "Dove si trova Disegno due?",
+        "Dov'è Disegno due?",
+        "Come arrivo a Disegno due?"
       ],
       "responses": [
         "**L'Aula Disegno 2**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Dopo le macchinette\n6. Corridoio a destra dell'ascensore\n7. Prima aula sulla sinistra\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
@@ -6793,6 +6902,10 @@
           "lab disegno 2",
           "aula di disegno 2",
           "disegno due"
+        ],
+        "spokenAliases": [
+          "Aula Disegno due",
+          "Disegno due"
         ]
       }
     },
@@ -7136,7 +7249,15 @@
         "Come raggiungo l'aula disegno 1?",
         "Indicazioni per L'Aula Disegno 1",
         "Mi indichi il percorso per l'aula disegno 1?",
-        "Qual è il percorso per raggiungere l'aula disegno 1?"
+        "Qual è il percorso per raggiungere l'aula disegno 1?",
+        "Aula Disegno uno",
+        "Dove si trova Aula Disegno uno?",
+        "Dov'è Aula Disegno uno?",
+        "Come arrivo a Aula Disegno uno?",
+        "Disegno uno",
+        "Dove si trova Disegno uno?",
+        "Dov'è Disegno uno?",
+        "Come arrivo a Disegno uno?"
       ],
       "responses": [
         "**L'Aula Disegno 1**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Dopo le macchinette\n6. Corridoio a sinistra dell'ascensore\n7. Aula in fondo\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
@@ -7151,6 +7272,10 @@
           "lab disegno 1",
           "aula di disegno 1",
           "disegno uno"
+        ],
+        "spokenAliases": [
+          "Aula Disegno uno",
+          "Disegno uno"
         ]
       }
     },

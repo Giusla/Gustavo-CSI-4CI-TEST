@@ -1337,7 +1337,7 @@ async function sendMessage() {
 
   const microphoneLogic = String.raw`
     const micBtn = document.getElementById('mic-btn');
-    const preferRecording = /(?:OPR|Opera)\//i.test(navigator.userAgent || '');
+    const preferRecording = /(?:OPR|Opera)\/|Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent || '') || (navigator.maxTouchPoints > 1 && /Macintosh/i.test(navigator.userAgent || ''));
     const Recognition = preferRecording ? null : window.SpeechRecognition || window.webkitSpeechRecognition;
     const createRecognition = window.parent && window.parent.GUSTAVO_CREATE_RECOGNITION;
     let recognition = null;
@@ -1493,6 +1493,20 @@ async function sendMessage() {
               }
               if (heard) acceptTranscript(heard);
             };
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+              throw new Error('Il microfono richiede una pagina HTTPS e un browser compatibile.');
+            }
+            // Request permission from the click, including browsers with native recognition.
+            micStream = await navigator.mediaDevices.getUserMedia({audio:true});
+            micStream.getTracks().forEach(track => track.stop());
+            micStream = null;
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+              throw new Error('Il microfono richiede una pagina HTTPS e un browser compatibile.');
+            }
+            // Request permission from the click, including browsers with native recognition.
+            micStream = await navigator.mediaDevices.getUserMedia({audio:true});
+            micStream.getTracks().forEach(track => track.stop());
+            micStream = null;
             recognition.start();
             micTimer = setTimeout(() => { if (recognition) { stopRequested = true; recognition.stop(); } }, 30000);
           } else await startRecording();
