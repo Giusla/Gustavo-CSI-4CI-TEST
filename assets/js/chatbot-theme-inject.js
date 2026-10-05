@@ -712,8 +712,8 @@ button:disabled {
   flex-direction: column !important;
   align-items: center !important;
   padding: 14px 0 8px !important;
-  background: radial-gradient(ellipse at 25% 35%, rgba(0, 168, 107, 0.045), transparent 70%),
-              radial-gradient(ellipse at 75% 30%, rgba(0, 102, 255, 0.045), transparent 70%), #fff !important;
+  background: radial-gradient(ellipse at 25% 35%, rgba(0, 168, 107, 0.12), transparent 85%),
+              radial-gradient(ellipse at 75% 30%, rgba(0, 102, 255, 0.12), transparent 85%), #fff !important;
 }
 #chat-container, #messages { min-height: 0 !important; }
 #input { min-width: 0 !important; }
