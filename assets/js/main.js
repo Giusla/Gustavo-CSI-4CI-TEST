@@ -412,35 +412,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // ----------------------------------------------------
-        // Buffer Blob in memoria: risolve definitivamente il problema
-        // dei server/CDN (es. Cloudflare Workers / static hosting) che non
-        // supportano HTTP Byte-Ranges (206 Partial Content), permettendo
-        // il seeking istantaneo e fluido a qualsiasi minuto senza tornare a 00:00.
-        // ----------------------------------------------------
-        let blobLoaded = false;
-        let pendingSeek = null;
-
-        const videoSrc = video.querySelector('source') ? video.querySelector('source').src : video.src;
-        if (videoSrc && !videoSrc.startsWith('blob:')) {
-            fetch(videoSrc)
-                .then(res => {
-                    if (!res.ok) throw new Error('Caricamento video non riuscito');
-                    return res.blob();
+        // Prepare a seekable buffer lazily, using the actual deferred video URL.
+        let seekBufferPromise = null;
+        let seekRequest = 0;
+        const prepareSeekBuffer = () => {
+            if (seekBufferPromise) return seekBufferPromise;
+            const source = video.querySelector('source');
+            const sourcePath = source && (source.getAttribute('src') || source.dataset.src);
+            if (!sourcePath) return Promise.reject(new Error('Sorgente video assente'));
+            seekBufferPromise = fetch(new URL(sourcePath, document.baseURI).href)
+                .then(response => {
+                    if (!response.ok) throw new Error('Caricamento video non riuscito');
+                    return response.blob();
                 })
-                .then(blob => {
+                .then(blob => new Promise((resolve, reject) => {
                     const blobUrl = URL.createObjectURL(blob);
-                    const curTime = pendingSeek !== null ? pendingSeek : video.currentTime;
-                    const wasPlaying = !video.paused;
+                    const cleanup = () => {
+                        video.removeEventListener('loadedmetadata', loaded);
+                        video.removeEventListener('error', failed);
+                    };
+                    const loaded = () => { cleanup(); resolve(); };
+                    const failed = () => { cleanup(); URL.revokeObjectURL(blobUrl); reject(new Error('Video non leggibile')); };
+                    video.addEventListener('loadedmetadata', loaded, { once: true });
+                    video.addEventListener('error', failed, { once: true });
                     video.src = blobUrl;
-                    video.currentTime = curTime;
-                    if (wasPlaying) video.play();
-                    blobLoaded = true;
-                    pendingSeek = null;
-                })
-                .catch(err => {
-                    console.warn('Fallback seek standard attivo:', err);
-                });
-        }
+                    video.load();
+                    window.addEventListener('pagehide', () => URL.revokeObjectURL(blobUrl), { once: true });
+                }));
+            return seekBufferPromise;
+        };
 
         // Timeline interattiva e trascinamento fluido del cursore
         if (videoTimeline) {
@@ -460,21 +460,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             };
 
-            const seekToPosition = (targetTime) => {
-                if (isNaN(video.duration) || video.duration <= 0) return;
+            const seekToPosition = async (targetTime, resume = !video.paused) => {
+                if (!Number.isFinite(video.duration) || video.duration <= 0) return;
+                const request = ++seekRequest;
                 targetTime = Math.max(0, Math.min(video.duration, targetTime));
-                if (currentTimeEl) currentTimeEl.textContent = formatTime(targetTime);
-                if (videoProgress) videoProgress.style.width = `${(targetTime / video.duration) * 100}%`;
-
-                if (blobLoaded) {
+                video.pause();
+                videoTimeline.setAttribute('aria-busy', 'true');
+                try {
+                    await prepareSeekBuffer();
+                    if (request !== seekRequest) return;
                     video.currentTime = targetTime;
-                } else {
-                    pendingSeek = targetTime;
-                    try {
-                        video.currentTime = targetTime;
-                    } catch (e) {
-                        // ignore se non ancora pronto
-                    }
+                    if (currentTimeEl) currentTimeEl.textContent = formatTime(targetTime);
+                    if (videoProgress) videoProgress.style.width = (targetTime / video.duration * 100) + '%';
+                    if (resume) await video.play();
+                } catch (error) {
+                    console.warn('Avanzamento video non riuscito:', error);
+                } finally {
+                    if (request === seekRequest) videoTimeline.removeAttribute('aria-busy');
                 }
             };
 
@@ -502,11 +504,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     videoTimeline.classList.remove('scrubbing');
                     if (!isNaN(video.duration) && video.duration > 0) {
                         const targetTime = scrubPos * video.duration;
-                        seekToPosition(targetTime);
+                        seekToPosition(targetTime, wasPlayingBeforeScrub);
                     }
-                    if (wasPlayingBeforeScrub) {
-                        video.play();
-                    }
+
                 }
             };
 

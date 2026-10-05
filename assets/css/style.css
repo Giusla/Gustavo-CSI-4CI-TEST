@@ -1444,7 +1444,7 @@ body>header {
     box-shadow: 0 4px 14px rgba(0, 20, 60, 0.04);
     cursor: pointer;
     margin: 0 auto 24px;
-    width: fit-content;
+    width: 951px;
     max-width: 100%;
     transition: box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
         border-color 0.25s ease,
@@ -1458,7 +1458,7 @@ body>header {
 }
 
 .team-photo-img {
-    width: auto;
+    width: 100%;
     height: auto;
     max-width: 100%;
     display: block;
@@ -4935,3 +4935,19 @@ button, input, select, textarea { font-family: inherit; }
 .gallery-custom-scrollbar-thumb { touch-action: none; cursor: grab; }
 .gallery-custom-scrollbar-thumb:active { cursor: grabbing; }
 .gallery-custom-scrollbar-thumb::before { content: ""; position: absolute; inset: -12px 0; }
+
+.video-icon-hidden { display:none; }
+
+.doc-list-spaced { margin-left: 20px; line-height: 1.8; color: var(--text-body); margin-bottom: 16px; }
+
+.doc-list { margin-left: 20px; line-height: 1.8; color: var(--text-body); }
+
+.doc-file-box { background: #f8fafc; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 18px 20px; margin: 16px 0; }
+
+.doc-file-list { margin: 0; padding-left: 18px; line-height: 1.8; color: var(--text-body); }
+
+.doc-example-title { font-weight: 600; color: var(--text-heading); margin-bottom: 8px; }
+
+.doc-fields-title { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-top: 12px; margin-bottom: 6px; }
+
+.doc-fields-list { margin-left: 20px; font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; }

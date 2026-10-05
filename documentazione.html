@@ -20,8 +20,8 @@
     <meta name="twitter:title" content="GustAvo">
     <meta name="twitter:description" content="GustAvo, Il chatbot che ti orienta a scuola · IIS Avogadro">
 
-    <link rel="stylesheet" href="assets/css/style.css?v=4.35">
-    <script src="assets/js/main.js?v=4.23" defer></script>
+    <link rel="stylesheet" href="assets/css/style.css?v=4.37">
+    <script src="assets/js/main.js?v=4.24" defer></script>
 </head>
 <body class="site-page">
 
@@ -91,7 +91,7 @@
                 <p>
                     GustAvo adotta un'architettura client-server modulare a componenti disaccoppiati, progettata per essere eseguita in modo efficiente sull'infrastruttura scolastica:
                 </p>
-                <ul style="margin-left: 20px; line-height: 1.8; color: var(--text-body); margin-bottom: 16px;">
+                <ul class="doc-list-spaced">
                     <li><strong>Frontend Web (HTML5 / CSS3 / JavaScript):</strong> interfaccia conversazionale reattiva e accessibile, ottimizzata per desktop e dispositivi mobili.</li>
                     <li><strong>Backend API (Python / Flask):</strong> server web leggero che espone l'endpoint <code>/chat</code> per ricevere ed elaborare le richieste POST in formato JSON, con abilitazione CORS per la sicurezza delle chiamate cross-origin.</li>
                     <li><strong>Motore di Classificazione NLP (Scikit-Learn):</strong> pipeline di pre-elaborazione del testo che trasforma le frasi in vettori numerici (TF-IDF) e determina la similarità con gli intenti censiti.</li>
@@ -105,7 +105,7 @@
                 <p>
                     Il flusso operativo che trasforma una domanda dell'utente in una risposta certa segue cinque passaggi sequenziali:
                 </p>
-                <ul style="margin-left: 20px; line-height: 1.8; color: var(--text-body);">
+                <ul class="doc-list">
                     <li><strong>Input dell'utente:</strong> lo studente digita la propria domanda nel campo di testo dell'interfaccia.</li>
                     <li><strong>Inoltro HTTP:</strong> il client web effettua una chiamata asincrona (fetch POST) inviando il payload <code>{ "message": "..." }</code> all'endpoint <code>/chat</code>.</li>
                     <li><strong>Vettorizzazione e Classificazione:</strong> il server pre-elabora il messaggio, lo converte in vettore numerico tramite <code>TfidfVectorizer</code> e calcola la similarità coseno con ciascun pattern di addestramento.</li>
@@ -120,8 +120,8 @@
                 <p>
                     I componenti software del repository del bot corrispondono alla struttura ufficiale documentata:
                 </p>
-                <div style="background: #f8fafc; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 18px 20px; margin: 16px 0;">
-                    <ul style="margin: 0; padding-left: 18px; line-height: 1.8; color: var(--text-body);">
+                <div class="doc-file-box">
+                    <ul class="doc-file-list">
                         <li><code>app.py</code>: entrypoint del server Flask, gestione del routing API <code>/chat</code> e logica di predizione.</li>
                         <li><code>intents.json</code>: file sorgente della conoscenza, contenente tag, pattern di domanda e risposte.</li>
                         <li><code>index.html</code>: interfaccia web interattiva con logica di messaggistica asincrona (JavaScript).</li>
@@ -139,13 +139,13 @@
                 <p>
                     GustAvo non adotta un approccio generativo libero (come i grandi modelli LLM), ma opera come un <strong>classificatore supervisionato basato su intenti</strong>. Questa scelta architetturale garantisce:
                 </p>
-                <ul style="margin-left: 20px; line-height: 1.8; color: var(--text-body); margin-bottom: 16px;">
+                <ul class="doc-list-spaced">
                     <li><strong>Risposte convalidate e certe:</strong> il bot attinge unicamente a risposte verificate dall'istituto, eliminando il rischio di allucinazioni o informazioni inventate.</li>
                     <li><strong>Efficienza e sostenibilità:</strong> consumo ridotto di CPU e RAM, consentendo l'hosting autonomo sui server della scuola senza costi di computazione esterni.</li>
                     <li><strong>Tutela dei dati:</strong> assenza di conservazione di cronologia, cookie di tracciamento o profilazione degli utenti.</li>
                 </ul>
 
-                <p style="font-weight: 600; color: var(--text-heading); margin-bottom: 8px;">
+                <p class="doc-example-title">
                     Esempio reale di struttura da <code>intents.json</code>:
                 </p>
                 <div class="code-preview">
@@ -161,10 +161,10 @@
   <span class="p">]</span>
 <span class="p">}</span></code></pre>
                 </div>
-                <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-top: 12px; margin-bottom: 6px;">
+                <p class="doc-fields-title">
                     <strong>Spiegazione dei campi:</strong>
                 </p>
-                <ul style="margin-left: 20px; font-size: 0.92rem; color: var(--text-muted); line-height: 1.7;">
+                <ul class="doc-fields-list">
                     <li><code>tag</code>: categoria semantica della richiesta.</li>
                     <li><code>patterns</code>: insieme di esempi e formulazioni alternative con cui la domanda può essere posta dall'utente.</li>
                     <li><code>responses</code>: risposta o elenco di risposte certificate che il sistema restituisce quando il tag viene classificato.</li>
@@ -208,7 +208,7 @@
                     attraverso codice JavaScript. Se non trova una corrispondenza chiara, consulta il server
                     del progetto originale. La domanda segue questi passaggi:
                 </p>
-                <ul style="margin-left: 20px; line-height: 1.8; color: var(--text-body);">
+                <ul class="doc-list">
                     <li><strong>Preparazione del testo:</strong> la domanda viene uniformata eliminando differenze tra maiuscole e minuscole, accenti e punteggiatura. Viene poi divisa in parole (tokenizzazione), escludendo articoli e altre parole poco utili al confronto, chiamate stop word.</li>
                     <li><strong>Ricerca della risposta:</strong> il sistema confronta le parole con gli esempi di domanda (pattern) presenti in <code>intents.json</code>. Ogni intento rappresenta un argomento, come iscrizioni o segreteria, e contiene esempi e risposte associate. Una domanda identica a un esempio ha priorità; negli altri casi vengono valutate le parole in comune e quanto il risultato migliore si distingue dagli altri.</li>
                     <li><strong>Ricerca di aule e laboratori:</strong> regole dedicate riconoscono codici, numeri scritti in parole e nomi alternativi (alias). Il chatbot mostra il percorso registrato per la destinazione; se più aule possono corrispondere, chiede di precisare quale si cerca.</li>
