@@ -712,7 +712,8 @@ button:disabled {
   flex-direction: column !important;
   align-items: center !important;
   padding: 14px 0 8px !important;
-  background: linear-gradient(115deg, rgba(0, 168, 107, 0.18) 0%, rgba(0, 168, 107, 0.07) 45%, rgba(0, 102, 255, 0.08) 60%, rgba(0, 102, 255, 0.18) 100%), #fff !important;
+  background: linear-gradient(to bottom, transparent 35%, var(--bg-page) 100%),
+              linear-gradient(115deg, rgba(0, 168, 107, 0.18) 0%, rgba(0, 168, 107, 0.07) 45%, rgba(0, 102, 255, 0.08) 60%, rgba(0, 102, 255, 0.18) 100%), #fff !important;
 }
 #chat-container, #messages { min-height: 0 !important; }
 #input { min-width: 0 !important; }
@@ -1685,7 +1686,7 @@ ${THEME_CSS}
       const modernHtml = buildModernHtml();
       const freshIframe = document.createElement('iframe');
       freshIframe.className = 'chatbot-iframe';
-      freshIframe.title = 'Chatbot GustAvo — Interfaccia Moderna';
+      freshIframe.title = 'GustAvo Evoluto — Chatbot';
       freshIframe.allow = "microphone 'self'; autoplay 'self' https://gustavo1.avoprogetti.it";
       freshIframe.setAttribute('scrolling', 'no');
       freshIframe.setAttribute('data-theme-injected', 'true');
@@ -1723,7 +1724,7 @@ ${THEME_CSS}
     if (mode === 'legacy') {
       const legacyIframe = document.createElement('iframe');
       legacyIframe.className = 'chatbot-iframe';
-      legacyIframe.title = 'Chatbot GustAvo — Server Ufficiale gustavo1.avoprogetti.it';
+      legacyIframe.title = 'GustAvo Classico — Chatbot originale';
       legacyIframe.allow = 'microphone; autoplay';
       legacyIframe.setAttribute('scrolling', 'no');
       legacyIframe.src = 'https://gustavo1.avoprogetti.it?' + Date.now();
