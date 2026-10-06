@@ -362,6 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fullscreenBtn = document.getElementById('fullscreenBtn');
 
     if (playerWrapper && video) {
+        video.disablePictureInPicture = true;
         const formatTime = (seconds) => {
             if (isNaN(seconds) || seconds < 0) return '0:00';
             const mins = Math.floor(seconds / 60);
@@ -423,36 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // ----------------------------------------------------
-        // Prepare a seekable buffer lazily, using the actual deferred video URL.
-        let seekBufferPromise = null;
-        let seekRequest = 0;
-        const prepareSeekBuffer = () => {
-            if (seekBufferPromise) return seekBufferPromise;
-            const source = video.querySelector('source');
-            const sourcePath = source && (source.getAttribute('src') || source.dataset.src);
-            if (!sourcePath) return Promise.reject(new Error('Sorgente video assente'));
-            seekBufferPromise = fetch(new URL(sourcePath, document.baseURI).href)
-                .then(response => {
-                    if (!response.ok) throw new Error('Caricamento video non riuscito');
-                    return response.blob();
-                })
-                .then(blob => new Promise((resolve, reject) => {
-                    const blobUrl = URL.createObjectURL(blob);
-                    const cleanup = () => {
-                        video.removeEventListener('loadedmetadata', loaded);
-                        video.removeEventListener('error', failed);
-                    };
-                    const loaded = () => { cleanup(); resolve(); };
-                    const failed = () => { cleanup(); URL.revokeObjectURL(blobUrl); reject(new Error('Video non leggibile')); };
-                    video.addEventListener('loadedmetadata', loaded, { once: true });
-                    video.addEventListener('error', failed, { once: true });
-                    video.src = blobUrl;
-                    video.load();
-                    window.addEventListener('pagehide', () => URL.revokeObjectURL(blobUrl), { once: true });
-                }));
-            return seekBufferPromise;
-        };
-
+        // Seek directly in the video: do not download the entire file before a jump.
         // Timeline interattiva e trascinamento fluido del cursore
         if (videoTimeline) {
             let isScrubbing = false;
@@ -473,13 +445,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const seekToPosition = async (targetTime, resume = !video.paused) => {
                 if (!Number.isFinite(video.duration) || video.duration <= 0) return;
-                const request = ++seekRequest;
                 targetTime = Math.max(0, Math.min(video.duration, targetTime));
                 video.pause();
                 videoTimeline.setAttribute('aria-busy', 'true');
                 try {
-                    await prepareSeekBuffer();
-                    if (request !== seekRequest) return;
                     video.currentTime = targetTime;
                     if (currentTimeEl) currentTimeEl.textContent = formatTime(targetTime);
                     if (videoProgress) videoProgress.style.width = (targetTime / video.duration * 100) + '%';
@@ -487,7 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } catch (error) {
                     console.warn('Avanzamento video non riuscito:', error);
                 } finally {
-                    if (request === seekRequest) videoTimeline.removeAttribute('aria-busy');
+                    videoTimeline.removeAttribute('aria-busy');
                 }
             };
 
