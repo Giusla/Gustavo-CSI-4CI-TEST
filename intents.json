@@ -82,9 +82,7 @@
         "Planimetria scuola",
         "Come sono distribuiti i piani",
         "Mostrami la mappa",
-        "Piantina dellʼistituto",
-        "Mappa interna scuola",
-        "Come trovo unʼaula allʼAvogadro?"
+        "Piantina dellʼistituto"
       ],
       "responses": [
         "Ecco la mappa interattiva dei piani dell'IIS Avogadro:\n\nPiano Terra (Segreteria, Presidenza, Aula Magna, Biblioteca, Palestre, Officine Meccaniche, CNC, Bar): [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)\n\nPrimo Piano (Aule serie 100, Lab Elettronica, Elettrotecnica, Sistemi, Fisica, Chimica, Scienze, Sala Docenti): [Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)\n\nSecondo Piano (Aule serie 200, Lab Informatica, Cisco Academy): [Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)\n\nTerzo Piano (Aule serie 300, Lab Disegno CAD): [Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)\n\nQuarto Piano (Aule serie 400): [Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)\n\nPuoi anche chiedermi un'aula o un laboratorio specifico, come 'Dov\\'è l\\'aula 223?' o 'Dov\\'è la segreteria?'!"
@@ -180,27 +178,6 @@
       ],
       "responses": [
         "Le aule della serie 400 (da 401 a 430) si trovano al Quarto Piano dell'Istituto.\n\nPercorso: INGRESSO PRINCIPALE ↓ Atrio ↓ Scala A ↓ Piano 4.\n\nVisualizza la mappa: [Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)"
-      ]
-    },
-    {
-      "tag": "struttura_piani_numerazione_aule",
-      "patterns": [
-        "Ci sono aule al piano terra?",
-        "Dove sono le aule 1 2 3?",
-        "Aula 1",
-        "Aula 2",
-        "Aula 10",
-        "Aula 12",
-        "Aula 20",
-        "Aule piano terra",
-        "Come sono numerate le aule?",
-        "Numerazione delle aule",
-        "Aule piano 0",
-        "Cosa significa 2/15?",
-        "Come leggo il numero di unʼaula?"
-      ],
-      "responses": [
-        "All'IIS Avogadro le aule sono contrassegnate da numeri a tre cifre in base al piano:\n- Serie 100 (101-130): Primo Piano\n- Serie 200 (201-230): Secondo Piano\n- Serie 300 (301-330): Terzo Piano\n- Serie 400 (401-430): Quarto Piano\n- Serie S / Officine: Piano Terra e Seminterrato\n\nAl Piano Terra si trovano la Segreteria, la Presidenza, la Biblioteca Storica, l'Aula Magna, le Palestre, le Officine Meccaniche e il Bar.\n\nVisualizza la mappa: [Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ]
     },
     {
@@ -374,11 +351,15 @@
         "Codice scuola per iscriversi",
         "Codice del liceo e del tecnico",
         "Codice meccanografico serale",
-        "Quale codice inserire per l'iscrizione?"
+        "Quale codice inserire per l'iscrizione?",
+        "Codice per iscrizione al liceo",
+        "Codice per iscrizione al tecnico"
       ],
       "responses": [
-        "I codici per le iscrizioni sono:\nTecnico diurno: TOTF051011\nLiceo Scienze Applicate: TOPS05101V\nCorso Serale: TOTF05151A\nIstituto Principale: TOIS05100C"
-      ]
+        "**Codici della scuola**\n\n**Tecnico diurno:** TOTF051011.\n**Corso serale:** TOTF05151A.\n**Liceo Scientifico opzione Scienze Applicate:** TOPS05101V.\n\nScegli il codice del percorso a cui vuoi iscriverti.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/pagine/segreteria-didattica)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/pagine/segreteria-didattica",
+      "verified_on": "2026-10-06"
     },
     {
       "tag": "orari_segreteria",
@@ -392,8 +373,10 @@
         "Quando riceve la segreteria?"
       ],
       "responses": [
-        "Lo sportello della Segreteria Didattica riceve:\nMartedì e Giovedì: dalle 11:30 alle 13:30\nSabato: dalle 10:00 alle 12:00\nPer pratiche via email puoi scrivere a tois05100c@istruzione.it."
-      ]
+        "**Orari della segreteria didattica**\n\n**Ricevimento al pubblico**\nMartedì e giovedì: 11:30–13:30.\nSabato: 10:00–12:00.\n\nTelefono: 011 8153611. Email: tois05100c@istruzione.it. Controlla la pagina per eventuali variazioni.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/pagine/segreteria-didattica)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/pagine/segreteria-didattica",
+      "verified_on": "2026-10-06"
     },
     {
       "tag": "dirigenza_personale",
@@ -573,8 +556,10 @@
         "Cambiare da liceo a tecnico o viceversa"
       ],
       "responses": [
-        "Se desideri cambiare indirizzo o trasferirti da un'altra scuola devi presentare domanda in segreteria entro giugno e sostenere gli esami integrativi sulle materie mancanti prima di settembre."
-      ]
+        "**Cambiare indirizzo nel triennio**\n\nLa segreteria indica che per cambiare indirizzo nel triennio occorre sostenere un esame integrativo. Contattala **entro giugno**, negli orari di apertura, per conoscere la procedura del tuo caso.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/pagine/segreteria-didattica)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/pagine/segreteria-didattica",
+      "verified_on": "2026-10-06"
     },
     {
       "tag": "ritiro_diplomi_certificati",
@@ -602,8 +587,10 @@
         "Documenti dopo la maturità"
       ],
       "responses": [
-        "Puoi scaricare il tuo Curriculum dello Studente e il supplemento Europass dal tuo E-Portfolio sulla piattaforma UNICA (unica.istruzione.gov.it)."
-      ]
+        "**Curriculum dello Studente ed Europass**\n\nI diplomati possono scaricare il Curriculum definitivo e il supplemento Europass nella sezione documenti dell’**E-Portfolio sulla piattaforma UNICA**.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/pagine/segreteria-didattica)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/pagine/segreteria-didattica",
+      "verified_on": "2026-10-06"
     },
     {
       "tag": "registro_elettronico",
@@ -668,8 +655,10 @@
         "Come funziona AvoFinder?"
       ],
       "responses": [
-        "AvoFinder è l'applicazione con mappa interattiva sviluppata per orientarsi facilmente tra i piani dell'Avogadro e trovare subito aule, laboratori e uffici."
-      ]
+        "**AvoFinder: orientarsi nell’edificio**\n\nAvoFinder è un servizio web e un’app per orientarsi nella scuola. La pagina ufficiale offre il collegamento alla mappa OpenLevelUp e all’app per dispositivi mobili.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/servizi?id=220&source=servizi-personale)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/servizi?id=220&source=servizi-personale",
+      "verified_on": "2026-10-06"
     },
     {
       "tag": "certificazioni_ecdl_icdl",
@@ -713,6 +702,44 @@
       ]
     },
     {
+      "tag": "presentazione_scuola",
+      "patterns": [
+        "Parlami della scuola",
+        "Parlami dell Avogadro",
+        "Parlami della scuola Avogadro",
+        "Parlami dell istituto",
+        "Raccontami della scuola",
+        "Raccontami dell Avogadro",
+        "Presentami la scuola",
+        "Presentami l Avogadro",
+        "Descrivi la scuola",
+        "Descrivi l Avogadro",
+        "Informazioni sulla scuola",
+        "Informazioni sull Avogadro",
+        "Informazioni generali sulla scuola",
+        "Informazioni generali sull istituto",
+        "Che scuola è l Avogadro",
+        "Cos è l Avogadro",
+        "Cos è l IIS Avogadro",
+        "Cosa puoi dirmi sulla scuola",
+        "Cosa mi sai dire dell Avogadro",
+        "Dimmi qualcosa sulla scuola",
+        "Dimmi qualcosa sull Avogadro",
+        "Vorrei conoscere la scuola",
+        "Vorrei informazioni sulla scuola",
+        "Scuola Avogadro",
+        "IIS Amedeo Avogadro",
+        "Presentazione della scuola",
+        "Informazioni sull istituto Avogadro",
+        "Parlami dell IIS Amedeo Avogadro di Torino"
+      ],
+      "responses": [
+        "**L’IIS Amedeo Avogadro di Torino**\n\nLa scuola si trova in corso San Maurizio, vicino alla Mole Antonelliana.\n\n**Le informazioni principali**\n1. Le origini risalgono al **1805**, con una scuola serale di disegno.\n2. Dal **1946** porta il nome di Amedeo Avogadro.\n3. Ha una lunga tradizione di formazione tecnica, laboratori e collaborazione con le aziende.\n4. Affianca ai percorsi tecnici il corso serale e il **Liceo Scientifico opzione Scienze Applicate**, presente dal 2012/2013.\n\n[La storia sul sito della scuola](https://www.itisavogadro.edu.it/pagine/la-storia-1)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/pagine/la-storia-1",
+      "verified_on": "2026-10-06"
+    },
+    {
       "tag": "storia_avogadro",
       "patterns": [
         "Qual è la storia dell'Avogadro?",
@@ -721,11 +748,21 @@
         "Perché l'Avogadro è famoso a Torino?",
         "Da dove nasce l'Istituto Avogadro?",
         "Chi era il fondatore dell'Avogadro?",
-        "Origini dell'Avogadro"
+        "Origini dell'Avogadro",
+        "storia della scuola",
+        "storia dell avogadro",
+        "raccontami la storia della scuola",
+        "quando nasce l avogadro",
+        "quando è nato l avogadro",
+        "quando è stata fondata la scuola",
+        "perché si chiama Avogadro",
+        "da quando si chiama Avogadro"
       ],
       "responses": [
-        "Fondata nel 1805 come scuola serale di disegno, l'Avogadro è tra i più antichi istituti tecnici d'Italia. Dal suo ceppo storico sono nate le altre scuole tecniche storiche di Torino."
-      ]
+        "**L’IIS Amedeo Avogadro di Torino**\n\nLa scuola si trova in corso San Maurizio, vicino alla Mole Antonelliana.\n\n**Le informazioni principali**\n1. Le origini risalgono al **1805**, con una scuola serale di disegno.\n2. Dal **1946** porta il nome di Amedeo Avogadro.\n3. Ha una lunga tradizione di formazione tecnica, laboratori e collaborazione con le aziende.\n4. Affianca ai percorsi tecnici il corso serale e il **Liceo Scientifico opzione Scienze Applicate**, presente dal 2012/2013.\n\n[La storia sul sito della scuola](https://www.itisavogadro.edu.it/pagine/la-storia-1)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/pagine/la-storia-1",
+      "verified_on": "2026-10-06"
     },
     {
       "tag": "supporto_psicologico",
@@ -833,11 +870,17 @@
         "Elenco libri scolastici adottati",
         "Libri di testo per il prossimo anno",
         "Adozioni libri di testo Avogadro",
-        "Quali libri comprare?"
+        "Quali libri comprare?",
+        "Come scarico la lista dei libri?",
+        "Libri di testo 2026 2027",
+        "Quali libri devo comprare?",
+        "Elenco libri della mia classe"
       ],
       "responses": [
-        "L'elenco ufficiale dei libri di testo adottati per ogni classe è consultabile su itisavogadro.it nella sezione Didattica > Libri di testo."
-      ]
+        "**Libri di testo**\n\nVai in **Didattica → Libri di testo**, seleziona l’anno scolastico e la classe, poi cerca l’elenco. La pagina consente anche l’esportazione in PDF. È pubblicato l’avviso per le adozioni 2026/2027.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/libri-di-testo)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/libri-di-testo",
+      "verified_on": "2026-10-06"
     },
     {
       "tag": "esami_recupero_debiti",
@@ -1105,6 +1148,247 @@
       ]
     },
     {
+      "tag": "conferma_iscrizione_prima",
+      "patterns": [
+        "Come confermo l’iscrizione alla prima?",
+        "Conferma iscrizione prima",
+        "Perfezionamento iscrizione prima",
+        "Documenti per confermare iscrizione",
+        "Dove trovo la scheda studente?",
+        "Scheda studente prima superiore"
+      ],
+      "responses": [
+        "**Confermare l’iscrizione alla prima — A.S. 2026/2027**\n\nLa pagina dedicata contiene la circolare per perfezionare l’iscrizione, la scheda studente e il manuale Pago in Rete. Leggi la circolare allegata per documenti e modalità richiesti. Per altri anni scolastici consulta le nuove comunicazioni della segreteria.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/pagine/iscrizione-classi-prime-as-2026-27)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/pagine/iscrizione-classi-prime-as-2026-27",
+      "verified_on": "2026-10-06"
+    },
+    {
+      "tag": "compiti_vacanze_prime",
+      "patterns": [
+        "Dove trovo i compiti delle vacanze per la prima?",
+        "Compiti vacanze prima",
+        "Compiti estivi nuovi iscritti",
+        "Compiti vacanze Cambridge",
+        "Compiti prima superiore"
+      ],
+      "responses": [
+        "**Compiti per chi entra in prima — A.S. 2026/2027**\n\nNella pagina di conferma iscrizione trovi gli archivi ZIP dei compiti di matematica, italiano e inglese. È presente anche un archivio dedicato alle classi Cambridge.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/pagine/iscrizione-classi-prime-as-2026-27)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/pagine/iscrizione-classi-prime-as-2026-27",
+      "verified_on": "2026-10-06"
+    },
+    {
+      "tag": "contributo_iscrizione",
+      "patterns": [
+        "Il contributo scolastico è obbligatorio?",
+        "Quanto costa il contributo scolastico?",
+        "Contributo volontario iscrizione",
+        "Quanto si paga per iscriversi?",
+        "Evento Pago in Rete iscrizione"
+      ],
+      "responses": [
+        "**Contributo scolastico — A.S. 2026/2027**\n\nLa comunicazione indica un contributo omnicomprensivo **volontario**, con importo modificabile tra 25 e 150 euro. In Pago in Rete cerca l’evento di iscrizione relativo al 2026/2027. Verifica sempre le istruzioni dell’anno interessato.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/pagine/iscrizione-classi-prime-as-2026-27)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/pagine/iscrizione-classi-prime-as-2026-27",
+      "verified_on": "2026-10-06"
+    },
+    {
+      "tag": "voucher_scuola",
+      "patterns": [
+        "Come richiedo il voucher scuola?",
+        "Voucher scuola",
+        "Aiuto economico libri scolastici",
+        "Dove trovo informazioni sul voucher?",
+        "Voucher Piemonte"
+      ],
+      "responses": [
+        "**Voucher scuola**\n\nLa pagina di iscrizione rimanda alle informazioni della Regione Piemonte sul Voucher Scuola 2026/2027. Segui quel collegamento per requisiti, domanda e scadenze aggiornate.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/pagine/iscrizione-classi-prime-as-2026-27)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/pagine/iscrizione-classi-prime-as-2026-27",
+      "verified_on": "2026-10-06"
+    },
+    {
+      "tag": "ptof_offerta_formativa",
+      "patterns": [
+        "Che cos’è il PTOF?",
+        "Dove scarico il PTOF?",
+        "Piano triennale offerta formativa",
+        "Dove trovo il piano della scuola?",
+        "PTOF Avogadro"
+      ],
+      "responses": [
+        "**PTOF: conoscere l’offerta formativa**\n\nIl Piano Triennale dell’Offerta Formativa descrive didattica, progetti, orientamento, sostegno e organizzazione della scuola. Nella sezione Offerta formativa puoi scaricare il documento per conoscere meglio l’Avogadro.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/pagine/offerta-formativa-)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/pagine/offerta-formativa-",
+      "verified_on": "2026-10-06"
+    },
+    {
+      "tag": "cambridge_ore_aggiuntive",
+      "patterns": [
+        "Quante ore in più si fanno al Cambridge?",
+        "Ore aggiuntive Cambridge",
+        "Cambridge si fa di pomeriggio?",
+        "Differenza tra Cambridge e tradizionale",
+        "Quali differenze tra percorso Cambridge e normale?"
+      ],
+      "responses": [
+        "**Cambridge: ore e materie in inglese**\n\nNei percorsi Cambridge alcune materie seguono programmi in inglese. Dal primo al quarto anno sono previste **2 ore aggiuntive di inglese a settimana**; il monte ore delle altre materie resta invariato. I corsi si svolgono nell’orario curricolare.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/percorsi-studio?id=129)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/percorsi-studio?id=129",
+      "verified_on": "2026-10-06"
+    },
+    {
+      "tag": "cambridge_esami_facoltativi",
+      "patterns": [
+        "Gli esami IGCSE sono obbligatori?",
+        "Esami Cambridge obbligatori",
+        "Dove si fanno gli esami IGCSE?",
+        "Se non faccio IGCSE passo l’anno?",
+        "Sessioni esami IGCSE"
+      ],
+      "responses": [
+        "**Esami IGCSE**\n\nGli esami IGCSE sono **facoltativi** e si svolgono a scuola in due sessioni annuali. Non condizionano il passaggio alla classe successiva o l’ammissione all’esame di Stato.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/percorsi-studio?id=129)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/percorsi-studio?id=129",
+      "verified_on": "2026-10-06"
+    },
+    {
+      "tag": "cambridge_costo",
+      "patterns": [
+        "Quanto costa il Cambridge?",
+        "Costo Cambridge",
+        "Quota annuale Cambridge",
+        "Gli esami Cambridge sono compresi nella quota?",
+        "Tasse esame Cambridge"
+      ],
+      "responses": [
+        "**Costo del percorso Cambridge**\n\nLa pagina Cambridge indica **200 euro all’anno**, esclusi i costi degli esami. La comunicazione per il 2026/2027 prevede un evento di pagamento dedicato agli ammessi al percorso. Controlla le istruzioni aggiornate prima di pagare.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/percorsi-studio?id=129)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/percorsi-studio?id=129",
+      "verified_on": "2026-10-06"
+    },
+    {
+      "tag": "cambridge_validita_igcse",
+      "patterns": [
+        "Quanto dura la certificazione IGCSE?",
+        "IGCSE scade?",
+        "Validità IGCSE",
+        "IGCSE dà credito scolastico?",
+        "Credito scolastico Cambridge"
+      ],
+      "responses": [
+        "**Validità delle certificazioni IGCSE**\n\nLe certificazioni Cambridge IGCSE hanno **validità permanente**. Il superamento di un esame è riconosciuto dalla scuola nella definizione del credito scolastico del triennio.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/percorsi-studio?id=129)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/percorsi-studio?id=129",
+      "verified_on": "2026-10-06"
+    },
+    {
+      "tag": "cambridge_igcse_esol",
+      "patterns": [
+        "Differenza tra IGCSE e certificazione inglese",
+        "IGCSE e ESOL sono uguali?",
+        "IGCSE è una certificazione linguistica?",
+        "Differenza Cambridge ESOL IGCSE"
+      ],
+      "responses": [
+        "**IGCSE e certificazioni linguistiche**\n\nGli IGCSE certificano competenze in specifiche materie studiate in inglese. Le certificazioni linguistiche Cambridge attestano invece il livello di conoscenza della lingua: sono percorsi diversi.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/percorsi-studio?id=129)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/percorsi-studio?id=129",
+      "verified_on": "2026-10-06"
+    },
+    {
+      "tag": "recupero_credenziali_registro",
+      "patterns": [
+        "Ho dimenticato la password di ClasseViva",
+        "Come recupero le credenziali del registro?",
+        "Recupero password registro elettronico",
+        "ClasseViva non riesco ad accedere",
+        "Password ClasseViva dimenticata",
+        "Posso recuperare la password del registro dal cellulare?"
+      ],
+      "responses": [
+        "**Recuperare le credenziali di ClasseViva**\n\n1. Usa un **PC**, come indicato dalla scuola.\n2. Apri il login di ClasseViva su web.spaggiari.eu.\n3. Segui le istruzioni evidenziate nel PDF allegato alla pagina di recupero credenziali.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/pagine/modalit-di-recupero-credenziali-registro-elettronico-classeviva)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/pagine/modalit-di-recupero-credenziali-registro-elettronico-classeviva",
+      "verified_on": "2026-10-06"
+    },
+    {
+      "tag": "posta_istituzionale_accesso",
+      "patterns": [
+        "Come accedo alla posta della scuola?",
+        "Posta istituzionale studenti",
+        "Dove apro la mail scolastica?",
+        "Posta d’istituto",
+        "Come apro la casella email della scuola?"
+      ],
+      "responses": [
+        "**Posta elettronica d’istituto**\n\nNella sezione Servizi per le Famiglie e Studenti trovi **Post@ d’Istituto**, il collegamento per accedere alla casella istituzionale degli alunni e del personale.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/servizi-famiglie)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/servizi-famiglie",
+      "verified_on": "2026-10-06"
+    },
+    {
+      "tag": "orario_classe_online",
+      "patterns": [
+        "Dove trovo l’orario della mia classe?",
+        "Orario delle classi",
+        "Dove vedo le aule delle lezioni?",
+        "Come consulto l’orario settimanale?",
+        "Qual è l’aula della prossima lezione?"
+      ],
+      "responses": [
+        "**Orario della tua classe**\n\nApri il servizio **Orario scolastico** e segui il collegamento “Orario delle classi”. L’orario riporta le discipline e le aule delle lezioni; consulta la versione pubblicata per eventuali cambiamenti.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/servizi?id=197)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/servizi?id=197",
+      "verified_on": "2026-10-06"
+    },
+    {
+      "tag": "calendario_vacanze",
+      "patterns": [
+        "Dove trovo il calendario scolastico?",
+        "Quando ci sono le vacanze?",
+        "Ponti e sospensioni delle lezioni",
+        "Quando la scuola è chiusa?",
+        "Calendario vacanze scuola"
+      ],
+      "responses": [
+        "**Calendario scolastico e sospensioni**\n\nIl servizio Calendario scolastico rimanda al calendario regionale piemontese. Il Consiglio d’Istituto può deliberare modifiche: controlla anche le comunicazioni della scuola per ponti e sospensioni.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/servizi?id=198)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/servizi?id=198",
+      "verified_on": "2026-10-06"
+    },
+    {
+      "tag": "carta_studente_richiesta",
+      "patterns": [
+        "Non ho richiesto IoStudio durante l’iscrizione",
+        "Come richiedo la carta IoStudio?",
+        "Modulo carta dello studente",
+        "Dove consegno il modulo IoStudio?",
+        "Ho dimenticato il consenso per la carta studente"
+      ],
+      "responses": [
+        "**Richiedere la Carta IoStudio**\n\nLa Carta dello Studente attesta il tuo status e permette di accedere ad agevolazioni. Se non hai dato il consenso durante l’iscrizione online, la pagina del servizio indica un modulo da consegnare in segreteria. Verifica le scadenze dell’anno corrente.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/servizi?id=254&source=servizi-famiglie)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/servizi?id=254&source=servizi-famiglie",
+      "verified_on": "2026-10-06"
+    },
+    {
+      "tag": "servizi_studenti_panoramica",
+      "patterns": [
+        "Quali servizi online ci sono per gli studenti?",
+        "Servizi per famiglie e studenti",
+        "Link utili per studenti",
+        "Dove trovo tutti i servizi della scuola?",
+        "Sono già iscritto quali servizi posso usare?"
+      ],
+      "responses": [
+        "**Servizi per studenti e famiglie**\n\nLa sezione dedicata raccoglie i collegamenti a registro elettronico, libri di testo, posta d’istituto, orario, calendario, mappa delle aule, AvoFinder, Carta IoStudio e Pago in Rete.\n\n[Informazioni sul sito della scuola](https://www.itisavogadro.edu.it/servizi-famiglie)"
+      ],
+      "source": "https://www.itisavogadro.edu.it/servizi-famiglie",
+      "verified_on": "2026-10-06"
+    },
+    {
       "tag": "fallback",
       "patterns": [],
       "responses": [
@@ -1172,22 +1456,6 @@
       ],
       "responses": [
         "Al piano terra sono indicate Aula 3.0, Aula studenti, Aula omu e Aula Laboratorio Tecnologico. Quale vuoi raggiungere?"
-      ]
-    },
-    {
-      "tag": "aula_numero_incompleto",
-      "patterns": [
-        "Dove sono le aule 1 2 3?",
-        "Aula 1",
-        "Aula 2",
-        "Aula 10",
-        "Aula 12",
-        "Aula 20",
-        "Dovʼè la mia aula?",
-        "Come arrivo in aula?"
-      ],
-      "responses": [
-        "Indicami il codice completo dellʼaula, per esempio 2/15, oppure il suo nome. Il solo numero senza piano non mi permette di identificarla con certezza."
       ]
     },
     {
@@ -3843,13 +4111,9 @@
         "lab tecnologico",
         "sala temperatura costante",
         "sala a temperatura costante",
-        "ciclofficina",
-        "dov'è la ciclofficina?",
-        "dove si trova la ciclofficina?",
         "dov'è la sala temperatura costante?",
         "come arrivo al laboratorio tecnologico?",
         "percorso laboratorio tecnologico",
-        "indicazioni ciclofficina",
         "indicazioni laboratorio tecnologico",
         "aula tecnologia terra",
         "Aula Laboratorio Tecnologico",
@@ -3865,20 +4129,13 @@
         "Come raggiungo l'aula laboratorio tecnologico?",
         "Indicazioni per L'Aula Laboratorio Tecnologico",
         "Mi indichi il percorso per l'aula laboratorio tecnologico?",
-        "Qual è il percorso per raggiungere l'aula laboratorio tecnologico?",
-        "aula laboratorio tecnologico / sala temperatura costante / ciclofficina",
-        "Dov'è Aula Laboratorio Tecnologico / Sala Temperatura Costante / Ciclofficina?",
-        "Percorso per Aula Laboratorio Tecnologico / Sala Temperatura Costante / Ciclofficina",
-        "Come arrivo a Aula Laboratorio Tecnologico / Sala Temperatura Costante / Ciclofficina?",
-        "Dove si trova Aula Laboratorio Tecnologico / Sala Temperatura Costante / Ciclofficina?",
-        "Come raggiungo Aula Laboratorio Tecnologico / Sala Temperatura Costante / Ciclofficina?",
-        "Indicazioni per Aula Laboratorio Tecnologico / Sala Temperatura Costante / Ciclofficina"
+        "Qual è il percorso per raggiungere l'aula laboratorio tecnologico?"
       ],
       "responses": [
-        "**L'Aula Laboratorio Tecnologico (Sala Temperatura Costante / Ciclofficina)**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Percorri il corridoio principale fino alle macchinette.\n3. Trovi il laboratorio sulla destra delle macchinette.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**L'Aula Laboratorio Tecnologico (Sala Temperatura Costante)**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Percorri il corridoio principale fino alle macchinette.\n3. Trovi il laboratorio sulla destra delle macchinette.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
-        "name": "L'Aula Laboratorio Tecnologico (Sala Temperatura Costante / Ciclofficina)",
+        "name": "L'Aula Laboratorio Tecnologico (Sala Temperatura Costante)",
         "floor": "Piano Terra",
         "aliases": [
           "laboratorio tecnologico",
@@ -3886,7 +4143,6 @@
           "lab tecnologico",
           "sala temperatura costante",
           "sala a temperatura costante",
-          "ciclofficina",
           "aula tecnologia terra"
         ]
       }
@@ -4001,43 +4257,28 @@
       }
     },
     {
-      "tag": "luogo_laboratorio_saldature",
+      "tag": "luogo_invention_room",
       "patterns": [
-        "Dov'è il laboratorio saldature?",
-        "Dove si trovano le saldature?",
-        "Come arrivo a saldature?",
-        "Percorso saldature",
-        "saldature",
-        "laboratorio saldature",
-        "lab saldature",
-        "saldatura",
-        "laboratorio saldatura",
-        "officina saldature",
-        "reparto saldature",
-        "aula saldature",
-        "indicazioni saldature",
-        "Dov'è Laboratorio Saldature?",
-        "Percorso per Laboratorio Saldature",
-        "Come arrivo a Laboratorio Saldature?",
-        "Dove si trova Laboratorio Saldature?",
-        "Come raggiungo Laboratorio Saldature?",
-        "Indicazioni per Laboratorio Saldature"
+        "invention room",
+        "Dove si trova invention room?",
+        "Come raggiungo invention room?",
+        "laboratorio invention room",
+        "Dove si trova laboratorio invention room?",
+        "Come raggiungo laboratorio invention room?",
+        "aula invention room",
+        "Dove si trova aula invention room?",
+        "Come raggiungo aula invention room?"
       ],
       "responses": [
-        "**Il Laboratorio Saldature**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Percorri tutto il corridoio principale fino all'ascensore.\n3. Quando hai l'ascensore di fronte a te, gira a sinistra.\n4. Trovi il laboratorio nella prima aula del corridoio secondario.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**Invention Room**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale e percorri il corridoio fino all'ascensore.\n2. Con l'ascensore di fronte, gira a sinistra.\n3. Trovi l'Invention Room nella prima aula del corridoio secondario.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
-        "name": "Il Laboratorio Saldature",
+        "name": "Invention Room",
         "floor": "Piano Terra",
         "aliases": [
-          "saldature",
-          "laboratorio saldature",
-          "lab saldature",
-          "saldatura",
-          "laboratorio saldatura",
-          "officina saldature",
-          "reparto saldature",
-          "aula saldature"
+          "invention room",
+          "laboratorio invention room",
+          "aula invention room"
         ]
       }
     },
@@ -4134,49 +4375,22 @@
       }
     },
     {
-      "tag": "destinazione_laboratorio_cad_cam",
+      "tag": "luogo_officina",
       "patterns": [
-        "Dov'è il laboratorio CAD-CAM?",
-        "Dove si trova il CAD-CAM?",
-        "Come arrivo al CAD-CAM?",
-        "Percorso CAD-CAM",
-        "cad-cam",
-        "cad cam",
-        "laboratorio cad cam",
-        "lab cad cam",
-        "laboratorio cad-cam",
-        "lab cad-cam",
-        "aula cad cam",
-        "cad/cam",
-        "indicazioni cad cam",
-        "Dov'è Laboratorio CAD-CAM?",
-        "dove il laboratorio cad-cam",
-        "Dov'è il laboratorio cad-cam?",
-        "Percorso per Laboratorio CAD-CAM",
-        "Come arrivo a Laboratorio CAD-CAM?",
-        "Dove si trova Laboratorio CAD-CAM?",
-        "Come raggiungo Laboratorio CAD-CAM?",
-        "Indicazioni per Laboratorio CAD-CAM",
-        "Dove si trova il laboratorio cad-cam?",
-        "Come raggiungo il laboratorio cad-cam?",
-        "Mi indichi il percorso per il laboratorio cad-cam?",
-        "Qual è il percorso per raggiungere il laboratorio cad-cam?"
+        "officina",
+        "Dove si trova officina?",
+        "Come raggiungo officina?",
+        "Percorso per officina",
+        "Indicazioni per officina"
       ],
       "responses": [
-        "**Il Laboratorio CAD-CAM**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Percorri tutto il corridoio principale fino all'ascensore.\n3. Quando hai l'ascensore di fronte a te, gira a sinistra.\n4. Attraversa la porta e prosegui.\n5. Imbocca il nuovo corridoio sulla sinistra.\n6. Trovi l'aula subito sulla destra.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**Officina — Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Dall'ingresso principale percorri il corridoio principale fino all'ascensore.\n2. Con l'ascensore di fronte a te, gira a sinistra.\n3. Attraversa la porta e imbocca il nuovo corridoio sulla sinistra.\n4. Supera il laboratorio OMU, che trovi subito sulla sinistra, e prosegui fino in fondo al corridoio.\n5. L'Officina si trova in fondo, sulla destra.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
-        "name": "Il Laboratorio CAD-CAM",
+        "name": "Officina",
         "floor": "Piano Terra",
         "aliases": [
-          "cad-cam",
-          "cad cam",
-          "laboratorio cad cam",
-          "lab cad cam",
-          "laboratorio cad-cam",
-          "lab cad-cam",
-          "aula cad cam",
-          "cad/cam"
+          "officina"
         ]
       }
     },
@@ -4205,10 +4419,10 @@
         "Indicazioni per Laboratorio Controllo Numerico"
       ],
       "responses": [
-        "**Il Laboratorio Controllo Numerico (CNC)**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Percorri tutto il corridoio principale fino all'ascensore.\n3. Quando hai l'ascensore di fronte a te, gira a sinistra.\n4. Attraversa la porta e prosegui.\n5. Imbocca il nuovo corridoio sulla sinistra.\n6. Prosegui sempre dritto: il laboratorio è in fondo al corridoio, senza altre svolte.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**Laboratorio Controllo Numerico**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Percorri tutto il corridoio principale fino all'ascensore.\n3. Quando hai l'ascensore di fronte a te, gira a sinistra.\n4. Attraversa la porta e prosegui.\n5. Imbocca il nuovo corridoio sulla sinistra.\n6. Trovi l'aula subito sulla destra.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
-        "name": "Il Laboratorio Controllo Numerico (CNC)",
+        "name": "Laboratorio Controllo Numerico",
         "floor": "Piano Terra",
         "aliases": [
           "controllo numerico",
@@ -4594,61 +4808,47 @@
       }
     },
     {
-      "tag": "destinazione_laboratorio_elettronica_di_base",
+      "tag": "luogo_laboratorio_elettronica_1",
       "patterns": [
-        "Dov'è il laboratorio elettronica base?",
-        "Dove si trova l'elettronica di base?",
-        "Come arrivo al laboratorio elettronica base?",
-        "Percorso elettronica base",
-        "laboratorio elettronica base",
-        "laboratorio elettronica di base",
-        "lab elettronica base",
-        "elettronica base",
-        "lab elettronica di base",
-        "aula elettronica base",
-        "indicazioni elettronica base",
         "laboratorio di elettronica",
         "Laboratorio di fisica",
         "Laboratorio PLC e robotica",
         "Laboratori di elettrotecnica",
         "Dove si trova il lab di fisica?",
-        "laboratorio di elettronica base",
         "Laboratorio di sistemi automatici",
         "Dov'è il laboratorio di elettronica?",
-        "Dov'è Laboratorio di Elettronica Base?",
         "Dove sono i laboratori di elettronica?",
-        "dove il laboratorio elettronica di base",
-        "Dov'è il laboratorio elettronica di base?",
         "Dove sono i laboratori di elettrotecnica?",
         "Come raggiungere i laboratori di elettronica",
-        "Percorso per Laboratorio di Elettronica Base",
         "Come raggiungo il laboratorio di elettronica?",
         "In che piano è il laboratorio di elettronica?",
-        "Come arrivo a Laboratorio di Elettronica Base?",
-        "Dove si trova Laboratorio di Elettronica Base?",
-        "Come raggiungo Laboratorio di Elettronica Base?",
-        "Indicazioni per Laboratorio di Elettronica Base",
         "Dove sono i laboratori di elettronica e sistemi?",
-        "Dove si trova il laboratorio elettronica di base?",
         "Dove trovo i laboratori di elettronica e sistemi?",
-        "Come raggiungo il laboratorio elettronica di base?",
-        "Mi indichi il percorso per il laboratorio elettronica di base?",
-        "Qual è il percorso per raggiungere il laboratorio elettronica di base?"
+        "elettronica 1",
+        "Dove si trova elettronica 1?",
+        "Come raggiungo elettronica 1?",
+        "laboratorio elettronica 1",
+        "Dove si trova laboratorio elettronica 1?",
+        "Come raggiungo laboratorio elettronica 1?",
+        "laboratorio di elettronica 1",
+        "Dove si trova laboratorio di elettronica 1?",
+        "Come raggiungo laboratorio di elettronica 1?",
+        "elettronica uno",
+        "Dove si trova elettronica uno?",
+        "Come raggiungo elettronica uno?"
       ],
       "responses": [
-        "**Il Laboratorio di Elettronica Base**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera i bagni e imbocca il corridoio sulla sinistra.\n4. Prosegui fino in fondo al corridoio secondario: qui trovi il laboratorio.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**Il Laboratorio Elettronica 1**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera i bagni e imbocca il corridoio sulla sinistra.\n4. Prosegui fino in fondo al corridoio secondario: qui trovi il laboratorio.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
-        "name": "Il Laboratorio di Elettronica Base",
+        "name": "Il Laboratorio Elettronica 1",
         "floor": "Primo Piano",
         "aliases": [
-          "laboratorio elettronica base",
-          "laboratorio elettronica di base",
-          "lab elettronica base",
-          "elettronica base",
-          "lab elettronica di base",
-          "aula elettronica base",
-          "laboratorio di elettronica"
+          "laboratorio di elettronica",
+          "elettronica 1",
+          "laboratorio elettronica 1",
+          "laboratorio di elettronica 1",
+          "elettronica uno"
         ]
       }
     },
@@ -4734,7 +4934,7 @@
         "Come arrivo a Misure uno?"
       ],
       "responses": [
-        "**Il Laboratorio Misure 1**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera il bar e continua lungo il corridoio.\n4. Imbocca il corridoio a sinistra delle scale piccole interne.\n5. La destinazione è la prima aula del corridoio secondario.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**Il Laboratorio Misure 1**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera il bar e continua lungo il corridoio.\n4. Imbocca il corridoio a sinistra delle scale piccole interne.\n5. Prosegui verso il fondo del corridoio: Misure 1 è la penultima aula, subito prima della Sala Macchine Elettriche.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio Misure 1",
@@ -4783,7 +4983,7 @@
         "Come arrivo a Misure due?"
       ],
       "responses": [
-        "**Il Laboratorio Misure 2**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera il bar e continua lungo il corridoio.\n4. Imbocca il corridoio a sinistra delle scale piccole interne.\n5. La destinazione è la seconda aula del corridoio secondario.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**Il Laboratorio Misure 2**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera il bar e continua lungo il corridoio.\n4. Imbocca il corridoio a sinistra delle scale piccole interne.\n5. La destinazione è la prima aula del corridoio secondario.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio Misure 2",
@@ -5102,39 +5302,26 @@
       }
     },
     {
-      "tag": "luogo_laboratorio_energia_solare",
+      "tag": "luogo_potenziamento_didattico",
       "patterns": [
-        "Dov'è il laboratorio energia solare?",
-        "Dove si trova energia solare?",
-        "Come arrivo ad energia solare?",
-        "Percorso energia solare",
-        "energia solare",
-        "laboratorio energia solare",
-        "lab energia solare",
-        "aula energia solare",
-        "fotovoltaico",
-        "laboratorio fotovoltaico",
-        "indicazioni energia solare",
-        "Dov'è Laboratorio Energia Solare?",
-        "Percorso per Laboratorio Energia Solare",
-        "Come arrivo a Laboratorio Energia Solare?",
-        "Dove si trova Laboratorio Energia Solare?",
-        "Come raggiungo Laboratorio Energia Solare?",
-        "Indicazioni per Laboratorio Energia Solare"
+        "potenziamento didattico",
+        "aula potenziamento didattico",
+        "aula di potenziamento didattico",
+        "Dov'è il potenziamento didattico?",
+        "Dove si trova il potenziamento didattico?",
+        "Come arrivo al potenziamento didattico?",
+        "Percorso potenziamento didattico"
       ],
       "responses": [
-        "**Il Laboratorio Energia Solare**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera il bar e continua lungo il corridoio.\n4. Quando hai l'ascensore di fronte a te, gira a sinistra.\n5. Imbocca il corridoio a destra.\n6. La destinazione è la prima aula del corridoio.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**Aula di Potenziamento Didattico**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera il bar e continua lungo il corridoio.\n4. Quando hai l'ascensore di fronte a te, gira a sinistra.\n5. Imbocca il corridoio a destra.\n6. La destinazione è la prima aula del corridoio.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
-        "name": "Il Laboratorio Energia Solare",
+        "name": "Aula di Potenziamento Didattico",
         "floor": "Primo Piano",
         "aliases": [
-          "energia solare",
-          "laboratorio energia solare",
-          "lab energia solare",
-          "aula energia solare",
-          "fotovoltaico",
-          "laboratorio fotovoltaico"
+          "potenziamento didattico",
+          "aula potenziamento didattico",
+          "aula di potenziamento didattico"
         ]
       }
     },
@@ -6193,104 +6380,74 @@
       }
     },
     {
-      "tag": "luogo_laboratorio_linguistico_2",
+      "tag": "luogo_laboratorio_inglese_2",
       "patterns": [
-        "Dov'è il laboratorio linguistico 2?",
-        "Dove si trova il linguistico 2?",
-        "Come arrivo al laboratorio linguistico 2?",
-        "Percorso linguistico 2",
-        "laboratorio linguistico 2",
-        "lab linguistico 2",
-        "linguistico 2",
-        "lab lingue 2",
-        "aula linguistico 2",
-        "laboratorio di lingue 2",
-        "indicazioni linguistico 2",
-        "linguistico due",
-        "Dov'è Laboratorio Linguistico 2?",
-        "Percorso per Laboratorio Linguistico 2",
-        "Come arrivo a Laboratorio Linguistico 2?",
-        "Dove si trova Laboratorio Linguistico 2?",
-        "Come raggiungo Laboratorio Linguistico 2?",
-        "Indicazioni per Laboratorio Linguistico 2",
-        "Laboratorio Linguistico due",
-        "Dove si trova Laboratorio Linguistico due?",
-        "Dov'è Laboratorio Linguistico due?",
-        "Come arrivo a Laboratorio Linguistico due?",
-        "Linguistico due",
-        "Dove si trova Linguistico due?",
-        "Dov'è Linguistico due?",
-        "Come arrivo a Linguistico due?"
+        "inglese 2",
+        "Dove si trova inglese 2?",
+        "Come raggiungo inglese 2?",
+        "laboratorio inglese 2",
+        "Dove si trova laboratorio inglese 2?",
+        "Come raggiungo laboratorio inglese 2?",
+        "laboratorio di inglese 2",
+        "Dove si trova laboratorio di inglese 2?",
+        "Come raggiungo laboratorio di inglese 2?",
+        "inglese due",
+        "Dove si trova inglese due?",
+        "Come raggiungo inglese due?",
+        "Laboratorio Inglese due",
+        "Inglese due"
       ],
       "responses": [
-        "**Il Laboratorio Linguistico 2**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Supera le macchinette e prosegui lungo il corridoio.\n5. Imbocca il corridoio a destra.\n6. La destinazione è la prima aula sulla destra.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**Il Laboratorio di Inglese 2**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Supera le macchinette e prosegui lungo il corridoio.\n5. Imbocca il corridoio a destra.\n6. La destinazione è la prima aula sulla destra.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
-        "name": "Il Laboratorio Linguistico 2",
+        "name": "Il Laboratorio di Inglese 2",
         "floor": "Secondo Piano",
         "aliases": [
-          "laboratorio linguistico 2",
-          "lab linguistico 2",
-          "linguistico 2",
-          "lab lingue 2",
-          "aula linguistico 2",
-          "laboratorio di lingue 2",
-          "linguistico due"
+          "inglese 2",
+          "laboratorio inglese 2",
+          "laboratorio di inglese 2",
+          "inglese due"
         ],
         "spokenAliases": [
-          "Laboratorio Linguistico due",
-          "Linguistico due"
+          "Laboratorio Inglese due",
+          "Inglese due"
         ]
       }
     },
     {
-      "tag": "luogo_laboratorio_linguistico_1",
+      "tag": "luogo_laboratorio_inglese_1",
       "patterns": [
-        "Dov'è il laboratorio linguistico 1?",
-        "Dove si trova il linguistico 1?",
-        "Come arrivo al laboratorio linguistico 1?",
-        "Percorso linguistico 1",
-        "laboratorio linguistico 1",
-        "lab linguistico 1",
-        "linguistico 1",
-        "lab lingue 1",
-        "aula linguistico 1",
-        "laboratorio di lingue 1",
-        "indicazioni linguistico 1",
-        "linguistico uno",
-        "Dov'è Laboratorio Linguistico 1?",
-        "Percorso per Laboratorio Linguistico 1",
-        "Come arrivo a Laboratorio Linguistico 1?",
-        "Dove si trova Laboratorio Linguistico 1?",
-        "Come raggiungo Laboratorio Linguistico 1?",
-        "Indicazioni per Laboratorio Linguistico 1",
-        "Laboratorio Linguistico uno",
-        "Dove si trova Laboratorio Linguistico uno?",
-        "Dov'è Laboratorio Linguistico uno?",
-        "Come arrivo a Laboratorio Linguistico uno?",
-        "Linguistico uno",
-        "Dove si trova Linguistico uno?",
-        "Dov'è Linguistico uno?",
-        "Come arrivo a Linguistico uno?"
+        "inglese 1",
+        "Dove si trova inglese 1?",
+        "Come raggiungo inglese 1?",
+        "laboratorio inglese 1",
+        "Dove si trova laboratorio inglese 1?",
+        "Come raggiungo laboratorio inglese 1?",
+        "laboratorio di inglese 1",
+        "Dove si trova laboratorio di inglese 1?",
+        "Come raggiungo laboratorio di inglese 1?",
+        "inglese uno",
+        "Dove si trova inglese uno?",
+        "Come raggiungo inglese uno?",
+        "Laboratorio Inglese uno",
+        "Inglese uno"
       ],
       "responses": [
-        "**Il Laboratorio Linguistico 1**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Supera le macchinette e prosegui lungo il corridoio.\n5. Imbocca il corridoio a destra.\n6. La destinazione è la seconda aula sulla destra.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**Il Laboratorio di Inglese 1**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Supera le macchinette e prosegui lungo il corridoio.\n5. Imbocca il corridoio a destra.\n6. La destinazione è la seconda aula sulla destra.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
-        "name": "Il Laboratorio Linguistico 1",
+        "name": "Il Laboratorio di Inglese 1",
         "floor": "Secondo Piano",
         "aliases": [
-          "laboratorio linguistico 1",
-          "lab linguistico 1",
-          "linguistico 1",
-          "lab lingue 1",
-          "aula linguistico 1",
-          "laboratorio di lingue 1",
-          "linguistico uno"
+          "inglese 1",
+          "laboratorio inglese 1",
+          "laboratorio di inglese 1",
+          "inglese uno"
         ],
         "spokenAliases": [
-          "Laboratorio Linguistico uno",
-          "Linguistico uno"
+          "Laboratorio Inglese uno",
+          "Inglese uno"
         ]
       }
     },
@@ -7125,121 +7282,6 @@
       }
     },
     {
-      "tag": "luogo_aula_2_15",
-      "patterns": [
-        "Dov'è l'aula 215?",
-        "Dove si trova l'aula 215?",
-        "Dov'è l'aula 2/15?",
-        "Dove si trova l'aula 2/15?",
-        "Come arrivo all'aula 215?",
-        "Come arrivo alla 2/15?",
-        "Percorso aula 215",
-        "Percorso aula 2/15",
-        "aula 215",
-        "aula 2/15",
-        "215",
-        "2/15",
-        "aula 2 15",
-        "dov'è la 215",
-        "dov'è la 2/15",
-        "dove sta l'aula 215",
-        "dove sta la 2/15",
-        "indicazioni aula 215",
-        "aula 215 o 2/15",
-        "Aula 2/15",
-        "l'aula 215",
-        "l'aula 2/15",
-        "dove aula 215",
-        "Dov'è Aula 215?",
-        "Dove aula 2/15?",
-        "dove l'aula 215",
-        "dove l'aula 2/15",
-        "Dov'è L'Aula 215?",
-        "Percorso per Aula 215",
-        "Come arrivo a Aula 215?",
-        "Dove si trova Aula 215?",
-        "Percorso per L'Aula 215",
-        "Come raggiungo Aula 215?",
-        "Indicazioni per Aula 215",
-        "Come arrivo a L'Aula 215?",
-        "Dove si trova L'Aula 215?",
-        "Come raggiungo L'Aula 215?",
-        "Come raggiungo l'aula 215?",
-        "Indicazioni per L'Aula 215",
-        "Come raggiungo l'aula 2/15?",
-        "Mi indichi il percorso per l'aula 215?",
-        "Mi indichi il percorso per l'aula 2/15?",
-        "Qual è il percorso per raggiungere l'aula 215?",
-        "Qual è il percorso per raggiungere l'aula 2/15?",
-        "due quindici",
-        "aula due quindici",
-        "Dov'è l'aula due quindici?",
-        "Dove si trova l'aula due quindici?",
-        "Come arrivo all'aula due quindici?",
-        "Indicazioni per aula due quindici",
-        "due barra quindici",
-        "aula due barra quindici",
-        "Dov'è l'aula due barra quindici?",
-        "Dove si trova l'aula due barra quindici?",
-        "Come arrivo all'aula due barra quindici?",
-        "Indicazioni per aula due barra quindici",
-        "due slash quindici",
-        "aula due slash quindici",
-        "Dov'è l'aula due slash quindici?",
-        "Dove si trova l'aula due slash quindici?",
-        "Come arrivo all'aula due slash quindici?",
-        "Indicazioni per aula due slash quindici",
-        "due su quindici",
-        "aula due su quindici",
-        "Dov'è l'aula due su quindici?",
-        "Dove si trova l'aula due su quindici?",
-        "Come arrivo all'aula due su quindici?",
-        "Indicazioni per aula due su quindici",
-        "duecentoquindici",
-        "aula duecentoquindici",
-        "Dov'è l'aula duecentoquindici?",
-        "Dove si trova l'aula duecentoquindici?",
-        "Come arrivo all'aula duecentoquindici?",
-        "Indicazioni per aula duecentoquindici",
-        "due cento quindici",
-        "aula due cento quindici",
-        "Dov'è l'aula due cento quindici?",
-        "Dove si trova l'aula due cento quindici?",
-        "Come arrivo all'aula due cento quindici?",
-        "Indicazioni per aula due cento quindici",
-        "duecento quindici",
-        "aula duecento quindici",
-        "Dov'è l'aula duecento quindici?",
-        "Dove si trova l'aula duecento quindici?",
-        "Come arrivo all'aula duecento quindici?",
-        "Indicazioni per aula duecento quindici"
-      ],
-      "responses": [
-        "**L'Aula 215 (o 2/15)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Supera le macchinette e prosegui lungo il corridoio.\n5. Imbocca il corridoio a sinistra dell'ascensore.\n6. La destinazione è la seconda aula sulla destra.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
-      ],
-      "room": {
-        "name": "L'Aula 215 (o 2/15)",
-        "floor": "Secondo Piano",
-        "aliases": [
-          "aula 215",
-          "aula 2/15",
-          "215",
-          "2/15",
-          "aula 2 15",
-          "aula 215 o 2/15"
-        ],
-        "spokenAliases": [
-          "due quindici",
-          "due barra quindici",
-          "due slash quindici",
-          "due su quindici",
-          "duecentoquindici",
-          "due cento quindici",
-          "duecento quindici"
-        ]
-      }
-    },
-    {
       "tag": "luogo_aula_disegno_1",
       "patterns": [
         "Dov'è l'aula disegno 1?",
@@ -7690,39 +7732,28 @@
       }
     },
     {
-      "tag": "luogo_laboratorio_tecnologia_disegno_biennio",
+      "tag": "luogo_laboratorio_cad_biennio",
       "patterns": [
-        "Dov'è il laboratorio di tecnologia e disegno biennio?",
-        "Dove si trova tecnologia e disegno biennio?",
-        "Come arrivo a tecnologia e disegno biennio?",
-        "Percorso tecnologia e disegno biennio",
-        "laboratorio di tecnologia e disegno biennio",
-        "laboratorio tecnologia e disegno biennio",
-        "tecnologia e disegno biennio",
-        "lab tecnologia e disegno",
-        "disegno biennio",
-        "aula disegno biennio",
-        "indicazioni disegno biennio",
-        "Dov'è Laboratorio di Tecnologia e Disegno Biennio?",
-        "Percorso per Laboratorio di Tecnologia e Disegno Biennio",
-        "Come arrivo a Laboratorio di Tecnologia e Disegno Biennio?",
-        "Dove si trova Laboratorio di Tecnologia e Disegno Biennio?",
-        "Come raggiungo Laboratorio di Tecnologia e Disegno Biennio?",
-        "Indicazioni per Laboratorio di Tecnologia e Disegno Biennio"
+        "cad biennio",
+        "Dove si trova cad biennio?",
+        "Come raggiungo cad biennio?",
+        "laboratorio cad biennio",
+        "Dove si trova laboratorio cad biennio?",
+        "Come raggiungo laboratorio cad biennio?",
+        "lab cad biennio",
+        "Dove si trova lab cad biennio?",
+        "Come raggiungo lab cad biennio?"
       ],
       "responses": [
-        "**Il Laboratorio di Tecnologia e Disegno Biennio**\n**Terzo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 3° piano.\n3. Arrivato sul pianerottolo del terzo piano, gira subito a destra.\n4. Prosegui fino in fondo al corridoio: qui trovi l'aula.\n\n[Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)"
+        "**Il Laboratorio CAD Biennio**\n**Terzo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 3° piano.\n3. Arrivato sul pianerottolo del terzo piano, gira subito a destra.\n4. Prosegui fino in fondo al corridoio: qui trovi l'aula.\n\n[Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)"
       ],
       "room": {
-        "name": "Il Laboratorio di Tecnologia e Disegno Biennio",
+        "name": "Il Laboratorio CAD Biennio",
         "floor": "Terzo Piano",
         "aliases": [
-          "laboratorio di tecnologia e disegno biennio",
-          "laboratorio tecnologia e disegno biennio",
-          "tecnologia e disegno biennio",
-          "lab tecnologia e disegno",
-          "disegno biennio",
-          "aula disegno biennio"
+          "cad biennio",
+          "laboratorio cad biennio",
+          "lab cad biennio"
         ]
       }
     },
@@ -8413,6 +8444,55 @@
           "quattrocentonove",
           "quattro cento nove",
           "quattrocento nove"
+        ]
+      }
+    },
+    {
+      "tag": "luogo_laboratorio_misure_3",
+      "patterns": [
+        "Dov'è misure 3?",
+        "Dove si trova il laboratorio misure 3?",
+        "Come arrivo a misure 3?",
+        "Percorso misure 3",
+        "misure 3",
+        "laboratorio misure 3",
+        "lab misure 3",
+        "aula misure 3",
+        "misure elettriche 3",
+        "misure tre",
+        "indicazioni misure 3",
+        "Dov'è Laboratorio Misure 3?",
+        "Percorso per Laboratorio Misure 3",
+        "Come arrivo a Laboratorio Misure 3?",
+        "Dove si trova Laboratorio Misure 3?",
+        "Come raggiungo Laboratorio Misure 3?",
+        "Indicazioni per Laboratorio Misure 3",
+        "Laboratorio Misure tre",
+        "Dove si trova Laboratorio Misure tre?",
+        "Dov'è Laboratorio Misure tre?",
+        "Come arrivo a Laboratorio Misure tre?",
+        "Misure tre",
+        "Dove si trova Misure tre?",
+        "Dov'è Misure tre?",
+        "Come arrivo a Misure tre?"
+      ],
+      "responses": [
+        "**Il Laboratorio Misure 3**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera il bar e continua lungo il corridoio.\n4. Imbocca il corridoio a sinistra delle scale piccole interne.\n5. Misure 3 si trova tra Misure 2 e Misure 1, proseguendo lungo il corridoio verso la Sala Macchine Elettriche.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+      ],
+      "room": {
+        "name": "Il Laboratorio Misure 3",
+        "floor": "Primo Piano",
+        "aliases": [
+          "misure 3",
+          "laboratorio misure 3",
+          "lab misure 3",
+          "aula misure 3",
+          "misure elettriche 3",
+          "misure tre"
+        ],
+        "spokenAliases": [
+          "Laboratorio Misure tre",
+          "Misure tre"
         ]
       }
     }

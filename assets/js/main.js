@@ -1072,7 +1072,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="g-a11y-font-row">
                         <div class="g-a11y-item-info">
                             <span class="g-a11y-item-label">Dimensione testo</span>
-                            <span class="g-a11y-item-desc">Ingrandimento scalabile fino al 200%</span>
+                            <span class="g-a11y-item-desc">Dimensione dal 50% al 200%, inizialmente al 100%</span>
                         </div>
                         <div class="g-a11y-font-controls" role="group" aria-label="Regolazione dimensione testo conforme WCAG">
                             <button type="button" class="g-a11y-font-btn" id="gDecFont" aria-label="Riduci testo">A−</button>
@@ -1229,8 +1229,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
 
         // ── Steps testo conformi WCAG 1.4.4 (fino a 200%) ──
-        const fontSteps = [100, 125, 150, 175, 200];
-        let fontIndex = 0;
+        const fontSteps = [50, 75, 100, 125, 150, 175, 200];
+        const defaultFontIndex = fontSteps.indexOf(100);
+        let fontIndex = defaultFontIndex;
 
         // ── Mappa: id-checkbox → { htmlClass } ──
         const TOGGLES = {
@@ -1744,7 +1745,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 stopSpeech();
 
                 // Reset font
-                fontIndex = 0;
+                fontIndex = defaultFontIndex;
                 updateFontUI();
 
                 // Reset classi html

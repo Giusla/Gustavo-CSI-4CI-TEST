@@ -393,10 +393,24 @@ function matchLocalIntent(query) {
   query = normalizeSpokenRoomQuery(query, intents);
   const norm = normalizeNlpText(query.replace(/(\d)\s*\/\s*(\d)/g, '$1/$2'));
   const tokens = tokenizeQuery(query);
+  // General school/history questions must not match the classroom named "Storia".
+  const schoolInfo = intents.filter(i => ['presentazione_scuola', 'storia_avogadro'].includes(i.tag));
+  if (!/\b(aula|laboratorio|lab)\b/.test(norm)) {
+    const exactSchoolInfo = schoolInfo.find(i => i.patterns.some(p => normalizeNlpText(p) === norm));
+    if (exactSchoolInfo) return {intent: exactSchoolInfo, score: 1};
+    if (/\bstoria\b.*\b(scuola|istituto|avogadro)\b/.test(norm)) {
+      const history = schoolInfo.find(i => i.tag === 'storia_avogadro');
+      if (history) return {intent: history, score: 1};
+    }
+  }
+  // Recognize complete FAQ questions before interpreting words such as "aula" as directions.
+  const exactFaq = intents.find(i => !i.room && i.tag !== 'fallback' &&
+    (i.patterns || []).some(p => normalizeNlpText(p) === norm));
+  if (exactFaq) return {intent: exactFaq, score: 1};
   const rooms = intents.filter(i => i.room);
   const reply = text => ({intent:{responses:[text]},score:1});
   const numbers = norm.match(/\b\d+\b/g) || [];
-  if (/^(fisica|misure|laboratorio linguistico|linguistico|disegno|matematica|informatica)$/.test(norm)) return reply('Specifica il laboratorio: per esempio fisica 1 o 2, misure 1 o 2, linguistico 1 o 2, matematica biennio o triennio.');
+  if (/^(fisica|misure|laboratorio inglese|inglese|disegno|matematica|informatica)$/.test(norm)) return reply('Specifica il laboratorio: per esempio fisica 1 o 2, misure 1, 2 o 3, inglese 1 o 2, matematica biennio o triennio.');
   const candidates = rooms.map(intent => {
     let score = 0;
     for (const pattern of intent.patterns) {
@@ -416,7 +430,7 @@ function matchLocalIntent(query) {
   if (candidates.length) return reply('Quale aula intendi? Specifica il nome completo o il numero: ' + candidates.filter(i=>i.score===candidates[0].score).map(i=>i.intent.room.name).join(', ') + '.');
   if (numbers.length && (/\b(aula|laboratorio|lab|stanza)\b/.test(norm) || /^\d+( \d+)?$/.test(norm))) return reply('Non ho un percorso verificato per questa aula. Controlla il numero completo (per esempio 224 oppure 2/24) o chiedi conferma in portineria.');
   // Ask for a distinguishing name instead of guessing among related laboratories.
-  if (/\b(aula|laboratorio|lab|fisica|misure|linguistico|disegno|matematica|informatica|automazione)\b/.test(norm)) {
+  if (/\b(aula|laboratorio|lab|fisica|misure|inglese|disegno|matematica|informatica|automazione)\b/.test(norm)) {
     const key = tokens.filter(t=>!['aula','laboratorio','lab','arrivo','cerco','indicazioni','percorso'].includes(t));
     const options = rooms.filter(i=>i.room.aliases.some(a=>key.length && key.every(t=>tokenizeQuery(a).includes(t))));
     if (options.length) return reply('Puoi specificare quale aula cerchi? ' + options.map(i=>i.room.name).join(', ') + '.');

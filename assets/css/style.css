@@ -4984,6 +4984,10 @@ button, input, select, textarea { font-family: inherit; }
 .site-page .team-photo-caption { display: block; background: #ffffff; color: var(--text-body); font-size: 0.82rem; font-weight: 400; line-height: 1.5; padding: 10px 14px; }
 
 /* Shared photo feedback, matching the complete gallery modal. */
+.team-project-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 28px; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--border-subtle); }
+.team-project-facts dt { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); margin-bottom: 4px; }
+.team-project-facts dd { font-size: 0.95rem; line-height: 1.6; color: var(--text-body); }
+@media (max-width: 600px) { .team-project-facts { grid-template-columns: 1fr; gap: 16px; } }
 .site-page :is(.hero-photo, .team-photo-wrapper, .gallery-card:not(.gallery-card-more), .modal-photo-card, .journey-photo) {
     font-family: var(--font-main);
     border: 1px solid var(--border-subtle);
