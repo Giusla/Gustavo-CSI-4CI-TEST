@@ -1,20 +1,20 @@
 {
-  "id": "./",
-  "name": "GustAvo — Il chatbot che ti orienta a scuola",
-  "short_name": "GustAvo",
-  "description": "GustAvo aiuta ragazzi e famiglie a conoscere l'IIS Amedeo Avogadro di Torino: indirizzi di studio, iscrizioni, servizi e percorsi per aule e laboratori.",
-  "lang": "it",
-  "start_url": "./index.html",
-  "scope": "./",
-  "display": "standalone",
-  "background_color": "#f8fafc",
-  "theme_color": "#0066ee",
-  "icons": [
-    {
-      "src": "assets/img/favicon.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any"
-    }
-  ]
+    "id":  "./app.html",
+    "name":  "GustAvo — Chatbot",
+    "short_name":  "GustAvo",
+    "description":  "GustAvo aiuta ragazzi e famiglie a conoscere l\u0027IIS Amedeo Avogadro di Torino: indirizzi di studio, iscrizioni, servizi e percorsi per aule e laboratori.",
+    "lang":  "it",
+    "start_url":  "./app.html",
+    "scope":  "./app.html",
+    "display":  "standalone",
+    "background_color":  "#f8fafc",
+    "theme_color":  "#0066ee",
+    "icons":  [
+                  {
+                      "src":  "assets/img/favicon.png",
+                      "sizes":  "512x512",
+                      "type":  "image/png",
+                      "purpose":  "any"
+                  }
+              ]
 }

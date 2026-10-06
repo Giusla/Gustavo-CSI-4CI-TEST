@@ -3516,7 +3516,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per Vicepresidenza"
       ],
       "responses": [
-        "**La Vicepresidenza**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Ingresso subito sulla sinistra in fondo\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**La Vicepresidenza**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Dall'ingresso gira subito a sinistra. Prosegui fino in fondo: qui trovi la destinazione.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "La Vicepresidenza",
@@ -3561,7 +3561,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per L'Ufficio Acquisti"
       ],
       "responses": [
-        "**L'Ufficio Acquisti**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Ingresso subito sulla sinistra\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**L'Ufficio Acquisti**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Dall'ingresso gira subito a sinistra. La destinazione si trova subito su questo lato.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Ufficio Acquisti",
@@ -3608,7 +3608,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per punto Oggetti Smarriti"
       ],
       "responses": [
-        "**Il punto Oggetti Smarriti**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Ingresso subito sulla destra\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**Il punto Oggetti Smarriti**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Dall'ingresso gira subito a destra. La destinazione si trova subito su questo lato.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il punto Oggetti Smarriti",
@@ -3656,7 +3656,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Qual è il percorso per raggiungere la segreteria didattica?"
       ],
       "responses": [
-        "**La Segreteria Didattica**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Ingresso subito sulla destra in fondo\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**La Segreteria Didattica**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Dall'ingresso gira subito a destra. Prosegui fino in fondo: qui trovi la destinazione.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "La Segreteria Didattica",
@@ -3719,7 +3719,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Come arrivo a aula tre punto zero?"
       ],
       "responses": [
-        "**L'Aula 3.0**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Inizio corridoio principale\n3. Sulla destra dietro le colonne\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**L'Aula 3.0**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Imbocca il corridoio principale e fermati all'inizio.\n3. L'aula si trova sulla destra, dietro le colonne.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 3.0",
@@ -3775,7 +3775,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Qual è il percorso per raggiungere l'aula studenti?"
       ],
       "responses": [
-        "**L'Aula Studenti**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Inizio corridoio principale\n3. Sulla destra dietro le colonne\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**L'Aula Studenti**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Imbocca il corridoio principale e fermati all'inizio.\n3. L'aula si trova sulla destra, dietro le colonne.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula Studenti",
@@ -3820,7 +3820,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "In che piano è la biblioteca?"
       ],
       "responses": [
-        "**La Biblioteca**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Corridoio principale\n3. Davanti alle macchinette\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**La Biblioteca**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Percorri il corridoio principale fino alle macchinette.\n3. La biblioteca si trova di fronte alle macchinette.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "La Biblioteca",
@@ -3875,7 +3875,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per Aula Laboratorio Tecnologico / Sala Temperatura Costante / Ciclofficina"
       ],
       "responses": [
-        "**L'Aula Laboratorio Tecnologico (Sala Temperatura Costante / Ciclofficina)**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Corridoio principale\n3. Aula sulla destra delle macchinette\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**L'Aula Laboratorio Tecnologico (Sala Temperatura Costante / Ciclofficina)**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Percorri il corridoio principale fino alle macchinette.\n3. Trovi il laboratorio sulla destra delle macchinette.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula Laboratorio Tecnologico (Sala Temperatura Costante / Ciclofficina)",
@@ -3915,7 +3915,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per Laboratorio Macchine a Fluido"
       ],
       "responses": [
-        "**Il Laboratorio Macchine a Fluido**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Corridoio principale\n3. Oltre le macchinette\n4. Subito dopo le scale piccole interne sulla sinistra\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**Il Laboratorio Macchine a Fluido**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Percorri il corridoio principale fino alle macchinette.\n3. Supera le macchinette e prosegui lungo il corridoio.\n4. Supera le piccole scale interne: trovi il laboratorio subito dopo, sulla sinistra.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio Macchine a Fluido",
@@ -3983,7 +3983,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Qual è il percorso per raggiungere la palestra piccola?"
       ],
       "responses": [
-        "**Le Palestre**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Corridoio principale in fondo\n3. Quando si ha di fronte l'ascensore sulla destra\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**Le Palestre**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Percorri tutto il corridoio principale fino all'ascensore.\n3. Quando hai l'ascensore di fronte a te, gira a destra.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Le Palestre",
@@ -4024,7 +4024,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per Laboratorio Saldature"
       ],
       "responses": [
-        "**Il Laboratorio Saldature**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Corridoio principale in fondo\n3. Quando si ha di fronte l'ascensore sulla sinistra\n4. Prima aula corridoio secondario\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**Il Laboratorio Saldature**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Percorri tutto il corridoio principale fino all'ascensore.\n3. Quando hai l'ascensore di fronte a te, gira a sinistra.\n4. Trovi il laboratorio nella prima aula del corridoio secondario.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio Saldature",
@@ -4044,12 +4044,43 @@ window.GUSTAVO_INTENTS_DATA = {
     {
       "tag": "luogo_aula_omu",
       "patterns": [
+        "aula OMU",
+        "Aula omu",
+        "l'aula omu",
+        "Dove aula omu?",
+        "dove l'aula omu",
+        "Dov'è l'aula omu?",
+        "Dove si trova l'aula omu?",
+        "Come raggiungo l'aula omu?",
+        "Mi indichi il percorso per l'aula omu?",
+        "Qual è il percorso per raggiungere l'aula omu?",
+        "OMU",
+        "Dov'è l'OMU?",
+        "Dove si trova l'OMU?",
+        "Come arrivo all'OMU?",
+        "Percorso OMU",
+        "indicazioni OMU"
+      ],
+      "responses": [
+        "**Aula OMU — Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Dall'ingresso principale percorri il corridoio principale fino all'ascensore.\n2. Con l'ascensore di fronte a te, gira a sinistra.\n3. Attraversa la porta.\n4. Trovi l'aula subito sulla sinistra dopo la porta.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+      ],
+      "room": {
+        "name": "Aula OMU",
+        "floor": "Piano Terra",
+        "aliases": [
+          "OMU",
+          "aula OMU"
+        ]
+      }
+    },
+    {
+      "tag": "luogo_laboratorio_omu",
+      "patterns": [
         "Dov'è l'OMU?",
         "Dove si trova l'OMU?",
         "Come arrivo all'OMU?",
         "Percorso OMU",
         "OMU",
-        "aula OMU",
         "laboratorio OMU",
         "lab OMU",
         "officina macchine utensili",
@@ -4058,26 +4089,16 @@ window.GUSTAVO_INTENTS_DATA = {
         "indicazioni OMU",
         "officina meccanica",
         "laboratorio macchine utensili",
-        "Aula omu",
-        "l'aula omu",
         "Torni e CNC",
-        "Aule S01 S02",
-        "Dove aula omu?",
-        "dove l'aula omu",
-        "Dov'è l'aula omu?",
-        "Laboratorio saldatura",
         "Dove sono le officine?",
         "Come vado alle officine?",
         "Laboratorio di meccanica",
-        "Dove si trova l'aula omu?",
         "Reparto macchine utensili",
-        "Come raggiungo l'aula omu?",
         "Dov'è l'officina meccanica?",
         "Dovʼè lʼofficina meccanica?",
         "l'officina macchine utensili",
         "Dov'è Officina Macchine Utensili?",
         "Dov'è L'Officina Macchine Utensili?",
-        "Mi indichi il percorso per l'aula omu?",
         "Percorso per Officina Macchine Utensili",
         "Come arrivo a Officina Macchine Utensili?",
         "Dove si trova Officina Macchine Utensili?",
@@ -4089,22 +4110,24 @@ window.GUSTAVO_INTENTS_DATA = {
         "Dove si trova L'Officina Macchine Utensili?",
         "Come raggiungo L'Officina Macchine Utensili?",
         "Indicazioni per L'Officina Macchine Utensili",
-        "Qual è il percorso per raggiungere l'aula omu?"
+        "laboratorio OMU",
+        "Come raggiungo il laboratorio OMU?",
+        "Dove si trova il laboratorio OMU?",
+        "Percorso laboratorio OMU"
       ],
       "responses": [
-        "**Officina Macchine Utensili (OMU) — Piano Terra**\n\nDall'ingresso percorri il corridoio principale fino all'ascensore, gira a sinistra e supera la porta.\n\n**L'ultimo tratto è da verificare:** il file indica sia subito a sinistra dopo la porta, sia nel nuovo corridoio a sinistra, nell'aula subito a sinistra. Chiedi conferma in portineria prima di proseguire.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**Laboratorio OMU (Officina Macchine Utensili) — Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Dall'ingresso principale percorri il corridoio principale fino all'ascensore.\n2. Con l'ascensore di fronte a te, gira a sinistra.\n3. Attraversa la porta.\n4. Imbocca il nuovo corridoio sulla sinistra.\n5. Trovi il laboratorio subito sulla sinistra di questo corridoio.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
-        "name": "L'Officina Macchine Utensili (OMU)",
+        "name": "Laboratorio OMU (Officina Macchine Utensili)",
         "floor": "Piano Terra",
         "aliases": [
           "OMU",
-          "aula OMU",
           "laboratorio OMU",
           "lab OMU",
+          "officina OMU",
           "officina macchine utensili",
           "macchine utensili",
-          "officina OMU",
           "officina meccanica",
           "laboratorio macchine utensili"
         ]
@@ -4140,7 +4163,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Qual è il percorso per raggiungere il laboratorio cad-cam?"
       ],
       "responses": [
-        "**Il Laboratorio CAD-CAM**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Corridoio principale in fondo\n3. Quando si ha di fronte l'ascensore sulla sinistra\n4. Superare la porta\n5. Sulla sinistra nuovo corridoio\n6. Aula subito sulla destra\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**Il Laboratorio CAD-CAM**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Percorri tutto il corridoio principale fino all'ascensore.\n3. Quando hai l'ascensore di fronte a te, gira a sinistra.\n4. Attraversa la porta e prosegui.\n5. Imbocca il nuovo corridoio sulla sinistra.\n6. Trovi l'aula subito sulla destra.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio CAD-CAM",
@@ -4182,7 +4205,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per Laboratorio Controllo Numerico"
       ],
       "responses": [
-        "**Il Laboratorio Controllo Numerico (CNC)**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Corridoio principale in fondo\n3. Quando si ha di fronte l'ascensore sulla sinistra\n4. Superare la porta\n5. Sulla sinistra nuovo corridoio\n6. Aula dritta in fondo al corridoio non girare a sinistra/destra\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**Il Laboratorio Controllo Numerico (CNC)**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Percorri tutto il corridoio principale fino all'ascensore.\n3. Quando hai l'ascensore di fronte a te, gira a sinistra.\n4. Attraversa la porta e prosegui.\n5. Imbocca il nuovo corridoio sulla sinistra.\n6. Prosegui sempre dritto: il laboratorio è in fondo al corridoio, senza altre svolte.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio Controllo Numerico (CNC)",
@@ -4222,7 +4245,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per Laboratorio Trattamenti Termici"
       ],
       "responses": [
-        "**Il Laboratorio Trattamenti Termici**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Corridoio principale in fondo\n3. Quando si ha di fronte l'ascensore sulla sinistra\n4. Superare la porta\n5. Sulla sinistra nuovo corridoio\n6. Porta a sinistra\n7. Andare fino in fondo a sinistra dove c'e la rampa\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
+        "**Il Laboratorio Trattamenti Termici**\n**Piano Terra**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Percorri tutto il corridoio principale fino all'ascensore.\n3. Quando hai l'ascensore di fronte a te, gira a sinistra.\n4. Attraversa la porta e prosegui.\n5. Imbocca il nuovo corridoio sulla sinistra.\n6. Attraversa la porta sulla sinistra.\n7. Prosegui fino in fondo, verso sinistra, dove si trova la rampa.\n\n[Apri Mappa Piano Terra](https://openlevelup.net/?l=0#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio Trattamenti Termici",
@@ -4265,7 +4288,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Qual è il percorso per raggiungere il laboratorio chimica?"
       ],
       "responses": [
-        "**Il Laboratorio di Chimica**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a sinistra\n4. A sinistra in fondo\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**Il Laboratorio di Chimica**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a sinistra.\n3. Prosegui verso sinistra fino in fondo al corridoio: qui trovi il laboratorio.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio di Chimica",
@@ -4314,7 +4337,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Come arrivo a Fisica uno?"
       ],
       "responses": [
-        "**Il Laboratorio di Fisica 1**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a sinistra\n4. Aula dritta davanti a te\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**Il Laboratorio di Fisica 1**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a sinistra.\n3. Trovi l'aula dritta davanti a te, senza altre svolte.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio di Fisica 1",
@@ -4368,7 +4391,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Come arrivo a Fisica due?"
       ],
       "responses": [
-        "**Il Laboratorio di Fisica 2**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a sinistra\n4. A destra in fondo\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**Il Laboratorio di Fisica 2**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a sinistra.\n3. Prosegui verso destra fino in fondo al corridoio: qui trovi il laboratorio.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio di Fisica 2",
@@ -4454,7 +4477,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Qual è il percorso per raggiungere la mensa?"
       ],
       "responses": [
-        "**Il Bar / Mensa**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a destra\n4. Subito dopo i bagni a destra porta grande\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**Il Bar / Mensa**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera i bagni: la grande porta sulla destra conduce al bar / mensa.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Bar / Mensa",
@@ -4498,7 +4521,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Qual è il percorso per raggiungere il laboratorio automazione robotica domotica?"
       ],
       "responses": [
-        "**Il Laboratorio Automazione Robotica Domotica**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a destra\n4. Subito dopo i bagni a sinistra\n5. Prima aula del corridoio secondario\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**Il Laboratorio Automazione Robotica Domotica**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera i bagni e imbocca il corridoio sulla sinistra.\n4. La destinazione è la prima aula del corridoio secondario.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio Automazione Robotica Domotica",
@@ -4551,7 +4574,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Come arrivo a Informatica due?"
       ],
       "responses": [
-        "**Il Laboratorio Informatica 2**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a destra\n4. Subito dopo i bagni a sinistra\n5. Seconda aula del corridoio secondario\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**Il Laboratorio Informatica 2**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera i bagni e imbocca il corridoio sulla sinistra.\n4. La destinazione è la seconda aula del corridoio secondario.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio Informatica 2",
@@ -4613,7 +4636,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Qual è il percorso per raggiungere il laboratorio elettronica di base?"
       ],
       "responses": [
-        "**Il Laboratorio di Elettronica Base**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a destra\n4. Subito dopo i bagni a sinistra\n5. Al fondo del corridoio secondario\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**Il Laboratorio di Elettronica Base**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera i bagni e imbocca il corridoio sulla sinistra.\n4. Prosegui fino in fondo al corridoio secondario: qui trovi il laboratorio.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio di Elettronica Base",
@@ -4668,7 +4691,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Qual è il percorso per raggiungere l'aula magna?"
       ],
       "responses": [
-        "**L'Aula Magna**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a destra\n4. Oltre il bar\n5. Davanti alla porta delle scale piccole interne\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**L'Aula Magna**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera il bar e continua lungo il corridoio.\n4. L'aula si trova di fronte alla porta delle piccole scale interne.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula Magna",
@@ -4711,7 +4734,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Come arrivo a Misure uno?"
       ],
       "responses": [
-        "**Il Laboratorio Misure 1**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a destra\n4. Oltre il bar\n5. Corridoio a sinistra delle scale piccole interne\n6. Prima aula del corridoio secondario\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**Il Laboratorio Misure 1**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera il bar e continua lungo il corridoio.\n4. Imbocca il corridoio a sinistra delle scale piccole interne.\n5. La destinazione è la prima aula del corridoio secondario.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio Misure 1",
@@ -4760,7 +4783,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Come arrivo a Misure due?"
       ],
       "responses": [
-        "**Il Laboratorio Misure 2**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a destra\n4. Oltre il bar\n5. Corridoio a sinistra delle scale piccole interne\n6. Seconda aula del corridoio secondario\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**Il Laboratorio Misure 2**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera il bar e continua lungo il corridoio.\n4. Imbocca il corridoio a sinistra delle scale piccole interne.\n5. La destinazione è la seconda aula del corridoio secondario.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio Misure 2",
@@ -4808,7 +4831,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Qual è il percorso per raggiungere la sala sperimentazione elettrotecnica?"
       ],
       "responses": [
-        "**La Sala Macchine Elettriche**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a destra\n4. Oltre il bar\n5. Corridoio a sinistra delle scale piccole interne\n6. Aula al fondo del corridoio secondario\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**La Sala Macchine Elettriche**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera il bar e continua lungo il corridoio.\n4. Imbocca il corridoio a sinistra delle scale piccole interne.\n5. Prosegui fino in fondo al corridoio secondario: qui trovi il laboratorio.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "La Sala Macchine Elettriche",
@@ -4926,7 +4949,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula undici"
       ],
       "responses": [
-        "**L'Aula 11 (o 1/1)**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a destra\n4. Oltre il bar\n5. Aula subito prima dell'ascensore\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**L'Aula 11 (o 1/1)**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera il bar e continua lungo il corridoio.\n4. Trovi l'aula subito prima dell'ascensore.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 11 (o 1/1)",
@@ -4983,7 +5006,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Qual è il percorso per raggiungere il laboratorio di scienze?"
       ],
       "responses": [
-        "**Il Laboratorio di Scienze**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a destra\n4. Oltre il bar\n5. All'ascensore a destra\n6. Prima aula sulla sinistra\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**Il Laboratorio di Scienze**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera il bar e continua lungo il corridoio.\n4. Quando hai l'ascensore di fronte a te, gira a destra.\n5. La destinazione è la prima aula sulla sinistra.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio di Scienze",
@@ -5024,7 +5047,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Qual è il percorso per raggiungere il laboratorio sistemi elettrici?"
       ],
       "responses": [
-        "**Il Laboratorio Sistemi Elettrici**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a destra\n4. Oltre il bar\n5. All'ascensore a destra\n6. Aula in fondo\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**Il Laboratorio Sistemi Elettrici**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera il bar e continua lungo il corridoio.\n4. Quando hai l'ascensore di fronte a te, gira a destra.\n5. Prosegui fino in fondo al corridoio: qui trovi l'aula.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio Sistemi Elettrici",
@@ -5062,7 +5085,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per Laboratorio TDP"
       ],
       "responses": [
-        "**Il Laboratorio TDP (Tecnologie e Progettazione)**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a destra\n4. Oltre il bar\n5. All'ascensore a sinistra\n6. Aula dritta davanti a te\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**Il Laboratorio TDP (Tecnologie e Progettazione)**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera il bar e continua lungo il corridoio.\n4. Quando hai l'ascensore di fronte a te, gira a sinistra.\n5. Trovi l'aula dritta davanti a te, senza altre svolte.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio TDP (Tecnologie e Progettazione)",
@@ -5100,7 +5123,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per Laboratorio Energia Solare"
       ],
       "responses": [
-        "**Il Laboratorio Energia Solare**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a destra\n4. Oltre il bar\n5. All'ascensore a sinistra\n6. Nel corridoio a destra\n7. Prima aula\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**Il Laboratorio Energia Solare**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera il bar e continua lungo il corridoio.\n4. Quando hai l'ascensore di fronte a te, gira a sinistra.\n5. Imbocca il corridoio a destra.\n6. La destinazione è la prima aula del corridoio.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio Energia Solare",
@@ -5136,7 +5159,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per Laboratorio Automazione"
       ],
       "responses": [
-        "**Il Laboratorio Automazione**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 1 piano subito a destra\n4. Oltre il bar\n5. All'ascensore a sinistra\n6. Nel corridoio a destra\n7. Seconda aula\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
+        "**Il Laboratorio Automazione**\n**Primo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 1° piano. Arrivato sul pianerottolo, gira subito a destra.\n3. Supera il bar e continua lungo il corridoio.\n4. Quando hai l'ascensore di fronte a te, gira a sinistra.\n5. Imbocca il corridoio a destra.\n6. La destinazione è la seconda aula del corridoio.\n\n[Apri Mappa Primo Piano](https://openlevelup.net/?l=1#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio Automazione",
@@ -5172,7 +5195,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per Laboratorio Sistemi Informatici"
       ],
       "responses": [
-        "**Il Laboratorio Sistemi Informatici**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a sinistra\n5. Dopo la porta in fondo a sinistra\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**Il Laboratorio Sistemi Informatici**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a sinistra.\n4. Attraversa la porta e prosegui fino in fondo a sinistra: qui trovi il laboratorio.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio Sistemi Informatici",
@@ -5215,7 +5238,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per L'Aula di Matematica Triennio"
       ],
       "responses": [
-        "**L'Aula di Matematica Triennio**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a sinistra\n5. Dopo la porta a sinistra\n6. Aula prima di quella in fondo\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula di Matematica Triennio**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a sinistra.\n4. Attraversa la porta e gira a sinistra.\n5. La destinazione è l'aula immediatamente prima di quella in fondo al corridoio.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula di Matematica Triennio",
@@ -5257,7 +5280,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per L'Aula Multimediale"
       ],
       "responses": [
-        "**L'Aula Multimediale**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a sinistra\n5. Dritto davanti a te dopo la porta\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula Multimediale**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a sinistra.\n4. Attraversa la porta: trovi l'aula dritta davanti a te.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula Multimediale",
@@ -5293,7 +5316,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per Saletta Informatica Progettazione"
       ],
       "responses": [
-        "**La Saletta Informatica Progettazione**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a sinistra\n5. Dopo la porta a destra\n6. Aula prima di quella in fondo\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**La Saletta Informatica Progettazione**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a sinistra.\n4. Attraversa la porta e gira a destra.\n5. La destinazione è l'aula immediatamente prima di quella in fondo al corridoio.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "La Saletta Informatica Progettazione",
@@ -5349,7 +5372,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Qual è il percorso per raggiungere il laboratorio informatica?"
       ],
       "responses": [
-        "**Il Laboratorio di Informatica**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a sinistra\n5. Dopo la porta a destra\n6. Aula in fondo\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**Il Laboratorio di Informatica**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a sinistra.\n4. Attraversa la porta e gira a destra.\n5. Prosegui fino in fondo al corridoio: qui trovi l'aula.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio di Informatica",
@@ -5455,7 +5478,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula duecento ventiquattro"
       ],
       "responses": [
-        "**L'Aula 224 (o 2/24)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Corridoio a destra delle macchinette\n6. Aula subito alla tua sinistra\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula 224 (o 2/24)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Imbocca il corridoio a destra delle macchinette.\n5. L'aula si trova subito sulla sinistra.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 224 (o 2/24)",
@@ -5570,7 +5593,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula duecento venticinque"
       ],
       "responses": [
-        "**L'Aula 225 (o 2/25)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Corridoio a destra delle macchinette\n6. Seconda aula alla tua sinistra\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula 225 (o 2/25)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Imbocca il corridoio a destra delle macchinette.\n5. L'aula 225 è la seconda sulla sinistra.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 225 (o 2/25)",
@@ -5685,7 +5708,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula duecento ventisei"
       ],
       "responses": [
-        "**L'Aula 226 (o 2/26)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Corridoio a destra delle macchinette\n6. Aula in fondo\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula 226 (o 2/26)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Imbocca il corridoio a destra delle macchinette.\n5. Prosegui fino in fondo al corridoio: qui trovi l'aula.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 226 (o 2/26)",
@@ -5800,7 +5823,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula duecento ventisette"
       ],
       "responses": [
-        "**L'Aula 227 (o 2/27)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Corridoio a sinistra delle macchinette\n6. Prima aula alla tua destra\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula 227 (o 2/27)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Imbocca il corridoio a sinistra delle macchinette.\n5. La destinazione è la prima aula sulla destra.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 227 (o 2/27)",
@@ -5915,7 +5938,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula duecento ventotto"
       ],
       "responses": [
-        "**L'Aula 228 (o 2/28)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Corridoio a sinistra delle macchinette\n6. Seconda aula alla tua destra\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula 228 (o 2/28)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Imbocca il corridoio a sinistra delle macchinette.\n5. La destinazione è la seconda aula sulla destra.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 228 (o 2/28)",
@@ -6030,7 +6053,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula duecento ventinove"
       ],
       "responses": [
-        "**L'Aula 229 (o 2/29)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Corridoio a sinistra delle macchinette\n6. Terza aula alla tua destra\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula 229 (o 2/29)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Imbocca il corridoio a sinistra delle macchinette.\n5. La destinazione è la terza aula sulla destra.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 229 (o 2/29)",
@@ -6145,7 +6168,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula duecento trenta"
       ],
       "responses": [
-        "**L'Aula 230 (o 2/30)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Corridoio a sinistra delle macchinette\n6. Aula in fondo\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula 230 (o 2/30)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Imbocca il corridoio a sinistra delle macchinette.\n5. Prosegui fino in fondo al corridoio: qui trovi l'aula.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 230 (o 2/30)",
@@ -6200,7 +6223,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Come arrivo a Linguistico due?"
       ],
       "responses": [
-        "**Il Laboratorio Linguistico 2**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Dopo le macchinette\n6. Corridoio a destra\n7. Prima aula alla tua destra\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**Il Laboratorio Linguistico 2**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Supera le macchinette e prosegui lungo il corridoio.\n5. Imbocca il corridoio a destra.\n6. La destinazione è la prima aula sulla destra.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio Linguistico 2",
@@ -6251,7 +6274,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Come arrivo a Linguistico uno?"
       ],
       "responses": [
-        "**Il Laboratorio Linguistico 1**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Dopo le macchinette\n6. Corridoio a destra\n7. Seconda aula alla tua destra\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**Il Laboratorio Linguistico 1**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Supera le macchinette e prosegui lungo il corridoio.\n5. Imbocca il corridoio a destra.\n6. La destinazione è la seconda aula sulla destra.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio Linguistico 1",
@@ -6362,7 +6385,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula duecento diciannove"
       ],
       "responses": [
-        "**L'Aula 219 (o 2/19)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Dopo le macchinette\n6. Corridoio a destra\n7. Aula in fondo\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula 219 (o 2/19)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Supera le macchinette e prosegui lungo il corridoio.\n5. Imbocca il corridoio a destra.\n6. Prosegui fino in fondo al corridoio: qui trovi l'aula.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 219 (o 2/19)",
@@ -6477,7 +6500,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula duecento ventuno"
       ],
       "responses": [
-        "**L'Aula 221 (o 2/21)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Dopo le macchinette\n6. Corridoio a sinistra\n7. Prima aula\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula 221 (o 2/21)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Supera le macchinette e prosegui lungo il corridoio.\n5. Imbocca il corridoio a sinistra.\n6. La destinazione è la prima aula del corridoio.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 221 (o 2/21)",
@@ -6592,7 +6615,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula duecento venti"
       ],
       "responses": [
-        "**L'Aula 220 (o 2/20)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Dopo le macchinette\n6. Corridoio a sinistra\n7. Seconda\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula 220 (o 2/20)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Supera le macchinette e prosegui lungo il corridoio.\n5. Imbocca il corridoio a sinistra.\n6. La destinazione è la seconda aula del corridoio.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 220 (o 2/20)",
@@ -6707,7 +6730,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula duecento diciotto"
       ],
       "responses": [
-        "**L'Aula 218 (o 2/18)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Dopo le macchinette\n6. Prima dell'ascensore\n7. Penultima aula\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula 218 (o 2/18)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Supera le macchinette e prosegui lungo il corridoio.\n5. Prosegui verso l'ascensore, fermandoti prima di raggiungerlo.\n6. La destinazione è la penultima aula prima dell'ascensore.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 218 (o 2/18)",
@@ -6822,7 +6845,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula duecento diciassette"
       ],
       "responses": [
-        "**L'Aula 217 (o 2/17)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Dopo le macchinette\n6. Prima dell'ascensore\n7. Ultima aula\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula 217 (o 2/17)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Supera le macchinette e prosegui lungo il corridoio.\n5. Prosegui verso l'ascensore, fermandoti prima di raggiungerlo.\n6. La destinazione è l'ultima aula prima dell'ascensore.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 217 (o 2/17)",
@@ -6890,7 +6913,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Come arrivo a Disegno due?"
       ],
       "responses": [
-        "**L'Aula Disegno 2**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Dopo le macchinette\n6. Corridoio a destra dell'ascensore\n7. Prima aula sulla sinistra\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula Disegno 2**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Supera le macchinette e prosegui lungo il corridoio.\n5. Imbocca il corridoio a destra dell'ascensore.\n6. La destinazione è la prima aula sulla sinistra.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula Disegno 2",
@@ -6937,7 +6960,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per L'Aula Coworking"
       ],
       "responses": [
-        "**L'Aula Coworking**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Dopo le macchinette\n6. Corridoio a destra dell'ascensore\n7. Seconda aula sulla sinistra\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula Coworking**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Supera le macchinette e prosegui lungo il corridoio.\n5. Imbocca il corridoio a destra dell'ascensore.\n6. La destinazione è la seconda aula sulla sinistra.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula Coworking",
@@ -6972,7 +6995,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per Laboratorio di Storia"
       ],
       "responses": [
-        "**Il Laboratorio di Storia**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Dopo le macchinette\n6. Corridoio a destra dell'ascensore\n7. Aula in fondo\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**Il Laboratorio di Storia**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Supera le macchinette e prosegui lungo il corridoio.\n5. Imbocca il corridoio a destra dell'ascensore.\n6. Prosegui fino in fondo al corridoio: qui trovi l'aula.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio di Storia",
@@ -7077,7 +7100,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula duecento sedici"
       ],
       "responses": [
-        "**L'Aula 216 (o 2/16)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Dopo le macchinette\n6. Corridoio a sinistra dell'ascensore\n7. Prima aula sulla destra\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula 216 (o 2/16)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Supera le macchinette e prosegui lungo il corridoio.\n5. Imbocca il corridoio a sinistra dell'ascensore.\n6. La destinazione è la prima aula sulla destra.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 216 (o 2/16)",
@@ -7192,7 +7215,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula duecento quindici"
       ],
       "responses": [
-        "**L'Aula 215 (o 2/15)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Dopo le macchinette\n6. Corridoio a sinistra dell'ascensore\n7. Seconda aula sulla destra\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula 215 (o 2/15)**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Supera le macchinette e prosegui lungo il corridoio.\n5. Imbocca il corridoio a sinistra dell'ascensore.\n6. La destinazione è la seconda aula sulla destra.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 215 (o 2/15)",
@@ -7260,7 +7283,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Come arrivo a Disegno uno?"
       ],
       "responses": [
-        "**L'Aula Disegno 1**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 2 piano\n4. Subito a destra\n5. Dopo le macchinette\n6. Corridoio a sinistra dell'ascensore\n7. Aula in fondo\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
+        "**L'Aula Disegno 1**\n**Secondo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 2° piano.\n3. Arrivato sul pianerottolo del secondo piano, gira subito a destra.\n4. Supera le macchinette e prosegui lungo il corridoio.\n5. Imbocca il corridoio a sinistra dell'ascensore.\n6. Prosegui fino in fondo al corridoio: qui trovi l'aula.\n\n[Apri Mappa Secondo Piano](https://openlevelup.net/?l=2#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula Disegno 1",
@@ -7370,7 +7393,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula trecento otto"
       ],
       "responses": [
-        "**L'Aula 308 (o 3/8)**\n**Terzo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 3 piano\n4. Subito a sinistra\n5. Aula in fondo\n\n[Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)"
+        "**L'Aula 308 (o 3/8)**\n**Terzo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 3° piano.\n3. Arrivato sul pianerottolo del terzo piano, gira subito a sinistra.\n4. Prosegui fino in fondo al corridoio: qui trovi l'aula.\n\n[Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 308 (o 3/8)",
@@ -7485,7 +7508,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula trecento sette"
       ],
       "responses": [
-        "**L'Aula 307 (o 3/7)**\n**Terzo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 3 piano\n4. Subito a sinistra\n5. Aula prima di quella in fondo\n\n[Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)"
+        "**L'Aula 307 (o 3/7)**\n**Terzo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 3° piano.\n3. Arrivato sul pianerottolo del terzo piano, gira subito a sinistra.\n4. La destinazione è l'aula immediatamente prima di quella in fondo al corridoio.\n\n[Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 307 (o 3/7)",
@@ -7537,7 +7560,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per L'Aula di Matematica Biennio"
       ],
       "responses": [
-        "**L'Aula di Matematica Biennio**\n**Terzo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 3 piano\n4. Subito a sinistra\n5. Aula dritta davanti alla porta\n\n[Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)"
+        "**L'Aula di Matematica Biennio**\n**Terzo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 3° piano.\n3. Arrivato sul pianerottolo del terzo piano, gira subito a sinistra.\n4. Trovi l'aula dritta davanti alla porta.\n\n[Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula di Matematica Biennio",
@@ -7642,7 +7665,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula trecento cinque"
       ],
       "responses": [
-        "**L'Aula 305 (o 3/5)**\n**Terzo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 3 piano\n4. Subito a destra\n5. Aula prima di quella in fondo\n\n[Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)"
+        "**L'Aula 305 (o 3/5)**\n**Terzo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 3° piano.\n3. Arrivato sul pianerottolo del terzo piano, gira subito a destra.\n4. La destinazione è l'aula immediatamente prima di quella in fondo al corridoio.\n\n[Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 305 (o 3/5)",
@@ -7688,7 +7711,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per Laboratorio di Tecnologia e Disegno Biennio"
       ],
       "responses": [
-        "**Il Laboratorio di Tecnologia e Disegno Biennio**\n**Terzo Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 3 piano\n4. Subito a destra\n5. Aula in fondo\n\n[Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)"
+        "**Il Laboratorio di Tecnologia e Disegno Biennio**\n**Terzo Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 3° piano.\n3. Arrivato sul pianerottolo del terzo piano, gira subito a destra.\n4. Prosegui fino in fondo al corridoio: qui trovi l'aula.\n\n[Apri Mappa Terzo Piano](https://openlevelup.net/?l=3#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "Il Laboratorio di Tecnologia e Disegno Biennio",
@@ -7794,7 +7817,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula quattrocento quattordici"
       ],
       "responses": [
-        "**L'Aula 414 (o 4/14)**\n**Quarto Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 4 piano\n4. Subito a sinistra\n5. Aula in fondo\n\n[Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)"
+        "**L'Aula 414 (o 4/14)**\n**Quarto Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 4° piano.\n3. Arrivato sul pianerottolo del quarto piano, gira subito a sinistra.\n4. Prosegui fino in fondo al corridoio: qui trovi l'aula.\n\n[Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 414 (o 4/14)",
@@ -7909,7 +7932,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula quattrocento tredici"
       ],
       "responses": [
-        "**L'Aula 413 (o 4/13)**\n**Quarto Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 4 piano\n4. Subito a sinistra\n5. Aula prima di quella in fondo\n\n[Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)"
+        "**L'Aula 413 (o 4/13)**\n**Quarto Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 4° piano.\n3. Arrivato sul pianerottolo del quarto piano, gira subito a sinistra.\n4. La destinazione è l'aula immediatamente prima di quella in fondo al corridoio.\n\n[Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 413 (o 4/13)",
@@ -8024,7 +8047,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula quattrocento dodici"
       ],
       "responses": [
-        "**L'Aula 412 (o 4/12)**\n**Quarto Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 4 piano\n4. Subito a sinistra\n5. Aula dritta davanti alla porta\n\n[Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)"
+        "**L'Aula 412 (o 4/12)**\n**Quarto Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 4° piano.\n3. Arrivato sul pianerottolo del quarto piano, gira subito a sinistra.\n4. Trovi l'aula dritta davanti alla porta.\n\n[Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 412 (o 4/12)",
@@ -8139,7 +8162,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula quattrocento undici"
       ],
       "responses": [
-        "**L'Aula 411 (o 4/11)**\n**Quarto Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 4 piano\n4. Subito a destra\n5. Aula davanti alla porta delle scale anti incendio\n\n[Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)"
+        "**L'Aula 411 (o 4/11)**\n**Quarto Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 4° piano.\n3. Arrivato sul pianerottolo del quarto piano, gira subito a destra.\n4. Trovi l'aula di fronte alla porta delle scale antincendio.\n\n[Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 411 (o 4/11)",
@@ -8254,7 +8277,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula quattrocento dieci"
       ],
       "responses": [
-        "**L'Aula 410 (o 4/10)**\n**Quarto Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 4 piano\n4. Subito a destra\n5. Aula prima di quella in fondo\n\n[Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)"
+        "**L'Aula 410 (o 4/10)**\n**Quarto Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 4° piano.\n3. Arrivato sul pianerottolo del quarto piano, gira subito a destra.\n4. La destinazione è l'aula immediatamente prima di quella in fondo al corridoio.\n\n[Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 410 (o 4/10)",
@@ -8369,7 +8392,7 @@ window.GUSTAVO_INTENTS_DATA = {
         "Indicazioni per aula quattrocento nove"
       ],
       "responses": [
-        "**L'Aula 409 (o 4/9)**\n**Quarto Piano**\n\n**Percorso dall'ingresso principale**\n1. Ingresso\n2. Scale principali\n3. 4 piano\n4. Subito a destra\n5. Aula in fondo\n\n[Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)"
+        "**L'Aula 409 (o 4/9)**\n**Quarto Piano**\n\n**Percorso dall'ingresso principale**\n1. Parti dall'ingresso principale della scuola.\n2. Raggiungi le scale principali. Sali al 4° piano.\n3. Arrivato sul pianerottolo del quarto piano, gira subito a destra.\n4. Prosegui fino in fondo al corridoio: qui trovi l'aula.\n\n[Apri Mappa Quarto Piano](https://openlevelup.net/?l=4#19/45.07069/7.69253)"
       ],
       "room": {
         "name": "L'Aula 409 (o 4/9)",

@@ -10,10 +10,10 @@ aula laboratorio tecnologico / laboratorio tecnologico / sala temperatura costan
 laboratorio macchine a fludio= ingresso, corridoio principale, oltre le macchinette, subito dopo le scale piccole interne sulla sinistra
 palestre = ingresso, corridoio principale in fondo, quando si ha di fronte l'ascensore sulla destra
 saldature = ingresso, corridoio principale in fondo, quando si ha di fronte l'ascensore sulla sinistra, prima aula corridoio secondario
-omu = ingresso, corridoio principale in fondo, quando si ha di fronte l'ascensore sulla sinistra, superare la porta, subito sulla sinsitra
+aula omu = ingresso, corridoio principale in fondo, quando si ha di fronte l'ascensore sulla sinistra, superare la porta, subito sulla sinsitra
 cad-cam = ingresso, corridoio principale in fondo, quando si ha di fronte l'ascensore sulla sinistra, superare la porta, sulla sinistra nuovo corridoio, aula subito sulla destra
 controllo numerico = ingresso, corridoio principale in fondo, quando si ha di fronte l'ascensore sulla sinistra, superare la porta, sulla sinistra nuovo corridoio, aula dritta in fondo al corridoio non girare a sinistra/destra
-omu = ingresso, corridoio principale in fondo, quando si ha di fronte l'ascensore sulla sinistra, superare la porta, sulla sinistra nuovo corridoio, aula subito sulla sinistra
+laboratorio omu = ingresso, corridoio principale in fondo, quando si ha di fronte l'ascensore sulla sinistra, superare la porta, sulla sinistra nuovo corridoio, aula subito sulla sinistra
 trattamenti termici = ingresso, corridoio principale in fondo, quando si ha di fronte l'ascensore sulla sinistra, superare la porta, sulla sinistra nuovo corridoio, porta a sinistra, andare fino in fondo a sinsitra dove c'e la rampa
 
 -primo piano

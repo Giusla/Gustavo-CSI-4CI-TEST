@@ -176,7 +176,7 @@
 
   function buildModernHtml() {
     const themeUrl = new URL('assets/css/chatbot-theme.css?v=8.18', document.baseURI).href;
-    const runtimeUrl = new URL('assets/js/chatbot-runtime.js?v=8.17', document.baseURI).href;
+    const runtimeUrl = new URL('assets/js/chatbot-runtime.js?v=8.22', document.baseURI).href;
 
     return `<!DOCTYPE html>
 <html lang="it">
@@ -339,7 +339,7 @@
     }
 
     updateChatViewport();
-    const currentMode = getUiMode();
+    const currentMode = document.documentElement.classList.contains('chatbot-app') ? 'modern' : getUiMode();
     setUiMode(currentMode);
   }
 

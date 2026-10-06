@@ -15,7 +15,7 @@ let _isSpeaking = false;
 let _currentAudio = null;
 let _speechTimeout = null;
 let _ttsAbortController = null;
-const _ttsAudioCache = new Map();
+
 let _ttsNativeSpeaking = false;
 
 // Pre-riscaldamento e sblocco contesto audio su browser mobile
@@ -77,6 +77,7 @@ function stopSpeaking() {
     _speechTimeout = null;
   }
   if (_currentAudio) {
+    if (_currentAudio.src.startsWith('blob:')) URL.revokeObjectURL(_currentAudio.src);
     try {
       _currentAudio.pause();
       _currentAudio.currentTime = 0;
@@ -243,14 +244,7 @@ function botSpeak(rawText) {
   setSpeakingState(true);
   animateMouthStart();
 
-  // 1. Verifica immediata nella Cache Audio Client (0ms latency per risposte già generate)
-  if (_ttsAudioCache.has(cleanForTts)) {
-    const cachedUrl = _ttsAudioCache.get(cleanForTts);
-    playTtsAudioUrl(cachedUrl, cleanForTts);
-    return;
-  }
-
-  // 2. Fetch asincrono ultra-ottimizzato con timeout rapido e fallback
+  // Richiedi sempre audio aggiornato, con timeout e voce alternativa.
   _ttsAbortController = new AbortController();
   const signal = _ttsAbortController.signal;
   const ttsUrl = "https://gustavo1.avoprogetti.it/api/tts?text=" + encodeURIComponent(cleanForTts);
@@ -267,7 +261,7 @@ function botSpeak(rawText) {
     }
   }, 3000);
 
-  fetch(ttsUrl, { signal, cache: "force-cache" })
+  fetch(ttsUrl, { signal, cache: "no-store" })
     .then(res => {
       if (!res.ok) throw new Error("TTS status " + res.status);
       return res.blob();
@@ -278,15 +272,12 @@ function botSpeak(rawText) {
       clearTimeout(ttsTimeoutId);
 
       const blobUrl = URL.createObjectURL(blob);
-      if (_ttsAudioCache.size > 80) {
-        const oldestKey = _ttsAudioCache.keys().next().value;
-        try { URL.revokeObjectURL(_ttsAudioCache.get(oldestKey)); } catch (e) {}
-        _ttsAudioCache.delete(oldestKey);
-      }
-      _ttsAudioCache.set(cleanForTts, blobUrl);
+
 
       if (_isSpeaking) {
         playTtsAudioUrl(blobUrl, cleanForTts);
+      } else {
+        URL.revokeObjectURL(blobUrl);
       }
     })
     .catch(err => {
