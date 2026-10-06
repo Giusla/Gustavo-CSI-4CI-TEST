@@ -3,34 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Documentazione Tecnica — GustAvo · IIS Avogadro</title>
+    <title>Documentazione tecnica di GustAvo | Chatbot IIS Avogadro</title>
+    <meta name="description" content="Esplora la documentazione tecnica di GustAvo: architettura client-server, Python e Flask, intenti, classificazione NLP e modelli per le risposte.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:site_name" content="GustAvo · IIS Avogadro Torino">
+    <meta property="og:title" content="Documentazione tecnica di GustAvo | Chatbot IIS Avogadro">
+    <meta property="og:description" content="Esplora la documentazione tecnica di GustAvo: architettura client-server, Python e Flask, intenti, classificazione NLP e modelli per le risposte.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Documentazione tecnica di GustAvo | Chatbot IIS Avogadro">
+    <meta name="twitter:description" content="Esplora la documentazione tecnica di GustAvo: architettura client-server, Python e Flask, intenti, classificazione NLP e modelli per le risposte.">
+    <link rel="canonical" href="https://gustavo.avoprogetti.it/documentazione.html">
+    <meta property="og:url" content="https://gustavo.avoprogetti.it/documentazione.html">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Documentazione tecnica di GustAvo | Chatbot IIS Avogadro",
+  "description": "Esplora la documentazione tecnica di GustAvo: architettura client-server, Python e Flask, intenti, classificazione NLP e modelli per le risposte.",
+  "inLanguage": "it-IT",
+  "url": "https://gustavo.avoprogetti.it/documentazione.html"
+}
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="assets/img/favicon.png">
-    <link rel="apple-touch-icon" href="assets/img/favicon.png">
-    <link rel="stylesheet" href="assets/css/accessibility.css">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <script src="assets/js/accessibility.js" defer></script>
-    <script src="assets/js/main.js" defer></script>
+    <link rel="icon" type="image/png" href="assets/img/icons/favicon.png?v=2">
+    <link rel="apple-touch-icon" href="assets/img/icons/favicon.png?v=2">
+
+    <link rel="stylesheet" href="assets/css/style.css?v=4.49">
+    <script src="assets/js/main.js?v=4.31" defer></script>
+    <script src="assets/js/site-refresh.js?v=1" defer></script>
 </head>
-<body>
+<body class="site-page">
 
     <!-- NAVBAR UFFICIALE GUSTAVO -->
     <header>
         <nav class="navbar">
             <div class="nav-brand-group">
-                <div class="nav-brand-logos" aria-label="Loghi IIS Avogadro e CSI Piemonte">
-                    <a href="https://www.itisavogadro.it/" target="_blank" rel="noopener noreferrer" class="nav-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
-                        <img src="assets/img/logo_avogadro.png" alt="Logo IIS Avogadro" class="nav-logo-avo">
-                    </a>
-                    <span class="nav-logo-divider" aria-hidden="true"></span>
-                    <a href="https://www.csipiemonte.it/it" target="_blank" rel="noopener noreferrer" class="nav-logo-link" title="CSI Piemonte">
-                        <img src="assets/img/logo_csi_piemonte.png" alt="Logo CSI Piemonte" class="nav-logo-csi">
+                <div class="nav-brand-logos" aria-label="Logo IIS Avogadro">
+                    <a draggable="false" href="https://www.itisavogadro.it/" target="_blank" rel="noopener noreferrer" class="nav-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
+                        <img draggable="false" src="assets/img/brand/logo_avogadro.png" alt="Logo IIS Avogadro" class="nav-logo-avo">
                     </a>
                 </div>
                 <span class="nav-brand-divider" aria-hidden="true"></span>
-                <a href="index.html" class="logo-link" title="GustAvo — Home">
+                <a draggable="false" href="index.html" class="logo-link" title="GustAvo — Home">
+                    <img draggable="false" src="assets/img/brand/gustavo_icon.png" alt="" width="40" height="40" decoding="async" class="nav-logo-gustavo-full">
                     <span class="logo-testo">
                         <span class="logo-nome">GustAvo</span>
                         <span class="logo-motto">Il chatbot che ti orienta a scuola</span>
@@ -45,7 +64,7 @@
                 <li><a href="documentazione.html" class="active">Documentazione</a></li>
                 <li><a href="chatbot.html">Chatbot</a></li>
                 <li><a href="galleria.html">Galleria</a></li>
-                
+            </ul>
 
             <button class="hamburger" id="hamburger" aria-label="Menu di navigazione" aria-expanded="false">
                 <span></span><span></span><span></span>
@@ -60,15 +79,15 @@
             <a href="documentazione.html" class="active">Documentazione</a>
             <a href="chatbot.html">Chatbot</a>
             <a href="galleria.html">Galleria</a>
-            <button class="nav-mobile-a11y-btn" type="button" data-a11y-trigger><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg> Accessibilità</button>
         </nav>
     </header>
 
     <!-- MAIN CONTENT -->
-    <main class="page-wrapper">
+    <main class="page-wrapper" id="main">
         <div class="container">
             
-            <header class="page-header">
+            <header class="page-header documentation-page-header">
+                <span class="project-section-kicker">Come funziona</span>
                 <h1 class="titolo-pagina">Documentazione Tecnica</h1>
                 <p class="sottotitolo">
                     Architettura del backend, struttura dei dati e le tre soluzioni di Machine Learning a confronto.
@@ -81,7 +100,7 @@
                 <p>
                     GustAvo adotta un'architettura client-server modulare a componenti disaccoppiati, progettata per essere eseguita in modo efficiente sull'infrastruttura scolastica:
                 </p>
-                <ul style="margin-left: 20px; line-height: 1.8; color: var(--text-body); margin-bottom: 16px;">
+                <ul class="doc-list-spaced">
                     <li><strong>Frontend Web (HTML5 / CSS3 / JavaScript):</strong> interfaccia conversazionale reattiva e accessibile, ottimizzata per desktop e dispositivi mobili.</li>
                     <li><strong>Backend API (Python / Flask):</strong> server web leggero che espone l'endpoint <code>/chat</code> per ricevere ed elaborare le richieste POST in formato JSON, con abilitazione CORS per la sicurezza delle chiamate cross-origin.</li>
                     <li><strong>Motore di Classificazione NLP (Scikit-Learn):</strong> pipeline di pre-elaborazione del testo che trasforma le frasi in vettori numerici (TF-IDF) e determina la similarità con gli intenti censiti.</li>
@@ -95,13 +114,13 @@
                 <p>
                     Il flusso operativo che trasforma una domanda dell'utente in una risposta certa segue cinque passaggi sequenziali:
                 </p>
-                <ol style="margin-left: 20px; line-height: 1.8; color: var(--text-body);">
+                <ul class="doc-list">
                     <li><strong>Input dell'utente:</strong> lo studente digita la propria domanda nel campo di testo dell'interfaccia.</li>
                     <li><strong>Inoltro HTTP:</strong> il client web effettua una chiamata asincrona (fetch POST) inviando il payload <code>{ "message": "..." }</code> all'endpoint <code>/chat</code>.</li>
                     <li><strong>Vettorizzazione e Classificazione:</strong> il server pre-elabora il messaggio, lo converte in vettore numerico tramite <code>TfidfVectorizer</code> e calcola la similarità coseno con ciascun pattern di addestramento.</li>
                     <li><strong>Identificazione dell'intento:</strong> l'algoritmo seleziona il tag con il punteggio di confidenza più alto. Se il punteggio supera la soglia prefissata (threshold), l'intento viene validato; in caso contrario, scatta il fallback di sicurezza (<em>"Non ho capito bene la domanda"</em>).</li>
                     <li><strong>Erogazione della risposta:</strong> il server estrae la risposta convalidata associata al tag individuato e la restituisce al client in formato JSON per la visualizzazione a schermo.</li>
-                </ol>
+                </ul>
             </section>
 
             <!-- 3. STRUTTURA DEL PROGETTO E TECNOLOGIE -->
@@ -110,8 +129,8 @@
                 <p>
                     I componenti software del repository del bot corrispondono alla struttura ufficiale documentata:
                 </p>
-                <div style="background: #f8fafc; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 18px 20px; margin: 16px 0;">
-                    <ul style="margin: 0; padding-left: 18px; line-height: 1.8; color: var(--text-body);">
+                <div class="doc-file-box">
+                    <ul class="doc-file-list">
                         <li><code>app.py</code>: entrypoint del server Flask, gestione del routing API <code>/chat</code> e logica di predizione.</li>
                         <li><code>intents.json</code>: file sorgente della conoscenza, contenente tag, pattern di domanda e risposte.</li>
                         <li><code>index.html</code>: interfaccia web interattiva con logica di messaggistica asincrona (JavaScript).</li>
@@ -129,13 +148,13 @@
                 <p>
                     GustAvo non adotta un approccio generativo libero (come i grandi modelli LLM), ma opera come un <strong>classificatore supervisionato basato su intenti</strong>. Questa scelta architetturale garantisce:
                 </p>
-                <ul style="margin-left: 20px; line-height: 1.8; color: var(--text-body); margin-bottom: 16px;">
+                <ul class="doc-list-spaced">
                     <li><strong>Risposte convalidate e certe:</strong> il bot attinge unicamente a risposte verificate dall'istituto, eliminando il rischio di allucinazioni o informazioni inventate.</li>
                     <li><strong>Efficienza e sostenibilità:</strong> consumo ridotto di CPU e RAM, consentendo l'hosting autonomo sui server della scuola senza costi di computazione esterni.</li>
                     <li><strong>Tutela dei dati:</strong> assenza di conservazione di cronologia, cookie di tracciamento o profilazione degli utenti.</li>
                 </ul>
 
-                <p style="font-weight: 600; color: var(--text-heading); margin-bottom: 8px;">
+                <p class="doc-example-title">
                     Esempio reale di struttura da <code>intents.json</code>:
                 </p>
                 <div class="code-preview">
@@ -151,10 +170,10 @@
   <span class="p">]</span>
 <span class="p">}</span></code></pre>
                 </div>
-                <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-top: 12px; margin-bottom: 6px;">
+                <p class="doc-fields-title">
                     <strong>Spiegazione dei campi:</strong>
                 </p>
-                <ul style="margin-left: 20px; font-size: 0.92rem; color: var(--text-muted); line-height: 1.7;">
+                <ul class="doc-fields-list">
                     <li><code>tag</code>: categoria semantica della richiesta.</li>
                     <li><code>patterns</code>: insieme di esempi e formulazioni alternative con cui la domanda può essere posta dall'utente.</li>
                     <li><code>responses</code>: risposta o elenco di risposte certificate che il sistema restituisce quando il tag viene classificato.</li>
@@ -192,6 +211,7 @@
                 </div>
             </section>
 
+
         </div>
     </main>
 
@@ -199,14 +219,14 @@
     <footer class="footer">
         <div class="container footer-container">
             <div class="footer-logos">
-                <a href="https://www.itisavogadro.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
-                    <img src="assets/img/logo_avogadro.png" alt="Logo IIS Avogadro" class="footer-logo-avo">
+                <a draggable="false" href="https://www.itisavogadro.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
+                    <img draggable="false" src="assets/img/brand/logo_avogadro.png" alt="Logo IIS Avogadro" class="footer-logo-avo">
                 </a>
-                <a href="https://avoprogetti.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Piattaforma AvoProgetti">
-                    <img src="assets/img/logo_avoprogetti.jpeg" alt="Logo AvoProgetti" class="footer-logo-avoprogetti">
+                <a draggable="false" href="https://avoprogetti.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Piattaforma AvoProgetti">
+                    <img draggable="false" src="assets/img/brand/logo_avoprogetti.png" alt="Logo AvoProgetti" class="footer-logo-avoprogetti">
                 </a>
-                <a href="index.html" class="footer-logo-link" title="GustAvo Chatbot">
-                    <img src="assets/img/gustavo_icon.png" alt="Logo GustAvo" class="footer-logo-gustavo">
+                <a draggable="false" href="index.html" class="footer-logo-link" title="GustAvo Chatbot">
+                    <img draggable="false" src="assets/img/brand/gustavo_icon.png" alt="Logo GustAvo" class="footer-logo-gustavo">
                 </a>
             </div>
 
@@ -215,7 +235,6 @@
                     <strong>
                         Progetto GustAvo - IIS Amedeo Avogadro, Torino - in collaborazione con CSI Piemonte
                     </strong>
-                    · <button type="button" class="footer-a11y-link" data-a11y-trigger title="Personalizza accessibilità (Alt+A)">Accessibilità</button>
                 </p>
             </div>
     </footer>

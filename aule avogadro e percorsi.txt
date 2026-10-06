@@ -1,0 +1,78 @@
+-piano terra
+vicepresidenza = ingresso subito sulla sinsitra in fondo
+ufficio acquisti = ingresso subito sulla sinistra
+oggetti smarriti = ingresso subito sulla destra
+segreteria didattica = ingresso subito sulla destra in fondo
+aula 3.0 = ingresso, inizio corridoio principlae, sulla destra dietro le colonne
+aula studenti = ingresso, inizio corridoio principlae, sulla destra dietro le colonne
+biblioteca = ingresso, corridoio principale, davanti alle macchinette
+aula laboratorio tecnologico / laboratorio tecnologico / sala temperatura costante = ingresso, corridoio principale, aula sulla destra delle macchinette
+laboratorio macchine a fludio= ingresso, corridoio principale, oltre le macchinette, subito dopo le scale piccole interne sulla sinistra
+palestre = ingresso, corridoio principale in fondo, quando si ha di fronte l'ascensore sulla destra
+invention room = ingresso, corridoio principale fino all'ascensore, con l'ascensore di fronte gira a sinistra, prima aula del corridoio secondario
+aula omu = ingresso, corridoio principale in fondo, quando si ha di fronte l'ascensore sulla sinistra, superare la porta, subito sulla sinsitra
+controllo numerico = ingresso, corridoio principale in fondo, quando si ha di fronte l'ascensore sulla sinistra, superare la porta, sulla sinistra nuovo corridoio, aula subito sulla destra
+laboratorio omu = ingresso, corridoio principale in fondo, quando si ha di fronte l'ascensore sulla sinistra, superare la porta, sulla sinistra nuovo corridoio, aula subito sulla sinistra
+officina = ingresso, corridoio principale fino all'ascensore, con l'ascensore di fronte gira a sinistra, supera la porta, imbocca il nuovo corridoio a sinistra, supera il laboratorio OMU sulla sinistra, prosegui fino in fondo al corridoio, officina sulla destra
+trattamenti termici = ingresso, corridoio principale in fondo, quando si ha di fronte l'ascensore sulla sinistra, superare la porta, sulla sinistra nuovo corridoio, porta a sinistra, andare fino in fondo a sinsitra dove c'e la rampa
+
+-primo piano
+laboratorio chimica = ingresso, scale principali, 1 piano subito a sinistra, a sinsitra in fondo
+fisica 1 = ingresso, scale principali, 1 piano subito a sinistra, aula dritta davanti a te
+fisica 2 = ingresso, scale principali, 1 piano subito a sinistra, a destra in fondo
+bar / mensa = ingresso, scale principali, 1 piano subito a destra, subito dopo i bagni a destra porta grande
+laboratorio automazione robotica domotica = ingresso, scale principali, 1 piano subito a destra, subito dopo i bangi a sinistra, prima aula del corridoio secondario
+laboratorio informatica 2 = ingresso, scale principali, 1 piano subito a destra, subito dopo i bangi a sinistra, seconda aula del corridoio secondario
+laboratorio elettronica 1 = ingresso, scale principali, 1 piano subito a destra, subito dopo i bangi a sinistra, al fondo del corridoio secondario
+aula magna = ingresso, scale principali, 1 piano subito a destra, oltre il bar, davanti alla porta delle scale piccole interne
+misure 2 = ingresso, scale principali, 1 piano subito a destra, oltre il bar, corridoio a sinistra delle scale piccole interne, prima aula del corridoio secondario
+misure 3 = ingresso, scale principali, 1 piano subito a destra, oltre il bar, corridoio a sinistra delle scale piccole interne, tra Misure 2 e Misure 1
+misure 1 = ingresso, scale principali, 1 piano subito a destra, oltre il bar, corridoio a sinistra delle scale piccole interne, penultima aula in fondo, subito prima della Sala Macchine Elettriche
+sala macchine elettriche = ingresso, scale principali, 1 piano subito a destra, oltre il bar, corridoio a sinistra delle scale piccole interne, aula al fondo del corridoio secondario
+aula 11 o 1/1 = ingresso, scale principali, 1 piano subito a destra, oltre il bar, aula subito prima dell'ascensore
+laboratorio di scienze = ingresso, scale principali, 1 piano subito a destra, oltre il bar, all'ascensore a destra, prima aula sulla sinsitra
+sistemi elettrici = ingresso, scale principali, 1 piano subito a destra, oltre il bar, all'ascensore a destra, aula in fondo
+tdp = ingresso, scale principali, 1 piano subito a destra, oltre il bar, all'ascensore a sinsitra, aula dritta davanti a te
+potenziamento didattico = ingresso, scale principali, 1 piano subito a destra, oltre il bar, all'ascensore a sinsitra, nel corridoio a destra, prima aula
+laboratorio automazione = ingresso, scale principali, 1 piano subito a destra, oltre il bar, all'ascensore a sinsitra, nel corridoio a destra, seconda aula
+
+-secondo piano
+laboratorio sistemi informatici = ingresso, scale principali, 2 piano, subito a sinistra, dopo la porta in fondo a sinsitra
+matematica triennio = ingresso, scale principali, 2 piano, subito a sinistra, dopo la porta a sinsitra, aula prima di quella in fondo
+multimediale = ingresso, scale principali, 2 piano, subito a sinistra, dritto davanti a te dopo la porta
+saletta informatica progettazione = ingresso, scale principali, 2 piano, subito a sinistra, dopo la porta a destra, aula prima di quella in fondo
+laboratorio informatica = ingresso, scale principali, 2 piano, subito a sinistra, dopo la porta a destra, aula in fondo
+224 o 2/24 = ingresso, scale principali, 2 piano, subito a destra, corridoio a destra delle macchinette, aula subito alla tua sinistra
+225 o 2/25 = ingresso, scale principali, 2 piano, subito a destra, corridoio a destra delle macchinette, seconda aula alla tua sinistra
+226 o 2/26 = ingresso, scale principali, 2 piano, subito a destra, corridoio a destra delle macchinette, aula in fondo
+227 o 2/27 = ingresso, scale principali, 2 piano, subito a destra, corridoio a sinistra delle macchinette, prima aula alla tua destra
+228 o 2/28 = ingresso, scale principali, 2 piano, subito a destra, corridoio a sinistra delle macchinette, seconda aula alla tua destra
+229 o 2/29 = ingresso, scale principali, 2 piano, subito a destra, corridoio a sinistra delle macchinette, terza aula alla tua destra
+230 o 2/30 = ingresso, scale principali, 2 piano, subito a destra, corridoio a sinistra delle macchinette, aula in fondo
+laboratorio di inglese 2 = ingresso, scale principali, 2 piano, subito a destra, dopo le macchinette, corridoio a destra, prima aula alla tua destra
+laboratorio di inglese 1 = ingresso, scale principali, 2 piano, subito a destra, dopo le macchinette, corridoio a destra, seconda aula alla tua destra
+219 o 2/19 = ingresso, scale principali, 2 piano, subito a destra, dopo le macchinette, corridoio a destra, aula in fondo
+221 o 2/21 = ingresso, scale principali, 2 piano, subito a destra, dopo le macchinette, corridoio a sinistra, prima aula
+220 o 2/20 = ingresso, scale principali, 2 piano, subito a destra, dopo le macchinette, corridoio a sinistra, seconda
+218 o 2/18 = ingresso, scale principali, 2 piano, subito a destra, dopo le macchinette, prima dell'ascensore, penultima aula
+217 o 2/17 = ingresso, scale principali, 2 piano, subito a destra, dopo le macchinette, prima dell'ascensore, ultima aula
+disegno 2 = ingresso, scale principali, 2 piano, subito a destra, dopo le macchinette, corridoio a destra dell'ascensore, prima aula sulla sinistra
+coworking = ingresso, scale principali, 2 piano, subito a destra, dopo le macchinette, corridoio a destra dell'ascensore, seconda aula sulla sinistra
+laboratorio di storia = ingresso, scale principali, 2 piano, subito a destra, dopo le macchinette, corridoio a destra dell'ascensore, aula in fondo
+216 o 2/16 = ingresso, scale principali, 2 piano, subito a destra, dopo le macchinette, corridoio a sinistra dell'ascensore, prima aula sulla destra
+disegno 1 = ingresso, scale principali, 2 piano, subito a destra, dopo le macchinette, corridoio a sinistra dell'ascensore, aula in fondo
+
+-terzo piano
+308 o 3/8 = ingreso, scale principali, 3 piano, subito a sinistra, aula in fondo
+307 o 3/7 = ingreso, scale principali, 3 piano, subito a sinistra, aula prima di quella in fondo
+matematica biennio = ingreso, scale principali, 3 piano, subito a sinistra, aula dritta davanti alla porta
+305 o 3/5 = ingreso, scale principali, 3 piano, subito a destra, aula prima di quella in fondo
+laboratorio cad biennio = ingreso, scale principali, 3 piano, subito a destra, aula in fondo
+
+-quarto piano
+414 o 4/14 = ingresso, scale principali, 4 piano, subito a sinistra, aula in fondo
+413 o 4/13 = ingresso, scale principali, 4 piano, subito a sinistra, aula prima di quella in fondo
+412 o 4/12 = ingresso, scale principali, 4 piano, subito a sinistra, aula dritta davanti alla porta
+411 o 4/11 = ingresso, scale principali, 4 piano, subito a destra, aula davanti alla porta delle scale anti incendio
+410 o 4/10 = ingresso, scale principali, 4 piano, subito a destra, aula prima di quella in fondo
+409 o 4/9 = ingresso, scale principali, 4 piano, subito a destra, aula in fondo

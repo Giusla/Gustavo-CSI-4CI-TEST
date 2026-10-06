@@ -4,29 +4,152 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Keep photo clicks and gallery swipes, but suppress native image dragging and menus.
+    document.querySelectorAll('img, .nav-logo-link, .logo-link, .footer-logo-link')
+        .forEach(element => { element.draggable = false; });
+    document.addEventListener('dragstart', event => {
+        if (event.target.closest('img, .nav-logo-link, .logo-link, .footer-logo-link')) event.preventDefault();
+    });
+    document.addEventListener('contextmenu', event => {
+        if (event.target.closest('img, .photo-skeleton-box, .hero-photo, .team-photo-wrapper, .nav-logo-link, .logo-link, .footer-logo-link')) {
+            event.preventDefault();
+        }
+    });
     // ----------------------------------------------------
-    // 1. Menu Mobile (Hamburger)
+    // 1. Menu Mobile (Hamburger) con chiusura al tocco esterno
     // ----------------------------------------------------
     const hamburgerBtn = document.getElementById('hamburger');
     const navMobile = document.getElementById('navMobile');
+    let navMobileClosedTimestamp = 0;
 
     if (hamburgerBtn && navMobile) {
-        hamburgerBtn.addEventListener('click', () => {
+        let navBackdrop = document.querySelector('.nav-mobile-backdrop');
+        if (!navBackdrop) {
+            navBackdrop = document.createElement('div');
+            navBackdrop.className = 'nav-mobile-backdrop';
+            navBackdrop.setAttribute('aria-hidden', 'true');
+            document.body.appendChild(navBackdrop);
+        }
+
+        const closeNavMobile = () => {
+            navMobile.classList.remove('visibile');
+            navMobile.setAttribute('aria-hidden', 'true');
+            hamburgerBtn.classList.remove('aperto');
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+            if (navBackdrop) navBackdrop.classList.remove('visibile');
+            document.documentElement.classList.remove('nav-mobile-open');
+            navMobileClosedTimestamp = Date.now();
+        };
+
+        hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             const isOpen = navMobile.classList.toggle('visibile');
+            navMobile.setAttribute('aria-hidden', String(!isOpen));
             hamburgerBtn.classList.toggle('aperto', isOpen);
             hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
+            if (navBackdrop) navBackdrop.classList.toggle('visibile', isOpen);
+            document.documentElement.classList.toggle('nav-mobile-open', isOpen);
+            if (isOpen) {
+                // Chiudi il pannello accessibilità se aperto quando si apre il menu hamburger
+                const a11yPanelEl = document.getElementById('gustavoA11yPanel');
+                const a11yBtnEl = document.getElementById('gustavoA11yBtn');
+                if (a11yPanelEl && a11yPanelEl.classList.contains('is-open')) {
+                    if (a11yBtnEl) a11yBtnEl.click();
+                }
+            } else {
+                navMobileClosedTimestamp = Date.now();
+            }
         });
 
-        navMobile.querySelectorAll('a, button').forEach(link => {
+        if (navBackdrop) {
+            const handleBackdropClose = (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                closeNavMobile();
+            };
+            navBackdrop.addEventListener('click', handleBackdropClose, true);
+            navBackdrop.addEventListener('touchstart', handleBackdropClose, { passive: false, capture: true });
+            navBackdrop.addEventListener('pointerdown', handleBackdropClose, true);
+        }
+
+        navMobile.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
+                // Chiudi il menu mobile permettendo la normale navigazione del link
                 navMobile.classList.remove('visibile');
+                navMobile.setAttribute('aria-hidden', 'true');
                 hamburgerBtn.classList.remove('aperto');
                 hamburgerBtn.setAttribute('aria-expanded', 'false');
+                if (navBackdrop) navBackdrop.classList.remove('visibile');
             });
+        });
+
+        // Intercettazione in fase di cattura (capture) per chiudere il menu ed evitare
+        // che il click o il tocco tocchi e apra immagini, card o modali sottostanti
+        const handleOutsideNavMobile = (e) => {
+            // Se il click o tocco è DENTRO al menu o al pulsante hamburger, NON interferire
+            if (navMobile.contains(e.target) || hamburgerBtn.contains(e.target)) {
+                return;
+            }
+
+            if (navMobile.classList.contains('visibile')) {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+                closeNavMobile();
+            } else if (Date.now() - navMobileClosedTimestamp < 450) {
+                // Blocca solo i click fantasma che colpiscono elementi esterni (es. immagini della pagina)
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+            }
+        };
+
+        document.addEventListener('click', handleOutsideNavMobile, true);
+        document.addEventListener('touchstart', handleOutsideNavMobile, { passive: false, capture: true });
+        document.addEventListener('pointerdown', handleOutsideNavMobile, true);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMobile.classList.contains('visibile')) {
+                closeNavMobile();
+            }
         });
     }
 
     // ----------------------------------------------------
+    // Gestione Sicura Blocco Scroll per Modali e Lightbox
+    // Evita il salto a inizio pagina e impedisce lo scorrimento di sfondo
+    // ----------------------------------------------------
+    let savedScrollY = 0;
+    let isScrollLocked = false;
+
+    const lockPageScroll = () => {
+        if (!isScrollLocked) {
+            savedScrollY = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+            document.documentElement.classList.add('modal-is-open');
+            document.body.classList.add('modal-is-open');
+            isScrollLocked = true;
+        }
+    };
+
+    const unlockPageScroll = () => {
+        const encounterModalEl = document.getElementById('encounterModal');
+        const modalOpen = encounterModalEl && encounterModalEl.classList.contains('attivo');
+        const lightboxOpen = lightbox && lightbox.classList.contains('attivo');
+
+        if (!modalOpen && !lightboxOpen && isScrollLocked) {
+            document.documentElement.classList.remove('modal-is-open');
+            document.body.classList.remove('modal-is-open');
+            isScrollLocked = false;
+            // Ripristina l'esatta posizione di scorrimento senza scatti in cima
+            window.scrollTo({
+                top: savedScrollY,
+                left: 0,
+                behavior: 'instant'
+            });
+        }
+    };
+
     // ----------------------------------------------------
     // 2. Lightbox Schermo Intero con Scorrimento Foto & Skeleton UI
     // ----------------------------------------------------
@@ -101,15 +224,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const openLightboxGallery = (list, startIndex = 0) => {
         if (!lightbox || !list || list.length === 0) return;
+        if (Date.now() - navMobileClosedTimestamp < 450 || (navMobile && navMobile.classList.contains('visibile'))) {
+            return;
+        }
         currentLightboxList = list;
         lightbox.classList.add('attivo');
-        document.body.style.overflow = 'hidden';
+        lightbox.setAttribute('aria-hidden', 'false');
+        lockPageScroll();
         showLightboxIndex(startIndex);
     };
 
     const closeLightbox = () => {
         if (!lightbox) return;
         lightbox.classList.remove('attivo');
+        lightbox.setAttribute('aria-hidden', 'true');
         if (lightboxBox) {
             lightboxBox.classList.remove('is-loaded');
         }
@@ -122,10 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
             lightboxImg.src = '';
         }
 
-        const encounterModal = document.getElementById('encounterModal');
-        if (!encounterModal || !encounterModal.classList.contains('attivo')) {
-            document.body.style.overflow = '';
-        }
+        unlockPageScroll();
     };
 
     if (lightbox) {
@@ -161,6 +286,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 showLightboxIndex(currentLightboxIndex - 1);
             } else if (e.key === 'ArrowRight') {
                 showLightboxIndex(currentLightboxIndex + 1);
+            } else if (['ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', ' ', 'Home', 'End'].includes(e.key)) {
+                e.preventDefault();
             }
         });
 
@@ -181,8 +308,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, { passive: true });
 
+        lightbox.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+        }, { passive: false });
+
         let wheelDebounce = false;
         lightbox.addEventListener('wheel', (e) => {
+            e.preventDefault();
             if (wheelDebounce) return;
             if (Math.abs(e.deltaX) > 30) {
                 wheelDebounce = true;
@@ -193,9 +325,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 setTimeout(() => { wheelDebounce = false; }, 320);
             }
-        }, { passive: true });
+        }, { passive: false });
 
-        const otherGalleryItems = document.querySelectorAll('.team-photo-wrapper, .galleria-item, .hero-photo');
+        const otherGalleryItems = document.querySelectorAll('.team-photo-wrapper, .galleria-item');
         otherGalleryItems.forEach(item => {
             item.addEventListener('click', () => {
                 const img = item.tagName === 'IMG' ? item : item.querySelector('img');
@@ -230,6 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const fullscreenBtn = document.getElementById('fullscreenBtn');
 
     if (playerWrapper && video) {
+        video.disablePictureInPicture = true;
         const formatTime = (seconds) => {
             if (isNaN(seconds) || seconds < 0) return '0:00';
             const mins = Math.floor(seconds / 60);
@@ -238,6 +371,12 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const togglePlay = () => {
+            const deferredSource = video.querySelector("source[data-src]");
+            if (deferredSource) {
+                deferredSource.src = deferredSource.dataset.src;
+                deferredSource.removeAttribute("data-src");
+                video.load();
+            }
             if (video.paused || video.ended) {
                 video.play();
             } else {
@@ -285,36 +424,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // ----------------------------------------------------
-        // Buffer Blob in memoria: risolve definitivamente il problema
-        // dei server/CDN (es. Cloudflare Workers / static hosting) che non
-        // supportano HTTP Byte-Ranges (206 Partial Content), permettendo
-        // il seeking istantaneo e fluido a qualsiasi minuto senza tornare a 00:00.
-        // ----------------------------------------------------
-        let blobLoaded = false;
-        let pendingSeek = null;
-
-        const videoSrc = video.querySelector('source') ? video.querySelector('source').src : video.src;
-        if (videoSrc && !videoSrc.startsWith('blob:')) {
-            fetch(videoSrc)
-                .then(res => {
-                    if (!res.ok) throw new Error('Caricamento video non riuscito');
-                    return res.blob();
-                })
-                .then(blob => {
-                    const blobUrl = URL.createObjectURL(blob);
-                    const curTime = pendingSeek !== null ? pendingSeek : video.currentTime;
-                    const wasPlaying = !video.paused;
-                    video.src = blobUrl;
-                    video.currentTime = curTime;
-                    if (wasPlaying) video.play();
-                    blobLoaded = true;
-                    pendingSeek = null;
-                })
-                .catch(err => {
-                    console.warn('Fallback seek standard attivo:', err);
-                });
-        }
-
+        // Seek directly in the video: do not download the entire file before a jump.
         // Timeline interattiva e trascinamento fluido del cursore
         if (videoTimeline) {
             let isScrubbing = false;
@@ -333,21 +443,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             };
 
-            const seekToPosition = (targetTime) => {
-                if (isNaN(video.duration) || video.duration <= 0) return;
+            const seekToPosition = async (targetTime, resume = !video.paused) => {
+                if (!Number.isFinite(video.duration) || video.duration <= 0) return;
                 targetTime = Math.max(0, Math.min(video.duration, targetTime));
-                if (currentTimeEl) currentTimeEl.textContent = formatTime(targetTime);
-                if (videoProgress) videoProgress.style.width = `${(targetTime / video.duration) * 100}%`;
-
-                if (blobLoaded) {
+                video.pause();
+                videoTimeline.setAttribute('aria-busy', 'true');
+                try {
                     video.currentTime = targetTime;
-                } else {
-                    pendingSeek = targetTime;
-                    try {
-                        video.currentTime = targetTime;
-                    } catch (e) {
-                        // ignore se non ancora pronto
-                    }
+                    if (currentTimeEl) currentTimeEl.textContent = formatTime(targetTime);
+                    if (videoProgress) videoProgress.style.width = (targetTime / video.duration * 100) + '%';
+                    if (resume) await video.play();
+                } catch (error) {
+                    console.warn('Avanzamento video non riuscito:', error);
+                } finally {
+                    videoTimeline.removeAttribute('aria-busy');
                 }
             };
 
@@ -375,11 +484,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     videoTimeline.classList.remove('scrubbing');
                     if (!isNaN(video.duration) && video.duration > 0) {
                         const targetTime = scrubPos * video.duration;
-                        seekToPosition(targetTime);
+                        seekToPosition(targetTime, wasPlayingBeforeScrub);
                     }
-                    if (wasPlayingBeforeScrub) {
-                        video.play();
-                    }
+
                 }
             };
 
@@ -481,47 +588,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ----------------------------------------------------
-    // 4. Rimozione banner/tooltip nativo del browser in basso a sinistra sui link
-    // ----------------------------------------------------
-    const disableBrowserLinkPreview = () => {
-        document.querySelectorAll('a[href]').forEach(a => {
-            const url = a.getAttribute('href');
-            if (!url || url.startsWith('#')) return;
-
-            a.dataset.href = url;
-            a.removeAttribute('href');
-            a.setAttribute('role', 'link');
-            a.setAttribute('tabindex', '0');
-
-            const navigate = (openInNewTab = false) => {
-                if (openInNewTab || a.target === '_blank') {
-                    window.open(url, '_blank', 'noopener,noreferrer');
-                } else {
-                    window.location.href = url;
-                }
-            };
-
-            a.addEventListener('click', (e) => {
-                e.preventDefault();
-                navigate(e.ctrlKey || e.metaKey || e.button === 1);
-            });
-
-            a.addEventListener('auxclick', (e) => {
-                if (e.button === 1) { // Click rotellina mouse
-                    e.preventDefault();
-                    navigate(true);
-                }
-            });
-
-            a.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    navigate(e.ctrlKey || e.metaKey);
-                }
-            });
-        });
-    };
+    // (funzione disableBrowserLinkPreview rimossa — causava long tasks al DOMContentLoaded
+    //  aggiungendo 3 listener per ogni link e impedendo il prefetch nativo del browser)
 
     // ----------------------------------------------------
     // 5. Skeleton UI per le foto (gestione Wi-Fi lento)
@@ -547,68 +615,22 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ----------------------------------------------------
-    // 6. Gestione 3 Caroselli Incontri, Card +X, Modale Semi-Fullscreen e Drag Fluido
+    // 6. Gestione Caroselli Incontri, Card +X, Modale Semi-Fullscreen e Drag Fluido
     // ----------------------------------------------------
+
+    // Listener resize condiviso (un solo addEventListener su window per tutti i caroselli)
+    const _resizeCallbacks = [];
+    let _resizeRaf = null;
+    window.addEventListener('resize', () => {
+        if (_resizeRaf) return;
+        _resizeRaf = requestAnimationFrame(() => {
+            _resizeCallbacks.forEach(fn => fn());
+            _resizeRaf = null;
+        });
+    }, { passive: true });
+
     const initEncountersGallery = () => {
-        const encountersData = [
-            {
-                id: "incontro-1",
-                badge: "1° Incontro · Sede CSI",
-                title: "1° Incontro: Presentazione e Introduzione al CSI Piemonte",
-                desc: "Kickoff del percorso formativo con i mentor aziendali, analisi dei bisogni di orientamento degli studenti dell'IIS Avogadro e mappatura dei requisiti chiave per il chatbot GustAvo.",
-                photos: [
-                    { src: "assets/img/galleria/foto_galleria_1.jpg", alt: "Presentazione introduttiva del percorso formativo presso CSI Piemonte", caption: "Presentazione introduttiva del percorso formativo presso CSI Piemonte" },
-                    { src: "assets/img/galleria/foto_galleria_2.jpg", alt: "Sessione di brainstorming sui casi d'uso", caption: "Brainstorming e definizione dei requisiti essenziali del chatbot" },
-                    { src: "assets/img/galleria/foto_galleria_3.jpg", alt: "Confronto con i tutor aziendali", caption: "Confronto con i tutor aziendali sulla struttura del servizio" },
-                    { src: "assets/img/galleria/inc1_extra_1.svg", alt: "Mappatura Aree Tematiche", caption: "Mappatura delle aree informative dell'IIS Avogadro" },
-                    { src: "assets/img/galleria/inc1_extra_2.svg", alt: "Analisi FAQ Studenti", caption: "Raccolta e prioritizzazione dei quesiti più frequenti" },
-                    { src: "assets/img/galleria/inc1_extra_3.svg", alt: "Categorie di Risposta", caption: "Strutturazione tassonomia: Orari, Didattica, Laboratori" },
-                    { src: "assets/img/galleria/foto_galleria_4.jpg", alt: "La classe 5CI con i tutor di CSI Piemonte", caption: "La classe 5CI con i tutor aziendali di CSI Piemonte" },
-                    { src: "assets/img/galleria/inc1_extra_4.svg", alt: "Focus Group & Feedback", caption: "Interviste e confronto di classe per convalidare i flussi" },
-                    { src: "assets/img/galleria/inc1_extra_5.svg", alt: "Linee Guida di Stile", caption: "Definizione del tono di voce amichevole ed empatico" },
-                    { src: "assets/img/galleria/inc1_extra_6.svg", alt: "Flussi Conversazionali", caption: "Schematizzazione su whiteboard dell'albero di dialogo" },
-                    { src: "assets/img/galleria/foto_galleria_5.jpg", alt: "Sintesi della prima giornata di lavoro", caption: "Sintesi della prima giornata di lavoro e pianificazione sprint" }
-                ]
-            },
-            {
-                id: "incontro-2",
-                badge: "2° Incontro · Modulo Formativo",
-                title: "2° Incontro: AI, Sicurezza Digitale e Seminario Polizia Postale",
-                desc: "Modulo specialistico incentrato su etica dell'intelligenza artificiale, riservatezza e conformità GDPR, arricchito dal seminario della Polizia Postale sulla prevenzione delle minacce web.",
-                photos: [
-                    { src: "assets/img/galleria/foto_galleria_3.jpg", alt: "Incontro Polizia Postale: sicurezza e privacy", caption: "Incontro Polizia Postale: sicurezza informatica e tutela privacy" },
-                    { src: "assets/img/galleria/foto_galleria_4.jpg", alt: "Approfondimento con i tutor CSI", caption: "La classe 5CI con i tutor aziendali di CSI Piemonte" },
-                    { src: "assets/img/galleria/foto_galleria_5.jpg", alt: "Esposizione architettura privacy-first", caption: "Studio dell'architettura privacy-first senza tracciamento" },
-                    { src: "assets/img/galleria/inc2_extra_1.svg", alt: "Seminario Rischi Digitali", caption: "Sicurezza sul web, prevenzione del phishing e identità digitale" },
-                    { src: "assets/img/galleria/inc2_extra_2.svg", alt: "Valutazione Modelli AI", caption: "Confronto e selezione tra LLM e modelli leggeri" },
-                    { src: "assets/img/galleria/inc2_extra_3.svg", alt: "Politiche Privacy-First", caption: "Garanzia di anonimato: zero raccolta di dati identificativi" },
-                    { src: "assets/img/galleria/foto_galleria_6.jpg", alt: "Studio dei meccanismi di fallback", caption: "Studio dei meccanismi di fallback per domande impreviste" },
-                    { src: "assets/img/galleria/inc2_extra_4.svg", alt: "Mitigazione Prompt Injection", caption: "Difesa attiva e sanificazione dei messaggi in input" },
-                    { src: "assets/img/galleria/inc2_extra_5.svg", alt: "Trasparenza Algoritmica", caption: "Principi di spiegabilità e affidabilità delle informazioni" },
-                    { src: "assets/img/galleria/inc2_extra_6.svg", alt: "Filtri di Contenuto", caption: "Guardrails di moderazione e accuratezza scolastica" },
-                    { src: "assets/img/galleria/inc2_extra_7.svg", alt: "Controlli API & Endpoint", caption: "Architettura dei microservizi nel cloud di CSI Piemonte" },
-                    { src: "assets/img/galleria/foto_galleria_2.jpg", alt: "Discussione aperta con i relatori", caption: "Sessione Q&A e confronto diretto con gli ispettori" },
-                    { src: "assets/img/galleria/foto_galleria_1.jpg", alt: "Chiusura della sessione sicurezza", caption: "Chiusura del modulo formativo sull'uso etico dell'AI" }
-                ]
-            },
-            {
-                id: "incontro-3",
-                badge: "3° Incontro · Modulo Conclusivo",
-                title: "3° Incontro: Prototipazione, Testing e Presentazione Finale",
-                desc: "Sessione di verifica funzionale e collaudo: stress test delle risposte del chatbot, validazione dell'esperienza utente su dispositivi mobili e consegna dei risultati.",
-                photos: [
-                    { src: "assets/img/galleria/foto_galleria_5.jpg", alt: "Testing interattivo dei prototipi del chatbot", caption: "Testing interattivo dei prototipi del chatbot GustAvo" },
-                    { src: "assets/img/galleria/foto_galleria_6.jpg", alt: "Conclusione del modulo e avvio dello sviluppo", caption: "Conclusione del modulo e avvio della fase di sviluppo" },
-                    { src: "assets/img/galleria/foto_galleria_2.jpg", alt: "Verifica finale delle risposte", caption: "Verifica finale e validazione del concept con i mentor" },
-                    { src: "assets/img/galleria/inc3_extra_1.svg", alt: "Test di Carico & Latenza", caption: "Benchmark delle risposte in tempo reale su varie connessioni" },
-                    { src: "assets/img/galleria/inc3_extra_2.svg", alt: "Sessione di Collaudo Utente", caption: "Test di usabilità con studenti e docenti dell'istituto" },
-                    { src: "assets/img/galleria/foto_galleria_4.jpg", alt: "Presentazione demo ai tutor", caption: "Presentazione della demo live ai referenti del CSI Piemonte" },
-                    { src: "assets/img/galleria/inc3_extra_3.svg", alt: "Verifica Responsive Mobile", caption: "Ottimizzazione della resa grafica su smartphone e tablet" },
-                    { src: "assets/img/galleria/inc3_extra_4.svg", alt: "Consegna Documentazione", caption: "Consegna delle specifiche tecniche e manuale d'uso" },
-                    { src: "assets/img/galleria/foto_galleria_1.jpg", alt: "Foto conclusiva del percorso", caption: "Foto di rito conclusiva con il team di sviluppo 5CI" }
-                ]
-            }
-        ];
+        const encountersData = window.GUSTAVO_GALLERY_DATA || [];
 
         // ------------------------------------------------
         // Gestione Modale Semi-Fullscreen Incontro
@@ -617,7 +639,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const encounterModalBody = document.getElementById('encounterModalBody');
         const encounterModalBackdrop = document.getElementById('encounterModalBackdrop');
         const encounterModalClose = document.getElementById('encounterModalClose');
-        const encounterModalBadge = document.getElementById('encounterModalBadge');
         const encounterModalTitle = document.getElementById('encounterModalTitle');
         const encounterModalDesc = document.getElementById('encounterModalDesc');
         const encounterModalGrid = document.getElementById('encounterModalGrid');
@@ -649,8 +670,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const openEncounterModal = (encIndex) => {
             const data = encountersData[encIndex];
             if (!encounterModal || !data) return;
+            if (Date.now() - navMobileClosedTimestamp < 450 || (navMobile && navMobile.classList.contains('visibile'))) {
+                return;
+            }
 
-            if (encounterModalBadge) encounterModalBadge.textContent = data.badge;
             if (encounterModalTitle) encounterModalTitle.textContent = data.title;
             if (encounterModalDesc) encounterModalDesc.textContent = data.desc;
 
@@ -682,9 +705,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 initPhotoSkeletons(encounterModalGrid);
             }
 
-            // Blocco rigoroso dello scroll della pagina sottostante
-            document.documentElement.classList.add('modal-is-open');
-            document.body.classList.add('modal-is-open');
+            // Blocco rigoroso dello scroll della pagina sottostante senza perdere la posizione
+            lockPageScroll();
 
             encounterModal.classList.add('attivo');
             encounterModal.setAttribute('aria-hidden', 'false');
@@ -700,11 +722,7 @@ document.addEventListener('DOMContentLoaded', () => {
             encounterModal.classList.remove('attivo');
             encounterModal.setAttribute('aria-hidden', 'true');
 
-            // Ripristina lo scroll solo se il lightbox non è aperto
-            if (!lightbox || !lightbox.classList.contains('attivo')) {
-                document.documentElement.classList.remove('modal-is-open');
-                document.body.classList.remove('modal-is-open');
-            }
+            unlockPageScroll();
         };
 
         if (encounterModalClose) {
@@ -743,7 +761,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // ------------------------------------------------
-        // Inizializzazione Tracce dei 3 Caroselli con Scrollbar Sfumata
+        // Inizializzazione Tracce dei Caroselli con Scrollbar Sfumata
         // ------------------------------------------------
         const tracks = document.querySelectorAll('.gallery-slider-track');
         tracks.forEach(track => {
@@ -779,14 +797,64 @@ document.addEventListener('DOMContentLoaded', () => {
                 customThumb.style.transform = `translateX(${ratio * maxTravel}px)`;
             };
 
-            if (customTrack) {
+            if (customTrack && customThumb) {
+                let pointerId = null;
+                let startX = 0;
+                let startScroll = 0;
+                let targetScroll = 0;
+                let dragFrame = 0;
+                let moved = false;
+                let suppressClick = false;
+
                 customTrack.addEventListener('click', (e) => {
+                    if (suppressClick) { suppressClick = false; return; }
+                    if (e.target === customThumb) return;
                     const rect = customTrack.getBoundingClientRect();
-                    const clickX = e.clientX - rect.left;
-                    const ratio = Math.max(0, Math.min(1, clickX / rect.width));
-                    const maxScroll = track.scrollWidth - track.clientWidth;
-                    track.scrollTo({ left: ratio * maxScroll, behavior: 'smooth' });
+                    const travel = rect.width - customThumb.clientWidth;
+                    const ratio = travel > 0 ? (e.clientX - rect.left - customThumb.clientWidth / 2) / travel : 0;
+                    track.scrollTo({ left: Math.max(0, Math.min(1, ratio)) * (track.scrollWidth - track.clientWidth), behavior: 'smooth' });
                 });
+
+                customThumb.addEventListener('pointerdown', (e) => {
+                    if (!e.isPrimary || e.button !== 0) return;
+                    e.preventDefault();
+                    pointerId = e.pointerId;
+                    startX = e.clientX;
+                    startScroll = targetScroll = track.scrollLeft;
+                    moved = false;
+                    suppressClick = false;
+                    track.classList.add('is-scrollbar-dragging');
+                    customThumb.setPointerCapture(pointerId);
+                });
+
+                customThumb.addEventListener('pointermove', (e) => {
+                    if (e.pointerId !== pointerId) return;
+                    const delta = e.clientX - startX;
+                    moved = moved || Math.abs(delta) > 3;
+                    const travel = customTrack.clientWidth - customThumb.clientWidth;
+                    const maxScroll = track.scrollWidth - track.clientWidth;
+                    if (travel <= 0) return;
+                    targetScroll = Math.max(0, Math.min(maxScroll, startScroll + delta / travel * maxScroll));
+                    if (!dragFrame) dragFrame = requestAnimationFrame(() => {
+                        track.scrollLeft = targetScroll;
+                        updateCustomScrollbar();
+                        dragFrame = 0;
+                    });
+                });
+
+                const finishDrag = (e) => {
+                    if (e.pointerId !== pointerId) return;
+                    if (dragFrame) { cancelAnimationFrame(dragFrame); dragFrame = 0; }
+                    track.scrollLeft = targetScroll;
+                    pointerId = null;
+                    suppressClick = moved;
+                    track.classList.remove('is-scrollbar-dragging');
+                    updateCustomScrollbar();
+                    updateButtonStates();
+                };
+                customThumb.addEventListener('pointerup', finishDrag);
+                customThumb.addEventListener('pointercancel', finishDrag);
+                customThumb.addEventListener('lostpointercapture', finishDrag);
             }
 
             if (prevBtn) {
@@ -803,67 +871,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
 
+            let scrollFrame = 0;
             track.addEventListener('scroll', () => {
-                updateButtonStates();
-                updateCustomScrollbar();
+                if (scrollFrame) return;
+                scrollFrame = requestAnimationFrame(() => {
+                    updateButtonStates();
+                    updateCustomScrollbar();
+                    scrollFrame = 0;
+                });
             }, { passive: true });
 
-            window.addEventListener('resize', () => {
+            // Registra callback per il resize condiviso (vedi sotto)
+            _resizeCallbacks.push(() => {
                 updateButtonStates();
                 updateCustomScrollbar();
-            }, { passive: true });
+            });
 
             updateButtonStates();
             updateCustomScrollbar();
 
-            // ------------------------------------------------
-            // Trascinamento Mouse fluido (ZERO LAG, ZERO SCATTO, CLICK SICURO)
-            // ------------------------------------------------
-            let isDown = false;
-            let startX = 0;
-            let scrollStart = 0;
-            let hasDragged = false;
-
-            track.addEventListener('mousedown', (e) => {
-                if (e.button !== 0) return;
-                isDown = true;
-                hasDragged = false;
-                startX = e.pageX;
-                scrollStart = track.scrollLeft;
-            });
-
-            window.addEventListener('mousemove', (e) => {
-                if (!isDown) return;
-                const walk = e.pageX - startX;
-                if (Math.abs(walk) > 6) {
-                    hasDragged = true;
-                    track.classList.add('is-dragging');
-                    track.style.scrollBehavior = 'auto';
-                    track.style.scrollSnapType = 'none';
-                    track.scrollLeft = scrollStart - walk;
+            // Disabilitazione scorrimento con frecce tastiera sul carosello
+            track.addEventListener('keydown', (e) => {
+                if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) {
+                    e.preventDefault();
                 }
             });
-
-            const endDrag = () => {
-                if (!isDown) return;
-                isDown = false;
-                track.classList.remove('is-dragging');
-                track.style.scrollBehavior = 'smooth';
-                track.style.scrollSnapType = 'x mandatory';
-                setTimeout(() => {
-                    hasDragged = false;
-                }, 100);
-            };
-
-            window.addEventListener('mouseup', endDrag);
 
             // Click delegato sulle Card del carosello (Apre modale o fullscreen lightbox)
             track.addEventListener('click', (e) => {
-                if (hasDragged) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    return;
-                }
 
                 const card = e.target.closest('.gallery-card');
                 if (!card) return;
@@ -899,7 +934,808 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
+    // ----------------------------------------------------
+    // 7. Sistema di Accessibilità GustAvo (Conforme Standard WCAG 2.1)
+    // ----------------------------------------------------
+    const initGustavoAccessibility = () => {
+        // Disattiva il widget di accessibilità esclusivamente nella scheda del chatbot
+        if (document.body.classList.contains('chatbot-page') ||
+            document.documentElement.classList.contains('chatbot-page-html') ||
+            window.location.pathname.endsWith('chatbot.html') ||
+            window.location.href.includes('chatbot.html')) {
+            return;
+        }
+
+        // Evita duplicazioni nel DOM
+        if (document.getElementById('gustavoA11yBtn')) return;
+
+        // Rimozione preventiva di classi di accessibilità obsolete o non conformi
+        const OBSOLETE_CLASSES = [
+            'g-invert', 'g-vivid', 'g-highlight-headings',
+            'g-highlight-active', 'g-highlight-links', 'g-reduce-motion', 'g-stop-motion',
+            'g-reduce-effects', 'g-reading-mode', 'g-reduce-distractions',
+            'g-reading-focus', 'g-hide-decorative', 'g-big-cursor',
+            'g-spacing', 'g-line-height'
+        ];
+        OBSOLETE_CLASSES.forEach(cls => document.documentElement.classList.remove(cls));
+
+        // ── Helper: crea un toggle item conforme WCAG ──
+        const makeItem = (id, label, desc) => `
+            <div class="g-a11y-item">
+                <div class="g-a11y-item-info">
+                    <label for="${id}" class="g-a11y-item-label">${label}</label>
+                    <span class="g-a11y-item-desc">${desc}</span>
+                </div>
+                <label class="g-a11y-toggle" aria-label="${label}">
+                    <input type="checkbox" id="${id}" class="g-a11y-checkbox" role="switch" aria-checked="false">
+                    <span class="g-a11y-toggle-track" aria-hidden="true">
+                        <span class="g-a11y-toggle-thumb"></span>
+                    </span>
+                </label>
+            </div>`;
+
+        // ── Helper: SVG icone sezione ──
+        const textIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h10M4 18h14"/></svg>`;
+        const eyeIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+        const navIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>`;
+
+        // ── Costruzione pulsante ──
+        const btn = document.createElement('button');
+        btn.id = 'gustavoA11yBtn';
+        btn.className = 'g-a11y-btn';
+        btn.type = 'button';
+        btn.setAttribute('aria-label', 'Apri impostazioni di accessibilità');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-controls', 'gustavoA11yPanel');
+        btn.innerHTML = `
+            <span class="g-a11y-tooltip" aria-hidden="true">Accessibilità</span>
+            <span class="g-a11y-icon-wrap" aria-hidden="true">
+                <img src="assets/img/icons/accessibility-icon.png?v=4.6" alt="" class="g-a11y-icon" draggable="false" />
+                <svg class="g-a11y-close-icon" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </span>
+        `;
+
+        // ── Linea guida lettura per ausilio cognitivo / dislessia ──
+        const guideLine = document.createElement('div');
+        guideLine.className = 'g-guide-line';
+        guideLine.setAttribute('aria-hidden', 'true');
+
+        // ── Costruzione pannello ──
+        const panel = document.createElement('div');
+        panel.id = 'gustavoA11yPanel';
+        panel.className = 'g-a11y-panel';
+        panel.setAttribute('role', 'region');
+        panel.setAttribute('aria-label', 'Pannello accessibilità conforme WCAG 2.1');
+        panel.setAttribute('aria-hidden', 'true');
+
+        panel.innerHTML = `
+            <div class="g-a11y-header">
+                <div class="g-a11y-header-content">
+                    <h2 class="g-a11y-title">Accessibilità</h2>
+                    <p class="g-a11y-subtitle">Personalizza navigazione e visualizzazione</p>
+                </div>
+            </div>
+
+            <div class="g-a11y-body">
+
+                <!-- SEZIONE 1: Testo e Tipografia (WCAG 1.4.4 & 1.4.12) -->
+                <div class="g-a11y-section">
+                    <h3 class="g-a11y-section-title">${textIcon} Testo e Tipografia</h3>
+                    <div class="g-a11y-font-row">
+                        <div class="g-a11y-item-info">
+                            <span class="g-a11y-item-label">Dimensione testo</span>
+                            <span class="g-a11y-item-desc">Dimensione dal 50% al 200%, inizialmente al 100%</span>
+                        </div>
+                        <div class="g-a11y-font-controls" role="group" aria-label="Regolazione dimensione testo conforme WCAG">
+                            <button type="button" class="g-a11y-font-btn" id="gDecFont" aria-label="Riduci testo">A−</button>
+                            <span class="g-a11y-font-val" id="gFontVal" aria-live="polite">100%</span>
+                            <button type="button" class="g-a11y-font-btn" id="gIncFont" aria-label="Aumenta testo">A+</button>
+                        </div>
+                    </div>
+                    ${makeItem('gReadableFont', 'Carattere ad alta leggibilità', 'Font lineare (Arial) ottimizzato per dislessia')}
+                    ${makeItem('gTextSpacing', 'Spaziatura testo conforme', 'Interlinea (1.8), spaziatura caratteri e parole')}
+                    <div class="g-a11y-item g-a11y-tts-item">
+                        <div class="g-a11y-item-info">
+                            <span class="g-a11y-item-label">Sintesi Vocale (Lettore Schermo)</span>
+                            <span class="g-a11y-item-desc">Ascolta la lettura vocale della pagina ad alta voce</span>
+                        </div>
+                        <div class="a11y-tts-controls">
+                            <button type="button" class="a11y-tts-btn" id="a11yTtsPage" title="Ascolta l'intera pagina">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                                <span>Leggi Pagina</span>
+                            </button>
+                            <button type="button" class="a11y-tts-btn a11y-tts-stop-btn" id="a11yTtsStop" style="display:none;" title="Interrompi lettura">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M6 6h12v12H6z"/></svg>
+                                <span>Interrompi</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SEZIONE 2: Contrasto e Colori (WCAG 1.4.1 & 1.4.6) -->
+                <div class="g-a11y-section">
+                    <h3 class="g-a11y-section-title">${eyeIcon} Contrasto e Colori</h3>
+                    ${makeItem('gHighContrast', 'Contrasto elevato (AAA)', 'Rapporto di contrasto elevato testo/sfondo')}
+                    ${makeItem('gGrayscale', 'Scala di grigi (Monocromatico)', 'Accesso senza dipendenza dalla percezione colori')}
+                </div>
+
+                <!-- SEZIONE 3: Navigazione e Ausili (WCAG 2.4.7) -->
+                <div class="g-a11y-section">
+                    <h3 class="g-a11y-section-title">${navIcon} Navigazione e Ausili</h3>
+                    ${makeItem('gBigCursor', 'Cursore ingrandito', 'Migliora la visibilità del puntatore mouse')}
+                    ${makeItem('gHighlightLinks', 'Evidenzia collegamenti', 'Contorno evidente su tutti i link e pulsanti')}
+                    ${makeItem('gReadingGuide', 'Guida alla lettura', 'Barra orizzontale di supporto visivo')}
+                    ${makeItem('gFocusVisible', 'Focus tastiera evidente', 'Contorno ad alto contrasto per navigazione')}
+                </div>
+
+            </div>
+
+            <div class="g-a11y-footer">
+                <button type="button" class="g-a11y-reset-btn" id="gustavoA11yReset">
+                    Ripristina impostazioni
+                </button>
+            </div>
+        `;
+
+        // ── Floating Reading Status Box (barra essenziale con indicazione tasto ESC) ──
+        const readingBox = document.createElement('div');
+        readingBox.id = 'a11yTtsReadingBox';
+        readingBox.className = 'a11y-tts-reading-box';
+        readingBox.setAttribute('aria-live', 'polite');
+        readingBox.setAttribute('aria-atomic', 'true');
+        readingBox.innerHTML = `
+            <div class="tts-reading-header">
+                <div class="tts-reading-status">
+                    <span class="tts-pulse-dot" aria-hidden="true"></span>
+                    <span class="tts-reading-badge">LETTURA VOCALE ATTIVA</span>
+                </div>
+                <button type="button" class="tts-reading-stop-btn" id="ttsBoxStopBtn" aria-label="Interrompi lettura vocale (oppure premi ESC)">
+                    <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><path d="M6 6h12v12H6z"/></svg>
+                    <span>Interrompi</span>
+                </button>
+            </div>
+            <div class="tts-reading-body">
+                <p class="tts-reading-esc-hint">Premi <kbd class="tts-esc-kbd">ESC</kbd> per uscire dal TTS</p>
+            </div>
+        `;
+        const ttsBoxStopBtn = readingBox.querySelector('#ttsBoxStopBtn');
+
+        // ── Pulsante circolare "Torna in cima" (gemello di stile del pulsante accessibilità) ──
+        const backToTopBtn = document.createElement('button');
+        backToTopBtn.type = 'button';
+        backToTopBtn.id = 'backToTopBtn';
+        backToTopBtn.className = 'back-to-top-btn';
+        backToTopBtn.setAttribute('aria-label', 'Torna in cima alla pagina');
+        backToTopBtn.innerHTML = `
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true">
+                <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            </svg>
+            <span class="back-to-top-tooltip" role="tooltip">Torna in cima</span>
+        `;
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ── Funzione di posizionamento sopra il footer (mai sovrapposto ai contenuti, zero salti) ──
+        const adjustPositionForFooter = () => {
+            const footer = document.querySelector('footer, .footer, .chatbot-direct-bar');
+            if (!footer) return;
+            const footerRect = footer.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const isMobile = window.innerWidth <= 580;
+            const baseBottom = isMobile ? 16 : 24;
+
+            if (footerRect.top < windowHeight) {
+                const overlap = windowHeight - footerRect.top;
+                const newBottom = overlap + baseBottom;
+                const btnHeight = btn.offsetHeight || (isMobile ? 52 : 56);
+                const buttonClearance = 12; // distanza di sicurezza sopra al bottone sull'asse Y
+                btn.style.bottom = `${newBottom}px`;
+                panel.style.bottom = `${newBottom + btnHeight + buttonClearance}px`;
+                if (readingBox) readingBox.style.bottom = `${newBottom}px`;
+                if (backToTopBtn) backToTopBtn.style.bottom = `${newBottom}px`;
+            } else {
+                const btnHeight = btn.offsetHeight || (isMobile ? 52 : 56);
+                const buttonClearance = 12;
+                btn.style.bottom = '';
+                panel.style.bottom = `${baseBottom + btnHeight + buttonClearance}px`;
+                if (readingBox) readingBox.style.bottom = '';
+                if (backToTopBtn) backToTopBtn.style.bottom = '';
+            }
+        };
+
+        // Calcolo immediato prima di aggiungere gli elementi al DOM:
+        // garantisce che il bottone nasca già alla giusta coordinata dal primissimo frame
+        adjustPositionForFooter();
+
+        // ── Append al DOM ──
+        const a11yBackdrop = document.createElement('div');
+        a11yBackdrop.className = 'g-a11y-backdrop';
+        a11yBackdrop.setAttribute('aria-hidden', 'true');
+
+        document.body.appendChild(guideLine);
+        document.body.appendChild(a11yBackdrop);
+        document.body.appendChild(btn);
+        document.body.appendChild(panel);
+        document.body.appendChild(readingBox);
+        document.body.appendChild(backToTopBtn);
+
+        // ── Aggiornamento fluido allo scroll e ridimensionamento (senza transizioni lente sul bottom) ──
+        let footerRaf = null;
+        const onScrollOrResize = () => {
+            if (backToTopBtn) {
+                backToTopBtn.classList.toggle('is-visible', window.scrollY > 300);
+            }
+            if (footerRaf) return;
+            footerRaf = requestAnimationFrame(() => {
+                adjustPositionForFooter();
+                footerRaf = null;
+            });
+        };
+
+        window.addEventListener('scroll', onScrollOrResize, { passive: true });
+        window.addEventListener('resize', onScrollOrResize, { passive: true });
+        window.addEventListener('load', () => {
+            adjustPositionForFooter();
+            if (backToTopBtn) backToTopBtn.classList.toggle('is-visible', window.scrollY > 300);
+        }, { passive: true });
+
+        // ── Steps testo conformi WCAG 1.4.4 (fino a 200%) ──
+        const fontSteps = [50, 75, 100, 125, 150, 175, 200];
+        const defaultFontIndex = fontSteps.indexOf(100);
+        let fontIndex = defaultFontIndex;
+
+        // ── Mappa: id-checkbox → { htmlClass } ──
+        const TOGGLES = {
+            gReadableFont:   { cls: 'g-readable-font' },
+            gTextSpacing:    { cls: 'g-text-spacing' },
+            gHighContrast:   { cls: 'g-high-contrast' },
+            gGrayscale:      { cls: 'g-grayscale' },
+            gBigCursor:      { cls: 'g-big-cursor' },
+            gHighlightLinks: { cls: 'g-highlight-links' },
+            gFocusVisible:   { cls: 'g-focus-visible' },
+            gReadingGuide:   { cls: 'g-reading-guide' }
+        };
+
+        // ── Guida lettura: segue il mouse con GPU transform accelerata a 60/144fps ──
+        let guideRaf = null;
+        document.addEventListener('mousemove', (e) => {
+            if (!document.documentElement.classList.contains('g-reading-guide')) return;
+            if (guideRaf) return;
+            const y = e.clientY;
+            guideRaf = requestAnimationFrame(() => {
+                guideLine.style.transform = `translateY(${y}px)`;
+                guideRaf = null;
+            });
+        }, { passive: true });
+
+        // ── Aggiornamento UI font conforme WCAG 1.4.4 ──
+        const updateFontUI = () => {
+            const pct = fontSteps[fontIndex];
+            document.documentElement.style.fontSize = pct === 100 ? '' : `${(16 * pct) / 100}px`;
+            const valEl = document.getElementById('gFontVal');
+            const decBtn = document.getElementById('gDecFont');
+            const incBtn = document.getElementById('gIncFont');
+            if (valEl) valEl.textContent = `${pct}%`;
+            if (decBtn) decBtn.disabled = fontIndex === 0;
+            if (incBtn) incBtn.disabled = fontIndex === fontSteps.length - 1;
+            adjustPositionForFooter();
+        };
+
+        // ── Apertura / chiusura pannello ──
+        const setPanelOpen = (open) => {
+            const isOpen = typeof open === 'boolean' ? open : !panel.classList.contains('is-open');
+            panel.classList.toggle('is-open', isOpen);
+            panel.setAttribute('aria-hidden', String(!isOpen));
+            btn.setAttribute('aria-expanded', String(isOpen));
+            btn.classList.toggle('is-active', isOpen);
+            document.documentElement.classList.toggle('g-a11y-open', isOpen);
+            if (a11yBackdrop) {
+                a11yBackdrop.classList.toggle('is-visible', isOpen);
+            }
+
+            const tooltip = btn.querySelector('.g-a11y-tooltip');
+            if (tooltip) {
+                tooltip.textContent = isOpen ? 'Chiudi' : 'Accessibilità';
+            }
+            btn.setAttribute('aria-label',
+                isOpen ? 'Chiudi impostazioni di accessibilità' : 'Apri impostazioni di accessibilità'
+            );
+            if (isOpen) {
+                adjustPositionForFooter();
+                const firstFocusable = panel.querySelector('button:not(:disabled), input:not(:disabled)');
+                if (firstFocusable) setTimeout(() => firstFocusable.focus(), 50);
+            }
+        };
+
+        // ── Event listeners: pulsante principale ──
+        btn.addEventListener('mousedown', (e) => {
+            // Evita che il doppio o triplo click rapido selezioni il testo della pagina
+            e.preventDefault();
+        });
+
+        btn.addEventListener('dblclick', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            setPanelOpen();
+        });
+
+        btn.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && panel.classList.contains('is-open')) {
+                e.preventDefault();
+                setPanelOpen(false);
+            }
+        });
+
+        // ── Chiusura click / tocco esterno conforme mobile & desktop ──
+        const closeA11yOutside = (e) => {
+            if (!panel.classList.contains('is-open')) return;
+            if (!panel.contains(e.target) && !btn.contains(e.target)) {
+                e.preventDefault();
+                e.stopPropagation();
+                setPanelOpen(false);
+            }
+        };
+
+        if (a11yBackdrop) {
+            a11yBackdrop.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setPanelOpen(false);
+            });
+            a11yBackdrop.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setPanelOpen(false);
+            }, { passive: false });
+            a11yBackdrop.addEventListener('pointerdown', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setPanelOpen(false);
+            });
+        }
+
+        document.addEventListener('click', closeA11yOutside, true);
+        document.addEventListener('touchstart', closeA11yOutside, { passive: false, capture: true });
+        document.addEventListener('pointerdown', closeA11yOutside, true);
+
+        // Chiude automaticamente se la finestra perde il focus (es. tocco su iframe)
+        window.addEventListener('blur', () => {
+            if (panel.classList.contains('is-open')) {
+                setPanelOpen(false);
+            }
+        });
+
+        // ── Gestione tastiera (Escape + Tab trap conforme WCAG) ──
+        panel.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                setPanelOpen(false);
+                btn.focus();
+                return;
+            }
+            if (e.key === 'Tab') {
+                const focusables = Array.from(
+                    panel.querySelectorAll('button:not(:disabled), input:not(:disabled)')
+                );
+                if (focusables.length === 0) return;
+                const first = focusables[0];
+                const last = focusables[focusables.length - 1];
+                if (e.shiftKey && document.activeElement === first) {
+                    e.preventDefault();
+                    last.focus();
+                } else if (!e.shiftKey && document.activeElement === last) {
+                    e.preventDefault();
+                    first.focus();
+                }
+            }
+        });
+
+        // ── Controlli font ──
+        const decBtn = document.getElementById('gDecFont');
+        const incBtn = document.getElementById('gIncFont');
+        if (decBtn) {
+            decBtn.addEventListener('click', () => {
+                if (fontIndex > 0) { fontIndex--; updateFontUI(); }
+            });
+        }
+        if (incBtn) {
+            incBtn.addEventListener('click', () => {
+                if (fontIndex < fontSteps.length - 1) { fontIndex++; updateFontUI(); }
+            });
+        }
+
+        // ── Toggle listeners conforme WCAG (nessun cookie / memorizzazione permanente) ──
+        Object.keys(TOGGLES).forEach(id => {
+            const cb = document.getElementById(id);
+            if (!cb) return;
+            cb.addEventListener('change', () => {
+                document.documentElement.classList.toggle(TOGGLES[id].cls, cb.checked);
+                cb.setAttribute('aria-checked', String(cb.checked));
+            });
+        });
+
+        // ── Sintesi Vocale TTS (Text-To-Speech) con Voce Naturale Italiana e Box Dinamico ──
+        let utteranceId = 0;
+        let isSpeechReading = false;
+        let pageReading = false;
+        let currentSpeakingElement = null;
+
+        const showReadingBox = () => {
+            if (!readingBox) return;
+            readingBox.classList.add('is-visible');
+        };
+
+        const hideReadingBox = () => {
+            if (!readingBox) return;
+            readingBox.classList.remove('is-visible');
+        };
+
+        const updateSpeechButtons = () => {
+            const stopBtn = document.getElementById('a11yTtsStop');
+            const pageBtn = document.getElementById('a11yTtsPage');
+
+            if (stopBtn) stopBtn.style.display = isSpeechReading ? 'inline-flex' : 'none';
+            if (pageBtn) pageBtn.classList.toggle('is-playing', isSpeechReading);
+        };
+
+        // ── Selezione della migliore voce italiana naturale disponibile ──
+        let cachedItalianVoice = null;
+
+        const getBestItalianVoice = () => {
+            if (!('speechSynthesis' in window)) return null;
+            const voices = window.speechSynthesis.getVoices() || [];
+            if (!voices || voices.length === 0) return null;
+
+            // Filtra solo le voci autenticamente italiane (lingua it-IT, it, it_IT, it-CH)
+            // oppure con 'italian' / 'italiano' nel nome
+            const itVoices = voices.filter(v => {
+                const lang = (v.lang || '').replace('_', '-').toLowerCase();
+                const name = (v.name || '').toLowerCase();
+                return lang === 'it-it' ||
+                       lang === 'it' ||
+                       lang.startsWith('it-') ||
+                       name.includes('italian') ||
+                       name.includes('italiano');
+            });
+
+            if (itVoices.length === 0) {
+                // Fallback estremo per nomi tipici di voci italiane di sistema
+                const fallbackNames = ['elsa', 'isabella', 'cosimo', 'alice', 'federica', 'luca', 'paola', 'chiara'];
+                const fallback = voices.find(v => fallbackNames.some(fn => (v.name || '').toLowerCase().includes(fn)));
+                return fallback || null;
+            }
+
+            // Gerarchia di preferenza per voce umana naturale senza accento straniero:
+            // 1. Voci Microsoft Natural/Online italiane (Edge/Windows: Elsa, Isabella, Cosimo - qualità neurale eccellente)
+            const naturalVoice = itVoices.find(v => /natural|online/i.test(v.name));
+            if (naturalVoice) return naturalVoice;
+
+            // 2. Voce Google Italiano (Chrome)
+            const googleVoice = itVoices.find(v => /google/i.test(v.name));
+            if (googleVoice) return googleVoice;
+
+            // 3. Voci italiane native di sistema ad alta qualità
+            const knownHighQuality = ['elsa', 'isabella', 'cosimo', 'alice', 'federica', 'luca', 'paola'];
+            const topVoice = itVoices.find(v => knownHighQuality.some(k => (v.name || '').toLowerCase().includes(k)));
+            if (topVoice) return topVoice;
+
+            // 4. Prima voce con tag 'it-IT'
+            const exactIt = itVoices.find(v => (v.lang || '').replace('_', '-').toLowerCase() === 'it-it');
+            if (exactIt) return exactIt;
+
+            return itVoices[0];
+        };
+
+        const updateItalianVoice = () => {
+            const found = getBestItalianVoice();
+            if (found) cachedItalianVoice = found;
+        };
+
+        if ('speechSynthesis' in window) {
+            updateItalianVoice();
+            window.speechSynthesis.onvoiceschanged = () => {
+                updateItalianVoice();
+            };
+        }
+
+        // Assicura che le voci del browser siano caricate (Chromium carica getVoices() asincronamente)
+        const ensureVoicesReady = (callback) => {
+            if (!('speechSynthesis' in window)) {
+                if (callback) callback();
+                return;
+            }
+            updateItalianVoice();
+            if (cachedItalianVoice) {
+                if (callback) callback();
+                return;
+            }
+            const current = window.speechSynthesis.getVoices();
+            if (current && current.length > 0) {
+                updateItalianVoice();
+                if (callback) callback();
+                return;
+            }
+            let executed = false;
+            const onVoices = () => {
+                if (executed) return;
+                executed = true;
+                updateItalianVoice();
+                if (callback) callback();
+            };
+            window.speechSynthesis.onvoiceschanged = onVoices;
+            setTimeout(() => {
+                if (!executed) {
+                    executed = true;
+                    updateItalianVoice();
+                    if (callback) callback();
+                }
+            }, 250);
+        };
+
+        const splitText = (text, max = 180) => {
+            const sentences = text.replace(/\s+/g, ' ').match(/[^.!?;:]+[.!?;:]?/g) || [text];
+            const chunks = [];
+            let buf = '';
+            sentences.forEach(s => {
+                if ((buf + s).length > max && buf) { chunks.push(buf.trim()); buf = ''; }
+                buf += s + ' ';
+                while (buf.length > max * 1.5) {
+                    const cut = buf.lastIndexOf(' ', max) > 0 ? buf.lastIndexOf(' ', max) : max;
+                    chunks.push(buf.slice(0, cut).trim());
+                    buf = buf.slice(cut);
+                }
+            });
+            if (buf.trim()) chunks.push(buf.trim());
+            return chunks;
+        };
+
+        let currentAudio = null;
+
+        const stopSpeech = () => {
+            utteranceId++;
+            pageReading = false;
+            if (currentAudio) {
+                try {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                } catch (e) {}
+                currentAudio = null;
+            }
+            if ('speechSynthesis' in window) {
+                try { window.speechSynthesis.cancel(); } catch (e) {}
+            }
+            isSpeechReading = false;
+            if (currentSpeakingElement) {
+                currentSpeakingElement.classList.remove('a11y-speaking-element');
+                currentSpeakingElement = null;
+            }
+            hideReadingBox();
+            updateSpeechButtons();
+        };
+
+        const playWebSpeechFallback = (chunkText, onNext) => {
+            if (!('speechSynthesis' in window)) {
+                if (onNext) onNext();
+                return;
+            }
+            const u = new SpeechSynthesisUtterance(chunkText);
+            u.lang = 'it-IT';
+            u.rate = 1.0;
+            u.pitch = 1.0;
+
+            const voice = cachedItalianVoice || getBestItalianVoice();
+            if (voice) {
+                u.voice = voice;
+                u.lang = voice.lang || 'it-IT';
+            }
+
+            u.onend = onNext;
+            u.onerror = (e) => {
+                if (e.error === 'interrupted' || e.error === 'canceled') return;
+                console.warn('GustAvo fallback TTS errore:', e.error);
+                if (onNext) onNext();
+            };
+
+            window.speechSynthesis.speak(u);
+        };
+
+        const speakText = (text, onComplete) => {
+            text = (text || '').trim();
+            if (!text) return;
+
+            const myId = ++utteranceId;
+            const chunks = splitText(text, 140);
+            let i = 0;
+
+            if (currentAudio) {
+                try { currentAudio.pause(); } catch (e) {}
+                currentAudio = null;
+            }
+            if ('speechSynthesis' in window) {
+                try { window.speechSynthesis.cancel(); } catch (e) {}
+            }
+
+            isSpeechReading = true;
+            updateSpeechButtons();
+            showReadingBox();
+
+            const finish = () => {
+                if (myId !== utteranceId) return;
+                isSpeechReading = false;
+                updateSpeechButtons();
+                hideReadingBox();
+                if (onComplete) onComplete();
+            };
+
+            const speakNext = () => {
+                if (myId !== utteranceId) return;
+                if (i >= chunks.length) { finish(); return; }
+
+                const chunkText = chunks[i++];
+                showReadingBox();
+
+                // Riproduzione con l'endpoint TTS ufficiale del chatbot (la stessa identica voce di gustavo1.avoprogetti.it)
+                const ttsUrl = `https://gustavo1.avoprogetti.it/api/tts?text=${encodeURIComponent(chunkText)}`;
+                const audio = new Audio(ttsUrl);
+                currentAudio = audio;
+
+                audio.onended = () => {
+                    if (myId !== utteranceId) return;
+                    currentAudio = null;
+                    speakNext();
+                };
+
+                audio.onerror = (e) => {
+                    if (myId !== utteranceId) return;
+                    console.warn('GustAvo Server TTS offline o errore, fallback su Web Speech locale:', e);
+                    currentAudio = null;
+                    playWebSpeechFallback(chunkText, speakNext);
+                };
+
+                const playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(err => {
+                        if (myId !== utteranceId) return;
+                        console.warn('Riproduzione audio server non avviata, fallback:', err);
+                        currentAudio = null;
+                        playWebSpeechFallback(chunkText, speakNext);
+                    });
+                }
+            };
+
+            speakNext();
+        };
+
+        const readFullPage = () => {
+            if (isSpeechReading || pageReading) {
+                stopSpeech();
+                return;
+            }
+
+            setPanelOpen(false); // Chiude il pannello così l'utente vede l'evidenziazione e il box sulla pagina
+
+            ensureVoicesReady(() => {
+                const root = document.querySelector('main') || document.getElementById('main') || document.body;
+                let elements = Array.from(root.querySelectorAll('h1, h2, h3, h4, p, li'))
+                    .filter(el => !el.closest('.g-a11y-panel, .g-a11y-btn, #a11yTtsReadingBox, nav, footer, script, noscript, .modal, .encounter-modal, .lightbox-modal'));
+                elements = elements.filter(el => !elements.some(o => o !== el && el.contains(o)));
+
+                if (elements.length === 0) {
+                    speakText((root.innerText || '').substring(0, 1500));
+                    return;
+                }
+
+                pageReading = true;
+                let index = 0;
+
+                const readNext = () => {
+                    if (currentSpeakingElement) {
+                        currentSpeakingElement.classList.remove('a11y-speaking-element');
+                        currentSpeakingElement = null;
+                    }
+                    if (!pageReading || index >= elements.length) {
+                        stopSpeech();
+                        return;
+                    }
+                    const el = elements[index++];
+                    const text = (el.innerText || el.textContent || '').trim();
+                    if (text.length <= 2) { readNext(); return; }
+
+                    currentSpeakingElement = el;
+                    el.classList.add('a11y-speaking-element');
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    speakText(text, readNext);
+                };
+
+                readNext();
+            });
+        };
+
+        // Event listeners per controlli TTS
+        const ttsPageBtn = document.getElementById('a11yTtsPage');
+        const ttsStopBtn = document.getElementById('a11yTtsStop');
+
+        if (ttsPageBtn) {
+            ttsPageBtn.addEventListener('click', () => {
+                readFullPage();
+            });
+        }
+
+        if (ttsStopBtn) {
+            ttsStopBtn.addEventListener('click', () => {
+                stopSpeech();
+            });
+        }
+
+        if (ttsBoxStopBtn) {
+            ttsBoxStopBtn.addEventListener('click', () => {
+                stopSpeech();
+            });
+        }
+
+        // ── Gestione tasto ESC: interrompe immediatamente la lettura vocale TTS ovunque nella pagina ──
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' || e.key === 'Esc') {
+                if (isSpeechReading || pageReading || currentAudio) {
+                    e.preventDefault();
+                    stopSpeech();
+                }
+            }
+        });
+
+        window.addEventListener('beforeunload', stopSpeech);
+
+        // ── Reset ──
+        const resetBtn = document.getElementById('gustavoA11yReset');
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+                stopSpeech();
+
+                // Reset font
+                fontIndex = defaultFontIndex;
+                updateFontUI();
+
+                // Reset classi html
+                Object.values(TOGGLES).forEach(({ cls }) => {
+                    document.documentElement.classList.remove(cls);
+                });
+                OBSOLETE_CLASSES.forEach(cls => {
+                    document.documentElement.classList.remove(cls);
+                });
+
+                // Reset checkbox
+                Object.keys(TOGGLES).forEach(id => {
+                    const cb = document.getElementById(id);
+                    if (cb) {
+                        cb.checked = false;
+                        cb.setAttribute('aria-checked', 'false');
+                    }
+                });
+
+                // Rimozione di eventuali chiavi residue di storage / cookie
+                try { localStorage.removeItem('gustavo_a11y_v2'); } catch (e) {}
+                adjustPositionForFooter();
+            });
+        }
+
+        // ── Pulizia iniziale di eventuali vecchi dati in localStorage per garantire zero tracciamento ──
+        try { localStorage.removeItem('gustavo_a11y_v2'); } catch (e) {}
+
+        // ── Init ──
+        updateFontUI();
+        adjustPositionForFooter();
+    };
+
     initPhotoSkeletons();
     initEncountersGallery();
-    disableBrowserLinkPreview();
+    initGustavoAccessibility();
 });
+

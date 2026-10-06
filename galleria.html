@@ -3,34 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galleria — GustAvo · IIS Avogadro</title>
+    <title>Galleria del progetto GustAvo | IIS Avogadro Torino</title>
+    <meta name="description" content="Guarda le foto del progetto GustAvo: incontri al CSI Piemonte, lavoro in classe e attività degli studenti dell’IIS Avogadro con Polizia di Stato e MSC.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="it_IT">
+    <meta property="og:site_name" content="GustAvo · IIS Avogadro Torino">
+    <meta property="og:title" content="Galleria del progetto GustAvo | IIS Avogadro Torino">
+    <meta property="og:description" content="Guarda le foto del progetto GustAvo: incontri al CSI Piemonte, lavoro in classe e attività degli studenti dell’IIS Avogadro con Polizia di Stato e MSC.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Galleria del progetto GustAvo | IIS Avogadro Torino">
+    <meta name="twitter:description" content="Guarda le foto del progetto GustAvo: incontri al CSI Piemonte, lavoro in classe e attività degli studenti dell’IIS Avogadro con Polizia di Stato e MSC.">
+    <link rel="canonical" href="https://gustavo.avoprogetti.it/galleria.html">
+    <meta property="og:url" content="https://gustavo.avoprogetti.it/galleria.html">
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Galleria del progetto GustAvo | IIS Avogadro Torino",
+  "description": "Guarda le foto del progetto GustAvo: incontri al CSI Piemonte, lavoro in classe e attività degli studenti dell’IIS Avogadro con Polizia di Stato e MSC.",
+  "inLanguage": "it-IT",
+  "url": "https://gustavo.avoprogetti.it/galleria.html"
+}
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="assets/img/favicon.png">
-    <link rel="apple-touch-icon" href="assets/img/favicon.png">
-    <link rel="stylesheet" href="assets/css/accessibility.css">
-    <link rel="stylesheet" href="assets/css/style.css?v=4.0">
-    <script src="assets/js/accessibility.js" defer></script>
-    <script src="assets/js/main.js?v=4.0" defer></script>
+    <link rel="icon" type="image/png" href="assets/img/icons/favicon.png?v=2">
+    <link rel="apple-touch-icon" href="assets/img/icons/favicon.png?v=2">
+
+    <link rel="stylesheet" href="assets/css/style.css?v=4.49">
+    <script src="assets/js/gallery-data.js?v=3" defer></script>
+    <script src="assets/js/main.js?v=4.31" defer></script>
+    <script src="assets/js/site-refresh.js?v=1" defer></script>
 </head>
-<body>
+<body class="site-page">
 
     <!-- NAVBAR UFFICIALE GUSTAVO -->
     <header>
         <nav class="navbar">
             <div class="nav-brand-group">
-                <div class="nav-brand-logos" aria-label="Loghi IIS Avogadro e CSI Piemonte">
-                    <a href="https://www.itisavogadro.it/" target="_blank" rel="noopener noreferrer" class="nav-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
-                        <img src="assets/img/logo_avogadro.png" alt="Logo IIS Avogadro" class="nav-logo-avo">
-                    </a>
-                    <span class="nav-logo-divider" aria-hidden="true"></span>
-                    <a href="https://www.csipiemonte.it/it" target="_blank" rel="noopener noreferrer" class="nav-logo-link" title="CSI Piemonte">
-                        <img src="assets/img/logo_csi_piemonte.png" alt="Logo CSI Piemonte" class="nav-logo-csi">
+                <div class="nav-brand-logos" aria-label="Logo IIS Avogadro">
+                    <a draggable="false" href="https://www.itisavogadro.it/" target="_blank" rel="noopener noreferrer" class="nav-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
+                        <img draggable="false" src="assets/img/brand/logo_avogadro.png" alt="Logo IIS Avogadro" class="nav-logo-avo">
                     </a>
                 </div>
                 <span class="nav-brand-divider" aria-hidden="true"></span>
-                <a href="index.html" class="logo-link" title="GustAvo — Home">
+                <a draggable="false" href="index.html" class="logo-link" title="GustAvo — Home">
+                    <img draggable="false" src="assets/img/brand/gustavo_icon.png" alt="" width="40" height="40" decoding="async" class="nav-logo-gustavo-full">
                     <span class="logo-testo">
                         <span class="logo-nome">GustAvo</span>
                         <span class="logo-motto">Il chatbot che ti orienta a scuola</span>
@@ -45,7 +65,6 @@
                 <li><a href="documentazione.html">Documentazione</a></li>
                 <li><a href="chatbot.html">Chatbot</a></li>
                 <li><a href="galleria.html" class="active">Galleria</a></li>
-                
             </ul>
 
             <button class="hamburger" id="hamburger" aria-label="Menu di navigazione" aria-expanded="false">
@@ -61,15 +80,15 @@
             <a href="documentazione.html">Documentazione</a>
             <a href="chatbot.html">Chatbot</a>
             <a href="galleria.html" class="active">Galleria</a>
-            <button class="nav-mobile-a11y-btn" type="button" data-a11y-trigger><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm9 7h-6v13h-2v-6h-2v6H9V9H3V7h18v2z"/></svg> Accessibilità</button>
         </nav>
     </header>
 
     <!-- MAIN CONTENT -->
-    <main class="page-wrapper">
+    <main class="page-wrapper" id="main">
         <div class="container">
             
-            <header class="page-header">
+            <header class="page-header gallery-page-header">
+                <span class="project-section-kicker">Il progetto in immagini</span>
                 <h1 class="titolo-pagina">Galleria del Progetto</h1>
                 <p class="sottotitolo">
                     I momenti salienti dei laboratori formativi al CSI Piemonte e il seminario su AI e sicurezza.
@@ -81,59 +100,54 @@
                  ============================================================ -->
             <section class="encounter-section" id="incontro-1">
                 <div class="encounter-header">
-                    <span class="badge-pill">1° Incontro · Sede CSI</span>
                     <h2 class="encounter-title">Presentazione e Introduzione al CSI Piemonte</h2>
                     <p class="encounter-desc">Kickoff iniziale con i tutor aziendali, analisi delle esigenze di orientamento scolastico e definizione delle feature chiave di GustAvo.</p>
                 </div>
 
                 <div class="gallery-slider-wrapper">
                     <button class="gallery-side-btn prev" aria-label="Foto precedente" title="Foto precedente">
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                             <polyline points="15 18 9 12 15 6"></polyline>
                         </svg>
                     </button>
 
-                    <div class="gallery-slider-track" data-encounter="0" tabindex="0" role="region" aria-label="1° Incontro — Foto del carosello">
+                    <div class="gallery-slider-track" data-encounter="0" role="region" aria-label="1° Incontro — Foto del carosello">
                         <article class="gallery-card" data-encounter="0" data-index="0">
                             <div class="photo-skeleton-box">
-                                <img src="assets/img/galleria/foto_galleria_1.jpg" alt="Presentazione introduttiva del percorso formativo presso CSI Piemonte" loading="lazy">
+                                <img draggable="false" src="assets/img/galleria/incontro_csi/foto_galleria_7.webp" alt="Gli studenti presentano il progetto GustAvo al CSI Piemonte" loading="lazy" srcset="assets/img/galleria/incontro_csi/foto_galleria_7-small.webp 640w, assets/img/galleria/incontro_csi/foto_galleria_7.webp 1600w" sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="1600" height="1200" decoding="async">
                             </div>
-                            <div class="gallery-caption">Presentazione del percorso formativo presso CSI Piemonte</div>
+                            <div class="gallery-caption">Gli studenti presentano il progetto GustAvo al CSI Piemonte</div>
                         </article>
-
                         <article class="gallery-card" data-encounter="0" data-index="1">
                             <div class="photo-skeleton-box">
-                                <img src="assets/img/galleria/foto_galleria_2.jpg" alt="Sessione di brainstorming sui casi d'uso e bisogni degli studenti" loading="lazy">
+                                <img draggable="false" src="assets/img/galleria/incontro_csi/foto_galleria_6.webp" alt="Presentazione del chatbot e confronto con i tutor al CSI Piemonte" loading="lazy" srcset="assets/img/galleria/incontro_csi/foto_galleria_6-small.webp 640w, assets/img/galleria/incontro_csi/foto_galleria_6.webp 1600w" sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="1600" height="1200" decoding="async">
                             </div>
-                            <div class="gallery-caption">Brainstorming e definizione dei requisiti del chatbot</div>
+                            <div class="gallery-caption">Presentazione del chatbot e confronto con i tutor al CSI Piemonte</div>
                         </article>
-
                         <article class="gallery-card" data-encounter="0" data-index="2">
                             <div class="photo-skeleton-box">
-                                <img src="assets/img/galleria/foto_galleria_3.jpg" alt="Confronto con i tutor aziendali sulla struttura del servizio" loading="lazy">
+                                <img draggable="false" src="assets/img/galleria/incontro_csi/foto_galleria_4.webp" alt="La classe segue la presentazione del progetto al CSI Piemonte" loading="lazy" srcset="assets/img/galleria/incontro_csi/foto_galleria_4-small.webp 640w, assets/img/galleria/incontro_csi/foto_galleria_4.webp 1600w" sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="1600" height="901" decoding="async">
                             </div>
-                            <div class="gallery-caption">Confronto con i tutor aziendali sulla struttura del servizio</div>
+                            <div class="gallery-caption">La classe segue la presentazione del progetto al CSI Piemonte</div>
                         </article>
 
-                        <!-- CARD +8 FOTO AGGIUNTIVE -->
-                        <article class="gallery-card gallery-card-more" data-encounter="0" role="button" tabindex="0" aria-label="Apri tutte le foto del 1° Incontro (+8 foto)">
+                        <article class="gallery-card gallery-card-more" data-encounter="0" role="button" tabindex="0" aria-label="Apri tutte le foto del 1° Incontro (+5 foto)">
                             <div class="more-card-frame">
                                 <div class="more-card-icon-group">
-                                    <svg class="more-grid-icon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="2"></rect>
-                                        <rect x="5.5" y="5.5" width="5" height="5" rx="1.2" fill="currentColor"></rect>
-                                        <rect x="13.5" y="5.5" width="5" height="5" rx="1.2" fill="currentColor"></rect>
-                                        <rect x="5.5" y="13.5" width="5" height="5" rx="1.2" fill="currentColor"></rect>
-                                        <rect x="13.5" y="13.5" width="5" height="5" rx="1.2" fill="currentColor"></rect>
+                                    <svg class="more-grid-icon" viewBox="0 0 24 24" width="42" height="42" fill="currentColor" aria-hidden="true" focusable="false">
+                                        <rect x="1.5" y="1.5" width="9.8" height="9.8" rx="1"></rect>
+                                        <rect x="12.7" y="1.5" width="9.8" height="9.8" rx="1"></rect>
+                                        <rect x="1.5" y="12.7" width="9.8" height="9.8" rx="1"></rect>
+                                        <rect x="12.7" y="12.7" width="9.8" height="9.8" rx="1"></rect>
                                     </svg>
-                                    <span class="more-count-pill">+8</span>
+                                    <span class="more-count-pill">+5</span>
                                 </div>
-                                <span class="more-card-title">Vedi tutte le foto</span>
-                                <span class="more-card-hint">Sfoglia la raccolta completa</span>
+                                <span class="more-card-title">Tutte le foto</span>
+                                <span class="more-card-hint">Sfoglia le foto di quest'incontro</span>
                             </div>
                             <div class="gallery-caption more-caption">
-                                <span>11 foto totali dell'incontro</span>
-                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <span>8 foto totali dell'incontro</span>
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                                     <polyline points="9 18 15 12 9 6"></polyline>
                                 </svg>
                             </div>
@@ -141,7 +155,7 @@
                     </div>
 
                     <button class="gallery-side-btn next" aria-label="Foto successiva" title="Foto successiva">
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                             <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
                     </button>
@@ -154,63 +168,58 @@
             </section>
 
             <!-- ============================================================
-                 2° INCONTRO: AI, SICUREZZA E POLIZIA POSTALE
+                 2° INCONTRO: SVILUPPO, ADDESTRAMENTO E TEST IN CLASSE
                  ============================================================ -->
             <section class="encounter-section" id="incontro-2">
                 <div class="encounter-header">
-                    <span class="badge-pill">2° Incontro · Modulo Formativo</span>
-                    <h2 class="encounter-title">AI, Sicurezza Digitale e Seminario Polizia Postale</h2>
-                    <p class="encounter-desc">Etica dell'intelligenza artificiale, tutela dei dati degli utenti e prevenzione dei rischi digitali con gli ispettori della Polizia Postale.</p>
+                    <h2 class="encounter-title">Sviluppo, Addestramento e Test in Classe</h2>
+                    <p class="encounter-desc">Attività di programmazione e collaudo nei laboratori dell'IIS Amedeo Avogadro: strutturazione del dataset intents.json, addestramento del modello Scikit-learn e test del frontend.</p>
                 </div>
 
                 <div class="gallery-slider-wrapper">
                     <button class="gallery-side-btn prev" aria-label="Foto precedente" title="Foto precedente">
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                             <polyline points="15 18 9 12 15 6"></polyline>
                         </svg>
                     </button>
 
-                    <div class="gallery-slider-track" data-encounter="1" tabindex="0" role="region" aria-label="2° Incontro — Foto del carosello">
+                    <div class="gallery-slider-track" data-encounter="1" role="region" aria-label="2° Incontro — Foto del carosello">
                         <article class="gallery-card" data-encounter="1" data-index="0">
                             <div class="photo-skeleton-box">
-                                <img src="assets/img/galleria/foto_galleria_3.jpg" alt="Incontro Polizia Postale: sicurezza e privacy" loading="lazy">
+                                <img draggable="false" src="assets/img/galleria/in_classe/foto_classe_5.webp" alt="La classe e i docenti durante le attività in laboratorio" loading="lazy" srcset="assets/img/galleria/in_classe/foto_classe_5-small.webp 640w, assets/img/galleria/in_classe/foto_classe_5.webp 1240w" sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="1240" height="687" decoding="async">
                             </div>
-                            <div class="gallery-caption">Incontro Polizia Postale: sicurezza e privacy</div>
+                            <div class="gallery-caption">La classe e i docenti durante le attività in laboratorio</div>
                         </article>
-
                         <article class="gallery-card" data-encounter="1" data-index="1">
                             <div class="photo-skeleton-box">
-                                <img src="assets/img/galleria/foto_galleria_4.jpg" alt="La classe 5CI con i tutor aziendali di CSI Piemonte" loading="lazy">
+                                <img draggable="false" src="assets/img/galleria/in_classe/foto_classe_6.webp" alt="Gli studenti seguono la presentazione del progetto in classe" loading="lazy" srcset="assets/img/galleria/in_classe/foto_classe_6-small.webp 640w, assets/img/galleria/in_classe/foto_classe_6.webp 1236w" sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="1236" height="677" decoding="async">
                             </div>
-                            <div class="gallery-caption">La classe 5CI con i tutor aziendali di CSI Piemonte</div>
+                            <div class="gallery-caption">Gli studenti seguono la presentazione del progetto in classe</div>
                         </article>
-
                         <article class="gallery-card" data-encounter="1" data-index="2">
                             <div class="photo-skeleton-box">
-                                <img src="assets/img/galleria/foto_galleria_5.jpg" alt="Esposizione dei modelli di Machine Learning" loading="lazy">
+                                <img draggable="false" src="assets/img/galleria/in_classe/foto_classe_1.webp" alt="Confronto tra studenti e docenti sul progetto GustAvo" loading="lazy" srcset="assets/img/galleria/in_classe/foto_classe_1-small.webp 640w, assets/img/galleria/in_classe/foto_classe_1.webp 1600w" sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="1600" height="1200" decoding="async">
                             </div>
-                            <div class="gallery-caption">Studio dell'architettura privacy-first senza tracciamento</div>
+                            <div class="gallery-caption">Confronto tra studenti e docenti sul progetto GustAvo</div>
                         </article>
 
-                        <!-- CARD +10 FOTO AGGIUNTIVE -->
-                        <article class="gallery-card gallery-card-more" data-encounter="1" role="button" tabindex="0" aria-label="Apri tutte le foto del 2° Incontro (+10 foto)">
+                        <article class="gallery-card gallery-card-more" data-encounter="1" role="button" tabindex="0" aria-label="Apri tutte le foto del 2° Incontro (+3 foto)">
                             <div class="more-card-frame">
                                 <div class="more-card-icon-group">
-                                    <svg class="more-grid-icon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="2"></rect>
-                                        <rect x="5.5" y="5.5" width="5" height="5" rx="1.2" fill="currentColor"></rect>
-                                        <rect x="13.5" y="5.5" width="5" height="5" rx="1.2" fill="currentColor"></rect>
-                                        <rect x="5.5" y="13.5" width="5" height="5" rx="1.2" fill="currentColor"></rect>
-                                        <rect x="13.5" y="13.5" width="5" height="5" rx="1.2" fill="currentColor"></rect>
+                                    <svg class="more-grid-icon" viewBox="0 0 24 24" width="42" height="42" fill="currentColor" aria-hidden="true" focusable="false">
+                                        <rect x="1.5" y="1.5" width="9.8" height="9.8" rx="1"></rect>
+                                        <rect x="12.7" y="1.5" width="9.8" height="9.8" rx="1"></rect>
+                                        <rect x="1.5" y="12.7" width="9.8" height="9.8" rx="1"></rect>
+                                        <rect x="12.7" y="12.7" width="9.8" height="9.8" rx="1"></rect>
                                     </svg>
-                                    <span class="more-count-pill">+10</span>
+                                    <span class="more-count-pill">+3</span>
                                 </div>
-                                <span class="more-card-title">Vedi tutte le foto</span>
-                                <span class="more-card-hint">Sfoglia la raccolta completa</span>
+                                <span class="more-card-title">Tutte le foto</span>
+                                <span class="more-card-hint">Sfoglia le foto di quest'incontro</span>
                             </div>
                             <div class="gallery-caption more-caption">
-                                <span>13 foto totali dell'incontro</span>
-                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <span>6 foto totali dell'incontro</span>
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                                     <polyline points="9 18 15 12 9 6"></polyline>
                                 </svg>
                             </div>
@@ -218,7 +227,7 @@
                     </div>
 
                     <button class="gallery-side-btn next" aria-label="Foto successiva" title="Foto successiva">
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                             <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
                     </button>
@@ -231,63 +240,58 @@
             </section>
 
             <!-- ============================================================
-                 3° INCONTRO: TESTING E CONCLUSIONE MODULO
+                 3° INCONTRO: INTELLIGENZA ARTIFICIALE CON LA POLIZIA DI STATO
                  ============================================================ -->
             <section class="encounter-section" id="incontro-3">
                 <div class="encounter-header">
-                    <span class="badge-pill">3° Incontro · Modulo Conclusivo</span>
-                    <h2 class="encounter-title">Prototipazione, Testing e Presentazione Finale</h2>
-                    <p class="encounter-desc">Collaudo pratico dei flussi conversazionali, validazione delle risposte e chiusura del percorso formativo presso CSI Piemonte.</p>
+                    <h2 class="encounter-title">Incontro sull'AI con la Polizia di Stato</h2>
+                    <p class="encounter-desc">Incontro formativo sui temi dell'Intelligenza Artificiale con la Polizia di Stato, con dibattito e sessione di interviste condotte dagli studenti.</p>
                 </div>
 
                 <div class="gallery-slider-wrapper">
                     <button class="gallery-side-btn prev" aria-label="Foto precedente" title="Foto precedente">
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                             <polyline points="15 18 9 12 15 6"></polyline>
                         </svg>
                     </button>
 
-                    <div class="gallery-slider-track" data-encounter="2" tabindex="0" role="region" aria-label="3° Incontro — Foto del carosello">
+                    <div class="gallery-slider-track" data-encounter="2" role="region" aria-label="3° Incontro — Foto del carosello">
                         <article class="gallery-card" data-encounter="2" data-index="0">
                             <div class="photo-skeleton-box">
-                                <img src="assets/img/galleria/foto_galleria_5.jpg" alt="Testing interattivo dei prototipi del chatbot GustAvo" loading="lazy">
+                                <img draggable="false" src="assets/img/galleria/incontro_cesedi/foto_cesedi_3.webp" alt="Intervista di uno studente a un rappresentante della Polizia di Stato" loading="lazy" srcset="assets/img/galleria/incontro_cesedi/foto_cesedi_3-small.webp 640w, assets/img/galleria/incontro_cesedi/foto_cesedi_3.webp 1235w" sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="1235" height="695" decoding="async">
                             </div>
-                            <div class="gallery-caption">Testing interattivo dei prototipi del chatbot</div>
+                            <div class="gallery-caption">Intervista di uno studente a un rappresentante della Polizia di Stato</div>
                         </article>
-
                         <article class="gallery-card" data-encounter="2" data-index="1">
                             <div class="photo-skeleton-box">
-                                <img src="assets/img/galleria/foto_galleria_6.jpg" alt="Conclusione del modulo e avvio della fase di sviluppo" loading="lazy">
+                                <img draggable="false" src="assets/img/galleria/incontro_cesedi/foto_cesedi_1.webp" alt="La classe partecipa all’incontro sull’Intelligenza Artificiale" loading="lazy" srcset="assets/img/galleria/incontro_cesedi/foto_cesedi_1-small.webp 640w, assets/img/galleria/incontro_cesedi/foto_cesedi_1.webp 1600w" sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="1600" height="1068" decoding="async">
                             </div>
-                            <div class="gallery-caption">Conclusione del modulo e avvio della fase di sviluppo</div>
+                            <div class="gallery-caption">La classe partecipa all’incontro sull’Intelligenza Artificiale</div>
                         </article>
-
                         <article class="gallery-card" data-encounter="2" data-index="2">
                             <div class="photo-skeleton-box">
-                                <img src="assets/img/galleria/foto_galleria_2.jpg" alt="Verifica finale con i tutor e validazione del concept" loading="lazy">
+                                <img draggable="false" src="assets/img/galleria/incontro_cesedi/foto_cesedi_2.webp" alt="Intervento della Polizia di Stato sull’Intelligenza Artificiale" loading="lazy" srcset="assets/img/galleria/incontro_cesedi/foto_cesedi_2-small.webp 640w, assets/img/galleria/incontro_cesedi/foto_cesedi_2.webp 1600w" sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="1600" height="1168" decoding="async">
                             </div>
-                            <div class="gallery-caption">Verifica finale e validazione del concept con i mentor</div>
+                            <div class="gallery-caption">Intervento della Polizia di Stato sull’Intelligenza Artificiale</div>
                         </article>
 
-                        <!-- CARD +6 FOTO AGGIUNTIVE -->
-                        <article class="gallery-card gallery-card-more" data-encounter="2" role="button" tabindex="0" aria-label="Apri tutte le foto del 3° Incontro (+6 foto)">
+                        <article class="gallery-card gallery-card-more" data-encounter="2" role="button" tabindex="0" aria-label="Apri la raccolta dell'Incontro con la Polizia di Stato (3 foto)">
                             <div class="more-card-frame">
                                 <div class="more-card-icon-group">
-                                    <svg class="more-grid-icon" viewBox="0 0 24 24" width="44" height="44" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" stroke-width="2"></rect>
-                                        <rect x="5.5" y="5.5" width="5" height="5" rx="1.2" fill="currentColor"></rect>
-                                        <rect x="13.5" y="5.5" width="5" height="5" rx="1.2" fill="currentColor"></rect>
-                                        <rect x="5.5" y="13.5" width="5" height="5" rx="1.2" fill="currentColor"></rect>
-                                        <rect x="13.5" y="13.5" width="5" height="5" rx="1.2" fill="currentColor"></rect>
+                                    <svg class="more-grid-icon" viewBox="0 0 24 24" width="42" height="42" fill="currentColor" aria-hidden="true" focusable="false">
+                                        <rect x="1.5" y="1.5" width="9.8" height="9.8" rx="1"></rect>
+                                        <rect x="12.7" y="1.5" width="9.8" height="9.8" rx="1"></rect>
+                                        <rect x="1.5" y="12.7" width="9.8" height="9.8" rx="1"></rect>
+                                        <rect x="12.7" y="12.7" width="9.8" height="9.8" rx="1"></rect>
                                     </svg>
-                                    <span class="more-count-pill">+6</span>
+                                    <span class="more-count-pill">3</span>
                                 </div>
-                                <span class="more-card-title">Vedi tutte le foto</span>
-                                <span class="more-card-hint">Sfoglia la raccolta completa</span>
+                                <span class="more-card-title">Tutte le foto</span>
+                                <span class="more-card-hint">Sfoglia le foto di quest'incontro</span>
                             </div>
                             <div class="gallery-caption more-caption">
-                                <span>9 foto totali dell'incontro</span>
-                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <span>3 foto totali dell'incontro</span>
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                                     <polyline points="9 18 15 12 9 6"></polyline>
                                 </svg>
                             </div>
@@ -295,7 +299,7 @@
                     </div>
 
                     <button class="gallery-side-btn next" aria-label="Foto successiva" title="Foto successiva">
-                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                             <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
                     </button>
@@ -306,6 +310,75 @@
                     </div>
                 </div>
             </section>
+            <section class="encounter-section" id="incontro-4">
+                <div class="encounter-header">
+                    <h2 class="encounter-title">Incontro con MSC</h2>
+                    <p class="encounter-desc">Le foto dell'incontro degli studenti con MSC.</p>
+                </div>
+
+                <div class="gallery-slider-wrapper">
+                    <button class="gallery-side-btn prev" aria-label="Foto precedente" title="Foto precedente">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                    </button>
+
+                    <div class="gallery-slider-track" data-encounter="3" role="region" aria-label="4° Incontro — Foto del carosello">
+                        <article class="gallery-card" data-encounter="3" data-index="0">
+                            <div class="photo-skeleton-box">
+                                <img draggable="false" src="assets/img/galleria/incontro_msc/classe-docenti-cristiano-de-giorgis.webp" alt="La classe con i docenti e Cristiano de Giorgis di MSC" loading="lazy" srcset="assets/img/galleria/incontro_msc/classe-docenti-cristiano-de-giorgis-small.webp 640w, assets/img/galleria/incontro_msc/classe-docenti-cristiano-de-giorgis.webp 1920w" sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="1920" height="1440" decoding="async">
+                            </div>
+                            <div class="gallery-caption">La classe con i docenti e Cristiano de Giorgis di MSC</div>
+                        </article>
+                        <article class="gallery-card" data-encounter="3" data-index="1">
+                            <div class="photo-skeleton-box">
+                                <img draggable="false" src="assets/img/galleria/incontro_msc/foto_msc_2.webp" alt="La classe con i docenti e la preside durante l’incontro con MSC" loading="lazy" srcset="assets/img/galleria/incontro_msc/foto_msc_2-small.webp 640w, assets/img/galleria/incontro_msc/foto_msc_2.webp 1600w" sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="1600" height="1200" decoding="async">
+                            </div>
+                            <div class="gallery-caption">La classe con i docenti e la preside durante l’incontro con MSC</div>
+                        </article>
+                        <article class="gallery-card" data-encounter="3" data-index="2">
+                            <div class="photo-skeleton-box">
+                                <img draggable="false" src="assets/img/galleria/incontro_msc/foto_msc_1.webp" alt="La sala dell’incontro con MSC" loading="lazy" srcset="assets/img/galleria/incontro_msc/foto_msc_1-small.webp 640w, assets/img/galleria/incontro_msc/foto_msc_1.webp 1200w" sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="1200" height="1600" decoding="async">
+                            </div>
+                            <div class="gallery-caption">La sala dell’incontro con MSC</div>
+                        </article>
+
+                        <article class="gallery-card gallery-card-more" data-encounter="3" role="button" tabindex="0" aria-label="Apri la raccolta dell'Incontro con MSC (4 foto)">
+                            <div class="more-card-frame">
+                                <div class="more-card-icon-group">
+                                    <svg class="more-grid-icon" viewBox="0 0 24 24" width="42" height="42" fill="currentColor" aria-hidden="true" focusable="false">
+                                        <rect x="1.5" y="1.5" width="9.8" height="9.8" rx="1"></rect>
+                                        <rect x="12.7" y="1.5" width="9.8" height="9.8" rx="1"></rect>
+                                        <rect x="1.5" y="12.7" width="9.8" height="9.8" rx="1"></rect>
+                                        <rect x="12.7" y="12.7" width="9.8" height="9.8" rx="1"></rect>
+                                    </svg>
+                                    <span class="more-count-pill">+1</span>
+                                </div>
+                                <span class="more-card-title">Tutte le foto</span>
+                                <span class="more-card-hint">Sfoglia le foto di quest'incontro</span>
+                            </div>
+                            <div class="gallery-caption more-caption">
+                                <span>4 foto totali dell'incontro</span>
+                                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </div>
+                        </article>
+                    </div>
+
+                    <button class="gallery-side-btn next" aria-label="Foto successiva" title="Foto successiva">
+                        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </button>
+                </div>
+                <div class="gallery-custom-scrollbar" aria-hidden="true">
+                    <div class="gallery-custom-scrollbar-track" data-track-index="3">
+                        <div class="gallery-custom-scrollbar-thumb"></div>
+                    </div>
+                </div>
+            </section>
+
 
         </div>
     </main>
@@ -316,12 +389,11 @@
         <div class="encounter-modal-container" id="encounterModalContainer">
             <header class="encounter-modal-header">
                 <div class="encounter-modal-title-wrap">
-                    <span class="badge-pill" id="encounterModalBadge">1° Incontro</span>
                     <h3 class="encounter-modal-title" id="encounterModalTitle">Tutte le foto dell'incontro</h3>
                     <p class="encounter-modal-desc" id="encounterModalDesc"></p>
                 </div>
-                <button class="encounter-modal-close" id="encounterModalClose" aria-label="Chiudi finestra" title="Chiudi (Esc)">
-                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <button type="button" class="encounter-modal-close" id="encounterModalClose" aria-label="Chiudi finestra" title="Chiudi (Esc)">
+                    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
                         <line x1="6" y1="6" x2="18" y2="18"></line>
                     </svg>
@@ -340,17 +412,22 @@
 
     <!-- LIGHTBOX A SCHERMO INTERO CON SCORRIMENTO TRA IMMAGINI -->
     <div class="lightbox-modal" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizzatore immagini a schermo intero">
-        <button class="lightbox-close-btn" id="lightboxClose" aria-label="Chiudi visualizzatore" title="Chiudi (Esc)">&times;</button>
+        <button type="button" class="lightbox-close-btn" id="lightboxClose" aria-label="Chiudi visualizzatore" title="Chiudi (Esc)">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
         
-        <button class="lightbox-nav-btn prev" id="lightboxPrev" aria-label="Foto precedente" title="Foto precedente (Freccia Sinistra)">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <button type="button" class="lightbox-nav-btn prev" id="lightboxPrev" aria-label="Foto precedente" title="Foto precedente (Freccia Sinistra)">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                 <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
         </button>
 
         <div class="lightbox-stage">
             <div class="lightbox-content photo-skeleton-box" id="lightboxBox">
-                <img id="lightboxImg" src="" alt="Foto ingrandita">
+                <img draggable="false" id="lightboxImg" src="" alt="Foto ingrandita">
             </div>
             <div class="lightbox-meta" id="lightboxMeta">
                 <span class="lightbox-counter" id="lightboxCounter">1 / 1</span>
@@ -358,8 +435,8 @@
             </div>
         </div>
 
-        <button class="lightbox-nav-btn next" id="lightboxNext" aria-label="Foto successiva" title="Foto successiva (Freccia Destra)">
-            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <button type="button" class="lightbox-nav-btn next" id="lightboxNext" aria-label="Foto successiva" title="Foto successiva (Freccia Destra)">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
                 <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
         </button>
@@ -369,14 +446,14 @@
     <footer class="footer">
         <div class="container footer-container">
             <div class="footer-logos">
-                <a href="https://www.itisavogadro.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
-                    <img src="assets/img/logo_avogadro.png" alt="Logo IIS Avogadro" class="footer-logo-avo">
+                <a draggable="false" href="https://www.itisavogadro.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
+                    <img draggable="false" src="assets/img/brand/logo_avogadro.png" alt="Logo IIS Avogadro" class="footer-logo-avo">
                 </a>
-                <a href="https://avoprogetti.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Piattaforma AvoProgetti">
-                    <img src="assets/img/logo_avoprogetti.jpeg" alt="Logo AvoProgetti" class="footer-logo-avoprogetti">
+                <a draggable="false" href="https://avoprogetti.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Piattaforma AvoProgetti">
+                    <img draggable="false" src="assets/img/brand/logo_avoprogetti.png" alt="Logo AvoProgetti" class="footer-logo-avoprogetti">
                 </a>
-                <a href="index.html" class="footer-logo-link" title="GustAvo Chatbot">
-                    <img src="assets/img/gustavo_icon.png" alt="Logo GustAvo" class="footer-logo-gustavo">
+                <a draggable="false" href="index.html" class="footer-logo-link" title="GustAvo Chatbot">
+                    <img draggable="false" src="assets/img/brand/gustavo_icon.png" alt="Logo GustAvo" class="footer-logo-gustavo">
                 </a>
             </div>
 
@@ -385,7 +462,6 @@
                     <strong>
                         Progetto GustAvo - IIS Amedeo Avogadro, Torino - in collaborazione con CSI Piemonte
                     </strong>
-                    · <button type="button" class="footer-a11y-link" data-a11y-trigger title="Personalizza accessibilità (Alt+A)">Accessibilità</button>
                 </p>
             </div>
         </div>
