@@ -615,7 +615,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // ----------------------------------------------------
-    // 6. Gestione 3 Caroselli Incontri, Card +X, Modale Semi-Fullscreen e Drag Fluido
+    // 6. Gestione Caroselli Incontri, Card +X, Modale Semi-Fullscreen e Drag Fluido
     // ----------------------------------------------------
 
     // Listener resize condiviso (un solo addEventListener su window per tutti i caroselli)
@@ -630,50 +630,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
 
     const initEncountersGallery = () => {
-        const encountersData = [
-            {
-                id: "incontro-1",
-                badge: "1° Incontro · Sede CSI",
-                title: "1° Incontro: Formazione e Laboratori al CSI Piemonte",
-                desc: "Kickoff del percorso formativo presso la sede di CSI Piemonte: analisi dei bisogni di orientamento, requisiti architetturali e studio del chatbot GustAvo con i tutor aziendali.",
-                photos: [
-                    { src: "assets/img/optimized/galleria/incontro_csi/foto_galleria_1.webp", alt: "Sessione di lavoro del team GustAvo presso la sede di CSI Piemonte", caption: "Presentazione e avvio delle attività presso la sede di CSI Piemonte" },
-                    { src: "assets/img/optimized/galleria/incontro_csi/foto_galleria_2.webp", alt: "Brainstorming e definizione dei requisiti essenziali del chatbot", caption: "Brainstorming e definizione dei requisiti essenziali del chatbot" },
-                    { src: "assets/img/optimized/galleria/incontro_csi/foto_galleria_3.webp", alt: "Confronto con i tutor aziendali sulla struttura del servizio", caption: "Confronto con i tutor aziendali sulla struttura del servizio" },
-                    { src: "assets/img/optimized/galleria/incontro_csi/foto_galleria_4.webp", alt: "La classe 5CI con i tutor aziendali di CSI Piemonte", caption: "La classe 5CI insieme ai tutor aziendali di CSI Piemonte" },
-                    { src: "assets/img/optimized/galleria/incontro_csi/foto_galleria_5.webp", alt: "Studio dell'architettura privacy-first senza profilazione", caption: "Studio dell'architettura software e politiche privacy-first" },
-                    { src: "assets/img/optimized/galleria/incontro_csi/foto_galleria_6.webp", alt: "Studio dei meccanismi di risposta e gestione fallback", caption: "Studio dei meccanismi di classificazione e gestione fallback" },
-                    { src: "assets/img/optimized/galleria/incontro_csi/foto_galleria_7.webp", alt: "Approfondimento tecnico sulle API e integrazione con il modello", caption: "Approfondimento tecnico sull'integrazione del modello NLP" },
-                    { src: "assets/img/optimized/galleria/incontro_csi/foto_galleria_8.webp", alt: "Momento di confronto e sintesi della sessione al CSI", caption: "Sintesi della sessione di lavoro e pianificazione sprint" }
-                ]
-            },
-            {
-                id: "incontro-2",
-                badge: "2° Incontro · Lavoro in Classe",
-                title: "2° Incontro: Sviluppo, Addestramento e Test in Classe",
-                desc: "Attività di programmazione e collaudo nei laboratori dell'IIS Amedeo Avogadro: strutturazione del dataset intents.json, addestramento del modello Scikit-learn e test del frontend.",
-                photos: [
-                    { src: "assets/img/optimized/galleria/in_classe/foto_classe_1.webp", alt: "Sessione di programmazione e sviluppo in laboratorio all'IIS Avogadro", caption: "Sessione di sviluppo del codice e analisi dei requisiti in classe" },
-                    { src: "assets/img/optimized/galleria/in_classe/foto_classe_2.webp", alt: "Lavoro di gruppo sulla strutturazione dei dati delle intenzioni", caption: "Lavoro di gruppo sulla categorizzazione e raffinamento del dataset" },
-                    { src: "assets/img/optimized/galleria/in_classe/foto_classe_3.webp", alt: "Test interattivo delle risposte del chatbot GustAvo tra studenti", caption: "Collaudo interattivo delle risposte conversazionali" },
-                    { src: "assets/img/optimized/galleria/in_classe/foto_classe_4.webp", alt: "Ottimizzazione del backend Flask e configurazione delle rotte", caption: "Ottimizzazione del backend e calibrazione della confidenza semantica" },
-                    { src: "assets/img/optimized/galleria/in_classe/foto_classe_5.webp", alt: "Revisione del design dell'interfaccia utente", caption: "Revisione dell'interfaccia utente e accessibilità visiva" },
-                    { src: "assets/img/optimized/galleria/in_classe/foto_classe_6.webp", alt: "Conclusione dei test in classe e validazione della versione finale", caption: "Validazione dei flussi e collaudo finale con i docenti" }
-                ]
-            },
-            {
-                id: "incontro-3",
-                badge: "3° Incontro · Polizia di Stato",
-                title: "3° Incontro: Incontro sull'AI con la Polizia di Stato",
-                desc: "Incontro formativo sui temi dell'Intelligenza Artificiale con la Polizia di Stato, con dibattito e sessione di interviste condotte dagli studenti.",
-                photos: [
-                    { src: "assets/img/optimized/galleria/incontro_cesedi/foto_cesedi_1.webp", alt: "Incontro sull'Intelligenza Artificiale con la Polizia di Stato", caption: "Incontro formativo sull'AI con la Polizia di Stato" },
-                    { src: "assets/img/optimized/galleria/incontro_cesedi/foto_cesedi_2.webp", alt: "Sessione di interviste condotte dagli studenti durante l'incontro sull'AI", caption: "Interviste e approfondimento condotti dagli studenti" },
-                    { src: "assets/img/optimized/galleria/incontro_cesedi/foto_cesedi_3.webp", alt: "Confronto e conclusioni dell'incontro sull'Intelligenza Artificiale", caption: "Confronto, interviste e conclusioni della giornata sull'AI" }
-                ]
-            },
-            {id: "incontro-4", badge: "4° Incontro · MSC", title: "Incontro con MSC", desc: "Le foto dell'incontro degli studenti con MSC.", photos: [{"src":"assets/img/optimized/galleria/incontro_msc/foto_msc_1.webp","alt":"Incontro degli studenti con MSC — foto 1","caption":"Incontro degli studenti con MSC"},{"src":"assets/img/optimized/galleria/incontro_msc/foto_msc_2.webp","alt":"Incontro degli studenti con MSC — foto 2","caption":"Incontro degli studenti con MSC"},{"src":"assets/img/optimized/galleria/incontro_msc/foto_msc_3.webp","alt":"Incontro degli studenti con MSC — foto 3","caption":"Incontro degli studenti con MSC"}]}
-        ];
+        const encountersData = window.GUSTAVO_GALLERY_DATA || [];
 
         // ------------------------------------------------
         // Gestione Modale Semi-Fullscreen Incontro
@@ -682,7 +639,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const encounterModalBody = document.getElementById('encounterModalBody');
         const encounterModalBackdrop = document.getElementById('encounterModalBackdrop');
         const encounterModalClose = document.getElementById('encounterModalClose');
-        const encounterModalBadge = document.getElementById('encounterModalBadge');
         const encounterModalTitle = document.getElementById('encounterModalTitle');
         const encounterModalDesc = document.getElementById('encounterModalDesc');
         const encounterModalGrid = document.getElementById('encounterModalGrid');
@@ -718,7 +674,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            if (encounterModalBadge) encounterModalBadge.textContent = data.badge;
             if (encounterModalTitle) encounterModalTitle.textContent = data.title;
             if (encounterModalDesc) encounterModalDesc.textContent = data.desc;
 
@@ -806,7 +761,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // ------------------------------------------------
-        // Inizializzazione Tracce dei 3 Caroselli con Scrollbar Sfumata
+        // Inizializzazione Tracce dei Caroselli con Scrollbar Sfumata
         // ------------------------------------------------
         const tracks = document.querySelectorAll('.gallery-slider-track');
         tracks.forEach(track => {
@@ -1035,7 +990,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.innerHTML = `
             <span class="g-a11y-tooltip" aria-hidden="true">Accessibilità</span>
             <span class="g-a11y-icon-wrap" aria-hidden="true">
-                <img src="assets/img/accessibility-icon.png?v=4.6" alt="" class="g-a11y-icon" draggable="false" />
+                <img src="assets/img/icons/accessibility-icon.png?v=4.6" alt="" class="g-a11y-icon" draggable="false" />
                 <svg class="g-a11y-close-icon" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="18" y1="6" x2="6" y2="18"></line>
                     <line x1="6" y1="6" x2="18" y2="18"></line>

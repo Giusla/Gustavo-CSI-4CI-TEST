@@ -1,15 +1,6 @@
 /**
- * GustAvo — Chatbot CSS Theme Injection Script
- * File: assets/js/chatbot-theme-inject.js
- * Scopo: Inietta il tema grafico ufficiale dell'IIS Avogadro / CSI Piemonte
- *        all'interno del chatbot ospitato su gustavo1.avoprogetti.it.
- * 
- * Aggiornamenti:
- * - Prevenzione Anti-Spam a prova di bomba: mutex di invio per impedire risposte multiple concorrenti.
- * - Sblocco / Blocco coordinato dell'input e del pulsante durante la trasmissione e mentre GustAvo parla.
- * - Rimozione totale di qualsiasi emoji da tutti i testi, messaggi di stato, placeholder e bot responses.
- * - Logo GustAvo ingrandito, trasparente e con angoli NON arrotondati (border-radius: 0).
- * - Robottino SVG ufficiale con occhi e bocca animate.
+ * Builds the Evoluto frame with external styles and runtime,
+ * bridges browser microphone permissions, and switches to Classico.
  */
 
 (function () {
@@ -48,7 +39,7 @@
     return bridge;
   };
 
-  // Tema CSS completo e ottimizzato per l'iniezione
+  // Avatar markup shared by the generated chatbot document.
 
 
   // Markup SVG per l'avatar umano (vecchietto saggio / professore con capelli, occhiali azzurrini e microfono interattivo)
