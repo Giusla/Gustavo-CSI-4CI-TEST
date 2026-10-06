@@ -4,6 +4,17 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Keep photo clicks and gallery swipes, but suppress native image dragging and menus.
+    document.querySelectorAll('img, .nav-logo-link, .logo-link, .footer-logo-link')
+        .forEach(element => { element.draggable = false; });
+    document.addEventListener('dragstart', event => {
+        if (event.target.closest('img, .nav-logo-link, .logo-link, .footer-logo-link')) event.preventDefault();
+    });
+    document.addEventListener('contextmenu', event => {
+        if (event.target.closest('img, .photo-skeleton-box, .hero-photo, .team-photo-wrapper, .nav-logo-link, .logo-link, .footer-logo-link')) {
+            event.preventDefault();
+        }
+    });
     // ----------------------------------------------------
     // 1. Menu Mobile (Hamburger) con chiusura al tocco esterno
     // ----------------------------------------------------

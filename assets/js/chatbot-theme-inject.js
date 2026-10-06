@@ -339,7 +339,7 @@
     }
 
     updateChatViewport();
-    const currentMode = document.documentElement.classList.contains('chatbot-app') ? 'modern' : getUiMode();
+    const currentMode = getUiMode();
     setUiMode(currentMode);
   }
 

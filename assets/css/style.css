@@ -365,7 +365,7 @@ body>header {
 .hero-photo-frame {
     aspect-ratio: 16 / 10;
     width: 100%;
-    border-radius: calc(var(--radius-md) - 4px);
+    border-radius: var(--radius-md);
     overflow: hidden;
     position: relative;
     z-index: 2;
@@ -765,7 +765,7 @@ body>header {
     border-radius: var(--radius-md);
     overflow: hidden;
     background: #ffffff;
-    padding: 4px;
+    padding: 0;
     box-shadow: 0 10px 28px rgba(0, 30, 80, 0.14);
     cursor: default;
     transition: box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -1155,6 +1155,7 @@ body>header {
 
 .pipeline-step:last-child {
     padding-right: 0;
+    border-top: 0;
 }
 
 .pipeline-step::before {
@@ -3209,6 +3210,7 @@ body.modal-is-open {
 
     .pipeline-step:last-child {
         padding-bottom: 0;
+        border-left: 0;
     }
 
     .pipeline-step::before {
@@ -4980,3 +4982,48 @@ button, input, select, textarea { font-family: inherit; }
 }
 
 .site-page .team-photo-caption { display: block; background: #ffffff; color: var(--text-body); font-size: 0.82rem; font-weight: 400; line-height: 1.5; padding: 10px 14px; }
+
+/* Shared photo feedback, matching the complete gallery modal. */
+.site-page :is(.hero-photo, .team-photo-wrapper, .gallery-card:not(.gallery-card-more), .modal-photo-card, .journey-photo) {
+    font-family: var(--font-main);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 20, 60, 0.04);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.site-page :is(.hero-photo, .team-photo-wrapper, .gallery-card:not(.gallery-card-more), .modal-photo-card, .journey-photo):is(:hover, :focus-visible) {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0, 30, 80, 0.12);
+    border-color: var(--brand-blue);
+    background: #ffffff;
+}
+.site-page .hero-photo::before { display: none; }
+.site-page .hero-photo { border: 0; }
+img,
+.nav-logo-link,
+.logo-link,
+.footer-logo-link,
+.photo-skeleton-box,
+.hero-photo,
+.team-photo-wrapper {
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
+    user-select: none;
+}
+.site-page .hero-lead .link-scuola:is(:hover, :focus-visible) {
+    color: #ffffff;
+    text-decoration: none;
+}
+.site-page :is(.hero-photo, .team-photo-wrapper, .gallery-card:not(.gallery-card-more), .modal-photo-card, .journey-photo):hover img {
+    transform: none;
+    filter: none;
+}
+@media (prefers-reduced-motion: reduce) {
+    .site-page :is(.hero-photo, .team-photo-wrapper, .gallery-card:not(.gallery-card-more), .modal-photo-card, .journey-photo) {
+        transition: none;
+    }
+    .site-page :is(.hero-photo, .team-photo-wrapper, .gallery-card:not(.gallery-card-more), .modal-photo-card, .journey-photo):is(:hover, :focus-visible) {
+        transform: none;
+    }
+}

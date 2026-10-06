@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/img/favicon.png?v=2">
     <link rel="apple-touch-icon" href="assets/img/favicon.png?v=2">
-    <link rel="manifest" href="manifest.json">
 
     <!-- Meta Tag Condivisione Social & Chat (Senza immagine, solo testo ufficiale) -->
     <meta property="og:type" content="website">
@@ -22,13 +21,12 @@
     <meta name="twitter:title" content="GustAvo">
     <meta name="twitter:description" content="GustAvo, Il chatbot che ti orienta a scuola · IIS Avogadro">
 
-    <link rel="stylesheet" href="assets/css/style.css?v=4.42">
-    <script src="assets/js/main.js?v=4.25" defer></script>
+    <link rel="stylesheet" href="assets/css/style.css?v=4.46">
+    <script src="assets/js/main.js?v=4.27" defer></script>
     <script src="assets/js/intents-data.js?v=8.21" defer></script>
     <script src="assets/js/chatbot-theme-inject.js?v=8.19" defer></script>
     <link rel="stylesheet" href="assets/css/chatbot-page.css?v=1">
-    <script src="assets/js/chatbot-install.js" defer></script>
-    <script src="assets/js/chatbot-refresh.js" defer></script>
+    <script src="assets/js/site-refresh.js?v=1" defer></script>
 </head>
 <body class="chatbot-page">
 
@@ -36,18 +34,14 @@
     <header>
         <nav class="navbar">
             <div class="nav-brand-group">
-                <div class="nav-brand-logos" aria-label="Loghi IIS Avogadro e CSI Piemonte">
-                    <a href="https://www.itisavogadro.it/" target="_blank" rel="noopener noreferrer" class="nav-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
-                        <img src="assets/img/logo_avogadro.png" alt="Logo IIS Avogadro" class="nav-logo-avo">
-                    </a>
-                    <span class="nav-logo-divider" aria-hidden="true"></span>
-                    <a href="https://www.csipiemonte.it/it" target="_blank" rel="noopener noreferrer" class="nav-logo-link" title="CSI Piemonte">
-                        <img src="assets/img/logo_csi_piemonte.png" alt="Logo CSI Piemonte" class="nav-logo-csi">
+                <div class="nav-brand-logos" aria-label="Logo IIS Avogadro">
+                    <a draggable="false" href="https://www.itisavogadro.it/" target="_blank" rel="noopener noreferrer" class="nav-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
+                        <img draggable="false" src="assets/img/logo_avogadro.png" alt="Logo IIS Avogadro" class="nav-logo-avo">
                     </a>
                 </div>
                 <span class="nav-brand-divider" aria-hidden="true"></span>
-                <a href="index.html" class="logo-link" title="GustAvo — Home">
-                    <img src="assets/img/gustavo_icon.png" alt="" width="40" height="40" decoding="async" class="nav-logo-gustavo-full">
+                <a draggable="false" href="index.html" class="logo-link" title="GustAvo — Home">
+                    <img draggable="false" src="assets/img/gustavo_icon.png" alt="" width="40" height="40" decoding="async" class="nav-logo-gustavo-full">
                     <span class="logo-testo">
                         <span class="logo-nome">GustAvo</span>
                         <span class="logo-motto">Il chatbot che ti orienta a scuola</span>
@@ -108,7 +102,6 @@
                 </div>
             </div>
             <div class="chatbot-direct-info">
-                <button type="button" id="installChatbot" class="pill-btn">Scarica il chatbot</button>
                 <span class="chatbot-bar-note">Chatbot hostato sul server della scuola:</span>
                 <a href="https://gustavo1.avoprogetti.it" target="_blank" rel="noopener">Apri direttamente gustavo1.avoprogetti.it ↗</a>
             </div>

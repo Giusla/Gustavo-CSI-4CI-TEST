@@ -1,13 +1,12 @@
-/* The chat lives in a same-origin srcdoc iframe: gestures must be observed inside it. */
+/* Pull to refresh on every page, including the modern chat iframe. */
 (() => {
   const indicator = document.createElement('div');
   indicator.setAttribute('role', 'status');
   indicator.style.cssText = 'position:fixed;top:max(12px,env(safe-area-inset-top));left:50%;transform:translateX(-50%);z-index:2000;padding:10px 16px;border-radius:24px;background:white;color:#334155;box-shadow:0 4px 18px #0002;font:600 13px system-ui;pointer-events:none;display:none';
   document.body.append(indicator);
   let refreshing = false;
-  function attach(frame) {
-    const child = frame.contentDocument;
-    if (!child || !child.getElementById('messages') || child.__gustavoRefresh) return;
+  function attach(child) {
+    if (!child || child.__gustavoRefresh) return;
     child.__gustavoRefresh = true;
     let start = null;
     let distance = 0;
@@ -19,10 +18,16 @@
     child.addEventListener('touchstart', event => {
       reset();
       if (refreshing || event.touches.length !== 1 ||
-          event.target.closest('input, button, a, label, .input-container')) return;
+          event.target.closest('input, textarea, select, button, a, label, video, [contenteditable], .input-container')) return;
+      if ((child.scrollingElement && child.scrollingElement.scrollTop > 0) ||
+          (child === document && window.scrollY > 0)) return;
+      // Respect independently scrolling menus, dialogs and message lists.
+      for (let element = event.target; element && element !== child.documentElement; element = element.parentElement) {
+        if (element.scrollTop > 0) return;
+      }
       const messages = child.getElementById('messages');
       // A pull within messages refreshes only when their scroll is already at the top.
-      if (messages.contains(event.target) && messages.scrollTop > 0) return;
+      if (messages && messages.contains(event.target) && messages.scrollTop > 0) return;
       start = {x: event.touches[0].clientX, y: event.touches[0].clientY};
     }, {passive: true});
     child.addEventListener('touchmove', event => {
@@ -50,11 +55,14 @@
       if (frame.__gustavoRefreshObserved) return;
       frame.__gustavoRefreshObserved = true;
       frame.addEventListener('load', () => {
-        try { attach(frame); } catch (_) { /* The classic external chatbot is cross-origin. */ }
+        try { attach(frame.contentDocument); } catch (_) { /* The classic external chatbot is cross-origin. */ }
       });
-      try { attach(frame); } catch (_) {}
+      try { attach(frame.contentDocument); } catch (_) {}
     });
   }
-  new MutationObserver(observeFrames).observe(document.querySelector('.chatbot-iframe-box'), {childList: true});
+  attach(document);
+  document.documentElement.style.overscrollBehaviorY = 'none';
+  const container = document.querySelector('.chatbot-iframe-box');
+  if (container) new MutationObserver(observeFrames).observe(container, {childList: true});
   observeFrames();
 })();

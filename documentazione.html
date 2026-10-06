@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="assets/img/favicon.png?v=2">
     <link rel="apple-touch-icon" href="assets/img/favicon.png?v=2">
-    <link rel="manifest" href="manifest.json">
 
     <!-- Meta Tag Condivisione Social & Chat (Senza immagine, solo testo ufficiale) -->
     <meta property="og:type" content="website">
@@ -20,8 +19,9 @@
     <meta name="twitter:title" content="GustAvo">
     <meta name="twitter:description" content="GustAvo, Il chatbot che ti orienta a scuola · IIS Avogadro">
 
-    <link rel="stylesheet" href="assets/css/style.css?v=4.42">
-    <script src="assets/js/main.js?v=4.25" defer></script>
+    <link rel="stylesheet" href="assets/css/style.css?v=4.46">
+    <script src="assets/js/main.js?v=4.27" defer></script>
+    <script src="assets/js/site-refresh.js?v=1" defer></script>
 </head>
 <body class="site-page">
 
@@ -29,18 +29,14 @@
     <header>
         <nav class="navbar">
             <div class="nav-brand-group">
-                <div class="nav-brand-logos" aria-label="Loghi IIS Avogadro e CSI Piemonte">
-                    <a href="https://www.itisavogadro.it/" target="_blank" rel="noopener noreferrer" class="nav-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
-                        <img src="assets/img/logo_avogadro.png" alt="Logo IIS Avogadro" class="nav-logo-avo">
-                    </a>
-                    <span class="nav-logo-divider" aria-hidden="true"></span>
-                    <a href="https://www.csipiemonte.it/it" target="_blank" rel="noopener noreferrer" class="nav-logo-link" title="CSI Piemonte">
-                        <img src="assets/img/logo_csi_piemonte.png" alt="Logo CSI Piemonte" class="nav-logo-csi">
+                <div class="nav-brand-logos" aria-label="Logo IIS Avogadro">
+                    <a draggable="false" href="https://www.itisavogadro.it/" target="_blank" rel="noopener noreferrer" class="nav-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
+                        <img draggable="false" src="assets/img/logo_avogadro.png" alt="Logo IIS Avogadro" class="nav-logo-avo">
                     </a>
                 </div>
                 <span class="nav-brand-divider" aria-hidden="true"></span>
-                <a href="index.html" class="logo-link" title="GustAvo — Home">
-                    <img src="assets/img/gustavo_icon.png" alt="" width="40" height="40" decoding="async" class="nav-logo-gustavo-full">
+                <a draggable="false" href="index.html" class="logo-link" title="GustAvo — Home">
+                    <img draggable="false" src="assets/img/gustavo_icon.png" alt="" width="40" height="40" decoding="async" class="nav-logo-gustavo-full">
                     <span class="logo-testo">
                         <span class="logo-nome">GustAvo</span>
                         <span class="logo-motto">Il chatbot che ti orienta a scuola</span>
@@ -201,23 +197,6 @@
                     </div>
                 </div>
             </section>
-            <section class="doc-section card-panel" aria-labelledby="gustavo-evoluto-title">
-                <h2 id="gustavo-evoluto-title">GustAvo Evoluto: la versione su questo sito</h2>
-                <p>
-                    GustAvo Evoluto cerca prima la risposta nel browser, cioè sul dispositivo dell'utente,
-                    attraverso codice JavaScript. Se non trova una corrispondenza chiara, consulta il server
-                    del progetto originale. La domanda segue questi passaggi:
-                </p>
-                <ul class="doc-list">
-                    <li><strong>Preparazione del testo:</strong> la domanda viene uniformata eliminando differenze tra maiuscole e minuscole, accenti e punteggiatura. Viene poi divisa in parole (tokenizzazione), escludendo articoli e altre parole poco utili al confronto, chiamate stop word.</li>
-                    <li><strong>Ricerca della risposta:</strong> il sistema confronta le parole con gli esempi di domanda (pattern) presenti in <code>intents.json</code>. Ogni intento rappresenta un argomento, come iscrizioni o segreteria, e contiene esempi e risposte associate. Una domanda identica a un esempio ha priorità; negli altri casi vengono valutate le parole in comune e quanto il risultato migliore si distingue dagli altri.</li>
-                    <li><strong>Ricerca di aule e laboratori:</strong> regole dedicate riconoscono codici, numeri scritti in parole e nomi alternativi (alias). Il chatbot mostra il percorso registrato per la destinazione; se più aule possono corrispondere, chiede di precisare quale si cerca.</li>
-                    <li><strong>Richiesta al server:</strong> se la ricerca nel browser non basta, la domanda viene inviata al servizio originale <code>gustavo1</code>, attraverso il suo punto di accesso <code>/chat</code>. Questo passaggio è il fallback, cioè la soluzione di riserva. Se il server non risponde in tempo o non restituisce una risposta valida, il chatbot invita a riformulare.</li>
-                    <li><strong>Domande e risposte vocali:</strong> il browser o un servizio di trascrizione trasformano la voce in testo, che viene analizzato come una domanda scritta. La sintesi vocale compie il passaggio inverso: legge ad alta voce la risposta. Per registrare serve il consenso al microfono e un browser compatibile.</li>
-                </ul>
-
-
-            </section>
 
 
         </div>
@@ -227,14 +206,14 @@
     <footer class="footer">
         <div class="container footer-container">
             <div class="footer-logos">
-                <a href="https://www.itisavogadro.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
-                    <img src="assets/img/logo_avogadro.png" alt="Logo IIS Avogadro" class="footer-logo-avo">
+                <a draggable="false" href="https://www.itisavogadro.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Istituto Tecnico Amedeo Avogadro — Torino">
+                    <img draggable="false" src="assets/img/logo_avogadro.png" alt="Logo IIS Avogadro" class="footer-logo-avo">
                 </a>
-                <a href="https://avoprogetti.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Piattaforma AvoProgetti">
-                    <img src="assets/img/logo_avoprogetti.png" alt="Logo AvoProgetti" class="footer-logo-avoprogetti">
+                <a draggable="false" href="https://avoprogetti.it" target="_blank" rel="noopener noreferrer" class="footer-logo-link" title="Piattaforma AvoProgetti">
+                    <img draggable="false" src="assets/img/logo_avoprogetti.png" alt="Logo AvoProgetti" class="footer-logo-avoprogetti">
                 </a>
-                <a href="index.html" class="footer-logo-link" title="GustAvo Chatbot">
-                    <img src="assets/img/gustavo_icon.png" alt="Logo GustAvo" class="footer-logo-gustavo">
+                <a draggable="false" href="index.html" class="footer-logo-link" title="GustAvo Chatbot">
+                    <img draggable="false" src="assets/img/gustavo_icon.png" alt="Logo GustAvo" class="footer-logo-gustavo">
                 </a>
             </div>
 
