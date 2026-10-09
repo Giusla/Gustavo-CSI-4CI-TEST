@@ -23,27 +23,27 @@ window.GUSTAVO_GALLERY_DATA = [
       {
         "src": "assets/img/galleria/incontro_csi/foto_galleria_8.webp",
         "alt": "Momento di confronto e sintesi della sessione al CSI",
-        "caption": "Sintesi della sessione di lavoro e pianificazione sprint"
+        "caption": "Spiegazione concetto embedding"
       },
       {
         "src": "assets/img/galleria/incontro_csi/foto_galleria_5.webp",
         "alt": "Studio dell'architettura privacy-first senza profilazione",
-        "caption": "Studio dell'architettura software e politiche privacy-first"
+        "caption": "Illustrazione del sistema con il file json intents"
       },
       {
         "src": "assets/img/galleria/incontro_csi/foto_galleria_2.webp",
         "alt": "Brainstorming e definizione dei requisiti essenziali del chatbot",
-        "caption": "Brainstorming e definizione dei requisiti essenziali del chatbot"
+        "caption": "Presentazione di uno dei concept: Octavio"
       },
       {
         "src": "assets/img/galleria/incontro_csi/foto_galleria_3.webp",
         "alt": "Confronto con i tutor aziendali sulla struttura del servizio",
-        "caption": "Confronto con i tutor aziendali sulla struttura del servizio"
+        "caption": "Presentazione di uno dei concept: Octavio"
       },
       {
         "src": "assets/img/galleria/incontro_csi/foto_galleria_1.webp",
         "alt": "Sessione di lavoro del team GustAvo presso la sede di CSI Piemonte",
-        "caption": "Presentazione e avvio delle attività presso la sede di CSI Piemonte"
+        "caption": "Entrata nella sede di CSI Piemonte"
       }
     ]
   },
