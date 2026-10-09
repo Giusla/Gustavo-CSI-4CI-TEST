@@ -632,6 +632,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const initEncountersGallery = () => {
         const encountersData = window.GUSTAVO_GALLERY_DATA || [];
 
+        // Sincronizza i dati della galleria con i testi/didascalie definiti nel DOM di galleria.html
+        document.querySelectorAll('.encounter-section').forEach((section, encIdx) => {
+            const titleEl = section.querySelector('.encounter-title');
+            const descEl = section.querySelector('.encounter-desc');
+            if (encountersData[encIdx]) {
+                if (titleEl && titleEl.textContent.trim()) encountersData[encIdx].title = titleEl.textContent.trim();
+                if (descEl && descEl.textContent.trim()) encountersData[encIdx].desc = descEl.textContent.trim();
+            }
+            section.querySelectorAll('.gallery-card:not(.gallery-card-more)').forEach((card) => {
+                const pIdx = parseInt(card.dataset.index, 10);
+                const captionEl = card.querySelector('.gallery-caption');
+                const imgEl = card.querySelector('img');
+                if (encountersData[encIdx] && encountersData[encIdx].photos && encountersData[encIdx].photos[pIdx]) {
+                    if (captionEl && captionEl.textContent.trim()) {
+                        encountersData[encIdx].photos[pIdx].caption = captionEl.textContent.trim();
+                    }
+                    if (imgEl && imgEl.alt && imgEl.alt.trim()) {
+                        encountersData[encIdx].photos[pIdx].alt = imgEl.alt.trim();
+                    }
+                }
+            });
+        });
+
         // ------------------------------------------------
         // Gestione Modale Semi-Fullscreen Incontro
         // ------------------------------------------------

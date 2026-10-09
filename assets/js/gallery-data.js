@@ -2,23 +2,23 @@
 window.GUSTAVO_GALLERY_DATA = [
   {
     "id": "incontro-1",
-    "title": "1° Incontro: Formazione e Laboratori al CSI Piemonte",
-    "desc": "Kickoff del percorso formativo presso la sede di CSI Piemonte: analisi dei bisogni di orientamento, requisiti architetturali e studio del chatbot GustAvo con i tutor aziendali.",
+    "title": "Presentazione e Introduzione al CSI Piemonte",
+    "desc": "Kickoff iniziale con i tutor aziendali, analisi delle esigenze di orientamento scolastico e definizione delle feature chiave di GustAvo.",
     "photos": [
       {
         "src": "assets/img/galleria/incontro_csi/foto_galleria_7.webp",
         "alt": "Gli studenti presentano il progetto GustAvo al CSI Piemonte",
-        "caption": "Gli studenti presentano il progetto GustAvo al CSI Piemonte"
+        "caption": "Gli studenti presentano l'architettura basata sul TF-IDF di GustAvo al CSI Piemonte"
       },
       {
         "src": "assets/img/galleria/incontro_csi/foto_galleria_6.webp",
         "alt": "Presentazione del chatbot e confronto con i tutor al CSI Piemonte",
-        "caption": "Presentazione del chatbot e confronto con i tutor al CSI Piemonte"
+        "caption": "Presentazione ai tutor di CSI Piemonte delle possibili versioni del volto di GustAvo."
       },
       {
         "src": "assets/img/galleria/incontro_csi/foto_galleria_4.webp",
         "alt": "La classe segue la presentazione del progetto al CSI Piemonte",
-        "caption": "La classe segue la presentazione del progetto al CSI Piemonte"
+        "caption": "Presentazione degli obiettivi di GustAvo"
       },
       {
         "src": "assets/img/galleria/incontro_csi/foto_galleria_8.webp",
@@ -49,13 +49,13 @@ window.GUSTAVO_GALLERY_DATA = [
   },
   {
     "id": "incontro-2",
-    "title": "2° Incontro: Sviluppo, Addestramento e Test in Classe",
+    "title": "Sviluppo, Addestramento e Test in Classe",
     "desc": "Attività di programmazione e collaudo nei laboratori dell'IIS Amedeo Avogadro: strutturazione del dataset intents.json, addestramento del modello Scikit-learn e test del frontend.",
     "photos": [
       {
         "src": "assets/img/galleria/in_classe/foto_classe_5.webp",
         "alt": "La classe e i docenti durante le attività in laboratorio",
-        "caption": "La classe e i docenti durante le attività in laboratorio"
+        "caption": "Presentazione in classe di uno dei concept: Guardavo"
       },
       {
         "src": "assets/img/galleria/in_classe/foto_classe_6.webp",
@@ -65,7 +65,7 @@ window.GUSTAVO_GALLERY_DATA = [
       {
         "src": "assets/img/galleria/in_classe/foto_classe_1.webp",
         "alt": "Confronto tra studenti e docenti sul progetto GustAvo",
-        "caption": "Confronto tra studenti e docenti sul progetto GustAvo"
+        "caption": "Confronto tra studenti sul concept"
       },
       {
         "src": "assets/img/galleria/in_classe/foto_classe_2.webp",
@@ -86,8 +86,8 @@ window.GUSTAVO_GALLERY_DATA = [
   },
   {
     "id": "incontro-3",
-    "title": "3° Incontro: Incontro sull'AI con la Polizia di Stato",
-    "desc": "Incontro formativo sui temi dell'Intelligenza Artificiale con la Polizia di Stato, con dibattito e sessione di interviste condotte dagli studenti.",
+    "title": "Incontro sull'AI con la Polizia di Stato",
+    "desc": "Incontro formativo sui temi dell'Intelligenza Artificiale e i suoi pericoli con la Polizia di Torino, con dibattito e sessione di interviste condotte dagli studenti.",
     "photos": [
       {
         "src": "assets/img/galleria/incontro_cesedi/foto_cesedi_3.webp",
@@ -114,17 +114,17 @@ window.GUSTAVO_GALLERY_DATA = [
       {
         "src": "assets/img/galleria/incontro_msc/classe-docenti-cristiano-de-giorgis.webp",
         "alt": "La classe con i docenti e Cristiano de Giorgis di MSC",
-        "caption": "La classe con i docenti e Cristiano de Giorgis di MSC"
+        "caption": "La classe con il docente di informatica e Cristiano de Giorgis di MSC"
       },
       {
         "src": "assets/img/galleria/incontro_msc/foto_msc_2.webp",
         "alt": "La classe con i docenti e la preside durante l’incontro con MSC",
-        "caption": "La classe con i docenti e la preside durante l’incontro con MSC"
+        "caption": "La classe con i docenti di informatica e alcuni dipendenti di MSC."
       },
       {
         "src": "assets/img/galleria/incontro_msc/foto_msc_1.webp",
         "alt": "La sala dell’incontro con MSC",
-        "caption": "La sala dell’incontro con MSC"
+        "caption": "La sala riunioni MSC"
       },
       {
         "src": "assets/img/galleria/incontro_msc/foto_msc_3.webp",
