@@ -1582,6 +1582,30 @@ body>header {
     margin: 0 auto;
 }
 
+/* Card Wrapper Video con Didascalia come nella scheda Team */
+.video-card-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: #ffffff;
+    border: 2px solid var(--border-subtle);
+    box-shadow: 0 4px 14px rgba(0, 20, 60, 0.04);
+    width: 900px;
+    max-width: 100%;
+    margin: 0 auto;
+    transition: box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.video-card-wrapper:hover {
+    border-color: transparent;
+    background: linear-gradient(#ffffff, #ffffff) padding-box, var(--brand-gradient) border-box;
+    box-shadow: 0 14px 30px rgba(0, 40, 100, 0.14);
+}
+
 /* Custom Sleek Video Player */
 .custom-video-player {
     position: relative;
@@ -1594,6 +1618,43 @@ body>header {
     box-shadow: 0 12px 36px rgba(0, 30, 80, 0.16);
     aspect-ratio: 16 / 9;
     user-select: none;
+}
+
+.video-card-wrapper .custom-video-player {
+    border-radius: calc(var(--radius-md) - 2px) calc(var(--radius-md) - 2px) 0 0;
+    box-shadow: none;
+    max-width: 100%;
+    width: 100%;
+}
+
+.video-caption {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    font-size: 0.82rem;
+    color: var(--text-body);
+    line-height: 1.45;
+    background: #ffffff;
+    font-weight: 500;
+}
+
+.video-caption svg {
+    color: #ff0000;
+    flex-shrink: 0;
+}
+
+.video-caption-link {
+    color: var(--brand-blue);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+}
+
+.video-caption-link:hover {
+    color: var(--brand-green);
 }
 
 .custom-video-player video {
