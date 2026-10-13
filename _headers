@@ -1,0 +1,47 @@
+# =============================================================================
+# GustAvo — Cloudflare Pages: Cache-Control Headers
+# IIS Amedeo Avogadro, Torino · Classe 5CI
+#
+# Strategia:
+#   - Pagine HTML  → nessuna cache (sempre fresche)
+#   - CSS/JS con ?v= → cache 1 anno (immutabile, la versione cambia al deploy)
+#   - Immagini/font → cache 1 settimana
+# =============================================================================
+
+# ── Pagine HTML: mai in cache ─────────────────────────────────────────────────
+/*.html
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Pragma: no-cache
+
+# ── Home page ─────────────────────────────────────────────────────────────────
+/
+  Cache-Control: no-store, no-cache, must-revalidate, max-age=0
+  Pragma: no-cache
+
+# ── CSS: cache 1 anno (versione aggiornata tramite ?v= nel <link>) ────────────
+/assets/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# ── JavaScript: cache 1 anno ──────────────────────────────────────────────────
+/assets/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# ── Immagini: cache 7 giorni ──────────────────────────────────────────────────
+/assets/img/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# ── Video: cache 7 giorni ────────────────────────────────────────────────────
+/assets/video/*
+  Cache-Control: public, max-age=604800
+
+# ── Favicon ──────────────────────────────────────────────────────────────────
+/favicon.ico
+  Cache-Control: public, max-age=604800
+
+# ── File dati (JSON, sitemap) ─────────────────────────────────────────────────
+/intents.json
+  Cache-Control: no-store, no-cache, must-revalidate
+/sitemap.xml
+  Cache-Control: public, max-age=3600
+/robots.txt
+  Cache-Control: public, max-age=3600
