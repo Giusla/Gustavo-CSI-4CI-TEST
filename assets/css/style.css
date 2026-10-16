@@ -5390,3 +5390,123 @@ img,
 .site-page .gallery-slider-track .gallery-card:is(:hover, :focus-visible) {
     box-shadow: 0 8px 18px -6px rgba(0, 30, 80, 0.12);
 }
+
+/* Sezione Video Intervista nella Galleria (Incontro MSC) */
+.encounter-video-section {
+    margin-top: 32px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.encounter-video-header {
+    margin-bottom: 18px;
+    text-align: left;
+}
+
+.encounter-video-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+}
+
+.encounter-video-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    background: linear-gradient(135deg, #0066ff 0%, #00a86b 100%);
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(0, 102, 255, 0.25);
+}
+
+.encounter-video-heading {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-heading);
+    margin: 0;
+}
+
+.encounter-video-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.encounter-video-card {
+    width: 860px;
+    max-width: 100%;
+}
+
+.encounter-video-card .video-caption {
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.encounter-video-media {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    display: block;
+    background: #0f172a;
+    border-radius: calc(var(--radius-md) - 2px) calc(var(--radius-md) - 2px) 0 0;
+    object-fit: cover;
+}
+
+/* Card Video nel carosello della galleria */
+.gallery-card-video .video-card-thumb-box {
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-card-video .video-play-badge {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.78);
+    backdrop-filter: blur(4px);
+    border: 2px solid rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    pointer-events: none;
+}
+
+.gallery-card-video .video-play-badge svg {
+    margin-left: 3px;
+}
+
+.gallery-card-video:hover .video-play-badge,
+.gallery-card-video:focus-visible .video-play-badge {
+    transform: scale(1.15);
+    background: linear-gradient(135deg, #0066ff, #00a86b);
+    border-color: #ffffff;
+}
+
+.gallery-card-video .video-duration-pill {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(4px);
+    color: #ffffff;
+    font-size: 0.74rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    letter-spacing: 0.02em;
+    pointer-events: none;
+}

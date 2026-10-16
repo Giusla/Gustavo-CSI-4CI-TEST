@@ -640,7 +640,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (titleEl && titleEl.textContent.trim()) encountersData[encIdx].title = titleEl.textContent.trim();
                 if (descEl && descEl.textContent.trim()) encountersData[encIdx].desc = descEl.textContent.trim();
             }
-            section.querySelectorAll('.gallery-card:not(.gallery-card-more)').forEach((card) => {
+            section.querySelectorAll('.gallery-card:not(.gallery-card-more):not(.gallery-card-video)').forEach((card) => {
                 const pIdx = parseInt(card.dataset.index, 10);
                 const captionEl = card.querySelector('.gallery-caption');
                 const imgEl = card.querySelector('img');
@@ -926,6 +926,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 const card = e.target.closest('.gallery-card');
                 if (!card) return;
 
+                if (card.classList.contains('gallery-card-video')) {
+                    const targetId = card.dataset.videoTarget || '#mscInterviewVideo';
+                    const targetEl = document.querySelector(targetId);
+                    if (targetEl) {
+                        targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        const videoEl = targetEl.querySelector('video') || targetEl;
+                        if (videoEl && videoEl.play) {
+                            setTimeout(() => {
+                                videoEl.play().catch(() => {});
+                            }, 350);
+                        }
+                    }
+                    return;
+                }
+
                 const encIdx = parseInt(card.dataset.encounter, 10);
                 if (card.classList.contains('gallery-card-more')) {
                     openEncounterModal(encIdx);
@@ -942,6 +957,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 card.addEventListener('keydown', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
+                        if (card.classList.contains('gallery-card-video')) {
+                            card.click();
+                            return;
+                        }
                         const encIdx = parseInt(card.dataset.encounter, 10);
                         if (card.classList.contains('gallery-card-more')) {
                             openEncounterModal(encIdx);

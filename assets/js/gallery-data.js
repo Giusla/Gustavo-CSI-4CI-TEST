@@ -109,7 +109,7 @@ window.GUSTAVO_GALLERY_DATA = [
   {
     "id": "incontro-4",
     "title": "Incontro con MSC",
-    "desc": "Le foto dell'incontro degli studenti con MSC.",
+    "desc": "Le foto dell'incontro degli studenti con MSC e la video-intervista a Cristiano De Giorgis.",
     "photos": [
       {
         "src": "assets/img/galleria/incontro_msc/classe-docenti-cristiano-de-giorgis.webp",
