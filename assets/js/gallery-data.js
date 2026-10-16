@@ -132,5 +132,32 @@ window.GUSTAVO_GALLERY_DATA = [
         "caption": "Incontro degli studenti con MSC"
       }
     ]
+  },
+  {
+    "id": "backstage",
+    "title": "Backstage",
+    "desc": "Il dietro le quinte del progetto GustAvo: montaggio e configurazione del totem interattivo, integrazione hardware con Raspberry Pi e momenti di lavoro degli studenti nei corridoi e nei laboratori dell'Avogadro.",
+    "photos": [
+      {
+        "src": "assets/img/galleria/backstage/foto_backstage_1.jpg",
+        "alt": "Sviluppo dell'interfaccia e configurazione mappe su monitor interattivo e portatile",
+        "caption": "Sviluppo dell'interfaccia e configurazione delle mappe sui monitor interattivi del laboratorio"
+      },
+      {
+        "src": "assets/img/galleria/backstage/foto_backstage_2.jpg",
+        "alt": "Assemblaggio del totem kiosk con Raspberry Pi all'ingresso dell'istituto",
+        "caption": "Integrazione hardware: assemblaggio del totem e cablaggio del Raspberry Pi all'ingresso"
+      },
+      {
+        "src": "assets/img/galleria/backstage/foto_backstage_3.jpg",
+        "alt": "Collaudo e verifica dei collegamenti elettronici del totem",
+        "caption": "Collaudo dei collegamenti e verifica del funzionamento dei componenti del totem"
+      },
+      {
+        "src": "assets/img/galleria/backstage/foto_backstage_4.jpg",
+        "alt": "Test finale dell'interfaccia e del display touch sul totem di GustAvo",
+        "caption": "Test finale del totem con l'interfaccia di GustAvo attiva nell'atrio dell'Avogadro"
+      }
+    ]
   }
 ];
