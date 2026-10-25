@@ -38,7 +38,7 @@
 
     <link rel="stylesheet" href="assets/css/style.css?v=4.52">
     <script src="assets/js/gallery-data.js?v=4" defer></script>
-    <script src="assets/js/main.js?v=4.32" defer></script>
+    <script src="assets/js/main.js?v=4.33" defer></script>
     <script src="assets/js/site-refresh.js?v=1" defer></script>
 </head>
 
@@ -105,7 +105,8 @@
                 <span class="project-section-kicker">Il progetto in immagini</span>
                 <h1 class="titolo-pagina">Galleria del Progetto</h1>
                 <p class="sottotitolo">
-                    I momenti salienti dei laboratori formativi al CSI Piemonte, gli incontri con Polizia Locale di Torino e MSC, e il backstage dello sviluppo.
+                    I momenti salienti dei laboratori formativi al CSI Piemonte, gli incontri con Polizia Locale di
+                    Torino e MSC, e il backstage dello sviluppo.
                 </p>
             </header>
 
@@ -325,6 +326,25 @@
 
                     <div class="gallery-slider-track" data-encounter="2" role="region"
                         aria-label="3° Incontro — Foto del carosello">
+                        <article class="gallery-card gallery-card-video" data-encounter="2"
+                            data-video-target="#poliziaInterviewVideo" role="button" tabindex="0"
+                            aria-label="Guarda la video intervista all'agente Marcello di Lella della Polizia Locale di Torino (2 min 51 sec)">
+                            <div class="photo-skeleton-box video-card-thumb-box">
+                                <img draggable="false" src="assets/img/galleria/incontro_cesedi/foto_cesedi_3.webp"
+                                    alt="Video intervista all'agente Marcello di Lella della Polizia Locale di Torino"
+                                    loading="lazy" width="1235" height="695" decoding="async">
+                                <div class="video-play-badge" aria-hidden="true">
+                                    <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+                                        <polygon points="6 4 20 12 6 20 6 4"></polygon>
+                                    </svg>
+                                </div>
+                                <span class="video-duration-pill" aria-hidden="true">2:51</span>
+                            </div>
+                            <div class="gallery-caption">
+                                <span><strong>Video:</strong> Estratto dell’intervista all’agente Marcello Di Lella
+                                    della Polizia Locale di Torino.</span>
+                            </div>
+                        </article>
                         <article class="gallery-card" data-encounter="2" data-index="0">
                             <div class="photo-skeleton-box">
                                 <img draggable="false" src="assets/img/galleria/incontro_cesedi/foto_cesedi_3.webp"
@@ -334,7 +354,8 @@
                                     sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="1235" height="695"
                                     decoding="async">
                             </div>
-                            <div class="gallery-caption">Intervista di uno studente all'agente Marcello di Lella della Polizia Locale di Torino</div>
+                            <div class="gallery-caption">Intervista di uno studente all'agente Marcello di Lella della
+                                Polizia Locale di Torino</div>
                         </article>
                         <article class="gallery-card" data-encounter="2" data-index="1">
                             <div class="photo-skeleton-box">
@@ -350,12 +371,14 @@
                         <article class="gallery-card" data-encounter="2" data-index="2">
                             <div class="photo-skeleton-box">
                                 <img draggable="false" src="assets/img/galleria/incontro_cesedi/foto_cesedi_2.webp"
-                                    alt="Intervento della Polizia Locale di Torino sull’Intelligenza Artificiale" loading="lazy"
+                                    alt="Intervento della Polizia Locale di Torino sull’Intelligenza Artificiale"
+                                    loading="lazy"
                                     srcset="assets/img/galleria/incontro_cesedi/foto_cesedi_2-small.webp 640w, assets/img/galleria/incontro_cesedi/foto_cesedi_2.webp 1600w"
                                     sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="1600" height="1168"
                                     decoding="async">
                             </div>
-                            <div class="gallery-caption">Intervento della Polizia Locale di Torino sull’Intelligenza Artificiale
+                            <div class="gallery-caption">Intervento della Polizia Locale di Torino sull’Intelligenza
+                                Artificiale
                             </div>
                         </article>
 
@@ -399,11 +422,41 @@
                         <div class="gallery-custom-scrollbar-thumb"></div>
                     </div>
                 </div>
+
+                <!-- VIDEO INTERVISTA MARCELLO DI LELLA -->
+                <div class="encounter-video-section" id="poliziaInterviewVideo">
+                    <div class="encounter-video-header">
+                        <div class="encounter-video-title-group">
+                            <span class="encounter-video-pill">
+                                <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                                Video Intervista
+                            </span>
+                            <h3 class="encounter-video-heading">Intervista all'Agente Marcello di Lella · Polizia Locale
+                                di Torino</h3>
+                        </div>
+
+                    </div>
+
+                    <div class="video-center-wrapper">
+                        <figure class="video-card-wrapper encounter-video-card">
+                            <video controls playsinline preload="metadata" controlslist="nodownload"
+                                poster="assets/img/galleria/incontro_cesedi/foto_cesedi_3.webp"
+                                class="encounter-video-media" id="poliziaVideoPlayer">
+                                <source src="assets/video/Intervista_di_lella.mp4" type="video/mp4">
+                                Il tuo browser non supporta la riproduzione video MP4.
+                            </video>
+
+                        </figure>
+                    </div>
+                </div>
             </section>
             <section class="encounter-section" id="incontro-4">
                 <div class="encounter-header">
                     <h2 class="encounter-title">Incontro con MSC</h2>
-                    <p class="encounter-desc">Le foto dell'incontro degli studenti con MSC e la video-intervista a Cristiano De Giorgis.</p>
+                    <p class="encounter-desc">Le foto dell'incontro degli studenti con MSC e la video-intervista a
+                        Cristiano De Giorgis.</p>
                 </div>
 
                 <div class="gallery-slider-wrapper">
@@ -417,12 +470,13 @@
 
                     <div class="gallery-slider-track" data-encounter="3" role="region"
                         aria-label="4° Incontro — Foto del carosello">
-                        <article class="gallery-card gallery-card-video" data-encounter="3" data-video-target="#mscInterviewVideo" role="button" tabindex="0"
+                        <article class="gallery-card gallery-card-video" data-encounter="3"
+                            data-video-target="#mscInterviewVideo" role="button" tabindex="0"
                             aria-label="Guarda la video intervista a Cristiano De Giorgis di MSC (1 min 53 sec)">
                             <div class="photo-skeleton-box video-card-thumb-box">
                                 <img draggable="false" src="assets/img/galleria/incontro_msc/poster_intervista.jpg"
-                                    alt="Video intervista a Cristiano De Giorgis di MSC" loading="lazy" width="1920" height="1080"
-                                    decoding="async">
+                                    alt="Video intervista a Cristiano De Giorgis di MSC" loading="lazy" width="1920"
+                                    height="1080" decoding="async">
                                 <div class="video-play-badge" aria-hidden="true">
                                     <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
                                         <polygon points="6 4 20 12 6 20 6 4"></polygon>
@@ -443,7 +497,8 @@
                                     sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="1920" height="1440"
                                     decoding="async">
                             </div>
-                            <div class="gallery-caption">La classe con il docente di informatica e Cristiano de Giorgis di MSC</div>
+                            <div class="gallery-caption">La classe con il docente di informatica e Cristiano de Giorgis
+                                di MSC</div>
                         </article>
                         <article class="gallery-card" data-encounter="3" data-index="1">
                             <div class="photo-skeleton-box">
@@ -453,7 +508,8 @@
                                     sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="1600" height="1200"
                                     decoding="async">
                             </div>
-                            <div class="gallery-caption">La classe con i docenti di informatica e alcuni dipendenti di MSC.
+                            <div class="gallery-caption">La classe con i docenti di informatica e alcuni dipendenti di
+                                MSC.
                             </div>
                         </article>
                         <article class="gallery-card" data-encounter="3" data-index="2">
@@ -520,20 +576,25 @@
                             </span>
                             <h3 class="encounter-video-heading">Intervista a Cristiano De Giorgis · MSC</h3>
                         </div>
-                        <p class="encounter-video-desc">Un momento di confronto e approfondimento sull'adozione della metodologia Agile e le dinamiche del lavoro di squadra nel mondo IT aziendale.</p>
+                        <p class="encounter-video-desc">Un momento di confronto e approfondimento sull'adozione della
+                            metodologia Agile e le dinamiche del lavoro di squadra nel mondo IT aziendale.</p>
                     </div>
 
                     <div class="video-center-wrapper">
                         <figure class="video-card-wrapper encounter-video-card">
                             <video controls playsinline preload="metadata" controlslist="nodownload"
-                                poster="assets/img/galleria/incontro_msc/poster_intervista.jpg" class="encounter-video-media" id="mscVideoPlayer">
+                                poster="assets/img/galleria/incontro_msc/poster_intervista.jpg"
+                                class="encounter-video-media" id="mscVideoPlayer">
                                 <source src="assets/video/intervista_Cristiano_de_Georgis.mp4" type="video/mp4">
-                                <source src="assets/img/galleria/incontro_msc/intervista_Cristiano_de_Georgis.mp4" type="video/mp4">
+                                <source src="assets/img/galleria/incontro_msc/intervista_Cristiano_de_Georgis.mp4"
+                                    type="video/mp4">
                                 Il tuo browser non supporta la riproduzione video MP4.
                             </video>
                             <figcaption class="video-caption">
-                                <span>Video intervista a Cristiano De Giorgis di MSC — IIS Amedeo Avogadro, Torino.</span>
-                                <a href="https://youtu.be/N2j_1Vh6kTA?si=MygupnBChJYq32gF" target="_blank" rel="noopener noreferrer" class="video-caption-link">Guarda il video ↗</a>
+                                <span>Video intervista a Cristiano De Giorgis di MSC — IIS Amedeo Avogadro,
+                                    Torino.</span>
+                                <a href="https://youtu.be/N2j_1Vh6kTA?si=MygupnBChJYq32gF" target="_blank"
+                                    rel="noopener noreferrer" class="video-caption-link">Guarda il video ↗</a>
                             </figcaption>
                         </figure>
                     </div>
@@ -546,7 +607,9 @@
             <section class="encounter-section" id="backstage">
                 <div class="encounter-header">
                     <h2 class="encounter-title">Backstage</h2>
-                    <p class="encounter-desc">Il dietro le quinte del progetto GustAvo: montaggio e configurazione del totem interattivo, integrazione hardware con Raspberry Pi e momenti di lavoro degli studenti nei corridoi e nei laboratori dell'Avogadro.</p>
+                    <p class="encounter-desc">Il dietro le quinte del progetto GustAvo: montaggio e configurazione del
+                        totem interattivo, integrazione hardware con Raspberry Pi e momenti di lavoro degli studenti nei
+                        corridoi e nei laboratori dell'Avogadro.</p>
                 </div>
 
                 <div class="gallery-slider-wrapper">
@@ -562,36 +625,38 @@
                         aria-label="Backstage — Foto del carosello">
                         <article class="gallery-card" data-encounter="4" data-index="0">
                             <div class="photo-skeleton-box">
-                                <img draggable="false"
-                                    src="assets/img/galleria/backstage/foto_backstage_1.jpg"
-                                    alt="Sviluppo dell'interfaccia e configurazione mappe su monitor interattivo e portatile" loading="lazy"
+                                <img draggable="false" src="assets/img/galleria/backstage/foto_backstage_1.jpg"
+                                    alt="Sviluppo dell'interfaccia e configurazione mappe su monitor interattivo e portatile"
+                                    loading="lazy"
                                     srcset="assets/img/galleria/backstage/foto_backstage_1-small.jpg 640w, assets/img/galleria/backstage/foto_backstage_1.jpg 2016w"
                                     sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="2016" height="1512"
                                     decoding="async">
                             </div>
-                            <div class="gallery-caption">Sviluppo dell'interfaccia e configurazione delle mappe sui monitor interattivi del laboratorio</div>
+                            <div class="gallery-caption">Sviluppo dell'interfaccia e configurazione delle mappe sui
+                                monitor interattivi del laboratorio</div>
                         </article>
                         <article class="gallery-card" data-encounter="4" data-index="1">
                             <div class="photo-skeleton-box">
-                                <img draggable="false"
-                                    src="assets/img/galleria/backstage/foto_backstage_2.jpg"
-                                    alt="Assemblaggio del totem kiosk con Raspberry Pi all'ingresso dell'istituto" loading="lazy"
+                                <img draggable="false" src="assets/img/galleria/backstage/foto_backstage_2.jpg"
+                                    alt="Assemblaggio del totem kiosk con Raspberry Pi all'ingresso dell'istituto"
+                                    loading="lazy"
                                     srcset="assets/img/galleria/backstage/foto_backstage_2-small.jpg 640w, assets/img/galleria/backstage/foto_backstage_2.jpg 1512w"
                                     sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="1512" height="2016"
                                     decoding="async">
                             </div>
-                            <div class="gallery-caption">Integrazione hardware: assemblaggio del totem e cablaggio del Raspberry Pi all'ingresso</div>
+                            <div class="gallery-caption">Integrazione hardware: assemblaggio del totem e cablaggio del
+                                Raspberry Pi all'ingresso</div>
                         </article>
                         <article class="gallery-card" data-encounter="4" data-index="2">
                             <div class="photo-skeleton-box">
-                                <img draggable="false"
-                                    src="assets/img/galleria/backstage/foto_backstage_3.jpg"
+                                <img draggable="false" src="assets/img/galleria/backstage/foto_backstage_3.jpg"
                                     alt="Collaudo e verifica dei collegamenti elettronici del totem" loading="lazy"
                                     srcset="assets/img/galleria/backstage/foto_backstage_3-small.jpg 640w, assets/img/galleria/backstage/foto_backstage_3.jpg 1512w"
                                     sizes="(max-width: 768px) calc(100vw - 40px), 520px" width="1512" height="2016"
                                     decoding="async">
                             </div>
-                            <div class="gallery-caption">Collaudo dei collegamenti e verifica del funzionamento dei componenti del totem</div>
+                            <div class="gallery-caption">Collaudo dei collegamenti e verifica del funzionamento dei
+                                componenti del totem</div>
                         </article>
 
                         <article class="gallery-card gallery-card-more" data-encounter="4" role="button" tabindex="0"
@@ -727,10 +792,13 @@
                     <img draggable="false" src="assets/img/brand/gustavo_icon.png" alt="Logo GustAvo"
                         class="footer-logo-gustavo">
                 </a>
-                <a draggable="false" href="https://github.com/Giusla/Gustavo-CSI-4CI-TEST" target="_blank" rel="noopener noreferrer"
-                    class="footer-logo-link" title="Repository GitHub — Gustavo-CSI-4CI-TEST" aria-label="Repository GitHub di GustAvo">
-                    <svg viewBox="0 0 24 24" width="44" height="44" fill="currentColor" aria-hidden="true" focusable="false" class="footer-github-icon">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                <a draggable="false" href="https://github.com/Giusla/Gustavo-CSI-4CI-TEST" target="_blank"
+                    rel="noopener noreferrer" class="footer-logo-link" title="Repository GitHub — Gustavo-CSI-4CI-TEST"
+                    aria-label="Repository GitHub di GustAvo">
+                    <svg viewBox="0 0 24 24" width="44" height="44" fill="currentColor" aria-hidden="true"
+                        focusable="false" class="footer-github-icon">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
                     </svg>
                 </a>
             </div>

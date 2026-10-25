@@ -974,6 +974,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         });
+
+        // Pausa reciproca tra video riprodotti nella galleria
+        document.querySelectorAll('video').forEach((vid) => {
+            vid.addEventListener('play', () => {
+                document.querySelectorAll('video').forEach((otherVid) => {
+                    if (otherVid !== vid && !otherVid.paused) {
+                        otherVid.pause();
+                    }
+                });
+            });
+        });
     };
 
     // ----------------------------------------------------
