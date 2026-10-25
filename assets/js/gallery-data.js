@@ -86,13 +86,13 @@ window.GUSTAVO_GALLERY_DATA = [
   },
   {
     "id": "incontro-3",
-    "title": "Incontro sull'AI con la Polizia di Stato",
+    "title": "Incontro sull'AI con la Polizia Locale di Torino",
     "desc": "Incontro formativo sui temi dell'Intelligenza Artificiale e i suoi pericoli con la Polizia di Torino, con dibattito e sessione di interviste condotte dagli studenti.",
     "photos": [
       {
         "src": "assets/img/galleria/incontro_cesedi/foto_cesedi_3.webp",
-        "alt": "Intervista di uno studente a un rappresentante della Polizia di Stato",
-        "caption": "Intervista di uno studente a un rappresentante della Polizia di Stato"
+        "alt": "Intervista di uno studente all'agente Marcello di Lella della Polizia Locale di Torino",
+        "caption": "Intervista di uno studente all'agente Marcello di Lella della Polizia Locale di Torino"
       },
       {
         "src": "assets/img/galleria/incontro_cesedi/foto_cesedi_1.webp",
@@ -101,8 +101,8 @@ window.GUSTAVO_GALLERY_DATA = [
       },
       {
         "src": "assets/img/galleria/incontro_cesedi/foto_cesedi_2.webp",
-        "alt": "Intervento della Polizia di Stato sull’Intelligenza Artificiale",
-        "caption": "Intervento della Polizia di Stato sull’Intelligenza Artificiale"
+        "alt": "Intervento della Polizia Locale di Torino sull’Intelligenza Artificiale",
+        "caption": "Intervento della Polizia Locale di Torino sull’Intelligenza Artificiale"
       }
     ]
   },
